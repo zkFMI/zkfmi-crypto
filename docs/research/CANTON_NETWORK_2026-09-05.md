@@ -1,143 +1,143 @@
-# Canton Network 追加調査 v1.1
+# Supplementary Canton Network Research v1.1
 
-確認日: **2026-09-05**。本書は、[Canton以外の初回サーベイ][survey]を歴史的原文として残し、18番目の比較対象としてCanton Networkを追加する調査である。Canton / Digital Asset / Canton Foundation（旧Global Synchronizer Foundation）の仕様・運用資料と、採用者自身の発表を確認した。既存の比較判断が参照する40件に、新規の一次URL 14件を加えた。初版の根拠集合は重複を除く54URLだった。v1.1は[Claude Fable 5.1 Maxのレビュー][fable]を統合し、取得状態と追加資料を区別する。既存サーベイのMUFG資料J3もCanton事例として再利用するため、Cantonに関する初版の参照は15件だった。追加資料は末尾とFableレビューで区別する。
+Review date: **2026-09-05**. This document adds Canton Network as the 18th comparison target while preserving the [initial survey excluding Canton][survey] as a historical source. It checked specifications and operational materials from Canton / Digital Asset / Canton Foundation (formerly Global Synchronizer Foundation), along with adopters' own announcements. Fourteen new primary-source URLs were added to the 40 referenced by the existing comparison decisions. The first edition's evidence set contained 54 distinct URLs. v1.1 integrates the [Claude Fable 5.1 Max review][fable], distinguishing retrieval status from supplementary materials. Because MUFG source J3 from the existing survey was also reused as a Canton case, the first edition had 15 Canton references. Supplementary materials are identified separately at the end and in the Fable review.
 
-**結論:** Cantonは、選択的な閲覧、当事者による取引検証、複数アプリ・参加者をまたぐ原子的な状態更新、稼働する機関向けアプリを既に持つ、ZKFMIの最重要比較対象である。このため「自分たちだけが市場規則やDvPを証明できる」という独自性は成立しない。一方、公開されたCantonの中核プロトコルは、取引に関係するvalidatorが平文のviewを復号してDamlを再実行する方式である。**計算を担当する各ノードからも完全な入力を隠すMPC**は別の保証であり、ZKFMIが差を示し得る。Damlの業務ロジックとoff-ledger integrationの境界から、CantonアプリへMPC・ZK・参加資格・与信・予約・市場規則を組み合わせる構成は設計可能と推論するが、同じアプリの実装は確認していない。したがって「Cantonは非対応」とも「同等機能が稼働済み」とも扱わない。[CN1][cn1] [CN3][cn3] [CN4][cn4] [CN5][cn5]
+**Conclusion:** Canton is ZKFMI's most important comparison target: it already provides selective visibility, transaction verification by the parties, atomic state updates across multiple applications and participants, and operating institutional applications. Consequently, the claim that “only we can prove market rules or DvP” does not establish uniqueness. The publicly documented core Canton protocol, however, has the validators involved in a transaction decrypt plaintext views and re-execute Daml. **MPC that hides complete inputs even from each node performing the computation** provides a different guarantee, on which ZKFMI could demonstrate a difference. From the boundary between Daml business logic and off-ledger integration, we infer that a Canton application could be designed to combine MPC, ZK, eligibility, credit, reservations, and market rules, but we have not verified an implementation of the same application. Therefore, treat neither “Canton does not support this” nor “equivalent functionality is already operating” as established. [CN1][cn1] [CN3][cn3] [CN4][cn4] [CN5][cn5]
 
-## 1. 「Canton」を一つの製品として扱わない
+## 1. Do Not Treat “Canton” as a Single Product
 
-| 層・役割 | 公式資料から確認したこと | 比較で混同しないこと |
+| Layer / role | What official materials confirm | Distinctions to preserve in comparisons |
 | --- | --- | --- |
-| **Canton Network** | 独立して運営されるアプリ、validator、複数のsynchronizerを結ぶ「network of networks」。各validatorは自分がhostするpartyの台帳断片だけを保存する [CN1][cn1] [CN8][cn8] | Cantonを使う一社の案件を、全ネットワーク機能の稼働証拠にしない |
-| **Damlアプリ** | Daml contractが業務ロジック、signatory / observer / controller、権限と開示範囲を定める。smart contractはvalidator上で実行される [CN1][cn1] [CN2][cn2] | Canton基盤の性質と、個別アプリが実装した注文、与信、予約、清算規則を分ける |
-| **validator / participant node** | 公式docsではvalidatorはparticipant nodeを運用するNetwork上の役割。partyをhostし、そのpartyが関係するcontractを保存し、受け取ったtransaction viewを復号・検証する [CN1][cn1] [CN3][cn3] | 「validator」という語から、全validatorが全取引を読む通常のpublic chainを想定しない |
-| **synchronizer** | sequencerが暗号化messageを順序付けて配信し、mediatorが関係validatorの確認を集約してcommit / rejectを宣言する。Damlの内容自体を検証する主体ではない [CN1][cn1] [CN3][cn3] | 順序・確認の調整と、業務ロジック・入力内容の正しさの検証を分ける |
-| **Global Synchronizer** | Super Validatorが分散運営する公開synchronizer。2/3多数のBFTでmessage ordering・confirmationを行う。アプリはprivate synchronizerや複数synchronizerも選べる [CN6][cn6] [CN8][cn8] | Cantonアプリが常にGlobal Synchronizerを使う、または全処理をそこで行うとは限らない |
-| **application provider** | on-ledger Damlとoff-ledger業務ロジック・認証を提供し、利用者のtransactionをsubmitする場合がある [CN5][cn5] | protocol上の検証と、off-ledger入力選定・認証・送信を正しく実装するproviderへの信頼を分ける |
+| **Canton Network** | A “network of networks” connecting independently operated applications, validators, and multiple synchronizers. Each validator stores only the ledger fragments of the parties it hosts [CN1][cn1] [CN8][cn8] | One company's Canton project is not evidence that all network capabilities are operating |
+| **Daml applications** | Daml contracts define business logic, signatory / observer / controller roles, authorization, and disclosure. Smart contracts execute on validators [CN1][cn1] [CN2][cn2] | Separate properties of the Canton foundation from order, credit, reservation, and clearing rules implemented by individual applications |
+| **validator / participant node** | Official docs define a validator as a Network role that operates a participant node. It hosts parties, stores their relevant contracts, and decrypts and validates received transaction views [CN1][cn1] [CN3][cn3] | The term “validator” does not imply a conventional public chain in which all validators read all transactions |
+| **synchronizer** | The sequencer orders and delivers encrypted messages; the mediator aggregates confirmations from relevant validators and declares commit / reject. It does not itself validate Daml contents [CN1][cn1] [CN3][cn3] | Separate ordering and confirmation coordination from validation of business logic and input correctness |
+| **Global Synchronizer** | A public synchronizer operated in a distributed manner by Super Validators. Performs message ordering and confirmation using 2/3-majority BFT. Apps can also choose private or multiple synchronizers [CN6][cn6] [CN8][cn8] | Canton apps do not necessarily always use the Global Synchronizer or perform all processing there |
+| **application provider** | Provides on-ledger Daml and off-ledger business logic and authentication, and may submit users' transactions [CN5][cn5] | Separate protocol verification from trust in a provider to implement off-ledger input selection, authentication, and submission correctly |
 
-## 2. 誰が何を読めるか
+## 2. Who Can Read What
 
-Cantonはtransactionを階層的なviewへ分解し、各viewを対応するinformee / witnessのparticipantへ暗号化して配信する。非関係partyはそのviewを受け取らず、synchronizerは暗号化payloadを復号しない。signatory、observer、controllerなど、アプリが指定した当事者は自分のviewを読み、結果を検証する。[CN2][cn2] [CN4][cn4]
+Canton decomposes transactions into hierarchical views and encrypts each view for delivery to the participants of the corresponding informees / witnesses. Unrelated parties do not receive the view, and synchronizers do not decrypt encrypted payloads. The parties specified by the application, such as signatories, observers, and controllers, read their own views and validate the results. [CN2][cn2] [CN4][cn4]
 
-ただし、秘密が全ての運営・計算主体から隠れるわけではない。
+However, secrets are not hidden from every operating or computing entity.
 
-- **自分のvalidator:** hostするpartyのcontract dataを保存し、公式trust modelは、そのvalidatorが自分のpartyの全データを読めると明記する。第三者運営validatorを使う場合は、データを漏らさず正しくconsensusへ参加することをその運営者へ信頼する。外部party keyを使えばvalidatorによる署名を避けられるが、validatorのデータ閲覧までなくす説明ではない。[CN5][cn5]
-- **取引当事者:** 当事者とそのvalidatorは権利に応じたviewを復号する。counterpartyが受け取った秘密を漏らさないことは、暗号だけで除去される信頼ではない。[CN5][cn5]
-- **synchronizer:** sequencerは暗号化内容を読まないがrecipient routingを行い、mediatorはviewごとのinformeeとapprove / reject、confirmation policyを知る。公開privacy guideも時間、message size、activity patternからの推測を設計課題として挙げる。[CN2][cn2] [CN3][cn3]
-- **application provider:** off-ledgerで注文受付、入力選定、認証、外部API連携を行う場合、その実装と非検閲性を信頼する。[CN5][cn5]
+- **Your own validator:** Stores contract data for the parties it hosts; the official trust model explicitly states that it can read all data of its own parties. When using a validator operated by a third party, you trust that operator not to leak data and to participate correctly in consensus. External party keys can avoid signing by the validator, but are not described as eliminating its visibility into the data. [CN5][cn5]
+- **Transaction parties:** Parties and their validators decrypt views according to their rights. Trust that a counterparty will not leak received secrets is not removed by cryptography alone. [CN5][cn5]
+- **Synchronizer:** The sequencer cannot read encrypted contents but performs recipient routing; the mediator knows each view's informees, approve / reject responses, and confirmation policy. The public privacy guide also identifies inferences from timing, message size, and activity patterns as design concerns. [CN2][cn2] [CN3][cn3]
+- **Application provider:** When it performs off-ledger order admission, input selection, authentication, and external API integration, its implementation and freedom from censorship are trusted. [CN5][cn5]
 
-したがって、Cantonの強みは**必要な当事者間だけで平文を共有するsub-transaction privacy**である。ZKFMIのMPCが目指す「完全な注文入力を、許容結託数以下の各計算ノードにも渡さない」保証とは比較単位が異なる。Cantonでもoff-ledger applicationが外部MPCを実行して結果だけをDaml transactionへ入力する、またはMPCと連携するapplicationを作る余地があると設計上推論できる。これは実装確認ではないが、Canton全体の機能欠落ではなく、公開した標準経路とZKFMI現行経路の差として扱う。[CN1][cn1]
+Canton's strength is therefore **sub-transaction privacy that shares plaintext only among the necessary parties**. This differs in comparison scope from the guarantee targeted by ZKFMI's MPC: “complete order inputs are not provided even to individual computing nodes within the tolerated collusion threshold.” As a design inference, an off-ledger application on Canton could run external MPC and submit only its result to a Daml transaction, or an application could be built to integrate MPC. This is not a verified implementation. Treat it as a difference between the publicly documented standard path and ZKFMI's current path, rather than a missing capability of Canton as a whole. [CN1][cn1]
 
-2020年whitepaperは、高度な暗号の負荷と、信頼を明示して共有範囲を限定する設計の選択を説明する。この標準経路とMPCの差には設計上の根拠があるが、Cantonアプリが外部MPC・ZKと連携できないという証拠ではない。[CN17][cn17]
+The 2020 whitepaper explains the cost of advanced cryptography and the choice to make trust explicit while restricting data sharing. The difference between this standard path and MPC has a design basis, but does not establish that Canton applications cannot integrate external MPC or ZK. [CN17][cn17]
 
-## 3. 何を検証し、何を検証しないか
+## 3. What Is and Is Not Verified
 
-submitting participantはcommandをDaml engineで解釈し、transaction treeとroot hashを作る。関係participantは、自分宛てのviewについて、Damlの再実行結果、signatory / controllerのauthorization、必要な署名、自分のActive Contract Setに対するinput contractの有効性を確認して、署名付きapprove / rejectをmediatorへ返す。mediatorは確認policyを満たしたかを集計するが、Daml logicを独自に再検証しない。[CN3][cn3] [CN4][cn4]
+The submitting participant interprets commands through the Daml engine and constructs a transaction tree and root hash. For views addressed to them, the relevant participants check Daml re-execution results, signatory / controller authorization, required signatures, and validity of input contracts against their own Active Contract Sets, then return signed approve / reject responses to the mediator. The mediator tallies whether the confirmation policy is satisfied but does not independently revalidate Daml logic. [CN3][cn3] [CN4][cn4]
 
-これは、**提出されたDaml transactionの正しさ、権限、関係contractの二重使用防止**を強く扱う。Damlが業務ロジック・権限・multi-party agreementを扱うことから、注文contract、参加資格、与信枠、asset reservation、価格・時間優先やRFQの規則を実装し、同じtransactionへ束縛する構成は設計可能と推論できる。[CN1][cn1] 同じ市場アプリの実装・性能は確認していないが、ZKFMIだけが資格・予約・市場規則を実装できるとは言えない。
+This strongly addresses **correctness and authorization of submitted Daml transactions, and prevention of double use of the relevant contracts**. Because Daml handles business logic, authorization, and multi-party agreement, we infer that a design could implement order contracts, eligibility, credit limits, asset reservations, and price-time-priority or RFQ rules, binding them to the same transaction. [CN1][cn1] An implementation or performance of the same market application has not been verified, but ZKFMI cannot claim to be the only system capable of implementing eligibility, reservations, and market rules.
 
-一方、次の命題は中核protocolだけから自動的には得られず、個別アプリと受付境界を確認する必要がある。
+The following propositions, however, do not follow automatically from the core protocol alone; individual applications and admission boundaries must be checked.
 
-- off-ledgerで到着した全注文が省略なくcontract化・submitされたか。
-- synchronizerへsubmitされる前の受付順、検閲、遅延操作がなかったか。
-- matching transactionが参照した注文集合が、法令・市場規則上の対象集合と一致するか。
-- 外部のKYC/KYB、与信原帳、保管口座、現金脚がDaml contractの状態と一致するか。
-- transactionの非関係監査者が、秘密を受け取らずに同じ命題をportableなZK proofとして検証できるか。
+- Whether every order arriving off-ledger was converted into a contract and submitted without omission.
+- Whether admission ordering, censorship, or latency manipulation occurred before submission to the synchronizer.
+- Whether the order set referenced by a matching transaction matches the set required by law or market rules.
+- Whether external KYC/KYB, credit master records, custody accounts, and cash legs match the Daml contract state.
+- Whether an auditor unrelated to the transaction can verify the same proposition as a portable ZK proof without receiving secrets.
 
-これらをDaml contract、署名、observer、外部証明、MPC、受付commitmentで追加実装する余地はある。公開資料に実装記述がない項目を「Cantonは非対応」とは書かない。ZKFMI側も、zkPIが束縛する関数・入力集合・正本readbackと、受付前の検閲限界を具体的に示して初めて差を主張できる。
+These could be added through Daml contracts, signatures, observers, external proofs, MPC, and admission commitments. Do not label an item “unsupported by Canton” because public materials do not describe an implementation. ZKFMI can claim a difference only after specifying the functions, input sets, and authoritative-state readback bound by zkPI, along with its limits concerning pre-admission censorship.
 
-## 4. 原子性とDvPの境界
+## 4. Boundaries of Atomicity and DvP
 
-同じsynchronizerへassignされたcontractは、一つのDaml transactionで複数アプリ・複数participantをまたいで更新でき、全体がcommitするか全体がabortする。Global Synchronizerは、独立アプリのvalidatorが共通に接続できるsynchronizerとして、この構成を支える。[CN6][cn6] [CN7][cn7]
+Contracts assigned to the same synchronizer can be updated across multiple applications and participants in one Daml transaction, with all updates committing or all aborting. The Global Synchronizer supports this arrangement as a synchronizer to which validators of independent applications can connect in common. [CN6][cn6] [CN7][cn7]
 
-異なるsynchronizer上のcash contractとsecurities contractを使う公式DvP例では、両方を共通のsettlement synchronizerへreassignしてから、一つのDaml transactionで交換する。**settlement stepは原子的**だが、unassignmentとassignmentは別transactionであり、その間contractはpendingで利用できない。失敗時には解決までpendingに残り得る。[CN7][cn7]
+In the official DvP example using cash and securities contracts on different synchronizers, both are reassigned to a common settlement synchronizer and then exchanged in one Daml transaction. **The settlement step is atomic**, but unassignment and assignment are separate transactions; between them, contracts are pending and unavailable for use. Failure may leave them pending until resolved. [CN7][cn7]
 
-よって、Cantonの原子性を次のように限定して比較する。
+Accordingly, compare Canton's atomicity within the following limits.
 
-| 対象 | 確認した保証 | 確認していない一般化 |
+| Scope | Confirmed guarantee | Unverified generalization |
 | --- | --- | --- |
-| 同一synchronizer上のDaml contract | 一つのtransaction内で全更新または無更新 | off-ledgerの銀行勘定や既存CSDの更新まで自動で原子的になること |
-| 複数Cantonアプリ・participant | 関係validatorが同じsynchronizerへ接続し、必要なcontractを同じtransactionで扱えば原子的にcompose可能 | 任意の既存アプリが既に互いに接続・許可・法的受渡し済みであること |
-| 複数synchronizer | 共通synchronizerへのreassignment後のsettlementを原子的に実行 | reassignment全体が一transactionで完了すること、pending中も資産を使えること |
-| Canton外の台帳 | adapterやtokenizationでCanton contractへ意味を写す設計は可能 | 外部台帳のhold / commit / abort / finalityをCanton protocolだけで保証すること |
+| Daml contracts on the same synchronizer | All updates or no updates within one transaction | Automatic atomicity extending to off-ledger bank accounts or existing CSD updates |
+| Multiple Canton applications and participants | Atomic composition if relevant validators connect to the same synchronizer and the required contracts are handled in the same transaction | Arbitrary existing applications are already connected, authorized, and accepted for legal delivery with one another |
+| Multiple synchronizers | Atomic execution of settlement after reassignment to a common synchronizer | The entire reassignment completes in one transaction, or assets remain usable while pending |
+| Ledgers outside Canton | Designs can map semantics into Canton contracts through adapters or tokenization | Canton protocol alone guarantees hold / commit / abort / finality on external ledgers |
 
-これはZKFMIにとって重要な反証である。DeFMI内で複数約定を一括決済する構成だけでは、Cantonに対する独自性にならない。差を出すなら、MPC入力、受付集合、資格・与信・予約、market rule、zkPIと決済をどの命題で結ぶか、外部脚がどのtrust boundaryに残るかを示す必要がある。
+This is an important counterargument for ZKFMI. Batch settlement of multiple fills within DeFMI alone does not establish uniqueness relative to Canton. To demonstrate a difference, specify the propositions linking MPC inputs, admission sets, eligibility, credit, reservations, market rules, zkPI, and settlement, and identify the trust boundaries that still contain external legs.
 
-### Token Standardの予約型決済
+### Reservation-Based Settlement in the Token Standard
 
-CIP-0056はallocationによる資産予約と、settlement appの一つのDaml transactionによる全脚の決済を標準化する。予約・DvPは単なる実装可能性の仮説ではない。[CN26][cn26]
+CIP-0056 standardizes asset reservations through allocations and settlement of all legs in one Daml transaction submitted by the settlement app. Reservation and DvP are not merely hypothetical implementation possibilities. [CN26][cn26]
 
-Splice参照interfaceはsenderのwithdrawと、sender・receiver・executorの共同承認によるcancelを区別する。withdrawは再allocationが間に合う `allocateBefore` より前なら決済を失敗させないSHOULDを記す。実行期限は `settleBefore` である。具体的な処理は各registryの実装に委ねるため、期限前なら無条件に取り下げられるとは一般化しない。[CN34][cn34]
+The Splice reference interface distinguishes sender withdrawal from cancellation jointly authorized by sender, receiver, and executor. For withdrawal before `allocateBefore`, when reallocation can still occur in time, it states a SHOULD that settlement not be caused to fail. The execution deadline is `settleBefore`. Specific processing is left to each registry implementation, so do not generalize that withdrawal is unconditionally possible before the deadline. [CN34][cn34]
 
-## 5. 商用事例とネットワーク段階
+## 5. Commercial Cases and Network Stages
 
-| 事例 | 一次資料で確認した段階 | この比較で採用する証拠 | 一律に一般化しないこと |
+| Case | Stage confirmed in primary sources | Evidence used in this comparison | Do not generalize uniformly to |
 | --- | --- | --- | --- |
-| Global Synchronizer | 2024-07-01にgo-liveを発表。2026-06-29にはCanton 3.5のLogical Synchronizer UpgradeがMainnetでliveと発表 [CN9][cn9] [CN10][cn10] | 公開分散synchronizerが計画だけではなく運用・upgrade段階にある | 個別Cantonアプリの利用量、SLO、法的許認可、cross-app DvPの全件稼働 |
-| Canton Network Pilot | 22独立dAppで350超の**simulated transactions**をTestNet上で実行したと公式発表 [CN11][cn11] | 複数アプリをまたぐ原子的compositionの大規模pilot | 本番資産、継続商用取引、参加数（要約45社、本文の役割別合計36社）の全社本番採用 |
-| Broadridge DLR | Broadridgeは2025年8月に平均日次$280bnのrepo transaction処理を発表。Digital Assetの2024-06-21顧客事例は、2023年のCanton移行と、当時cashをoff-chainに残して証券ownershipを移す構成を説明 [CN12][cn12] [CN13][cn13] | Canton/Daml系の機関向けアプリが高い商用処理量を持つ証拠 | Global Synchronizerを使うcross-app DvP、on-chain cash、秘密CLOB、全Canton機能の本番証拠 |
-| Tradewebの米国債取引 | 2026-07-01、tokenized U.S. TreasuryとUSDCxのreal-time transaction 1件をCantonのsynchronized settlementで完了とTradewebが発表。Fableは原URLのtimeout後、Canton公式転載で照合 [CN14][cn14] [CN29][cn29] | 実参加者・実資産カテゴリを伴うon-chain cash / security取引の具体例 | 市場全体の継続処理能力、全ライフサイクル、DTCC Tokenization Servicesの全面稼働 |
-| MUFG / ProgmatのJGB repo | 2026-08-13、Cantonを使う実証協業の**開始**を発表。JGBとdigital moneyのDvP、repo lifecycle自動化を検討 [J3][j3] | 国内でZKFMIが狙う業務とCantonが直接重なる需要仮説 | 実証完了、商用化、法的受渡し、全機能の受入れ |
+| Global Synchronizer | Go-live announced on 2024-07-01. On 2026-06-29, Canton 3.5 Logical Synchronizer Upgrade was announced as live on Mainnet [CN9][cn9] [CN10][cn10] | Public distributed synchronizer has reached operation and upgrade stages, beyond planning | Usage, SLOs, legal authorization, or comprehensive cross-app DvP operation of individual Canton apps |
+| Canton Network Pilot | Official announcement reports more than 350 **simulated transactions** across 22 independent dApps on TestNet [CN11][cn11] | Large-scale pilot of atomic composition across multiple applications | Production assets, ongoing commercial trading, or production adoption by every participant (45 in the summary, 36 in the role-based body total) |
+| Broadridge DLR | Broadridge announced average daily repo transaction processing of $280bn in August 2025. Digital Asset's customer story dated 2024-06-21 describes the 2023 migration to Canton and the then-current arrangement of transferring securities ownership while keeping cash off-chain [CN12][cn12] [CN13][cn13] | Evidence of high commercial processing volumes in an institutional Canton/Daml application | Cross-app DvP using Global Synchronizer, on-chain cash, a confidential CLOB, or production evidence for all Canton capabilities |
+| Tradeweb U.S. Treasury transaction | On 2026-07-01, Tradeweb announced completion of one real-time transaction involving tokenized U.S. Treasuries and USDCx through Canton's synchronized settlement. After the original URL timed out, Fable checked the official Canton republication [CN14][cn14] [CN29][cn29] | A concrete on-chain cash / securities transaction involving real participants and real asset categories | Sustained market-wide processing capacity, the full lifecycle, or full operation of DTCC Tokenization Services |
+| MUFG / Progmat JGB repo | On 2026-08-13, announced the **start** of a demonstration collaboration using Canton. Investigates JGB / digital-money DvP and repo lifecycle automation [J3][j3] | A demand hypothesis in Japan that directly overlaps Canton's scope with ZKFMI's target workflows | Completion of the demonstration, commercialization, legal delivery, or acceptance of all capabilities |
 
-国内ではJSCC・みずほ・野村・DAのJGB担保PoC（2026-04-20発表）と、Progmat/DCCのWG（2026-05開始）も確認した。PoCとWGは試験・検討の異なる段階で、商用化・法的受渡し完了の証拠ではない。[J6][j6] [J7][j7]
+In Japan, the JSCC / Mizuho / Nomura / DA JGB collateral PoC (announced 2026-04-20) and Progmat/DCC WG (launched 2026-05) were also confirmed. PoCs and WGs represent different testing and investigation stages; neither establishes commercialization or completed legal delivery. [J6][j6] [J7][j7]
 
-Global Synchronizer Foundationは2025-09-22にCanton Foundationへ改名した。名称変更からgovernance変更を推定しない。[CN24][cn24] Broadridgeのcash off-chain説明は2024年の構成で、2026年現在の現金脚は未確認である。
+Global Synchronizer Foundation was renamed Canton Foundation on 2025-09-22. Do not infer a governance change from the name change. [CN24][cn24] Broadridge's cash off-chain description refers to the 2024 architecture; its cash leg as of 2026 is unverified.
 
-Broadridgeの処理量、Tradewebの一取引、MUFGの実証開始は、それぞれ異なる証拠である。Cantonを利用する企業名の長い一覧を、同一構成・同一機能・同一成熟度の証拠として数えない。
+Broadridge's processing volumes, Tradeweb's single transaction, and MUFG's demonstration launch are different kinds of evidence. Do not count a long list of companies using Canton as evidence of an identical architecture, feature set, or maturity level.
 
-## 6. ZKFMIとの比較判断
+## 6. Comparison Decisions for ZKFMI
 
-| 比較軸 | Cantonの確認範囲 | ZKFMIの現在位置 | 判断 |
+| Comparison axis | Confirmed scope for Canton | ZKFMI's current position | Judgment |
 | --- | --- | --- | --- |
-| 誰が秘密を読むか | 非関係partyとsynchronizerから隠す。host validatorと権利を持つpartyは該当viewを読む | 新CLI経路では法人側でshare化し、各MPC nodeは完全入力を持たない。3 node以上の結託・通信観測等は別限界 | **ZKFMIが差を示し得る軸**。顧客が自社validatorへの開示を許すなら差は小さくなる |
-| 計算者にも入力を隠すMPC | 確認した標準transaction経路は、関係participantがviewを復号してDamlを再実行 | 7 node・最大2不正のMPCを研究実装 | Canton上への外部MPC連携は設計候補で、実装未確認。同じ業務・結託・可用性・費用で比較するまで優劣未確定 |
-| 参加資格・与信・予約 | Damlは一般に権限・状態・業務規則を表現・検証できる。Token Standardの予約型決済を確認。同等の資格・与信appは未確認で、外部正本との一致はadapter次第 [CN26][cn26] | DeKYX、予約、与信・保証枠を全経路へ結ぶ目標 | 機能名は独自性にならない。issuer、正本、失効、更新競合まで比較する |
-| 市場規則 | 決定的なDaml logicを当事者がvalidationする一般構成を確認。同一のCLOB / RFQ appは未確認 | QOMM / OCLOBの具体的なRFQ・価格時間優先とzkPIを実装中 | 同じCLOB / RFQをCantonで構築できる可能性を認めるが、実装済みとは扱わない |
-| 入力集合 | submitted transactionが参照するcontractとrootを束縛する。off-ledger受付の完全性はapplication境界 | 受付順・注文集合を証明へ束縛する目標。ただし受付前検閲は残る | どちらも「市場全体」を自動で証明しない。受付commitmentと対象集合を比較する |
-| 決済原子性 | 同一synchronizerの一Daml transactionでcross-app DvP。cross-synchronizerはreassignment後のsettlementがatomic | DeFMI native rail内の複数約定一括決済smoke | Cantonは強い先行比較。外部台帳を含む同じ脚で検証するまでZKFMI優位を主張しない |
-| 第三者検証 | 関係validatorが各viewを検証。auditorをobserver等にできる。非関係者向けportable ZK proofとは別 | zkPIで定義した命題の独立検証を目指す | ZKFMI候補価値。ただしCanton appへzkPI verifierを追加できるため、排他的ではない |
-| operational trust | 自分/委託validator、counterparty、application provider、synchronizer、governanceへ役割別の信頼が残る | MPC node群、coordinator、readback、DeFMI validator、鍵・運営者の独立性が未受入 | ノード数で点数化せず、秘密・正しさ・可用性・検閲・復旧の主体を比較する |
-| 成熟度・性能・法制度 | Mainnet、商用DLR、pilot・単発transaction・開始済みPoCが併存 | 単一hostの研究MVPとsmoke | Cantonの成熟度を過小評価しない。同条件の性能、顧客需要、個別業務の許認可は未確認 |
+| Who reads secrets | Hidden from unrelated parties and synchronizers. Host validators and entitled parties read the relevant views | In the new CLI path, sharing occurs on the corporate side, and each MPC node lacks complete inputs. Collusion by 3 or more nodes, communication observation, and similar issues are separate limitations | **An axis on which ZKFMI could demonstrate a difference.** The difference shrinks if customers permit disclosure to their own validators |
+| MPC that hides inputs even from computing entities | In the verified standard transaction path, relevant participants decrypt views and re-execute Daml | Research implementation of MPC with 7 nodes and at most 2 malicious nodes | External MPC integration on Canton is a design candidate with no verified implementation. Superiority remains undetermined until compared under the same workflow, collusion, availability, and cost conditions |
+| Eligibility, credit, and reservations | Daml can generally express and verify authorization, state, and business rules. Reservation-based settlement under the Token Standard is confirmed. Equivalent eligibility / credit apps are unverified; consistency with external authoritative records depends on adapters [CN26][cn26] | Aims to connect DeKYX, reservations, and credit / guarantee capacity across the end-to-end path | Feature names do not establish uniqueness. Compare issuer, authoritative state, revocation, and concurrent updates as well |
+| Market rules | Confirmed general architecture in which parties validate deterministic Daml logic. An identical CLOB / RFQ app is unverified | Implementing concrete QOMM / OCLOB RFQ and price-time-priority mechanisms with zkPI | Recognize the possibility of building the same CLOB / RFQ on Canton, without treating it as already implemented |
+| Input set | Binds contracts and roots referenced by submitted transactions. Completeness of off-ledger admission lies at the application boundary | Aims to bind admission ordering and order sets into proofs. Pre-admission censorship remains possible | Neither automatically proves the “entire market.” Compare admission commitments and target sets |
+| Settlement atomicity | Cross-app DvP in one Daml transaction on the same synchronizer. Across synchronizers, settlement is atomic after reassignment | Smoke evidence for batch settlement of multiple fills within the DeFMI native rail | Canton is a strong existing comparison. Do not claim ZKFMI superiority until verified with the same legs, including external ledgers |
+| Third-party verification | Relevant validators check each view. Auditors can be observers or similar roles. This differs from a portable ZK proof for unrelated parties | Aims for independent verification of propositions defined by zkPI | Potential ZKFMI value. Not exclusive, because a zkPI verifier could be added to a Canton app |
+| operational trust | Role-specific trust remains in the organization's own / outsourced validator, counterparties, application providers, synchronizers, and governance | MPC node group, coordinator, readback, DeFMI validators, and independence of keys and operators have not been accepted | Compare the entities responsible for confidentiality, correctness, availability, censorship, and recovery, rather than assigning scores by node count |
+| Maturity, performance, and legal framework | Mainnet, commercial DLR, pilots, a single transaction, and launched PoCs coexist | Single-host research MVP and smoke evidence | Do not understate Canton's maturity. Performance under identical conditions, customer demand, and authorization for individual workflows are unverified |
 
-## 7. 戦略への反映
+## 7. Implications for Strategy
 
-1. **優先比較:** RenegadeだけでなくCantonを、秘密範囲、market rule、予約、DvP、運用責任を通した最優先比較にする。
-2. **追加機能としての選択肢:** CantonのDaml asset / cash application上へ、ZKFMIのMPC order processing、zkPI verifier、資格・予約adapterを追加する案をG2の接続候補にする。
-3. **接続先としての選択肢:** Global Synchronizerまたはprivate synchronizerを使い、Canton-native contractへsettlement instructionを渡す案を、既存台帳adapterと同じ受入れ条件で評価する。
-4. **全面実装の代替案:** 同じ市場をCanton + 外部MPC / ZKで構築できる場合、独立DeFMI L1の採用上の優位が縮む可能性を認める。ただし顧客需要、性能、費用、独立運営、法的受渡しを同条件で測っていないため、現時点で置換を決めない。
-5. **既存目標の維持:** 独立DeFMI L1、QOMM、OCLOB、DeCCPの実装・研究目標は取り消さない。現行経路を基準に継続取引・復旧を完了し、Canton接続や代替比較はその後のG2で扱う。
-6. **主張の修正:** 「自分たちだけが市場を証明する」を棄却し、顧客が必要とする秘密境界と、受付・資格・予約・規則・決済を一つの検証契約へ結ぶ具体差だけを提案する。
+1. **Priority comparison:** Make Canton, alongside Renegade, a highest-priority comparison across confidentiality scope, market rules, reservations, DvP, and operational responsibility.
+2. **Option as additional functionality:** Include adding ZKFMI's MPC order processing, zkPI verifier, and eligibility / reservation adapters to Daml asset / cash applications on Canton as a G2 integration candidate.
+3. **Option as an integration destination:** Evaluate forwarding settlement instructions to Canton-native contracts through a Global or private synchronizer under the same acceptance conditions as existing-ledger adapters.
+4. **Alternative for the full implementation:** Acknowledge that if the same market can be built with Canton + external MPC / ZK, the adoption advantage of a standalone DeFMI L1 may shrink. Do not decide on replacement now, because customer demand, performance, costs, independent operation, and legal delivery have not been measured under the same conditions.
+5. **Preserve existing objectives:** Do not cancel implementation or research objectives for a standalone DeFMI L1, QOMM, OCLOB, or DeCCP. Use the current path as the baseline, complete continuous trading and recovery, and address Canton integration and alternative comparisons later at G2.
+6. **Revise the claim:** Reject “only we prove the market”; propose only concrete differences in the confidentiality boundaries customers need and in binding admission, eligibility, reservations, rules, and settlement into one verification contract.
 
-## 8. 未確認事項
+## 8. Unverified Items
 
-- Canton上でZKFMIと同一の秘密CLOB / RFQ、入力集合、資格、与信、予約、zkPI命題を実装した結果。
-- managed validatorを含む実構成で、注文原文、contract、recipient metadata、通信patternを各主体が読める範囲。
-- ZKFMIとCantonで同じ入力・秘密条件・障害条件を使った遅延、処理能力、費用、復旧時間。**性能優位は未確認。**
-- Global Synchronizerまたは商用applicationへの接続契約、API利用権、費用、SLO、運営者の独立性。
-- 日本のJGB repo、デジタル証券、現金脚、取引市場、清算について、各主体に必要な許認可と法的finality。**法的許認可は未確認。**
-- 顧客がvalidatorやcounterpartyへの開示で足りるのか、計算者にも隠すMPCを必要とするのか。**顧客需要は未確認。**
+- Results of implementing on Canton the same confidential CLOB / RFQ, input set, eligibility, credit, reservations, and zkPI propositions as ZKFMI.
+- What each entity can read of original orders, contracts, recipient metadata, and communication patterns in real configurations, including managed validators.
+- Latency, processing capacity, costs, and recovery times for ZKFMI and Canton with identical inputs, confidentiality conditions, and failure conditions. **Performance superiority is unverified.**
+- Connection contracts, API access rights, costs, SLOs, and operator independence for Global Synchronizer or commercial applications.
+- Required authorization and legal finality for each entity concerning Japanese JGB repo, digital securities, cash legs, trading markets, and clearing. **Legal authorization is unverified.**
+- Whether customers are satisfied with disclosure to validators and counterparties or need MPC that hides inputs even from computing entities. **Customer demand is unverified.**
 
-本調査ではCanton nodeや競合applicationを実行せず、新規benchmark、顧客連絡、外部書込みを行っていない。公式pilot PDFはWeb取得時にサイズ制限で直接openできなかったため、同内容を明記する取得可能な公式pilot完了発表[CN11][cn11]を根拠にし、PDFを読了資料数へ含めていない。
+This research did not run Canton nodes or competing applications, conduct new benchmarks, contact customers, or perform external writes. The official pilot PDF could not be opened directly through Web retrieval because of a size limit, so the retrievable official pilot-completion announcement explicitly describing the same content [CN11][cn11] was used as evidence. The PDF is excluded from the count of materials read in full.
 
-## 9. 一次資料
+## 9. Primary Sources
 
-| ID | 一次資料 | 主に確認したこと |
+| ID | Primary source | Main points checked |
 | --- | --- | --- |
-| CN1 | [Canton Network Docs: Architecture Overview][cn1] | validator / participant、synchronizer、Daml、保存・実行・順序付けの役割 |
-| CN2 | [Canton Network Docs: Privacy Model Explained][cn2] | view単位の開示、divulgence、timing / size / activity pattern、validatorの閲覧 |
-| CN3 | [Canton Network Docs: Smart Contract Consensus][cn3] | Proof of Stakeholder、再実行、authorization、ACS、mediatorの限界 |
-| CN4 | [Canton Network Docs: Transaction Lifecycle][cn4] | transaction tree、root hash、view暗号化、submitからcommitまで |
-| CN5 | [Canton Network Docs: Trust Model Overview][cn5] | validator、counterparty、application provider、synchronizer、governanceの信頼 |
-| CN6 | [Canton Network Docs: Multi-Synchronizer Architecture][cn6] | private / Global Synchronizer、contract assignation、reassignment |
-| CN7 | [Canton Network Docs: Cross-Synchronizer DvP Example][cn7] | common synchronizer上のatomic settlementとpending境界 |
-| CN8 | [Global Synchronizer Foundation / Splice Docs][cn8] | Super Validator、2/3 BFT、validator、governanceの運用役割 |
-| CN9 | [Global Synchronizer and Canton Coin Go Live、2024-07-01][cn9] | 公開分散infrastructureのgo-live |
-| CN10 | [Logical Synchronizer Upgrades、2026-06-29][cn10] | Canton 3.5 / LSUのMainnet稼働発表 |
-| CN11 | [Canton Network Pilot完了、2024-03-12][cn11] | TestNet、22 dApp、350超のsimulated transaction |
-| CN12 | [Broadridge DLR、2025-09-10][cn12] | 2025年8月の平均日次$280bn処理発表 |
-| CN13 | [Digital Asset: Broadridge customer story][cn13] | Canton移行、Daml、off-chain cashを含むDLRの業務境界 |
-| CN14 | [Tradeweb、2026-07-01][cn14] | tokenized U.S. Treasury / USDCxの単一real-time transaction |
-| J3 | [MUFG: JGB repo実証開始、2026-08-13][j3] | Canton利用、DvP・lifecycleの実証計画と段階 |
+| CN1 | [Canton Network Docs: Architecture Overview][cn1] | validator / participant, synchronizer, Daml, and roles in storage, execution, and ordering |
+| CN2 | [Canton Network Docs: Privacy Model Explained][cn2] | View-level disclosure, divulgence, timing / size / activity patterns, and validator visibility |
+| CN3 | [Canton Network Docs: Smart Contract Consensus][cn3] | Proof of Stakeholder, re-execution, authorization, ACS, and mediator limitations |
+| CN4 | [Canton Network Docs: Transaction Lifecycle][cn4] | Transaction tree, root hash, view encryption, and the path from submit to commit |
+| CN5 | [Canton Network Docs: Trust Model Overview][cn5] | Trust in validators, counterparties, application providers, synchronizers, and governance |
+| CN6 | [Canton Network Docs: Multi-Synchronizer Architecture][cn6] | Private / Global Synchronizer, contract assignation, and reassignment |
+| CN7 | [Canton Network Docs: Cross-Synchronizer DvP Example][cn7] | Atomic settlement on a common synchronizer and pending-state boundaries |
+| CN8 | [Global Synchronizer Foundation / Splice Docs][cn8] | Operational roles of Super Validators, 2/3 BFT, validators, and governance |
+| CN9 | [Global Synchronizer and Canton Coin Go Live, 2024-07-01][cn9] | Go-live of public distributed infrastructure |
+| CN10 | [Logical Synchronizer Upgrades, 2026-06-29][cn10] | Announcement of Canton 3.5 / LSU Mainnet operation |
+| CN11 | [Canton Network Pilot completion, 2024-03-12][cn11] | TestNet, 22 dApps, and more than 350 simulated transactions |
+| CN12 | [Broadridge DLR, 2025-09-10][cn12] | Announcement of average daily processing of $280bn in August 2025 |
+| CN13 | [Digital Asset: Broadridge customer story][cn13] | DLR workflow boundaries, including Canton migration, Daml, and off-chain cash |
+| CN14 | [Tradeweb, 2026-07-01][cn14] | Single real-time transaction involving tokenized U.S. Treasuries / USDCx |
+| J3 | [MUFG: JGB repo demonstration launch, 2026-08-13][j3] | Canton use, DvP / lifecycle demonstration plans, and stage |
 
 [survey]: COMPETITORS_EX_CANTON_2026-09-05.md
 [cn1]: https://docs.canton.network/overview/learn/architecture

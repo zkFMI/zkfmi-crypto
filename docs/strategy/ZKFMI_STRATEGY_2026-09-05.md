@@ -1,205 +1,205 @@
-# ZKFMI 戦略 v1.2 — 18対象比較から採用実証まで
+# ZKFMI Strategy v1.2 — From an 18-Target Comparison to an Adoption Demonstration
 
-策定日: **2026-09-05**。根拠は[比較判断C01〜C09][comparison]、[Canton以外の初回サーベイ][survey]、[Canton追加調査][canton]、[実装の基準ファイル][baseline]。本書は、ユーザーから委任された比較・戦略策定の成果である。顧客連絡、契約、新規比較実験、公開はこの策定作業では行っていない。別途指示されたAethel依存除去は[実装記録][independence]に分ける。v1.2は指定の[Fable 5.1 Maxレビュー][fable]と[13:14:06 UTCの追加snapshot][update]を反映した。
+Prepared: **2026-09-05**. Based on [comparison decisions C01–C09][comparison], the [initial survey excluding Canton][survey], the [supplementary Canton research][canton], and the [implementation baseline file][baseline]. This document is the result of the comparison and strategy work delegated by the user. No customer contact, contracting, new comparative experiments, or publication was performed as part of that formulation work. The separately instructed removal of Aethel dependencies is documented in the [implementation record][independence]. v1.2 incorporates the requested [Fable 5.1 Max review][fable] and the [additional snapshot at 13:14:06 UTC][update].
 
-**第一の狙いは、法人向けデジタル証券取引の運営者へ、秘密の注文受付・事前予約・検証可能な約定指図を提供すること。** 既存の注文流と資産管理を持つ相手の採用実証を優先し、OCLOBの新しいnative経路を機能検証の起点にする。QOMM、DeFMI専用L1、DeKYX、DeCCPを含む全体構想と、他タスクの実装目標は維持する。
+**The primary objective is to provide operators of institutional digital-securities trading with confidential order admission, advance reservations, and verifiable trade-execution instructions.** Prioritize an adoption demonstration with an organization that already has order flow and asset administration, using OCLOB's new native path as the starting point for functional verification. Preserve the overall vision, including QOMM, the dedicated DeFMI L1, DeKYX, and DeCCP, and the implementation objectives of other tasks.
 
-金融機関での採用実証を優先するのは**戦略上の仮定**である。顧客の需要、接続先、予算、必要SLOは今回未取得。以下の数値目標は計画上の提案で、商談実績・性能実績・確約ではない。
+Prioritizing an adoption demonstration at a financial institution is a **strategic assumption**. Customer demand, an integration destination, budget, and required SLOs were not obtained in this work. The numerical targets below are planning proposals, not a sales track record, measured performance, or commitments.
 
-Aethelについては、**ZKFMI基盤全体から依存をなくす方向**を採る。ソースと依存グラフの分離を実装し、6基盤の全feature metadataと基盤469件・Aethel57件のテストで確認した。新バイナリのデプロイ、既存状態移行、ライブ全経路は別の受入れである。独立DeFMI L1、QOMM、OCLOB、DeCCPの実装目標は維持する。
+For Aethel, the direction is to **remove dependencies from the entire ZKFMI foundation**. Source and dependency-graph separation has been implemented and checked through all-feature metadata for the 6 foundations, 469 foundation tests, and 57 Aethel tests. Deployment of new binaries, migration of existing state, and the live end-to-end path require separate acceptance. Preserve implementation objectives for the standalone DeFMI L1, QOMM, OCLOB, and DeCCP.
 
-## 1. 決めた方針
+## 1. Chosen Policies
 
-| ID | 方針 | 比較根拠 | 見直し条件 |
+| ID | Policy | Comparison basis | Conditions for reconsideration |
 | --- | --- | --- | --- |
-| S01 | 初期用途を、法人のデジタル証券二次取引で「順番が確定するまで注文を運営者に開かない」要求のある案件に絞る | C02/C03。OCLOBに近い実行経路があり、midpoint crossingとの市場方式差を具体化できる | 当該秘密境界の需要がなく、許可された運営者への開示で足りる |
-| S02 | 最初の販売単位を、秘密取引・事前予約・zkPI検証の導入モジュールとする | C05/C07。既存台帳・指図基盤・顧客関係への追加価値で採用を目指す | 受け手が証明を検証できず、指図と受渡しを結べない |
-| S03 | 稼働済みの自前MPC・DeFMI経路を基準として、継続取引と障害時の整合性を先に完成させる | C06。継続取引・取消・期限切れ・再起動のsmokeはある。同時実行・無人復旧・独立運営は未受入 | 現行研究契約の次の全経路結果が失敗した場合は、その原因を既存契約内で解消 |
-| S04 | CantonとRenegadeを市場・決済の優先比較、Arcium/Zamaを秘密計算基盤、Owneraを接続設計の比較に使う。Cantonは追加機能の実装先・接続先候補にも置く | C01〜C05/C09。競合・調達候補・接続先では評価対象が違う | 同じ入力・出力・秘密条件で代替案が必要条件を満たし、実装・運用負担を下げる |
-| S05 | 公開core・検証仕様と、導入・運用支援を組み合わせる | public方針と現行MIT、C07。独立検証と採用者の運用責任を両立させる | 顧客が要求する保守責任・監査範囲を提供できない |
-| S06 | PQCは各境界の移行能力として整備する | C08。独立P0とスタック全体の移行は異なる | 具体的な顧客要件、脅威モデル、互換性条件が変わる |
+| S01 | Focus the initial use case on institutional secondary trading of digital securities where “orders must not be disclosed to the operator until their order is fixed” | C02/C03. A closely related OCLOB execution path exists, allowing concrete comparison of its market mechanism with midpoint crossing | No demand for this confidentiality boundary; disclosure to authorized operators is sufficient |
+| S02 | Make the first sales unit an integration module for confidential trading, advance reservations, and zkPI verification | C05/C07. Seek adoption through added value to existing ledgers, instruction infrastructure, and customer relationships | Receivers cannot verify proofs or link instructions to delivery |
+| S03 | Use the already-running in-house MPC / DeFMI path as the baseline, and first complete continuous trading and consistency under failure | C06. Smoke evidence exists for continuous trading, cancellation, expiry, and restart. Concurrency, unattended recovery, and independent operation have not been accepted | If the next end-to-end result under the current research contract fails, resolve its cause within that contract |
+| S04 | Prioritize Canton and Renegade for market and settlement comparisons, Arcium/Zama for confidential-computation infrastructure, and Ownera for integration design. Also treat Canton as a candidate destination for implementing additional functionality or integration | C01–C05/C09. Competitors, procurement candidates, and integration destinations require different evaluation targets | An alternative meets the necessary conditions with the same inputs, outputs, and confidentiality conditions, and reduces implementation and operating burdens |
+| S05 | Combine a public core and verification specifications with integration and operational support | Public-release policy, current MIT license, and C07. Combine independent verification with adopters' operational responsibility | Unable to provide the maintenance responsibilities and audit scope customers require |
+| S06 | Develop PQC as migration capability at each boundary | C08. Standalone P0 differs from migration of the whole stack | Concrete customer requirements, threat models, or compatibility conditions change |
 
-S02はDeFMI専用L1を廃止したり、既存の本番受入れ条件を緩めたりする決定ではない。**実装の参照経路は現在のDeFMIを維持し、顧客への提供形態に接続型を加える**という順序の選択である。
+S02 is not a decision to discontinue the dedicated DeFMI L1 or relax existing production acceptance conditions. It is a sequencing choice: **retain the current DeFMI as the reference implementation path and add an integration-based form of customer delivery**.
 
-## 2. 最初に狙う顧客と業務
+## 2. Initial Target Customers and Workflows
 
-### 対象顧客の仮説
+### Target-Customer Hypothesis
 
-「運営者」は自社validator、アプリ提供者、照合エンジンまで具体化する。JSCC・みずほ・野村のJGB担保PoCとProgmat/DCC WGも開始・検討の証拠として扱う。同業務全体の正面代替を前提にせず、注文・レート提示・担保配分で計算主体からも隠す要件がある部分をG0で探す。[Fable 2.6・5節][fable]
+Define “operator” concretely to include the organization's own validator, application provider, and matching engine. Treat the JSCC / Mizuho / Nomura JGB collateral PoC and Progmat/DCC WG as evidence of launches and investigation. At G0, look for portions of order submission, rate quoting, and collateral allocation that require secrecy even from computing entities, without assuming direct replacement of the entire workflow. [Fable Sections 2.6 and 5][fable]
 
-第一候補は、既に法人顧客・注文流・資産管理先を持つ、国内の証券会社またはデジタル証券取引基盤の運営主体。利用者候補はディーラーと法人投資家。信託・資産管理・決済を担う主体は接続と受入れの重要な当事者になる。
+The first candidate is a Japanese securities firm or digital-securities trading-platform operator that already has institutional clients, order flow, and asset-administration providers. Candidate users are dealers and institutional investors. Entities responsible for trusts, asset administration, and settlement are important parties to integration and acceptance.
 
-Progmat/ibet for Finは比較すべき基盤であり、現時点の顧客や協業相手ではない。Cantonも最優先の比較・接続候補であり、採用や利用権を確定していない。MUFG/ProgmatのCanton利用JGB repo案件は実証協業の開始段階で、完了・商用化の証拠ではない。[Canton 5節][canton] Kinexys/Fnality/Partior等も利用可能な接続先と確定していない。
+Progmat / ibet for Fin are platforms to compare, not current customers or collaborators. Canton is likewise a highest-priority comparison and integration candidate; neither adoption nor access rights have been established. The MUFG / Progmat JGB repo project using Canton is at the start of a demonstration collaboration, not evidence of completion or commercialization. [Canton Section 5][canton] Kinexys / Fnality / Partior and others have not been established as available integration destinations either.
 
-| 役割 | 確認したい課題 | 採用を判断する材料 |
+| Role | Problem to investigate | Basis for an adoption decision |
 | --- | --- | --- |
-| 予算責任者: デジタル証券・取引事業責任者 | 運営者への注文開示が参加の障壁になっているか | 対象取引、参加者、導入責任者、評価予算が定義できる |
-| 利用者: ディーラー・法人投資家 | 指値・数量・価格方針を誰に見せたくないか | 自社内の秘密保持と事前承認で取引でき、事後説明が可能 |
-| 市場運営・リスク部門 | 受付順、資格、与信、予約余力、取消の整合性 | 不正な指図や過剰な約定を拒否し、全件を説明できる |
-| IT・セキュリティ部門 | 鍵の管理、ノード運用、停止復旧、監査 | 自社の信頼条件と接続方式に適合し、運用負担が測れる |
-| 決済・資産管理主体 | 正式な予約、指図の受理、受渡しの確定 | 資産状態と証明を実際に検証でき、失敗時の責任が明確 |
+| Budget owner: head of digital-securities / trading business | Is disclosing orders to the operator a barrier to participation? | Target transactions, participants, implementation owner, and evaluation budget can be defined |
+| Users: dealers and institutional investors | From whom do they want to hide limit prices, quantities, and pricing policies? | Can trade with confidentiality maintained within their organization and prior authorization, and explain the outcome afterward |
+| Market operations / risk department | Consistency of admission order, eligibility, credit, remaining reservation capacity, and cancellations | Can reject invalid instructions and excessive fills, and account for all items |
+| IT / security department | Key management, node operation, shutdown/recovery, and audit | Fits the organization's trust conditions and connection method, with measurable operating burden |
+| Settlement / asset-administration entity | Authoritative reservations, acceptance of instructions, and delivery finality | Can actually verify asset state and proofs, with clear responsibility for failures |
 
-### 初期ユースケース
+### Initial Use Case
 
-1. 法人が自社環境で注文と参加資格を準備し、取引に必要な資金・証券または保証枠を予約する。
-2. 秘密分散した注文について受付順を確定し、指定された市場規則で照合する。
-3. 約定した全件と予約・権限を結び付けたzkPIを作り、取引当事者に約定後の再承認を要求せず実行する。
-4. 決済結果を各ノードと法人が読み直し、残余予約と受取りを復元し、次の注文に利用する。
-5. 監査者は定義された検証用資料を受け取り、必要な命題と開示範囲を確認する。
+1. A corporation prepares orders and eligibility in its own environment and reserves the funds, securities, or guarantee capacity needed for trading.
+2. Finalize admission order for secret-shared orders and match them under specified market rules.
+3. Create zkPI binding all fills to reservations and authorization, and execute without requiring the trading parties to reauthorize after matching.
+4. Each node and corporation reads back settlement results, restores remaining reservations and receipts, and uses them for the next order.
+5. Auditors receive defined verification materials and check the required propositions and disclosure scope.
 
-初期の評価では実資産の移転を要求せず、承認されたデータと評価用資産で全経路を実行する。本番の資産・現金脚へ移る条件は後段の受入れゲートで分ける。
+The initial evaluation does not require real-asset transfers; execute the full path with approved data and evaluation assets. Conditions for moving to production asset and cash legs are separated into later acceptance gates.
 
-### なぜこの用途を先にするか
+### Why Start with This Use Case
 
-Renegadeとの差を、価格・時間優先、秘密の受付、資格・予約・決済の連続性という同じ取引の中で説明できる。Cantonとは、host validatorへ開示するsub-transaction privacyと、各計算nodeにも完全入力を渡さないMPC、提出済みDaml transactionの検証と受付集合を含むzkPI、Canton-native DvPと外部脚の違いを比較できる。[比較C02/C03/C05/C09][comparison] 現行OCLOBには2約定の全経路smokeがあり、別市場を一から構築する前に既存成果を採用判断へ使える。[比較C06][comparison]
+Differences from Renegade can be explained within the same transaction through price-time priority, confidential admission, and continuity of eligibility, reservations, and settlement. With Canton, compare sub-transaction privacy that discloses to host validators against MPC that withholds complete inputs even from each computing node; verification of submitted Daml transactions against zkPI including the admission set; and Canton-native DvP against external legs. [Comparison C02/C03/C05/C09][comparison] Current OCLOB has a two-fill end-to-end smoke, allowing existing results to inform adoption decisions before building a different market from scratch. [Comparison C06][comparison]
 
-同時に、参加者が少ない、注文開示が課題でない、許容遅延が短すぎる、事前予約が資本効率を悪化させる可能性がある。これは未検証の需要仮説である。秘密計算が可能という理由だけで市場性を認定しない。
+At the same time, there may be too few participants, order disclosure may not be a problem, acceptable latency may be too short, or advance reservations may worsen capital efficiency. This is an unverified demand hypothesis. The feasibility of confidential computation alone does not establish market demand.
 
-### 隣接用途の優先順位
+### Priorities for Adjacent Use Cases
 
-| 用途 | 方針 | 理由 |
+| Use case | Policy | Rationale |
 | --- | --- | --- |
-| OCLOBの秘密注文・予約・決済 | 初期の実証経路 | 現在の実装と実行証拠から最短で継続利用を検証できる |
-| QOMMの複数ディーラーRFQ | 次の業務候補。既存研究は継続 | 秘密の価格方針を扱う需要に合う場合に採用。経済効果は既存契約で確認が必要 |
-| 担保・保証枠の秘密計算と指図 | 同じ顧客内の拡張候補 | 参加資格・予約・台帳readbackを再利用しやすいという設計上の仮説 |
-| 新規の汎用公開DEX | 初期の営業対象にはしない | 本調査では流動性獲得や一般利用者の需要を確認していない |
-| 完全な新設FMI/CCPサービス | 長期構想 | 業務主体・制度・資本・運営責任を含む別の受入れが必要 |
+| OCLOB confidential orders, reservations, and settlement | Initial demonstration path | Shortest path from current implementation and execution evidence to verifying continued use |
+| QOMM multi-dealer RFQ | Next workflow candidate. Existing research continues | Adopt if it matches demand for handling confidential pricing policies. Economic effects need confirmation under the existing contract |
+| Confidential computation and instructions for collateral / guarantee capacity | Candidate expansion within the same customer | Design hypothesis that eligibility, reservations, and ledger readback can readily be reused |
+| A new general-purpose public DEX | Not an initial sales target | This research has not confirmed liquidity acquisition or general-user demand |
+| A fully new FMI/CCP service | Long-term vision | Requires separate acceptance covering the business entity, institutional framework, capital, and operational responsibility |
 
-## 3. 提供するものと接続の条件
+## 3. Offerings and Integration Conditions
 
-### 三つの提供単位
+### Three Offering Units
 
-| 提供単位 | 内容 | 初期の位置付け |
+| Offering unit | Contents | Initial position |
 | --- | --- | --- |
-| 参照実装 | 法人入力、OCLOB、DeKYX、事前予約、zkPI、DeFMIまでの再現可能な経路 | 技術評価の基準。専用非EVM Avalanche L1という現行構成を維持 |
-| 導入モジュール | 入力・資格・予約のadapter、zkPI検証器、台帳の受領証との照合、再送・復旧 | 最初の採用実証で評価する製品単位 |
-| 運用支援 | 導入、設定、鍵・ノード運用、監査資料、障害復旧、版更新 | 需要と提供責任を確認して契約化する候補 |
+| Reference implementation | Reproducible path through corporate input, OCLOB, DeKYX, advance reservations, zkPI, and DeFMI | Baseline for technical evaluation. Retain the current dedicated non-EVM Avalanche L1 architecture |
+| Integration modules | Input / eligibility / reservation adapters, zkPI verifier, reconciliation with ledger receipts, retries, and recovery | Product unit to evaluate in the first adoption demonstration |
+| Operational support | Integration, configuration, key / node operation, audit materials, failure recovery, and version upgrades | Candidate for a contract after confirming demand and delivery responsibilities |
 
-公開する核は、検証仕様、wire/用途の契約、検証器、出典、再現可能な試験。現行MITを勝手に変更しない。顧客の秘密、注文、credential、鍵、運用データを公開対象へ含めない。
+The public core consists of verification specifications, wire / use-case contracts, verifiers, sources, and reproducible tests. Do not unilaterally change the current MIT license. Exclude customer secrets, orders, credentials, keys, and operational data from publication.
 
-### adapterが満たすべき契約
+### Contract Required of an Adapter
 
-最初から多数の台帳adapterを作らず、評価相手が使う**一つ**を選ぶ。Owneraのintent/hold/receiptと、CantonのDaml contract / common synchronizer / reassignmentの設計は比較の参照にするが、採用決定ではない。[比較C05/C09][comparison]
+Choose **one** ledger adapter used by the evaluation partner, rather than building many from the outset. Ownera's intent/hold/receipt and Canton's Daml contract / common synchronizer / reassignment designs are comparison references, not adoption decisions. [Comparison C05/C09][comparison]
 
-- 対象資産、参加資格、用途・domain・版・期限、注文と予約の対応を受け手が確認できる。
-- 予約の正本と残量、通番、失効を、指図の実行時にも確認する。
-- 同じ指図の再送は二重適用せず、改変・一部抽出・期限違反を拒否する。
-- どの証明を受け手が検証し、どこが署名者への信頼なのかを明示する。
-- hold、commit、abort/release、確定readbackと復旧の意味が定義できる。
-- 複数の台帳を使う場合は、片脚失敗時の状態と責任を定義する。DeFMI内の原子性をそのまま移植したとみなさない。
+- The receiver can verify target assets, eligibility, purpose / domain / version / deadline, and the correspondence between orders and reservations.
+- Check the authoritative reservation record, remaining quantity, sequence number, and revocation again when executing the instruction.
+- Retries of the same instruction do not apply it twice; tampering, partial extraction, and deadline violations are rejected.
+- Make explicit which proofs the receiver verifies and where trust in a signer remains.
+- The meanings of hold, commit, abort/release, finalized-state readback, and recovery can be defined.
+- When using multiple ledgers, define states and responsibilities if one leg fails. Do not assume DeFMI's internal atomicity has been transferred unchanged.
 
-Cantonを選ぶ場合は **Daml app + Token Standard + synchronizer + validator運営** を比較・実装単位にする。allocationへ予約を対応付け、`allocateBefore` / `settleBefore`、sender withdraw・共同承認cancel、対象registryの挙動を確認する。zkPI検証がDaml内かoff-ledger verifierの署名への信頼かを明示する。必要sponsor、traffic費用、Global / private synchronizer、Foundationのgovernance・upgrade条件を含める。費用額・利用権は未取得。[Canton 4節][canton] [Fable 5節][fable]
+If choosing Canton, use **Daml app + Token Standard + synchronizer + validator operation** as the comparison and implementation unit. Map reservations to allocations and check `allocateBefore` / `settleBefore`, sender withdrawal, jointly authorized cancellation, and target-registry behavior. State whether zkPI is verified inside Daml or whether the system trusts an off-ledger verifier's signature. Include required sponsors, traffic costs, Global / private synchronizers, and Foundation governance / upgrade conditions. Cost amounts and access rights have not been obtained. [Canton Section 4][canton] [Fable Section 5][fable]
 
-**この契約を満たせない接続先を、ZKFMIと同じ保証のDvP接続として売らない。** その場合は接続先を見直すか、DeFMIを使う評価構成を維持する。任意のAPIへ署名付きJSONを送っただけで統合完了としない。
+**Do not sell a destination that fails this contract as a DvP integration with the same guarantees as ZKFMI.** Reconsider the destination or retain the evaluation configuration using DeFMI. Sending signed JSON to an arbitrary API alone does not complete integration.
 
-## 4. 開発・調達・連携の優先順位
+## 4. Priorities for Development, Procurement, and Collaboration
 
-| 領域 | 今後の判断 | 完了証拠 |
+| Area | Next decision | Completion evidence |
 | --- | --- | --- |
-| 注文受付・規則・全約定の束縛 | ZKFMI側の中核として実装・検証 | 集合・順序・資格・予約・全約定の対応が確認できるreceipt |
-| 継続利用と復旧 | 現行の全経路ゲートで最優先 | 受取り→次の実約定→決済、取消・期限切れ・競合・停止再開 |
-| zkPI / SDK | 提供境界を明確化 | 独立検証、正本readback、再送・部分失敗の実例 |
-| 汎用MPC/FHE | 現行基盤を基準に、必要時にArcium/Zamaを比較 | 同じ全候補を実行した結果。暗号方式だけで置換しない |
-| Canton比較・adapter | Daml asset / cash applicationへのMPC結果、zkPI検証、資格・予約の追加、またはsettlement接続をG2候補として評価 | 同じ秘密範囲と入力で、実API上の指図検証・atomic settlement・readback・失敗復旧。商用事例の社名だけで採用しない |
-| DeFMI専用L1 | 全体構想と参照決済基盤として継続 | 現行VMの全経路と、独立した運用の受入れを分離 |
-| DeKYX | 資格のissuer・scope・失効・連結可能性を明確化 | 法人業務の認証主体が発行・失効・監査責任を受け入れる |
-| DeCCP | 本体の開発目標を維持し、初期販売での必須範囲を限定 | 清算・保証を売る場合はその業務と受渡しの独立した受入れ |
-| Aethel依存 | アプリ側が4統合クレートを所有し、基盤からのソース・Cargo依存を除去済み | Aethelを配置しない6基盤metadataと関連469件の基盤テスト、アプリ57件。運用受入れは新バイナリの全経路と旧状態移行を別に検証 [依存分離][independence] |
-| PQC | 独立P0から用途別・境界別に移行 | 共通クレート整理、版固定、interop、失効・移行・再検証。具体的なP1/P2実装は別作業 |
-| 外部暗号監査・HSM・運営 | 本番採用に必要な責任と見積りを確認 | 実験用依存を含む対象版の監査、鍵管理、障害領域の証拠 |
+| Binding order admission, rules, and all fills | Implement and verify as a ZKFMI core capability | Receipt demonstrating correspondence among the set, ordering, eligibility, reservations, and all fills |
+| Continued use and recovery | Highest priority under the current end-to-end gate | Receipt → next real fill → settlement; cancellation, expiry, contention, and stop/resume |
+| zkPI / SDK | Clarify the delivery boundary | Concrete examples of independent verification, authoritative-state readback, retries, and partial failure |
+| General-purpose MPC/FHE | Use current infrastructure as the baseline and compare Arcium/Zama when needed | Results from executing the same complete candidate. Do not replace infrastructure based solely on the cryptographic method |
+| Canton comparison / adapter | Evaluate adding MPC results, zkPI verification, eligibility, and reservations to Daml asset / cash applications, or settlement integration, as G2 candidates | Instruction verification, atomic settlement, readback, and failure recovery through real APIs with the same confidentiality scope and inputs. Do not adopt based only on company names in commercial cases |
+| Dedicated DeFMI L1 | Continue as part of the overall vision and as reference settlement infrastructure | Separate the current VM's end-to-end path from acceptance of independent operation |
+| DeKYX | Clarify eligibility issuer, scope, revocation, and linkability | Corporate-workflow authentication entities accept responsibility for issuance, revocation, and audit |
+| DeCCP | Preserve core development objectives while limiting what is mandatory for initial sales | Separate acceptance of the workflow and delivery if selling clearing / guarantees |
+| Aethel dependency | Application side owns the 4 integration crates; source and Cargo dependencies have been removed from the foundation | Metadata for the 6 foundations without Aethel present, 469 relevant foundation tests, and 57 application tests. Operational acceptance separately verifies the new binary's end-to-end path and old-state migration [Dependency separation][independence] |
+| PQC | Move from standalone P0 to migration by use case and boundary | Common-crate organization, version pinning, interop, revocation, migration, and reverification. Specific P1/P2 implementations are separate work |
+| External cryptographic audit, HSMs, and operations | Confirm responsibilities and estimates required for production adoption | Audit of the target version, including experimental dependencies, plus evidence of key management and failure domains |
 
-新しい暗号コアや独自トークンを初期採用の前提に追加しない。基盤変更、ライセンス変更、外部監査の発注、鍵・運営権限の変更を、この戦略書だけで実施済みまたは承認済みと扱わない。
+Do not add a new cryptographic core or proprietary token as a prerequisite for initial adoption. This strategy document alone does not establish that infrastructure changes, license changes, commissioning external audits, or changes to keys / operational authority have been performed or approved.
 
-## 5. 実行順序と受入れゲート
+## 5. Execution Order and Acceptance Gates
 
-以下の0〜90日は**着手と必要リソース確保を起点とした計画枠**である。顧客契約、外部監査、独立運営者の確保を90日で保証しない。期間が経過しても証拠がなければ次段階へ昇格しない。
+The 0–90 days below are a **planning window starting when work begins and the required resources are secured**. They do not guarantee customer contracts, external audits, or independent operators within 90 days. Elapsed time without evidence does not justify promotion to the next stage.
 
-### 商談評価と製品検証を別々に進める
+### Advance Commercial Evaluation and Product Verification Separately
 
-| ゲート | 計画枠・責任役割 | 成果物と通過条件 | 失敗した場合 |
+| Gate | Planning window and responsible role | Deliverables and pass conditions | If it fails |
 | --- | --- | --- | --- |
-| G0 顧客課題 | 0〜30日、事業担当。G1と独立 | 3組織・計5件程度を計画。少なくとも1組織が自社validator・app・照合主体からも入力を隠す要件を文書化し、取引・データ・責任者・SLO・評価予算を定める。既存Canton PoC/WG参加と現金脚も確認 | 閲覧範囲の限定で十分ならS01を見直す。面談件数だけで需要確認としない |
-| G1 継続する全経路 | 最初の技術作業、プロトコル担当 | 追加snapshotは2回の取引、取消・期限切れ、7MPCノード再起動までsmoke_only。次の同時実行・無人復旧・UIを既存契約に沿って受け入れる。分離後DeFMIのライブ経路は別途確認 | 観測された全経路の失敗を診断。他タスクの実験を置換しない |
-| G2 一つの接続先 | G0/G1後、SDK担当・接続先担当 | 一つの実API/評価台帳で予約→規則→指図検証→DvP→readbackを実行。Cantonならsponsor・費用、allocation、検証位置、共通synchronizer、Ledger APIの確定読取、期限・取消・再送、主体別閲覧情報を記録 | API/hold/検証権限が足りなければ候補を変更。mockや他社事例を接続証拠にしない |
-| G3 限定採用の条件 | 30〜90日を目安、運用・セキュリティ・業務担当 | 独立した管理・鍵・障害領域、対象版の監査と移行、認証API/実画面、業務責任と障害手順を受入れ | 研究・評価段階を維持し、未完了の条件を特定 |
-| G4 拡大判断 | G0〜G3の証拠後、事業・リスク責任者 | 合意したSLO・費用・運用品質を満たす評価結果と、次の契約・用途の意思決定 | 採用実証を拡大しない。S01/S02の価格・範囲または顧客仮説を修正 |
+| G0 Customer problem | 0–30 days, business lead. Independent of G1 | Plan approximately 5 discussions across 3 organizations. At least 1 organization documents a requirement to hide inputs even from its own validator, app, and matching entity, and defines transactions, data, owner, SLO, and evaluation budget. Also check existing Canton PoC/WG participation and the cash leg | Revisit S01 if limited visibility is sufficient. Meeting counts alone do not establish demand |
+| G1 Continuous end-to-end path | First technical work, protocol lead | Additional snapshot is smoke_only through 2 trading rounds, cancellation, expiry, and restart of 7 MPC nodes. Accept the next concurrency, unattended-recovery, and UI paths under the existing contract. Check the post-separation DeFMI live path separately | Diagnose observed end-to-end failures. Do not replace experiments in other tasks |
+| G2 One integration destination | After G0/G1, SDK lead and destination owner | Execute reservation → rules → instruction verification → DvP → readback through one real API / evaluation ledger. For Canton, record sponsor / costs, allocations, verification location, common synchronizer, finalized-state reads through the Ledger API, deadlines / cancellation / retries, and information visible to each entity | Change candidates if API / hold / verification authority is insufficient. Mocks and other companies' cases are not integration evidence |
+| G3 Conditions for limited adoption | Approximately 30–90 days, operations / security / business leads | Accept independent administration, keys, and failure domains; audit and migration of the target version; authenticated APIs / real screens; workflow responsibilities and failure procedures | Remain at the research / evaluation stage and identify incomplete conditions |
+| G4 Expansion decision | After evidence for G0–G3, business and risk owners | Evaluation results meeting agreed SLOs, costs, and operational quality, and a decision on the next contract / use case | Do not expand the adoption demonstration. Revise S01/S02 pricing, scope, or the customer hypothesis |
 
-G1は受入れ済みsmokeを維持し、残る同時実行・無人復旧などを既存契約の **RUN_ROUGH_END_TO_END_AND_OBSERVE_FINAL_METRIC** で扱う。比較用の別基盤、性能調整、抽象化、追加監査を、その粗い全経路結果より前の独立マイルストーンへ置かない。必要な修正は既存契約とmanifestに従う。
+G1 retains accepted smoke evidence and addresses remaining concurrency, unattended recovery, and related work through **RUN_ROUGH_END_TO_END_AND_OBSERVE_FINAL_METRIC** under the existing contract. Do not place an alternative comparison platform, performance tuning, abstractions, or additional audits as independent milestones before that rough end-to-end result. Follow the existing contract and manifest for necessary fixes.
 
-G3では、7 MPCプロセスや5検証プロセスを一台で起動した証拠を、独立運営の証拠へ昇格しない。複数ノードを同じ管理者が支配すると結託条件が変わるため、実際の鍵・管理者・復旧権限と故障領域を確認する。Cantonを採る場合はhost validatorの自社partyデータ閲覧、SV・Foundation、traffic・upgradeへの依存も受入れ項目とする。実資産を扱う段階では、現在の実験用Triptych依存、旧状態移行、業務上の受渡し条件が未受入のままでは通過しない。
+At G3, do not promote evidence of running 7 MPC processes or 5 verification processes on one machine into evidence of independent operation. Because one administrator controlling multiple nodes changes collusion conditions, check the actual keys, administrators, recovery authority, and failure domains. If adopting Canton, acceptance items also include host-validator visibility into its own parties' data and dependencies on SVs, Foundation, traffic, and upgrades. At the real-asset stage, the gate cannot pass while the current experimental Triptych dependency, old-state migration, and business delivery conditions remain unaccepted.
 
-### 既存の研究契約との接続
+### Connection to Existing Research Contracts
 
-| 対象 | 固定した契約と現在位置 | 次に必要な証拠 |
+| Target | Fixed contract and current position | Evidence needed next |
 | --- | --- | --- |
-| OCLOB | cycle契約SHA-256 **b79ab992fb5fd2d5abf1c0cfe9eea6707f3188b57debdd97c555107160ea9d9a** は2回の取引smoke。後続lifecycle契約SHA-256 **233e378ace5575d3950a3a355d38126041374c13fc0616d4c6603e7c25ea8d0f**、final-004は取消・期限切れ・実再起動のsmoke_only [更新snapshot][update] | 同時実行・無人復旧・UI・独立運営・WANと本番条件。元のrejected記録を保持し未通過条件を成功へ含めない |
-| QOMM | QOMM-PRODUCT-2026-08-24、SHA-256 **8c783133f6f737784497d700d9738a6ab9623c524fe36cae85635cb9f4153333**。current_stage = smoke | 同じ市場・要求のpaired comparison、既定統計ゲート、外部データによる検証。smokeで経済優位を主張しない |
+| OCLOB | Cycle contract SHA-256 **b79ab992fb5fd2d5abf1c0cfe9eea6707f3188b57debdd97c555107160ea9d9a** has smoke evidence for 2 trading rounds. Subsequent lifecycle contract SHA-256 **233e378ace5575d3950a3a355d38126041374c13fc0616d4c6603e7c25ea8d0f**; final-004 is smoke_only for cancellation, expiry, and actual restart [Updated snapshot][update] | Concurrency, unattended recovery, UI, independent operation, WAN, and production conditions. Preserve original rejected records and do not count unpassed conditions as successes |
+| QOMM | QOMM-PRODUCT-2026-08-24, SHA-256 **8c783133f6f737784497d700d9738a6ab9623c524fe36cae85635cb9f4153333**. current_stage = smoke | Paired comparison for the same market and requirements, prescribed statistical gates, and external-data validation. Do not claim economic superiority from smoke evidence |
 
-本戦略で研究契約・truth provider・実験ledgerを変更していない。新しい比較実験を行う際は、実行時の最新契約とhashを読み、事前登録、preflight、粗い全候補の実行、結果・postflightの順を守る。現在進行中のプロダクト実装・研究目標を、この営業優先順位で中断しない。
+This strategy has not changed research contracts, truth providers, or experiment ledgers. Before new comparative experiments, read the latest contract and hash at execution time, then follow preregistration, preflight, rough execution of the complete candidate, results, and postflight in that order. Do not interrupt ongoing product implementation or research objectives because of these sales priorities.
 
-## 6. 成功指標
+## 6. Success Metrics
 
-採用実証の主指標は、**一つの顧客業務が、合意した秘密範囲・正しさ・SLO・運用責任を保って全経路を完了し、顧客が次の導入判断をできること**とする。単体の証明速度やデモ回数を代わりにしない。
+The primary adoption-demonstration metric is **completion of one customer's entire workflow while preserving the agreed confidentiality scope, correctness, SLO, and operational responsibilities, enabling the customer to make its next adoption decision**. Do not substitute standalone proof speed or demo counts.
 
-| 指標 | 定義 | 現在の証拠 | 目標の決め方 |
+| Metric | Definition | Current evidence | How to set the target |
 | --- | --- | --- | --- |
-| 顧客評価の成立 | 対象業務・責任者・データ・評価基準が合意された案件 | 今回は顧客確認なし | G0で1件の評価条件を具体化。架空の受注に数えない |
-| 全経路完了 | 受付から決済・受取り・次取引まで、要求された全状態が一致 | 元の基準時刻では未達。追加snapshotは2回の取引、取消・期限切れ、再起動のsmoke_only | 既存契約の全条件を満たす |
-| 誤受理・不整合 | 改変、二重使用、一部抽出、期限違反、不正finalityによる状態変更 | 指定のsmoke/回帰記録が存在。全攻撃耐性を意味しない | 対象版の必須拒否シナリオで0件、監査条件は独立 |
-| 秘密範囲 | 原文・分割・予約・出力・メタデータを各主体が読める範囲 | 新CLI経路と互換UIで異なる | 顧客合意の閲覧主体一覧との一致 |
-| 遅延・処理能力 | 同一要求の受付→MPC→証明→確定→受取りを測定 | acceptance elapsed_msは通常遅延ではない | 負荷・地域・秘密条件を固定し、測定前に顧客とSLOを合意 |
-| 完了取引あたり費用 | 前処理、証明、通信、保存、再試行、運用を含む | 比較可能な費用は今回未測定 | 相手の運用条件で原価を積み上げ、継続提供可能か判断 |
-| 資金拘束・失敗率 | 予約期間、未約定、期限切れ、再実行と解放までの時間 | 商用データなし | 既存業務と同じ入力で比較し、秘密保持の費用を示す |
-| 運用・復旧 | 鍵、ノード停止、保存状態、再送、接続先障害からの回復 | 単一ホストの限定した再起動記録 | 相手が要求するRTO/RPOと役割分離を事前合意 |
+| Customer evaluation established | A project with agreed target workflow, owner, data, and evaluation criteria | No customer confirmation in this work | Specify conditions for 1 evaluation at G0. Do not count it as a fictional order won |
+| End-to-end completion | All required states agree from admission through settlement, receipt, and the next trade | Not achieved at the original baseline time. Additional snapshot is smoke_only for 2 trading rounds, cancellation, expiry, and restart | Meet every condition of the existing contract |
+| False acceptance / inconsistency | State changes caused by tampering, double use, partial extraction, deadline violations, or invalid finality | Specified smoke / regression records exist. They do not establish resistance to all attacks | 0 cases in mandatory rejection scenarios for the target version; audit conditions are independent |
+| Confidentiality scope | What each entity can read of originals, shares, reservations, outputs, and metadata | Differs between the new CLI path and compatibility UI | Match the customer-agreed list of entities with visibility |
+| Latency / processing capacity | Measure admission → MPC → proof → finality → receipt for the same request | Acceptance elapsed_ms is not normal latency | Fix load, geography, and confidentiality conditions; agree SLOs with the customer before measurement |
+| Cost per completed transaction | Includes preprocessing, proving, communication, storage, retries, and operations | Comparable costs were not measured in this work | Build up costs under the partner's operating conditions and assess sustainable delivery |
+| Funds tied up / failure rate | Reservation duration, unfilled orders, expiry, re-execution, and time to release | No commercial data | Compare with the same inputs as the existing workflow and show the cost of confidentiality |
+| Operations / recovery | Recovery involving keys, node shutdown, stored state, retries, and failures at the integration destination | Limited single-host restart records | Agree required RTO/RPO and separation of roles with the partner in advance |
 
-性能・経済効果で優劣を主張する比較は、同じ業務・秘密範囲・入力・失敗条件を揃える。代表的なpaired cohortと、最小の意味ある差に対する検出力または逐次停止則を事前に定める。QOMMの既定alpha 0.05、power 0.8、必要な多重比較補正を維持する。異なる市場方式・強い保証・少ない負荷を混ぜた数値順位は作らない。
+Comparisons claiming superior performance or economic effects must align workflow, confidentiality scope, inputs, and failure conditions. Predeclare a representative paired cohort and a power calculation or sequential stopping rule for the smallest meaningful difference. Preserve QOMM's prescribed alpha 0.05, power 0.8, and required multiple-comparison correction. Do not create numerical rankings that mix different market mechanisms, stronger guarantees, or lower loads.
 
-## 7. 販売・公開・研究の進め方
+## 7. Sales, Publication, and Research Approach
 
-### 提案文の核
+### Core Proposal Wording
 
-> ZKFMIは、法人参加者の注文や資格・予約情報について、誰に何を開示するかを限定しながら、合意した取引規則と決済結果の対応を検証するための研究実装です。現在は、秘密注文を照合し、複数約定を一括決済する経路を単一ホストで確認しています。既存の取引・資産管理基盤への導入を、対象業務と運用条件に合わせて評価します。
+> ZKFMI is a research implementation for verifying the correspondence between agreed trading rules and settlement results while limiting who learns what about institutional participants' orders, eligibility, and reservation information. We have currently verified a path on a single host that matches confidential orders and settles multiple fills as a batch. We evaluate integration into existing trading and asset-administration infrastructure according to the target workflow and operating conditions.
 
-この文章にも評価時点の版と制限を付ける。Cantonの当事者検証・cross-app atomicity・商用DLR、Renegadeの照合証明、Arciumの結託条件、既存金融基盤の実務を過小評価して売らない。
+Attach the evaluated version and limitations to this wording as well. Do not sell by understating Canton's party validation, cross-app atomicity, or commercial DLR; Renegade's matching proofs; Arcium's collusion conditions; or the practice of existing financial infrastructure.
 
-### 商流の仮説
+### Commercial-Process Hypothesis
 
-1. 対象業務、秘密境界、接続条件と評価基準を文書化する。
-2. 条件を満たせる相手と、成果物を明確にした有償PoCを検討する。
-3. 受入れ後に、導入・保守・運用支援の契約へ進む。
-4. 同じ検証契約を別用途・別台帳へ展開する。
+1. Document the target workflow, confidentiality boundaries, integration conditions, and evaluation criteria.
+2. Consider a paid PoC with clearly defined deliverables and a partner able to meet the conditions.
+3. After acceptance, proceed to contracts for integration, maintenance, and operational support.
+4. Extend the same verification contract to other use cases and ledgers.
 
-価格・市場規模・受注見込みは本調査から算出しない。必要工数、外部監査、運用責任と相手の予算を確認して見積る。トークン需要や取引量連動収益を現時点の事業成立根拠には置かない。
+Do not derive prices, market size, or expected orders from this research. Estimate after confirming required effort, external audits, operational responsibilities, and the partner's budget. Do not base current business viability on token demand or transaction-volume-linked revenue.
 
-### 公開方針
+### Publication Policy
 
-zkfmi-cryptoはpublic方針を維持する。GitHub認証の問題で未公開の状態は別の運用課題であり、公開済みと案内しない。公開する比較表は出典と版を残し、競合の未確認項目を「なし」と表示しない。個別顧客の機密資料と、公開可能な再現用資料は相手と条件を定める。
+zkfmi-crypto was published publicly on [GitHub main](https://github.com/shukob/zkfmi-crypto) on 2026-09-05. Public comparison tables retain sources and versions; do not label competitors' unverified items as “absent.” Agree conditions with the partner for individual customers' confidential materials and reproducibility materials that may be published.
 
-### 研究としての主張
+### Research Claims
 
-新しい暗号プリミティブの発明や独占的な市場規則証明を主張しない。Canton上でも同じ業務をDamlと外部MPC / ZKで構築できる可能性を前提に、受付・資格・予約・秘密計算・決済・復旧を一貫して結び付けた構成と、その機能・費用・失敗条件を研究対象にする。主張の強さは、固定した実装と第三者が再検証できる成果物の範囲に合わせる。
+Do not claim invention of a new cryptographic primitive or exclusive proof of market rules. Assume that the same workflow might be built on Canton with Daml and external MPC / ZK; study the architecture that consistently connects admission, eligibility, reservations, confidential computation, settlement, and recovery, together with its capabilities, costs, and failure conditions. Match claim strength to the fixed implementation and the scope of artifacts third parties can reverify.
 
-## 8. 方針を変える条件
+## 8. Conditions for Changing Direction
 
-| 観測すること | 戦略上の判断 |
+| Observation | Strategic decision |
 | --- | --- |
-| 複数の対象顧客が、運営者への開示を問題にせず既存の権限制御で足りると判断 | 秘密連続板を初期用途に固定せず、RFQまたは資格・担保計算の需要を再評価 |
-| 自前relayerで必要な秘密条件を満たし、Renegade型の価格方式で十分 | 全市場の受付順・資格・予約の追加価値と運用負担を再評価 |
-| Arcium/Zamaによる同じ業務経路が必要保証とSLOを満たし、自前基盤より持続的に負担を下げる | backend変更案を具体化。稼働結果なしに置換しない |
-| Canton + 外部MPC / zkPI、またはCantonだけで同じ業務の秘密範囲・検証・SLO・費用を満たす | Canton上の追加機能または接続を具体化し、独立DeFMI L1の採用上の役割を再評価。実行結果なしに既存目標を取り消さない |
-| 台帳側が証明検証・hold・確定readbackに対応できない | 同じ保証の接続先として採用しない。候補または提供範囲を明示的に変更 |
-| 独立運営で許容遅延・費用・復旧要件を満たせない | 本番提案へ昇格せず、観測した制約に基づいて方式・用途を再検討 |
-| 独立暗号監査・旧状態移行・業務責任が受入れられない | 実資産を扱うサービスへ昇格しない。研究・評価構成で継続 |
-| 継続取引・取消・競合の全経路ゲートに失敗 | 既存契約の失敗を解消。商品名や比較対象を変えて達成扱いにしない |
+| Multiple target customers are unconcerned about disclosure to operators and find existing authorization controls sufficient | Reassess demand for RFQ or eligibility / collateral computation instead of fixing a confidential continuous order book as the initial use case |
+| A self-operated relayer meets the required confidentiality conditions and a Renegade-style pricing mechanism suffices | Reassess the added value and operating burden of market-wide admission ordering, eligibility, and reservations |
+| The same workflow on Arcium/Zama meets required guarantees and SLOs and sustainably lowers the burden relative to in-house infrastructure | Develop a concrete backend-change proposal. Do not replace without operating results |
+| Canton + external MPC / zkPI, or Canton alone, meets the confidentiality scope, verification, SLOs, and costs for the same workflow | Specify additional functionality on Canton or an integration, and reassess the adoption role of a standalone DeFMI L1. Do not cancel existing objectives without execution results |
+| The ledger cannot support proof verification, hold, or finalized-state readback | Do not adopt it as a destination with the same guarantees. Explicitly change the candidate or offering scope |
+| Independent operation cannot meet acceptable latency, cost, or recovery requirements | Do not promote to a production proposal; reconsider the method and use case based on observed constraints |
+| Independent cryptographic audit, old-state migration, or workflow responsibilities are not accepted | Do not promote to a service handling real assets. Continue with research / evaluation configurations |
+| End-to-end gates for continuous trading, cancellation, and contention fail | Resolve failures under the existing contract. Do not count the objective as achieved by changing product names or comparison targets |
 
-## 9. この策定で完成したもの
+## 9. What This Formulation Work Completed
 
-- Cantonを含む18対象の競争上の扱いと、C01〜C09の比較判断。
-- 初期顧客・用途、S01〜S06の戦略、提供単位、接続の契約条件。
-- G0〜G4の採用・開発順序、指標、研究契約との対応、見直し条件。
-- 根拠と現在の未達点を固定した比較基準。
+- Competitive treatment of 18 targets including Canton, and comparison decisions C01–C09.
+- Initial customers and use cases, strategies S01–S06, offering units, and contractual integration conditions.
+- Adoption and development sequence G0–G4, metrics, mappings to research contracts, and reconsideration conditions.
+- A comparison baseline with fixed evidence and current unmet objectives.
 
-今後必要なのは、既存プロダクト作業の完了証拠、顧客の評価条件、一つの接続先の契約、本番運用の受入れである。これらの実施を、この戦略書の完成と混同しない。
+What remains necessary is completion evidence for existing product work, customer evaluation conditions, a contract for one integration destination, and acceptance of production operations. Do not confuse carrying out those steps with completion of this strategy document.
 
 [comparison]: ../research/COMPETITIVE_DECISIONS_2026-09-05.md
 [survey]: ../research/COMPETITORS_EX_CANTON_2026-09-05.md

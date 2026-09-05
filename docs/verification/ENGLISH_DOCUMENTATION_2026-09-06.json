@@ -1,0 +1,287 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-09-05T15:20:32.129Z",
+  "local_date": "2026-09-06",
+  "timezone": "Asia/Tokyo",
+  "request": "Translate zkfmi-crypto documentation into English. Conversation remains Japanese.",
+  "documentation": {
+    "checked_at": "2026-09-05T15:15:40.081Z",
+    "scope": "Only zkfmi-crypto documentation; conversation remains Japanese.",
+    "baseline_commit": "25e69708b978b7d1a79258c3318b720f0ead952e",
+    "markdown_files": 12,
+    "translated_markdown_files": 11,
+    "files": [
+      {
+        "file": "README.md",
+        "original_published_sha256": "aae313d2368dbee79c7a450a108394f197348f55fdf8a84d5d161ecf37f268af",
+        "pre_translation_sha256": "dec989b746449559eeb1c5ae20ef53d797412394c89ba0735ddbf9db945a4c47",
+        "translated_sha256": "ebe26338dc44dc54e962456b78bfb7803d2e55e5634fbd8a3ab8201a2f559443",
+        "changed": true,
+        "source_urls": 1,
+        "source_urls_preserved": true,
+        "technical_code_spans_preserved": true,
+        "evidence_hashes_preserved": true,
+        "table_rows": 0,
+        "table_shape_preserved": true,
+        "fences": 8,
+        "japanese_characters_absent": true
+      },
+      {
+        "file": "docs/CRYPTO_CONTRACT.md",
+        "original_published_sha256": "d3ac230fe77b4c2fe77367fd84baf519042f26093dee909172475e375839b1ab",
+        "pre_translation_sha256": "d3ac230fe77b4c2fe77367fd84baf519042f26093dee909172475e375839b1ab",
+        "translated_sha256": "035cf7764e5637ba70baee7f441e4b7c220e1c96d5e9500d441898562c0b884d",
+        "changed": true,
+        "source_urls": 2,
+        "source_urls_preserved": true,
+        "technical_code_spans_preserved": true,
+        "evidence_hashes_preserved": true,
+        "table_rows": 4,
+        "table_shape_preserved": true,
+        "fences": 0,
+        "japanese_characters_absent": true
+      },
+      {
+        "file": "docs/orders/2026-09-05-p0-handoff.md",
+        "original_published_sha256": "b31d7f1d456f9fae6532ff7cf4251f10b92644b00b12f933490165c6aa1c660e",
+        "pre_translation_sha256": "b31d7f1d456f9fae6532ff7cf4251f10b92644b00b12f933490165c6aa1c660e",
+        "translated_sha256": "de018d1c37a579efc8a40c4481a53fbed40deefee5d57545c4cce2579ce948cf",
+        "changed": true,
+        "source_urls": 0,
+        "source_urls_preserved": true,
+        "technical_code_spans_preserved": true,
+        "evidence_hashes_preserved": true,
+        "table_rows": 7,
+        "table_shape_preserved": true,
+        "fences": 2,
+        "japanese_characters_absent": true
+      },
+      {
+        "file": "docs/research/CANTON_FABLE_5_1_MAX_REVIEW_2026-09-05.md",
+        "original_published_sha256": "0784a83774d25b12543ebd73bfe05a09b9aa10283b698cb47e857d33e53f333b",
+        "pre_translation_sha256": "0784a83774d25b12543ebd73bfe05a09b9aa10283b698cb47e857d33e53f333b",
+        "translated_sha256": "1059c0d565daf08ade60303cf8dc57ceb1242e56bcf5e50a6ff62076a9aac1f9",
+        "changed": true,
+        "source_urls": 39,
+        "source_urls_preserved": true,
+        "technical_code_spans_preserved": true,
+        "evidence_hashes_preserved": true,
+        "table_rows": 152,
+        "table_shape_preserved": true,
+        "fences": 0,
+        "japanese_characters_absent": true
+      },
+      {
+        "file": "docs/research/CANTON_NETWORK_2026-09-05.md",
+        "original_published_sha256": "b5c96e60d53654b3719862998850e56077be4382e3bac3beca8e0d0cc7bb87ab",
+        "pre_translation_sha256": "b5c96e60d53654b3719862998850e56077be4382e3bac3beca8e0d0cc7bb87ab",
+        "translated_sha256": "7aa1a9675c623a536bda4b6d9ff7a265f2a22390ea6a3c4afa74b0ff23b98ffa",
+        "changed": true,
+        "source_urls": 22,
+        "source_urls_preserved": true,
+        "technical_code_spans_preserved": true,
+        "evidence_hashes_preserved": true,
+        "table_rows": 49,
+        "table_shape_preserved": true,
+        "fences": 0,
+        "japanese_characters_absent": true
+      },
+      {
+        "file": "docs/research/COMPETITIVE_DECISIONS_2026-09-05.md",
+        "original_published_sha256": "3fa59ab0d0df7b998f1dff7d664311f07fec8ae0832824f1b568c9ad43852354",
+        "pre_translation_sha256": "3fa59ab0d0df7b998f1dff7d664311f07fec8ae0832824f1b568c9ad43852354",
+        "translated_sha256": "80e7330f03c67ca7d84b0fd6094445e061dab646094728f8ee7e8f9f1a0a84da",
+        "changed": true,
+        "source_urls": 24,
+        "source_urls_preserved": true,
+        "technical_code_spans_preserved": true,
+        "evidence_hashes_preserved": true,
+        "table_rows": 55,
+        "table_shape_preserved": true,
+        "fences": 0,
+        "japanese_characters_absent": true
+      },
+      {
+        "file": "docs/research/COMPETITORS_EX_CANTON_2026-09-05.md",
+        "original_published_sha256": "e492de1d8d3151265381fdd1861d157ab612c179a94733f3f50eaa3b286748da",
+        "pre_translation_sha256": "e492de1d8d3151265381fdd1861d157ab612c179a94733f3f50eaa3b286748da",
+        "translated_sha256": "ce341871d55f45e15f0dcc66094fd0ac8df0981ee14e3f1dfdda6f161ee077da",
+        "changed": true,
+        "source_urls": 37,
+        "source_urls_preserved": true,
+        "technical_code_spans_preserved": true,
+        "evidence_hashes_preserved": true,
+        "table_rows": 76,
+        "table_shape_preserved": true,
+        "fences": 0,
+        "japanese_characters_absent": true
+      },
+      {
+        "file": "docs/strategy/ZKFMI_STRATEGY_2026-09-05.md",
+        "original_published_sha256": "0b0d967734f4fd5c312edccfe9992eabf47fd2be15894639ca78d3978c95f3d3",
+        "pre_translation_sha256": "0f76ad6dd732f232a86506280ac8f6c21396c6239c35bade4cceccc217f03850",
+        "translated_sha256": "5b0f2d46019ae676f29c3757a0dd2b442f4c941b6940056e38d97b85fb921bd8",
+        "changed": true,
+        "source_urls": 1,
+        "source_urls_preserved": true,
+        "technical_code_spans_preserved": true,
+        "evidence_hashes_preserved": true,
+        "table_rows": 71,
+        "table_shape_preserved": true,
+        "fences": 0,
+        "japanese_characters_absent": true
+      },
+      {
+        "file": "docs/verification/P0_REPORT.md",
+        "original_published_sha256": "4296b6d41299d33f16b054a2528f67c19d54f5e52eb8f40ca5fbd2f8b9d43d09",
+        "pre_translation_sha256": "4296b6d41299d33f16b054a2528f67c19d54f5e52eb8f40ca5fbd2f8b9d43d09",
+        "translated_sha256": "4dd3fe0adffcc2b46c444438d1e3759945986f8f7429cea731d077618a3787f3",
+        "changed": true,
+        "source_urls": 0,
+        "source_urls_preserved": true,
+        "technical_code_spans_preserved": true,
+        "evidence_hashes_preserved": true,
+        "table_rows": 52,
+        "table_shape_preserved": true,
+        "fences": 2,
+        "japanese_characters_absent": true
+      },
+      {
+        "file": "inventory/CRYPTO_INVENTORY.md",
+        "original_published_sha256": "468f907cda15bb4db2a28f960856910bd3833977fe5a307faedb525428dfe25c",
+        "pre_translation_sha256": "468f907cda15bb4db2a28f960856910bd3833977fe5a307faedb525428dfe25c",
+        "translated_sha256": "33897b28e38f2a4061570a9ba37e57add269cd57f6156da62a77378983a465bb",
+        "changed": true,
+        "source_urls": 0,
+        "source_urls_preserved": true,
+        "technical_code_spans_preserved": true,
+        "evidence_hashes_preserved": true,
+        "table_rows": 1157,
+        "table_shape_preserved": true,
+        "fences": 0,
+        "japanese_characters_absent": true
+      },
+      {
+        "file": "tests/vectors/NIST-NOTICE.md",
+        "original_published_sha256": "55d23766cf7792b37d0a3b6f0655405c5e4a8935bba14e70d4213908fed4d66e",
+        "pre_translation_sha256": "55d23766cf7792b37d0a3b6f0655405c5e4a8935bba14e70d4213908fed4d66e",
+        "translated_sha256": "55d23766cf7792b37d0a3b6f0655405c5e4a8935bba14e70d4213908fed4d66e",
+        "changed": false,
+        "source_urls": 0,
+        "source_urls_preserved": true,
+        "technical_code_spans_preserved": true,
+        "evidence_hashes_preserved": true,
+        "table_rows": 0,
+        "table_shape_preserved": true,
+        "fences": 0,
+        "japanese_characters_absent": true
+      },
+      {
+        "file": "tests/vectors/SOURCES.md",
+        "original_published_sha256": "956c793647fe3bf11702dcb0894dee2a4dd7e8544243f3835eaeef195ac9e17d",
+        "pre_translation_sha256": "956c793647fe3bf11702dcb0894dee2a4dd7e8544243f3835eaeef195ac9e17d",
+        "translated_sha256": "7a7a9cffed200916871cff62e43dbd36529a4218431a4d0f699674c2f9438bda",
+        "changed": true,
+        "source_urls": 4,
+        "source_urls_preserved": true,
+        "technical_code_spans_preserved": true,
+        "evidence_hashes_preserved": true,
+        "table_rows": 10,
+        "table_shape_preserved": true,
+        "fences": 0,
+        "japanese_characters_absent": true
+      }
+    ],
+    "failures": []
+  },
+  "inventory": {
+    "recorded_at": "2026-09-05T14:54:18.275Z",
+    "primitive_entries": 1032,
+    "unique_files": 507,
+    "source_input_files": 825,
+    "classification_identity_unchanged": true,
+    "source_lines_and_hashes_unchanged": true,
+    "count_reconciliation_unchanged": true,
+    "source_manifest_sha256": "fe9d4638d491001bfe53e3ce96975d1e0be535dd61043af3c514f2bb3a4e299a",
+    "source_manifest_bytes_unchanged": true,
+    "translated_literals": 68,
+    "non_documentation_strings_unchanged": true,
+    "code_change_limited_to_documentation_literals_and_rustfmt": true,
+    "rustfmt_changes": "Line breaks and trailing commas in tuples; one constant tuple match arm wrapped in a block. Reviewed masked diff and normalized these specific formatting forms.",
+    "outputs": [
+      {
+        "file": "crypto_inventory.json",
+        "before_sha256": "ab72a22f341efec898f15840484293d1d75ac7e8ed88f30b85214de47cfcc5fa",
+        "after_sha256": "4b44f14a917d786e66f3b64de68e71f495163c14e701c65c548506c4b30eb37b"
+      },
+      {
+        "file": "count_reconciliation.json",
+        "before_sha256": "6f6241d6e8cd4176b6809e9b25460c98a660902c340af45fec48bb04ad7d075d",
+        "after_sha256": "e430ae135c542aeecc614943adc159cf5603fd70dad45a1f0fe6908f0c997968"
+      },
+      {
+        "file": "CRYPTO_INVENTORY.md",
+        "before_sha256": "468f907cda15bb4db2a28f960856910bd3833977fe5a307faedb525428dfe25c",
+        "after_sha256": "33897b28e38f2a4061570a9ba37e57add269cd57f6156da62a77378983a465bb"
+      }
+    ]
+  },
+  "runtime_verification": {
+    "host": "softbank-l40s / ngi-external022-vm1",
+    "directory": "/home/ubuntu/work/zkfmi-crypto",
+    "image": "rust:1.97-bookworm",
+    "image_sha256": "0e2bcaef56d041a486784e54104a81aebe0da44bd03019bd70bc0401e42e4a97",
+    "rustc": "1.97.1 (8bab26f4f 2026-07-14)",
+    "commands": [
+      "cargo fmt --all -- --check",
+      "cargo clippy --all-targets -- -D warnings",
+      "cargo test --release",
+      "scripts/inventory_check.sh"
+    ],
+    "tests": {
+      "passed": 45,
+      "failed": 0,
+      "ignored": 0
+    },
+    "input_manifest_sha256": "ed3dbfc91387a8e7827c107ef2af1fddf2edbca4ca138df69056793846115342",
+    "local_rust_execution": false,
+    "logs": [
+      {
+        "file": "english-runtime-gate-20260905.log",
+        "sha256": "1ca61ee8ffd2e1847afb0f9edcba54d26f2cbbc42c8cf565f47f53044656adee"
+      },
+      {
+        "file": "english-runtime-input-20260905.sha256",
+        "sha256": "ed3dbfc91387a8e7827c107ef2af1fddf2edbca4ca138df69056793846115342"
+      },
+      {
+        "file": "english-inventory-generate-20260905.log",
+        "sha256": "86b80c3b27f8cba3f986686870ab64640e3410bb4cd5843a19f48a56454cf88f"
+      }
+    ],
+    "scope": "The checked runtime/source inputs are recorded in the manifest. The translation decision and completion metadata were appended afterward and validated as JSONL."
+  },
+  "translation_delegates": {
+    "comparison_and_strategy": {
+      "model": "gpt-6-astra",
+      "reasoning": "max",
+      "execution": "Codex CLI 0.153.4, ChatGPT subscription authentication verified before launch, exit code 0",
+      "final_report_sha256": "3f4023537b4bedfe99c94758370b46903da8681fe6d6ad603789e690efceddfb",
+      "session_log_sha256": "62b64030e095d328a6510e7e132fe731c9962c0db803c0cfe5026eda9a6e96e2"
+    },
+    "historical_P0_documents": {
+      "model": "gpt-6-astra",
+      "reasoning": "max",
+      "execution": "Codex CLI 0.153.4, ChatGPT subscription authentication verified before launch, exit code 0",
+      "final_report_sha256": "d86e813a7379f8c8682c8ce4c0c0629f4a2ff175d7949d94f8d19c05003a2100",
+      "session_log_sha256": "8cae37f65e0e982d0fc7685f6efa2256d3f374eb99a27ab4fe79fe8f3172891b"
+    }
+  },
+  "provenance": {
+    "original_Japanese_versions_retained_in_git_history": true,
+    "original_work_order_copy_commit": "7bf7a69bb45b0ce37cd7838518d498308a8f7dae",
+    "immutable_research_json_and_source_manifest_and_vectors_unchanged": true,
+    "publication_wording_updated": true,
+    "semantic_scope": "Faithful English translation and accurate publication/provenance notes. No cryptographic algorithms, dependency versions, protocol identifiers, source classifications, research outcomes or strategy decisions changed."
+  }
+}

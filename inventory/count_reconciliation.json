@@ -7,7 +7,7 @@
     "src_and_tests": 3,
     "src_all": 3,
     "src_non_hash": 3,
-    "explanation": "発注件数とsrc+tests全対象集合が一致"
+    "explanation": "The work-order count matches the complete src+tests set"
   },
   {
     "crate_name": "deccp-core",
@@ -17,7 +17,7 @@
     "src_and_tests": 2,
     "src_all": 1,
     "src_non_hash": 1,
-    "explanation": "発注件数はsrc内の非ハッシュ参照集合と一致。今回の全対象はhash-onlyとtestsも含む"
+    "explanation": "The work-order count matches non-hash references in src. The current complete set also includes hash-only files and tests"
   },
   {
     "crate_name": "dekyx-core",
@@ -27,7 +27,7 @@
     "src_and_tests": 2,
     "src_all": 1,
     "src_non_hash": 1,
-    "explanation": "発注件数はsrc内の非ハッシュ参照集合と一致。今回の全対象はhash-onlyとtestsも含む"
+    "explanation": "The work-order count matches non-hash references in src. The current complete set also includes hash-only files and tests"
   },
   {
     "crate_name": "oclob-core",
@@ -37,7 +37,7 @@
     "src_and_tests": 1,
     "src_all": 1,
     "src_non_hash": 1,
-    "explanation": "発注件数とsrc+tests全対象集合が一致"
+    "explanation": "The work-order count matches the complete src+tests set"
   },
   {
     "crate_name": "oclob-dekyx",
@@ -47,7 +47,7 @@
     "src_and_tests": 1,
     "src_all": 1,
     "src_non_hash": 1,
-    "explanation": "発注件数とsrc+tests全対象集合が一致"
+    "explanation": "The work-order count matches the complete src+tests set"
   },
   {
     "crate_name": "oclob-demo",
@@ -57,7 +57,7 @@
     "src_and_tests": 3,
     "src_all": 3,
     "src_non_hash": 3,
-    "explanation": "発注件数とsrc+tests全対象集合が一致"
+    "explanation": "The work-order count matches the complete src+tests set"
   },
   {
     "crate_name": "oclob-edge",
@@ -67,7 +67,7 @@
     "src_and_tests": 1,
     "src_all": 1,
     "src_non_hash": 1,
-    "explanation": "発注件数とsrc+tests全対象集合が一致"
+    "explanation": "The work-order count matches the complete src+tests set"
   },
   {
     "crate_name": "oclob-mpc",
@@ -77,7 +77,7 @@
     "src_and_tests": 2,
     "src_all": 2,
     "src_non_hash": 0,
-    "explanation": "発注件数とは不一致。src+tests、srcのみ、src非ハッシュを併記。発注時のファイル集合が無いため残差の原因は断定しない"
+    "explanation": "The count differs from the work order. Counts for src+tests, src only, and non-hash src are shown. The original file set was not provided, so the cause of the residual difference is undetermined"
   },
   {
     "crate_name": "oclob-node",
@@ -87,7 +87,7 @@
     "src_and_tests": 9,
     "src_all": 9,
     "src_non_hash": 9,
-    "explanation": "発注件数とsrc+tests全対象集合が一致"
+    "explanation": "The work-order count matches the complete src+tests set"
   },
   {
     "crate_name": "oclob-ordering",
@@ -97,7 +97,7 @@
     "src_and_tests": 1,
     "src_all": 1,
     "src_non_hash": 1,
-    "explanation": "発注件数とsrc+tests全対象集合が一致"
+    "explanation": "The work-order count matches the complete src+tests set"
   },
   {
     "crate_name": "oclob-proofs",
@@ -107,7 +107,7 @@
     "src_and_tests": 1,
     "src_all": 1,
     "src_non_hash": 1,
-    "explanation": "発注件数とsrc+tests全対象集合が一致"
+    "explanation": "The work-order count matches the complete src+tests set"
   },
   {
     "crate_name": "oclob-service",
@@ -117,7 +117,7 @@
     "src_and_tests": 1,
     "src_all": 1,
     "src_non_hash": 1,
-    "explanation": "発注件数とsrc+tests全対象集合が一致"
+    "explanation": "The work-order count matches the complete src+tests set"
   },
   {
     "crate_name": "oclob-settlement",
@@ -127,7 +127,7 @@
     "src_and_tests": 5,
     "src_all": 5,
     "src_non_hash": 5,
-    "explanation": "発注件数とは不一致。src+tests、srcのみ、src非ハッシュを併記。発注時のファイル集合が無いため残差の原因は断定しない"
+    "explanation": "The count differs from the work order. Counts for src+tests, src only, and non-hash src are shown. The original file set was not provided, so the cause of the residual difference is undetermined"
   },
   {
     "crate_name": "qomm-audit",
@@ -137,7 +137,7 @@
     "src_and_tests": 8,
     "src_all": 4,
     "src_non_hash": 3,
-    "explanation": "発注件数はsrc内の非ハッシュ参照集合と一致。今回の全対象はhash-onlyとtestsも含む"
+    "explanation": "The work-order count matches non-hash references in src. The current complete set also includes hash-only files and tests"
   },
   {
     "crate_name": "qomm-avalanche-vm",
@@ -147,7 +147,7 @@
     "src_and_tests": 13,
     "src_all": 13,
     "src_non_hash": 8,
-    "explanation": "発注件数はsrc内の非ハッシュ参照集合と一致。今回の全対象はhash-onlyとtestsも含む"
+    "explanation": "The work-order count matches non-hash references in src. The current complete set also includes hash-only files and tests"
   },
   {
     "crate_name": "qomm-defmi",
@@ -157,7 +157,7 @@
     "src_and_tests": 46,
     "src_all": 28,
     "src_non_hash": 25,
-    "explanation": "発注件数はsrc内の非ハッシュ参照集合と一致。今回の全対象はhash-onlyとtestsも含む"
+    "explanation": "The work-order count matches non-hash references in src. The current complete set also includes hash-only files and tests"
   },
   {
     "crate_name": "qomm-harness",
@@ -167,7 +167,7 @@
     "src_and_tests": 12,
     "src_all": 12,
     "src_non_hash": 12,
-    "explanation": "発注件数とsrc+tests全対象集合が一致"
+    "explanation": "The work-order count matches the complete src+tests set"
   },
   {
     "crate_name": "qomm-proofs",
@@ -177,7 +177,7 @@
     "src_and_tests": 26,
     "src_all": 12,
     "src_non_hash": 12,
-    "explanation": "発注件数はsrc内の非ハッシュ参照集合と一致。今回の全対象はhash-onlyとtestsも含む"
+    "explanation": "The work-order count matches non-hash references in src. The current complete set also includes hash-only files and tests"
   },
   {
     "crate_name": "qomm-transport",
@@ -187,7 +187,7 @@
     "src_and_tests": 58,
     "src_all": 42,
     "src_non_hash": 34,
-    "explanation": "発注件数はsrc内の非ハッシュ参照集合と一致。今回の全対象はhash-onlyとtestsも含む"
+    "explanation": "The work-order count matches non-hash references in src. The current complete set also includes hash-only files and tests"
   },
   {
     "crate_name": "qomm-zk",
@@ -197,7 +197,7 @@
     "src_and_tests": 13,
     "src_all": 9,
     "src_non_hash": 9,
-    "explanation": "発注件数はsrc内の非ハッシュ参照集合と一致。今回の全対象はhash-onlyとtestsも含む"
+    "explanation": "The work-order count matches non-hash references in src. The current complete set also includes hash-only files and tests"
   },
   {
     "crate_name": "qomm-zkpi",
@@ -207,7 +207,7 @@
     "src_and_tests": 13,
     "src_all": 9,
     "src_non_hash": 8,
-    "explanation": "発注件数とは不一致。src+tests、srcのみ、src非ハッシュを併記。発注時のファイル集合が無いため残差の原因は断定しない"
+    "explanation": "The count differs from the work order. Counts for src+tests, src only, and non-hash src are shown. The original file set was not provided, so the cause of the residual difference is undetermined"
   },
   {
     "crate_name": "zkpi-defmi-sdk",
@@ -217,6 +217,6 @@
     "src_and_tests": 5,
     "src_all": 5,
     "src_non_hash": 3,
-    "explanation": "発注件数はsrc内の非ハッシュ参照集合と一致。今回の全対象はhash-onlyとtestsも含む"
+    "explanation": "The work-order count matches non-hash references in src. The current complete set also includes hash-only files and tests"
   }
 ]
