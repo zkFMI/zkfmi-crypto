@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-09-05T19:40:55.686Z",
+  "task": "pqc-full-integration-20260905",
+  "status": "in_progress",
+  "model": "GPT-6 max",
+  "checkpoint": "P4 cross-domain hybrid finality certificates",
+  "source_manifest": "P4_CROSS_DOMAIN_INPUTS_2026-09-06.sha256",
+  "source_manifest_sha256": "450d65b7cc6b2216d684c9b3aa8be262d81d6a9f1f925a5cd42fa5f25b78cc6e",
+  "source_files": 576,
+  "source_match": "Every recorded source input matches the isolated worktrees.",
+  "protocols": {
+    "cross_domain_committee_digest": 2,
+    "cross_domain_receipt_domain": 2,
+    "signature_suite": "Ed25519MlDsa65/v1"
+  },
+  "changes": [
+    "Cross-domain committee members carry independently provisioned hybrid KeyRecords with the Attestation purpose, participant and key identifiers, generation, validity and revocation. The committee digest binds the complete enrolled metadata, source domain, epoch and weights. Both public key components must be unique.",
+    "Finality shares bind the complete committee digest and closed hybrid suite in addition to the source and destination domains, accepted block, state root, private event binding, leg, height and finalization time. The private signer checks its enrolled hybrid key and the exact accepted snapshot; no arbitrary signing RPC was added.",
+    "The receiver verifies both Ed25519 and ML-DSA-65, distinct members, weighted quorum, exact epoch and digest, non-future finalization, and key validity at the authoritative receiver time. Aggregation and actual VM arm/observe operations enforce the same policy.",
+    "RPC committee and receipt DTOs require the new key records, suite and digest. Old classical-only receipts and old serialized committee records fail closed. The state commitment uses the new committee domain.",
+    "Deterministic negative checks reject missing or corrupt components, substituted committee and epoch, classical-only suite, duplicate or insufficient members, expired/revoked keys, wrong destination/replay and omitted suite. Rejected actual VM transactions preserve the complete state. Two independent books still complete the existing arm and claim lifecycle."
+  ],
+  "verification": {
+    "remote_host": "softbank-l40s",
+    "workspace": "~/work/pqc-full-integration-20260905",
+    "image_id": "sha256:aa83bce9de257fc59cb3edb989b78844adc95b25783e52177c60ee5f64df1261",
+    "rust": "1.97.1 (8bab26f4f 2026-07-14)",
+    "distinct_tests_passed": 67,
+    "tests": {
+      "private_finality_signer": 3,
+      "cross_domain_books": 7,
+      "defmi_vm": 55,
+      "aethel_host": 2
+    },
+    "run": "20260905T193558Z-defmi-rust",
+    "result": "PASS",
+    "log": ".artifacts/20260905T193558Z-defmi-rust.log",
+    "log_sha256": "8d0439184c30a49d0ac1aa827950044fb75a32dd968e721d0a6cb601f0a7168b",
+    "input_after_sha256": "450d65b7cc6b2216d684c9b3aa8be262d81d6a9f1f925a5cd42fa5f25b78cc6e",
+    "checks": "Affected DeFMI core, VM and harness all-target/all-feature Clippy with warnings denied; targeted core and integration release tests; complete VM and actual Aethel host tests; formatting.",
+    "evidence_limits": "Ordinary deterministic cryptographic and state-machine tests. No live Avalanche acceptance, HSM provisioning, seven-operator deployment, WAN or latency study."
+  },
+  "remaining": [
+    "P4 is incomplete: participant, provider, guarantor/CSD and native receipt signatures and governance/clearing/remote committee rotation propagation still need migration.",
+    "FinalitySigner now requires a common hybrid Signer; the deterministic fixture is not HSM evidence. Operators must provision independent keys and authenticated committee enrollment. The supplied accepted snapshot and observation clock remain the existing operator trust boundary.",
+    "Outstanding cross-domain obligations and archived recovery across key expiry/retirement require the P6 lifecycle work. Existing chains are not automatically converted.",
+    "P1 note/opening confidentiality, TLS certificate authentication and WAN measurement; P2 reserve compatibility paths; P3 encrypted holder custody and legacy KYB; P5 hash-based public audit proofs and P6 retirement/recovery remain open.",
+    "FROST, Pedersen binding, anonymous/nullifier proofs and remaining direct classical signatures are not post-quantum. No full system claim, ledger deletion, push, main merge or deployment."
+  ]
+}
