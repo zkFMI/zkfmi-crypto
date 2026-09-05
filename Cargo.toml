@@ -1,0 +1,13 @@
+[workspace]
+members = ["."]
+resolver = "2"
+
+[package]
+name = "zkfmi-crypto"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.85"
+license = "MIT"
+description = "Versioned cryptographic boundaries for the ZKFMI post-quantum migration"
+
+[dependencies]

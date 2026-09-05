@@ -1,0 +1,29 @@
+host=ngi-external022-vm1
+commit=uncommitted
+started_at=2026-09-05T05:04:17Z
+info: component rustfmt is up to date
+info: component clippy is up to date
+rustc 1.97.1 (8bab26f4f 2026-07-14)
+cargo 1.97.1 (c980f4866 2026-06-30)
+    Checking zkfmi-crypto v0.1.0 (/work)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.08s
+   Compiling zkfmi-crypto v0.1.0 (/work)
+    Finished `release` profile [optimized] target(s) in 0.09s
+     Running unittests src/lib.rs (target/release/deps/zkfmi_crypto-b79a82cf309add33)
+   Doc-tests zkfmi_crypto
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+warning: nothing to print.
+
+To find dependencies that require specific target platforms, try to use option `--target all` first, and then narrow your search scope accordingly.
+image_id=sha256:0e2bcaef56d041a486784e54104a81aebe0da44bd03019bd70bc0401e42e4a97 digests=["rust@sha256:0e2bcaef56d041a486784e54104a81aebe0da44bd03019bd70bc0401e42e4a97"]
+completed_at=2026-09-05T05:04:18Z
+result=PASS
