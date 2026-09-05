@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-09-05T18:50:09.434Z",
+  "task": "pqc-full-integration-20260905",
+  "status": "in_progress",
+  "model": "GPT-6 max",
+  "checkpoint": "P3 DeKYX independent holder possession signatures",
+  "source_manifest": "P3_HOLDER_INPUTS_2026-09-06.sha256",
+  "source_manifest_sha256": "17721db7520865e8afccdc082cde0e4fa197e18e20d7e1158f73a3ba64521613",
+  "source_files": 574,
+  "source_match": "Every recorded source input matches the isolated worktrees.",
+  "protocols": {
+    "dekyx_credential_statement": 3,
+    "dekyx_issuance_request": 2,
+    "dekyx_issuance_proof": 2,
+    "dekyx_presentation": 2,
+    "issuer_signature_suite": "Ed25519MlDsa65/v1",
+    "holder_signature_suite": "MlDsa65/v1"
+  },
+  "changes": [
+    "Credentials bind an independent ML-DSA-65 holder key. Issuance verifies both the existing curve proof and a purpose-bound PQ signature over the full request and proof; the hybrid issuer signs the resulting holder binding.",
+    "Presentations require a PQ signature over the credential, transaction context, nullifier, both curve announcements/responses and all length-prefixed qualification proof fields. Existing curve equations are independently enforced.",
+    "The witness generates holder keys from independent CSPRNG material and zeroizes temporary seeds. Scope rerandomization also creates a fresh holder key. Restoration requires the original independent key; curve scalars alone cannot reconstruct it.",
+    "Actual OCLOB, DeFMI reservation and Aethel consumers use the new required fields. Tests reject missing, corrupt and truncated PQ signatures, copied curve secrets with a different holder key, and invalid curve proofs freshly signed by the correct PQ holder."
+  ],
+  "verification": {
+    "remote_host": "softbank-l40s",
+    "workspace": "~/work/pqc-full-integration-20260905",
+    "image_id": "sha256:aa83bce9de257fc59cb3edb989b78844adc95b25783e52177c60ee5f64df1261",
+    "rust": "1.97.1 (8bab26f4f 2026-07-14)",
+    "distinct_tests_passed": 108,
+    "tests": {
+      "dekyx_core": 7,
+      "oclob_dekyx": 1,
+      "oclob_node": 41,
+      "defmi_application_reservation": 1,
+      "aethel_workspace": 58
+    },
+    "run": "20260905T184414Z-oclob",
+    "result": "PASS",
+    "log": ".artifacts/20260905T184414Z-oclob.log",
+    "log_sha256": "7e3f097121332333a0d76b7228385d37e91e275355cbfe0d6e3f147b1049826d",
+    "input_before_sha256": "b50f7b7e24d314007c3f148a845ce9726969f350e41ff6cdbf8da728b988b35a",
+    "input_after_sha256": "17721db7520865e8afccdc082cde0e4fa197e18e20d7e1158f73a3ba64521613",
+    "checks": "All-target warnings-denied Clippy for DeKYX, OCLOB DeKYX/node/demo, DeFMI core/VM and the full Aethel workspace; formatting.",
+    "evidence_limits": "Deterministic cryptographic and state-machine tests, with public fixture keys only. No live operator enrollment, MPC, WAN, live chain or performance experiment."
+  },
+  "remaining": [
+    "P3 remains incomplete: durable encrypted holder-key custody, backup and restore integration, legacy QOMM KYB migration and issuer administration authorization are not completed.",
+    "Curve-based stable entity/nullifier and anonymous relations remain vulnerable to a quantum attacker. Possession of an independent holder key does not make those relations post-quantum; no post-quantum entity-limit or anonymity guarantee is claimed.",
+    "P1 note/opening confidentiality, certificate authentication and WAN measurement; P2 reserve compatibility paths and operator enrollment/rotation propagation; P4 governance/clearing/cross-domain; P5 audit proofs and P6 retirement/recovery remain open.",
+    "No ledger deletion, push, main merge or deployment occurred. Dependency overlays remain unpublished."
+  ]
+}
