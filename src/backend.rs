@@ -39,6 +39,11 @@ pub struct Ed25519Signer {
 }
 
 impl Ed25519Signer {
+    /// Move an existing owned key into the adapter without exporting its seed.
+    pub fn from_key(key: ed25519_dalek::SigningKey) -> Self {
+        Self { key }
+    }
+
     pub fn generate() -> Result<Self> {
         let mut seed = Zeroizing::new([0u8; 32]);
         rand_core_06::OsRng

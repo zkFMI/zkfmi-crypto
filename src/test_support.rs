@@ -47,3 +47,16 @@ pub fn approve(policy: &QuorumPolicy, message: &[u8], now: u64) -> QuorumApprova
         .collect();
     policy.assemble(signatures, message, now).unwrap()
 }
+
+/// A publicly reconstructible fixture key. This is deliberately NOT a secure
+/// derivation: it exists only to attach reproducible PQ keys to test fixtures.
+/// Never use this feature or these keys to enroll a deployed issuer.
+pub fn public_fixture_pq_key(classical_public: &[u8; 32]) -> MlDsa65Signer {
+    use sha2::{Digest, Sha256};
+    let seed = Sha256::new()
+        .chain_update(b"ZKFMI:PUBLIC-TEST-ISSUER-KEY:v1")
+        .chain_update(classical_public)
+        .finalize()
+        .into();
+    MlDsa65Signer::from_seed(&seed)
+}

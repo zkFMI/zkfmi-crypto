@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-09-05T18:36:35.891Z",
+  "task": "pqc-full-integration-20260905",
+  "status": "in_progress",
+  "model": "GPT-6 max",
+  "checkpoint": "P3 DeKYX issuer credential and status-list signatures",
+  "source_manifest": "P3_ISSUER_INPUTS_2026-09-06.sha256",
+  "source_manifest_sha256": "361710fb7835739b63e8d249956672fd278598964e32bb67b45906924a0ad30b",
+  "source_files": 574,
+  "source_match": "Every recorded source input matches the isolated worktrees.",
+  "protocols": {
+    "dekyx_credential_statement": 2,
+    "dekyx_status_list_statement": 2,
+    "issuer_signature_suite": "Ed25519MlDsa65/v1"
+  },
+  "changes": [
+    "DeKYX issuers move owned Ed25519 keys into the common crypto adapter and pair them with an independently supplied ML-DSA-65 key. Credential and status-list signatures use the existing domain-separated hybrid implementation; both components are mandatory.",
+    "Issuer definitions carry the closed signature suite and PQ public key with the existing issuer ID, key epoch, validity and status. Rotation requires fresh material for both components. Legacy records without PQ fields and classical-only suite declarations fail closed.",
+    "The actual OCLOB DeKYX adapter, DeFMI application reservation verification and Aethel issuer/credential flows consume the new signatures. Application ownership is unchanged.",
+    "Tests explicitly mutate or omit each signature component, reject PQ key reuse on rotation and preserve the directory after rejection. Existing status rollback, revocation, re-enrollment, multiple-scope/line and epoch tests execute against the hybrid issuer."
+  ],
+  "verification": {
+    "remote_host": "softbank-l40s",
+    "workspace": "~/work/pqc-full-integration-20260905",
+    "image_id": "sha256:aa83bce9de257fc59cb3edb989b78844adc95b25783e52177c60ee5f64df1261",
+    "rust": "1.97.1 (8bab26f4f 2026-07-14)",
+    "distinct_tests_passed": 156,
+    "tests": {
+      "dekyx_core": 7,
+      "zkfmi_crypto": 48,
+      "oclob_dekyx": 1,
+      "oclob_node": 41,
+      "defmi_application_reservation": 1,
+      "aethel_workspace": 58
+    },
+    "run": "20260905T183033Z-oclob",
+    "result": "PASS",
+    "log": ".artifacts/20260905T183033Z-oclob.log",
+    "log_sha256": "24981dc6fbf7c8db290e3b1a0ebc17d1e5d430f7dd45a376bbbba1213a209c01",
+    "input_before_sha256": "83733fa1b6b1724614c5dd044329739de0577921d213c1a5554d00fce5db9356",
+    "input_after_sha256": "361710fb7835739b63e8d249956672fd278598964e32bb67b45906924a0ad30b",
+    "checks": "All-target warnings-denied Clippy for DeKYX, crypto (all features), OCLOB DeKYX/node/demo, DeFMI core/VM and the full Aethel workspace; format checks.",
+    "evidence_limits": "Deterministic cryptographic and state-machine tests. Publicly reconstructible keys are confined to the test-support fixture helper; OCLOB retains its explicitly public demonstration issuer keys. These are not enrolled production operators. No MPC, live chain, WAN or performance experiment."
+  },
+  "remaining": [
+    "P3 is incomplete: holder possession/presentation still uses the existing curve proof and requires an independent PQ possession binding. Issuer hybrid signatures alone do not prevent forgery of the classical holder proof.",
+    "Stable subject-line and anonymous/selective-disclosure relations remain curve based. No post-quantum anonymity or legal-entity limit guarantee is claimed from issuer signature migration.",
+    "Issuer registration, directory rotation and status administration remain trusted administrative operations; their application/governance authorization must be completed in P4. The separate legacy QOMM KYB registry is not yet migrated.",
+    "P1 note/opening confidentiality and WAN measurement; P2 reserve compatibility paths and operator enrollment/rotation propagation; P4 governance/clearing/cross-domain; P5 audit proofs and P6 retirement/recovery remain open.",
+    "No ledger deletion, push, main merge or deployment occurred. Dependency overlays remain unpublished."
+  ]
+}
