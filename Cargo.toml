@@ -10,7 +10,15 @@ rust-version = "1.85"
 license = "MIT"
 description = "Versioned cryptographic boundaries for the ZKFMI post-quantum migration"
 
+[features]
+default = []
+# Host-only TLS; the signature/proof verifier remains usable without OpenSSL.
+tls = ["dep:openssl", "dep:openssl-src"]
+
 [dependencies]
+openssl = { version = "=0.10.81", features = ["vendored"], optional = true }
+# Keep the vendored TLS implementation on the reviewed OpenSSL 3.5 release.
+openssl-src = { version = "=300.5.5", optional = true }
 ed25519-dalek = { version = "=2.2.0", features = ["rand_core", "zeroize"] }
 ml-dsa = { version = "=0.1.1", default-features = false, features = ["alloc", "rand_core", "zeroize"] }
 ml-kem = { version = "=0.3.2", default-features = false, features = ["alloc", "zeroize"] }

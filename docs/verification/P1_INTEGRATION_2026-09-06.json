@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-09-05T16:15:44.091Z",
+  "status": "partial_candidate",
+  "host": "softbank-l40s",
+  "rust": "1.97.1",
+  "native_image": "sha256:aa83bce9de257fc59cb3edb989b78844adc95b25783e52177c60ee5f64df1261",
+  "source_snapshot": {
+    "file": "P1_INPUTS_2026-09-06.sha256",
+    "sha256": "6574254e62e2dd663db6ec0c2180e29daef8a99adb2190595348fcbc78100254",
+    "files": 570,
+    "local_readback": "all matched"
+  },
+  "logs": [
+    {
+      "path": ".artifacts/20260905T141242Z-qomm-rust.log",
+      "sha256": "c4104ff2df8cc8f5ae89b6b2e180286a97a1643a34f1430e98556603e4d81f58"
+    },
+    {
+      "path": ".artifacts/20260905T141531Z-qomm-rust.log",
+      "sha256": "80abc2c7eb5f88cab08962935beebf891f7b25e52bc20d465d1c525b850e283b"
+    },
+    {
+      "path": ".artifacts/20260905T142708Z-oclob.log",
+      "sha256": "b3e6aeef6703ede133589524ed3ae37b6904eafd6f1fab0c6863ac872bc62d6e"
+    },
+    {
+      "path": ".artifacts/20260905T145437Z-zkfmi-crypto.log",
+      "sha256": "343e2038aa882502e6d078763a1b1e38f0e8c5e53e79b943510fd2c05ba6fefb"
+    },
+    {
+      "path": ".artifacts/20260905T150556Z-qomm-rust.log",
+      "sha256": "83ebdec6d49c5dd44df4be33bee0eb5d5287b3d31a0c20f9b4c2bf714915e36d"
+    },
+    {
+      "path": ".artifacts/20260905T151223Z-qomm-rust.log",
+      "sha256": "40fe68ac38cf5ee11704943713be86d4cef44bc1564fae516a3bf3b45e621d72"
+    },
+    {
+      "path": ".artifacts/20260905T152721Z-oclob.log",
+      "sha256": "7e9b0d1d8d4d06c50a18ffb1afe440fcdec8de781f68780f5e4f75f6beaddd5c"
+    },
+    {
+      "path": ".artifacts/20260905T155940Z-oclob.log",
+      "sha256": "e31b6f18373944093f1560b97b30785c6d48116fe8c5812078cc34ea34990b8c"
+    },
+    {
+      "path": ".artifacts/20260905T160739Z-qomm-rust.log",
+      "sha256": "7d4f6b6ec6d5f25e97f532509849beec722de1c0b3ca80974c13603c6172259f"
+    }
+  ],
+  "latest_result": "2 engine-policy rejection tests and all-target qomm-mpc/qomm-transport Clippy -D warnings passed",
+  "native_result": "Seven real malicious-Shamir parties matched twice with equal public outputs; all-target OCLOB node/MPC Clippy passed",
+  "remaining": [
+    "P1 note-opening KEM and WAN/native lifecycle gates",
+    "P2-P6 signature, identity, clearing, public-proof and retirement integration",
+    "Publish reviewed immutable owner revisions and verify independent consumers without local patches"
+  ],
+  "claims_excluded": [
+    "post-quantum FROST/Pedersen/Bulletproofs/Triptych",
+    "post-quantum certificate authentication",
+    "seven independent operators or live Avalanche chain acceptance",
+    "latency or throughput superiority"
+  ]
+}

@@ -84,6 +84,18 @@ impl HybridKemKey {
             pq: MlKem768Key::generate()?,
         })
     }
+
+    /// Import independently generated X25519 (32 bytes) and ML-KEM (64 bytes)
+    /// seeds from an authenticated encrypted keystore. The caller must erase
+    /// its input buffer; no serialization of secret keys is provided here.
+    pub fn from_seed(seed: &[u8; 96]) -> Self {
+        let classical = Zeroizing::new(<[u8; 32]>::try_from(&seed[..32]).expect("fixed seed"));
+        let pq = Zeroizing::new(<[u8; 64]>::try_from(&seed[32..]).expect("fixed seed"));
+        Self {
+            classical: StaticSecret::from(*classical),
+            pq: MlKem768Key::from_seed(&pq),
+        }
+    }
 }
 
 impl KemDecapsulator for HybridKemKey {
