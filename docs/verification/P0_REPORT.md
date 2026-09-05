@@ -1,92 +1,94 @@
-# 独立P0実装・検収報告
+# Independent P0 Implementation and Acceptance Report
 
-発注されたS1〜S5をローカルGitで完了した。暗号実装は既存サービスへ未配線。
-softbank-l40sの公式Rust Dockerで、コミット済みの実装に対してfmt、clippy、
-45テスト、棚卸し照合が成功した。GitHub認証が無効だったため、リモート作成と
-pushは未実施。これは発注で認められたローカル完結の経路である。
+> **Translator and publication note — 2026-09-05:** This report preserves the original P0 acceptance-time account of invalid `gh` authentication and no repository creation or push at that time. Publication is now complete: [shukob/zkfmi-crypto](https://github.com/shukob/zkfmi-crypto) is public, its default branch is `main`, and its initial published implementation/documentation HEAD is `25e69708b978b7d1a79258c3318b720f0ead952e`. The user's later decisions to use English documentation and public visibility superseded the original Japanese-README and private-visibility instructions. The work-order file was a byte-for-byte copy of the attachment at the original S1 commit `7bf7a69bb45b0ce37cd7838518d498308a8f7dae`; its present version is a later, user-requested English translation, and the original remains in Git history.
 
-## コミット
+The commissioned S1–S5 slices were completed in local Git. The cryptographic implementation is not yet wired into existing services.
+On softbank-l40s, the official Rust Docker image successfully ran fmt, clippy,
+45 tests, and inventory reconciliation against the committed implementation. Because GitHub authentication was invalid, remote repository creation and
+push were not performed. This was the local-only completion path permitted by the work order.
 
-| スライス | リポジトリ | コミット | 成果 |
+## Commits
+
+| Slice | Repository | Commit | Deliverable |
 | --- | --- | --- | --- |
-| S1 | zkfmi-crypto | `7bf7a69bb45b0ce37cd7838518d498308a8f7dae` | MIT、Rust workspace、日本語README、発注書全文、project-memory、remote-gate |
-| S2 | zkfmi-crypto | `bd43f598a9a78b7f74d16eafb02e10be90d9c95c` | suite、鍵管理、正規化、バイト列トレイト、実バックエンド、ハイブリッド署名/KEM |
-| S3 | zkfmi-crypto | `7efd7ffa6eadc89495ed801813c4cb02fb088c6c` | 固定NIST ACVP 8件、RFC 8032 1件、出典とハッシュ |
-| S2補完 | zkfmi-crypto | `c6ece07210a7f0f85ae4e548bd296fc35e630a7e` | Transport用途の認証署名鍵を許可し、KEM鍵との用途分離を回帰確認 |
-| S4 | zkfmi-crypto | `3dfb937b966601e01e39602306f91ece609140b6` | 7リポジトリの凍結棚卸し、独立grep照合、生成Markdown、件数照合 |
-| S5 | qomm | `61596e523a4249031ae2471c78bd2249fea8f49b` | 許可された計画書1ファイルのみ、`docs:`コミット |
+| S1 | zkfmi-crypto | `7bf7a69bb45b0ce37cd7838518d498308a8f7dae` | MIT, Rust workspace, Japanese README, complete work order, project-memory, remote-gate |
+| S2 | zkfmi-crypto | `bd43f598a9a78b7f74d16eafb02e10be90d9c95c` | Suites, key management, canonicalization, byte-sequence traits, real backends, hybrid signatures/KEM |
+| S3 | zkfmi-crypto | `7efd7ffa6eadc89495ed801813c4cb02fb088c6c` | 8 pinned NIST ACVP cases, 1 RFC 8032 case, sources and hashes |
+| S2 supplement | zkfmi-crypto | `c6ece07210a7f0f85ae4e548bd296fc35e630a7e` | Allowed authentication signing keys for the Transport purpose and regression-tested their purpose separation from KEM keys |
+| S4 | zkfmi-crypto | `3dfb937b966601e01e39602306f91ece609140b6` | Frozen inventory of 7 repositories, independent grep reconciliation, generated Markdown, count reconciliation |
+| S5 | qomm | `61596e523a4249031ae2471c78bd2249fea8f49b` | Only the single permitted plan file, committed with the `docs:` prefix |
 
-以下の実装検収は、上記S4コミットのcleanな作業ツリーを同期して行った。
-本報告と検収証跡を追加するコミットの後にも同じゲートを実行し、その最終HEADと
-ログをタスクの最終応答に記載する。先行スライスのログに記載されたHEADは
-各スライスの基点であり、当時の未コミット候補を検証したログと区別する。
+The implementation acceptance checks below were performed after synchronizing the clean working tree at the S4 commit above.
+The same gate will also be run after the commit that adds this report and its acceptance evidence, and that final HEAD and
+log will be included in the task's final response. HEAD values in earlier slice logs
+are the starting points for those slices; distinguish them from logs that verified candidates that were uncommitted at the time.
 
-## 実行環境と結果
+## Execution environment and results
 
-| 項目 | 実測・証跡 |
+| Item | Measurement / evidence |
 | --- | --- |
-| 呼出コマンド | `RUN_INVENTORY_CHECK=1 make remote-gate` |
-| SSHホスト / hostname | `softbank-l40s` / `ngi-external022-vm1` |
-| リモート作業パス | `/home/ubuntu/work/zkfmi-crypto/` |
-| Docker | 公式 `rust:1.97-bookworm`、CPU上限4 |
-| イメージdigest | `sha256:0e2bcaef56d041a486784e54104a81aebe0da44bd03019bd70bc0401e42e4a97` |
+| Invocation | `RUN_INVENTORY_CHECK=1 make remote-gate` |
+| SSH host / hostname | `softbank-l40s` / `ngi-external022-vm1` |
+| Remote working path | `/home/ubuntu/work/zkfmi-crypto/` |
+| Docker | Official `rust:1.97-bookworm` image, CPU limit 4 |
+| Image digest | `sha256:0e2bcaef56d041a486784e54104a81aebe0da44bd03019bd70bc0401e42e4a97` |
 | rustc | `1.97.1 (8bab26f4f 2026-07-14)` |
 | cargo | `1.97.1 (c980f4866 2026-06-30)` |
-| 検証したコミット | `3dfb937b966601e01e39602306f91ece609140b6`、`worktree_dirty=0` |
-| 実行時刻 | 2026-09-05 05:58:33〜05:58:37 UTC（14:58:33〜14:58:37 JST） |
-| 同期入力manifest SHA-256 | `b07d223ff64d342dc1adf4c54a98caab5c7ac69128c9960ee8b742abd396387c` |
+| Verified commit | `3dfb937b966601e01e39602306f91ece609140b6`, `worktree_dirty=0` |
+| Execution time | 2026-09-05 05:58:33–05:58:37 UTC (14:58:33–14:58:37 JST) |
+| Synchronized input manifest SHA-256 | `b07d223ff64d342dc1adf4c54a98caab5c7ac69128c9960ee8b742abd396387c` |
 
-実行順序と結果:
+Execution order and results:
 
-1. `cargo fmt --all -- --check`: 成功。
-2. `cargo clippy --all-targets -- -D warnings`: 成功。
-3. `cargo test --release`: **45成功、0失敗、0無視**。
-4. `cargo tree -d`: 成功。`rand_core` 0.6.4 / 0.10.1、`signature` 2.2.0 / 3.0.0。
-5. `scripts/inventory_check.sh`: 終了0、下記の完全一致。
+1. `cargo fmt --all -- --check`: Passed.
+2. `cargo clippy --all-targets -- -D warnings`: Passed.
+3. `cargo test --release`: **45 passed, 0 failed, 0 ignored**.
+4. `cargo tree -d`: Passed. `rand_core` 0.6.4 / 0.10.1, `signature` 2.2.0 / 3.0.0.
+5. `scripts/inventory_check.sh`: Exit 0, with the exact agreement below.
 
 ```text
 grep_files=507 inventory_files=507 primitive_entries=1032 missing=0 stale=0
 source_hashes=825 markdown_from_json=PASS inventory_check=PASS
 ```
 
-実行全文は [final-code-gate.log](final-code-gate.log)、同期した入力の一覧とハッシュは
-[final-code-input.sha256](final-code-input.sha256)。ログ上の所要時間はキャッシュ済み
-検証ゲートの時間であり、署名/KEMの性能値や初回ビルド時間ではない。
-`rust-version = "1.85"` はMSRV宣言であり、rustc 1.85での実行検証は行っていない。
+The full execution log is [final-code-gate.log](final-code-gate.log); the list and hashes of synchronized inputs are in
+[final-code-input.sha256](final-code-input.sha256). The duration in the log is the time taken by a cached
+verification gate, not a signature/KEM performance measurement or the initial build time.
+`rust-version = "1.85"` is an MSRV declaration; execution with rustc 1.85 was not verified.
 
-### 45テストの内容
+### Coverage of the 45 tests
 
-| 区分 | 件数 | 実行した対象 |
+| Category | Count | What was exercised |
 | --- | ---: | --- |
-| バックエンド既知解 | 9 | NIST ML-DSA-65 4件、ML-KEM-768 4件、RFC 8032 Ed25519 1件 |
-| canonical / suite / memory | 9 | 固定hex golden 3件、FIPSサイズ、用途・再利用境界、長さ曖昧性、未知フィールド/方式/版の拒否、project-memory形式 |
-| hybrid / provider | 14 | 署名4象限、欠落/入替/長さ異常、用途・suiteの束縛、実KEM往復、片側秘密/暗号文差替え、非寄与X25519拒否、未登録操作拒否 |
-| 鍵ライフサイクル | 13 | 双方向更新、原子性、未知鍵世代、失効/期限、用途、PQから古典のみへの逆移行拒否、Transport署名鍵とKEM鍵の分離 |
+| Backend known-answer tests | 9 | 4 NIST ML-DSA-65 cases, 4 ML-KEM-768 cases, 1 RFC 8032 Ed25519 case |
+| canonical / suite / memory | 9 | 3 fixed-hex golden cases, FIPS sizes, purpose and reuse boundaries, length ambiguity, rejection of unknown fields/schemes/versions, project-memory format |
+| hybrid / provider | 14 | 4 signature quadrants, missing/swapped/incorrect-length components, purpose and suite binding, real KEM round trips, replacement of either component's secret/ciphertext, rejection of non-contributory X25519, rejection of unregistered operations |
+| Key lifecycle | 13 | Bidirectional rotation, atomicity, unknown key generations, revocation/expiration, purpose, rejection of migration from PQ back to classical-only, separation of Transport signing keys from KEM keys |
 
-暗号操作には実際の指定クレートを使い、既知解の期待値は上流クレートの内蔵試験で
-代用していない。NIST ACVPの固定コミットは
-`975de31eb83d87039ec88934fdc47d8c312b892d`。
-ML-DSAのtcIdは31/33/42/43、ML-KEMは26/27/86/88で、改ざん拒否とimplicit rejectionも
-含む。原本URL、取得原本とJSON抜粋のSHA-256、ライセンスは
-[SOURCES.md](../../tests/vectors/SOURCES.md)に保存した。
+Cryptographic operations use the actual specified crates; the expected known-answer values were not
+substituted with the upstream crates' built-in tests. The pinned NIST ACVP commit is
+`975de31eb83d87039ec88934fdc47d8c312b892d`.
+ML-DSA tcId values are 31/33/42/43, and ML-KEM tcId values are 26/27/86/88; the cases also cover
+tampering rejection and implicit rejection. Original source URLs, SHA-256 hashes of the retrieved originals and JSON excerpts, and licenses are
+stored in [SOURCES.md](../../tests/vectors/SOURCES.md).
 
-秘密鍵のzeroize、署名context、HKDFの入力順序、時刻の端点、管理操作の認可責任は
-[CRYPTO_CONTRACT.md](../CRYPTO_CONTRACT.md)に定義した。ハイブリッド署名は両成分が
-成功した場合だけを受理する。正しい長さの改ざんML-KEM暗号文には別の秘密を返す
-標準のimplicit rejectionを用い、古典暗号だけでの受理へ切り替えない。
+Secret-key zeroization with zeroize, signature contexts, HKDF input order, time endpoints, and responsibility for authorizing administrative operations are
+defined in [CRYPTO_CONTRACT.md](../CRYPTO_CONTRACT.md). Hybrid signatures are
+accepted only when both components succeed. For tampered ML-KEM ciphertexts of the correct length,
+the standard implicit rejection behavior returns a different secret; it does not switch to acceptance based only on classical cryptography.
 
-新しい正規化ドメイン `ZKFMI:CANONICAL:v1` が7リポジトリの凍結Rustソースに
-存在しないこともリモートで確認した（[canonical-domain-check.log](canonical-domain-check.log)）。
+The absence of the new canonical domain `ZKFMI:CANONICAL:v1` from the frozen Rust sources of the 7 repositories
+was also verified remotely ([canonical-domain-check.log](canonical-domain-check.log)).
 
-## 棚卸しと件数差
+## Inventory and count discrepancies
 
-2026-09-05T05:22:20Zに開始した凍結スナップショットに対し、指定された暗号クレート
-識別子を含むRustファイルを数えた。原本は読み取り専用で、実際に採取した825個の
-Rust/CargoファイルのSHA-256と各リポジトリのHEAD・dirtyパスを
-[source_manifest.json](../../inventory/source_manifest.json)に保存した。
-並走中の作業ツリーを含むため、以後の原本HEADが同じとは主張しない。
+For the frozen snapshot whose capture began at 2026-09-05T05:22:20Z, Rust files containing the specified cryptographic crate
+identifiers were counted. The originals were accessed read-only. SHA-256 hashes of the 825
+Rust/Cargo files actually captured, along with each repository's HEAD and dirty paths, were stored in
+[source_manifest.json](../../inventory/source_manifest.json).
+Because the snapshot includes working trees under concurrent modification, no claim is made that the originals' HEAD values remain the same afterward.
 
-| リポジトリ | 暗号利用ファイル数 |
+| Repository | Files using cryptography |
 | --- | ---: |
 | qomm | 201 |
 | zkpi | 59 |
@@ -95,91 +97,91 @@ Rust/CargoファイルのSHA-256と各リポジトリのHEAD・dirtyパスを
 | dekyx | 3 |
 | deccp | 4 |
 | aethel | 9 |
-| 合計 | 507 |
+| Total | 507 |
 
-1,032件のprimitive単位レコードをJSONの正本として保存し、MarkdownはそのJSONから
-生成した。ownerは `repo/crate` の担当コンポーネントであり、未確認の担当者名を
-作っていない。quantum_statusは指定の3分類、移行フェーズはP1〜P6である。
+The 1,032 primitive-level records were saved as the authoritative JSON, and the Markdown was
+generated from that JSON. owner denotes the responsible component in `repo/crate` form; no unverified names of individual owners
+were invented. quantum_status uses the 3 specified categories, and migration phases range from P1 to P6.
 
-発注件数との照合は全22クレートについて
-[count_reconciliation.json](../../inventory/count_reconciliation.json)に記録した。
-今回の集合はtests、hash-only、存在するexamples/benches等も含む。たとえば
-qomm-transportは全Rust/src+testsで58、srcで42、srcの非ハッシュ集合で34となり、
-最後の集合が発注の34件と一致する。qomm-defmiも全Rust54、src+tests46、src28、
-src非ハッシュ25となり、発注の25件を再現する。
+Reconciliation with the work-order counts is recorded for all 22 crates in
+[count_reconciliation.json](../../inventory/count_reconciliation.json).
+The set used here includes tests, hash-only files, and existing examples/benches, among other files. For example,
+qomm-transport has 58 files in the all-Rust/src+tests set, 42 in src, and 34 in the non-hash src set;
+the last set matches the work-order count of 34. Similarly, qomm-defmi has 54 in all Rust, 46 in src+tests, 28 in src, and
+25 in non-hash src, reproducing the work-order count of 25.
 
-qomm-zkpiは発注7に対しsrc非ハッシュ8（src+tests13）、oclob-mpcは発注1に対し
-src+tests2、oclob-settlementは発注3に対しsrc+tests5。これら3件の残差は
-発注時のファイル一覧が提供されていないため原因を確定できない。漏れ検査は発注の
-集計値に合わせて除外する方式ではなく、採取した実ファイルに対する独立grepとの
-集合一致、primitive再生成、原本ハッシュ、JSON由来Markdownを確認する。
+qomm-zkpi has 8 non-hash src files (13 in src+tests) against the work-order count of 7; oclob-mpc has
+2 in src+tests against 1; and oclob-settlement has 5 in src+tests against 3. The causes of these 3 remaining discrepancies
+cannot be established because the file lists used for the work order were not provided. The completeness check does not exclude files
+to match the work order's aggregate counts; it verifies set equality with an independent grep over
+the files actually captured, regeneration of primitive records, original-source hashes, and Markdown generated from JSON.
 
-検査自身の陰性確認として、実在する
-`aethel/crates/aethel/tests/end_to_end.rs` のレコードを一時コピーから除去すると、
-`grep_files=507 inventory_files=506 primitive_entries=1031 missing=1 stale=0` となり
-**期待どおり終了1**。その一時コピーは削除済み。証跡は
-[s4-negative.log](s4-negative.log)。これは45テストの失敗数には含めない。
+As a negative check of the checker itself, removing the record for the existing file
+`aethel/crates/aethel/tests/end_to_end.rs` from a temporary copy produced
+`grep_files=507 inventory_files=506 primitive_entries=1031 missing=1 stale=0` and
+**exit 1, as expected**. That temporary copy has been deleted. The evidence is
+[s4-negative.log](s4-negative.log). This is not included in the failure count for the 45 tests.
 
-## 計画書
+## Plan
 
-qommの変更は `/Users/shukob/Research/DeFMI/qomm/doc/ja/PQC_MIGRATION_PLAN.md` のみ。
-43行追加・1行削除（既存のサイズ基準1行を置換）で、既存の全見出し
-（レベル1〜3）の順序と文字列を比較し一致した。
-コミットのファイル一覧と `git diff --check` も確認した。証跡は
-[qomm-plan-check.log](qomm-plan-check.log)。
+The only change in qomm was to `/Users/shukob/Research/DeFMI/qomm/doc/ja/PQC_MIGRATION_PLAN.md`.
+There were 43 added lines and 1 deleted line (replacement of 1 existing size-criterion line). Comparing the order and text of all existing headings
+(levels 1–3) confirmed an exact match.
+The commit's file list and `git diff --check` were also checked. The evidence is
+[qomm-plan-check.log](qomm-plan-check.log).
 
-開始条件の未達と独立P0の先行根拠、複製クレート統合後のP1配線、候補一覧と
-decisions.jsonlと同じ選定理由、P1のOpenSSL条件とTLS認証の保留事項を追記した。
-16KB/32KBは「現行package_bytes 57,971 Bの定義を確認したうえで再設定」に修正し、
-FIPSの固定サイズと3署名分の算術を表で追加した。現行package/proofサイズは
-発注書からの引継ぎ値であり、今回の再計測結果ではない。
+The additions cover the unmet start condition and the rationale for proceeding with independent P0, P1 wiring after duplicated-crate consolidation, the candidate list and
+the same selection rationale as decisions.jsonl, P1's OpenSSL conditions, and pending TLS authentication decisions.
+16KB/32KB was revised to "to be reset after confirming the definition of the current package_bytes value of 57,971 B,"
+and a table of fixed FIPS sizes and the arithmetic for 3 signatures was added. The current package/proof sizes are
+values carried over from the work order, not new measurements made in this task.
 
-## 変更パス
+## Changed paths
 
-新規リポジトリのルートは `/Users/shukob/Research/DeFMI/zkfmi-crypto/`。
-以下はこのルートからの相対パスで、すべて今回の新規ファイルである。
+The new repository root is `/Users/shukob/Research/DeFMI/zkfmi-crypto/`.
+The following paths are relative to that root; all were newly created files in this task.
 
-| パス | 内容 |
+| Path | Content |
 | --- | --- |
-| `.gitignore`, `Cargo.toml`, `Cargo.lock`, `LICENSE`, `Makefile`, `README.md` | 骨格、依存固定、MIT、説明、遠隔ゲート |
-| `.codex/project-memory/project.toml`, `facts.jsonl`, `decisions.jsonl`, `worklog.jsonl` | 境界、確認済み事実、選定、スライス記録 |
-| `docs/orders/2026-09-05-p0-handoff.md` | 添付発注書とbyte単位で一致する全文コピー |
-| `docs/CRYPTO_CONTRACT.md` | 仕様、上流出典、保存/認可責任、実装限界 |
-| `src/lib.rs`, `error.rs`, `suite.rs`, `canonical.rs`, `key.rs`, `traits.rs`, `backend.rs`, `backend_tests.rs` | 暗号API、DTO、ライフサイクル、実バックエンド、既知解テスト |
-| `src/hybrid/mod.rs`, `signature.rs`, `kem.rs` | ハイブリッド署名/KEM |
-| `src/bin/crypto-inventory.rs` | Rust製棚卸し生成・検査 |
-| `tests/canonical_and_suite.rs`, `hybrid.rs`, `key_lifecycle.rs` | 36件の統合テスト |
-| `tests/vectors/ml-dsa-65-sigver.json`, `ml-kem-768-encapdecap.json`, `rfc8032-ed25519-1.json`, `SOURCES.md`, `NIST-NOTICE.md` | 独立ベクトル、URL/commit/hash、原本ライセンス |
-| `scripts/remote-gate.sh`, `capture-inventory.sh`, `inventory_check.sh` | 隔離同期、読取専用採取、独立grep照合 |
-| `inventory/crypto_inventory.json`, `source_manifest.json`, `count_reconciliation.json`, `CRYPTO_INVENTORY.md` | 正本JSON、入力証跡、件数差、生成文書 |
-| `docs/verification/s1-gate.log`, `s2-gate.log`, `s3-gate.log`, `s3-input.sha256`, `s4-gate.log`, `s4-input.sha256`, `s4-negative.log` | 各スライスの検証証跡 |
-| `docs/verification/P0_REPORT.md`, `final-code-gate.log`, `final-code-input.sha256`, `qomm-plan-check.log` | 本報告とコミット済み状態の検収証跡 |
-| `docs/verification/canonical-domain-check.log` | 凍結した既存ソースとの正規化ドメイン非衝突確認 |
+| `.gitignore`, `Cargo.toml`, `Cargo.lock`, `LICENSE`, `Makefile`, `README.md` | Scaffold, pinned dependencies, MIT, documentation, remote gate |
+| `.codex/project-memory/project.toml`, `facts.jsonl`, `decisions.jsonl`, `worklog.jsonl` | Boundaries, verified facts, selection decisions, slice records |
+| `docs/orders/2026-09-05-p0-handoff.md` | Complete, byte-for-byte copy of the attached work order at the original S1 commit `7bf7a69bb45b0ce37cd7838518d498308a8f7dae`; now a later, user-requested English translation, with the original retained in Git history |
+| `docs/CRYPTO_CONTRACT.md` | Specification, upstream sources, storage/authorization responsibilities, implementation limits |
+| `src/lib.rs`, `error.rs`, `suite.rs`, `canonical.rs`, `key.rs`, `traits.rs`, `backend.rs`, `backend_tests.rs` | Cryptographic APIs, DTOs, lifecycle, real backends, known-answer tests |
+| `src/hybrid/mod.rs`, `signature.rs`, `kem.rs` | Hybrid signatures/KEM |
+| `src/bin/crypto-inventory.rs` | Rust inventory generation and checking |
+| `tests/canonical_and_suite.rs`, `hybrid.rs`, `key_lifecycle.rs` | 36 integration tests |
+| `tests/vectors/ml-dsa-65-sigver.json`, `ml-kem-768-encapdecap.json`, `rfc8032-ed25519-1.json`, `SOURCES.md`, `NIST-NOTICE.md` | Independent vectors, URL/commit/hash, original-source licenses |
+| `scripts/remote-gate.sh`, `capture-inventory.sh`, `inventory_check.sh` | Isolated synchronization, read-only capture, independent grep reconciliation |
+| `inventory/crypto_inventory.json`, `source_manifest.json`, `count_reconciliation.json`, `CRYPTO_INVENTORY.md` | Authoritative JSON, input evidence, count discrepancies, generated document |
+| `docs/verification/s1-gate.log`, `s2-gate.log`, `s3-gate.log`, `s3-input.sha256`, `s4-gate.log`, `s4-input.sha256`, `s4-negative.log` | Verification evidence for each slice |
+| `docs/verification/P0_REPORT.md`, `final-code-gate.log`, `final-code-input.sha256`, `qomm-plan-check.log` | This report and acceptance evidence for the committed state |
+| `docs/verification/canonical-domain-check.log` | Confirmation that the canonical domain does not collide with frozen existing sources |
 
-加えて、新規リポジトリ内の `.git/`、無視対象の `.artifacts/` と `.cache/`、リモートの
-`/home/ubuntu/work/zkfmi-crypto/` にGit管理情報、検証ログ、採取スナップショット、
-依存・ツールチェーン・ビルドキャッシュを作成した。追跡対象ファイルの削除はない。
-qommでは上記計画書1ファイルのみを編集し、コミットに伴うGit管理情報を更新した。
+In addition, Git metadata, verification logs, captured snapshots, and dependency/toolchain/build caches were created in
+`.git/`, the ignored `.artifacts/` and `.cache/` directories within the new repository, and the remote
+`/home/ubuntu/work/zkfmi-crypto/` directory. No tracked files were deleted.
+In qomm, only the single plan file above was edited, and Git metadata was updated as part of the commit.
 
-**当タスクの書込みはこの新規リポジトリ、専用リモート作業領域、qommの許可された
-計画書とそのコミット操作に限定した。** defmi、oclob、zkpi、dekyx、deccp、aethel、
-zkfmi-siteのファイル、既存Cargo.lock、pin、Dockerfile、composeは編集していない。
-他のリモート作業領域と既存Dockerイメージは変更していない。ローカルMacでの
-ビルド/テスト、Python実装、`/tmp`への一時ファイル作成は行っていない。
+**Writes in this task were limited to this new repository, the dedicated remote working area, the permitted
+qomm plan, and its commit operation.** No files in defmi, oclob, zkpi, dekyx, deccp, aethel, or
+zkfmi-site, and no existing Cargo.lock, pins, Dockerfile, or compose files were edited.
+Other remote working areas and existing Docker images were not changed. No builds/tests on the local Mac,
+Python implementation, or temporary-file creation in `/tmp` were performed.
 
-## 未実施・保留
+## Work not performed or left pending
 
-- GitHub作成/push: 着手時の `gh auth status` が無効。`gh auth login`、GitHub書込みAPI、
-  リポジトリ作成、pushはいずれも実行していない。ローカルの全スライスはコミット済み。
-- 既存クレートへの依存追加、共通クレート統合、P1のTLS変更、P2の格納変更: 明示的な対象外。
-- 性能ベンチマークと計画全体のP0性能基準確定: 今回の発注スライスに含まれない。
-  暗号処理時間や本番性能は未計測。独立S1〜S5の完了を移行計画全体のP0完了とは扱わない。
-- ML-DSA-44、SLH-DSA、FROST、証明系などの実演算: 今回はSuiteIdと必要なサイズ定義のみ。
-  未登録の操作は拒否する。秘密鍵保存、KEM鍵更新の認可、TLS鍵確認は既存基盤/P1の責任。
-- 外部監査、本番採用、FIPS認証: 実施・取得を主張しない。
+- GitHub creation/push: `gh auth status` at the start indicated invalid authentication. None of `gh auth login`, GitHub write APIs,
+  repository creation, or push was executed. All local slices were committed.
+- Adding dependencies to existing crates, consolidating common crates, P1 TLS changes, and P2 storage changes: explicitly out of scope.
+- Performance benchmarks and finalization of the overall plan's P0 performance criteria: not included in the slices commissioned for this task.
+  Cryptographic processing times and production performance were not measured. Completion of independent S1–S5 is not treated as completion of P0 in the overall migration plan.
+- Actual operations for ML-DSA-44, SLH-DSA, FROST, proof systems, and similar schemes: this task provides only SuiteId and the required size definitions.
+  Unregistered operations are rejected. Secret-key storage, authorization of KEM key rotation, and TLS key confirmation are the responsibility of the existing infrastructure/P1.
+- External audit, production adoption, and FIPS certification: no claim is made that these were performed or obtained.
 
-## 判断を要する事項
+## Matters requiring a decision
 
-- リポジトリ公開範囲: 初回発注時はprivateを既定としていたが、2026-09-05の追加指示でpublicに決定済み。GitHub認証が無効のため、GitHub上の作成・pushは引き続き未実施。
-- aws-lc-rs: P0はRustCryptoを採用済み。aws-lc-rsを本番候補として採用するかは別途判断。
-- TLS認証: ML-DSA証明書単独か二重証明書かは未選択。P1実装前に決定する。
+- Repository visibility: The initial work order defaulted to private, but the additional instruction on 2026-09-05 had already decided on public visibility. At the time of this original P0 acceptance report, creation on GitHub and push remained unperformed because GitHub authentication was invalid.
+- aws-lc-rs: P0 has adopted RustCrypto. Whether to adopt aws-lc-rs as a production candidate requires a separate decision.
+- TLS authentication: The choice between an ML-DSA certificate alone and dual certificates has not been made. Decide before implementing P1.

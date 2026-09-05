@@ -1,236 +1,236 @@
-# ZKFMI競合サーベイ：Canton以外
+# ZKFMI Competitor Survey: Excluding Canton
 
-調査日・情報確認日: **2026-09-05**。対象はZKFMI全体（QOMM / OCLOB / zkPI / DeFMI / DeKYX / DeCCP）の顧客課題に重なる**17の製品・基盤**。暗号ライブラリの選定比較ではない。
+Research and information-check date: **2026-09-05**. Scope: **17 products and platforms** addressing customer problems that overlap with ZKFMI as a whole (QOMM / OCLOB / zkPI / DeFMI / DeKYX / DeCCP). This is not a comparison for selecting cryptographic libraries.
 
-**追加調査:** 同日の[比較判断 v1.0](COMPETITIVE_DECISIONS_2026-09-05.md)と[戦略 v1.0](../strategy/ZKFMI_STRATEGY_2026-09-05.md)に、Renegadeの照合証明・市場方式、更新後のZKFMI実装証拠、採用と開発の優先順位を反映した。本書は初回サーベイの確認範囲を保持する。
+**Supplementary research:** The same-day [comparison decisions v1.0](COMPETITIVE_DECISIONS_2026-09-05.md) and [strategy v1.0](../strategy/ZKFMI_STRATEGY_2026-09-05.md) incorporate Renegade's matching proofs and market mechanism, updated ZKFMI implementation evidence, and adoption and development priorities. This document preserves the scope confirmed in the initial survey.
 
-## 1. 判断の要点
+## 1. Key Judgments
 
-**比較の優先対象は、秘密取引のRenegade、MPC基盤のArcium、金融機関向けのCorda・Kinexys・Progmat、取引と決済を接続するOwneraである。** この優先順位は、機能の重なりと顧客接点からの本調査の判断であり、市場シェア順位ではない。
+**Priority comparison targets are Renegade for confidential trading, Arcium for MPC infrastructure, Corda / Kinexys / Progmat for financial institutions, and Ownera for connecting trading and settlement.** These priorities are this research's judgments based on functional overlap and customer relationships, not market-share rankings.
 
-- **「MPCで秘密注文を扱い、ZKで決済する」だけでは差別化にならない。** Renegadeはその構成を公開している。比較すべきなのは、運営ノードが読める情報、注文集合と受付順への束縛、部分約定、参加資格・与信予約、約定と決済の証明の連続性である。[R1][r1] [R2][r2]
-- **汎用秘密計算は競合すると同時に調達候補になる。** Arciumの現行Cerberusはdishonest-majority・detect-and-abort型、ZamaはFHEと分散鍵管理を使う。ZKFMIの価値をMPC基盤の保有だけに置かず、市場規則・権限・資産予約・受渡しを一つの検証可能な業務経路にする点で評価する。[A2][a2] [Z1][z1] [Z3][z3]
-- **金融機関の採用判断では、暗号方式以外の差が大きい。** Cordaの証券決済向け採用、Kinexysの銀行サービス、Fnalityの決済制度、ProgmatのST案件は、顧客接続と既存実務の障壁を示す。ZKFMIの研究実装とこれらの商用経路は同じ成熟度ではない。[C1][c1] [K1][k1] [F1][f1] [J1][j1]
-- **クロスチェーン接続も独立した競争領域である。** Ownera、Chainlink、Swiftは、それぞれ取引指図の調整、外部データ・ポリシー・メッセージ連携、銀行間支払の調整を扱う。zkPIの採用を目指すなら、既存台帳へどう接続するかまで比較する。[O1][o1] [L1][l1] [S1][s1]
-- **差別化候補は「秘密を維持した市場規則の検証と、その結果に束縛された決済」。独占的な新規性や優越性は未確立。** 競合に同機能がないとは、公開資料で確認できないことだけから断定しない。
+- **“Handling secret orders with MPC and settling with ZK” alone is not a differentiator.** Renegade publicly documents that architecture. Compare the information operating nodes can read, binding to order sets and admission order, partial fills, eligibility and credit reservations, and continuity between fill and settlement proofs. [R1][r1] [R2][r2]
+- **General-purpose confidential computation is both a competitor and a procurement candidate.** Arcium's current Cerberus uses a dishonest-majority, detect-and-abort model; Zama uses FHE and distributed key management. Assess ZKFMI's value in turning market rules, authorization, asset reservations, and delivery into one verifiable workflow, rather than merely owning MPC infrastructure. [A2][a2] [Z1][z1] [Z3][z3]
+- **For financial institutions' adoption decisions, differences beyond cryptographic methods are substantial.** Corda's adoption for securities settlement, Kinexys's banking services, Fnality's payment arrangements, and Progmat's ST projects illustrate barriers involving customer connectivity and existing practice. ZKFMI's research implementation and these commercial paths are not at the same maturity level. [C1][c1] [K1][k1] [F1][f1] [J1][j1]
+- **Cross-chain connectivity is a competitive field in its own right.** Ownera, Chainlink, and Swift address trade-instruction coordination, external data / policy / messaging integration, and interbank payment coordination, respectively. Seeking adoption of zkPI requires comparing how it connects to existing ledgers as well. [O1][o1] [L1][l1] [S1][s1]
+- **A candidate differentiator is “verification of market rules while preserving confidentiality, with settlement bound to the result.” Exclusive novelty and superiority remain unestablished.** Do not conclude that competitors lack the same functionality merely because it could not be confirmed in public materials.
 
-## 2. 範囲と読み方
+## 2. Scope and Reading Guide
 
-### 選定基準
+### Selection Criteria
 
-次のいずれかに該当し、公式仕様、運営主体の発表、当局資料、著者による論文のいずれかを確認できる対象を選んだ。
+Targets were selected if they met at least one of the following criteria and could be checked against official specifications, operator announcements, regulatory materials, or papers by the authors.
 
-1. 金融機関が台帳・証券発行・担保・決済に採用する基盤。
-2. 秘密注文の照合、秘密残高、第三者検証可能な取引を実装・提案する仕組み。
-3. 上記を実装する秘密計算、証明、相互運用の代替基盤。
+1. Infrastructure adopted by financial institutions for ledgers, securities issuance, collateral, or settlement.
+2. Systems implementing or proposing confidential-order matching, confidential balances, or third-party-verifiable transactions.
+3. Alternative confidential-computation, proof, or interoperability infrastructure for implementing the above.
 
-**Canton本体は比較対象から除外した。** 複数ネットワークに対応する企業はCanton以外の機能を比較する。例えば、2026-08-13のMUFG・ProgmatのJGBレポ実証はCantonを使うと原本に明記されているため、本表の「非Cantonの実績」には数えない。[J3][j3]
+**Canton itself was excluded from the comparison.** For companies supporting multiple networks, compare their non-Canton functionality. For example, the original source explicitly states that the MUFG / Progmat JGB repo demonstration dated 2026-08-13 uses Canton, so it is not counted as a “non-Canton track record” in this table. [J3][j3]
 
-本調査は公開資料のサーベイである。競合の有料環境への接続、コード監査、取引の実行、相対性能の測定は行っていない。料金・TPS・レイテンシ・資金調達額を条件の違う数字で順位付けしない。
+This is a survey of public materials. It did not connect to competitors' paid environments, audit code, execute trades, or measure relative performance. Do not rank fees, TPS, latency, or funding amounts using figures obtained under different conditions.
 
-### 成熟度の表記
+### Maturity Labels
 
-| 表記 | この文書で意味すること |
+| Label | Meaning in this document |
 | --- | --- |
-| 商用事例公表 | 運営者・採用者が対象業務の実施を公表。独立した運用監査を意味しない |
-| Mainnet / Alpha公表 | ネットワーク段階の公表。規制市場での商用受渡しとは区別 |
-| 採用・実証・予定 | 発表に書かれた段階を維持。将来日程を経過しただけでは稼働扱いにしない |
-| 仕様確認 | 動作モデルを仕様で確認。特定導入の稼働状態は未確認 |
-| 未確認 | 読んだ資料では確認できない。「未実装」「非対応」とは異なる |
+| Commercial case announced | An operator or adopter has announced execution of the target workflow. This does not mean an independent operational audit |
+| Mainnet / Alpha announced | Announcement of network stage. Distinct from commercial delivery in a regulated market |
+| Adoption / demonstration / planned | Preserve the stage stated in the announcement. Passage of a planned date alone does not establish live operation |
+| Specification confirmed | Operating model checked in specifications. Operational status of a particular deployment is unverified |
+| Unverified | Not confirmed in the materials read. Different from “unimplemented” or “unsupported” |
 
-### 自分たちの比較基準
+### Our Own Comparison Baseline
 
-ZKFMI側は、2026-09-05に現行の`defmi/README.md`、`defmi/POSITION.md`、qommの日本語資料、本リポジトリのP0検収報告を読み直した。DeFMIは研究ソフトウェアであり、独立運営者・本番セキュリティ・法的ファイナリティの受入れを完了したとは扱わない。native note経路では**asset IDと決済メタデータは公開**で、全フィールドが秘匿されるという比較はしない。
+For ZKFMI, the current `defmi/README.md`, `defmi/POSITION.md`, Japanese qomm materials, and this repository's P0 acceptance report were reread on 2026-09-05. DeFMI is research software; it is not treated as having completed acceptance for independent operators, production security, or legal finality. On the native note path, **asset IDs and settlement metadata are public**; comparisons must not imply that every field is confidential.
 
-参照時のDeFMI HEADは`153fe671e523ec573a6c6261f341423a49371f5d`、qomm HEADは`61596e523a4249031ae2471c78bd2249fea8f49b`。このサーベイで既存スタックのE2Eを再実行したわけではない。Webサイト側の古い未了表と現行READMEが一致しない箇所を、都合のよい機能主張には使っていない。
+At the time of reference, DeFMI HEAD was `153fe671e523ec573a6c6261f341423a49371f5d` and qomm HEAD was `61596e523a4249031ae2471c78bd2249fea8f49b`. This survey did not rerun the existing stack's E2E path. Discrepancies between an old incomplete-items table on the website and the current README were not used to select convenient feature claims.
 
-PQCについて確認済みなのは、独立`zkfmi-crypto`のハイブリッド署名/KEMと既知解を含む45テストである。既存サービスへの配線は未実施であり、ZKFMI全体の耐量子対応を意味しない。[P0検収報告](../verification/P0_REPORT.md)
+For PQC, what has been verified is hybrid signatures/KEM in standalone `zkfmi-crypto` and 45 tests, including known-answer tests. Wiring into existing services has not been implemented; this does not establish quantum resistance for ZKFMI as a whole. [P0 acceptance report](../verification/P0_REPORT.md)
 
-## 3. 金融機関向け台帳・決済・接続の比較
+## 3. Comparison of Institutional Ledgers, Settlement, and Connectivity
 
-| 対象 | 主に競合する仕事 | 秘密・信頼の境界 | 確認できた段階と比較上の意味 |
+| Target | Main competing task | Confidentiality and trust boundary | Confirmed stage and implication for comparison |
 | --- | --- | --- | --- |
-| **R3 Corda** | 証券・資産の状態管理と機関間ワークフロー | 関係者間のデータ共有とnotaryによる二重消費防止。notaryが全取引内容を読むモデルとは限らない | CSD PragueのDLT決済向け採用を公表。ネットワーク統治と金融業務への導入が強い比較軸 [C1][c1] [C2][c2] |
-| **Kinexys / J.P. Morgan** | 銀行決済、資産トークン化、ファンド関連処理 | 銀行運営のサービス、private permissioned基盤や公開チェーン上の商品。銀行からの入力秘匿とは別 | 2026-04-28にJPM CoinのBase提供、Fund Flow初回取引等を公表。現金脚と顧客接点が競合 [K1][k1] [K2][k2] |
-| **Fnality** | 機関向けデジタル現金の決済 | 中央銀行の口座に保有する資金を裏付けとする仕組み。秘密注文の価格形成が主対象ではない | BoE最新監督資料でSterling FnPSを確認。段階的運用の条件があり、全通貨・全機能の完成とは扱わない [F1][f1] [F2][f2] |
-| **Partior** | クロスボーダー支払、FX PvP | 参加金融機関の決済ネットワーク。秘密市場計算の仕様は本資料では未確認 | 支払ネットワークの稼働事例と、OpenAssetsとのDvP **PoC**を分けて公表。現金脚・PvPの代替/接続候補 [T1][t1] |
-| **Ownera / FinP2P** | 台帳をまたぐ資産流通と決済指図の調整 | 各機関のRouter、adapter、参加機関間の合意。元台帳・支払基盤に依存 | 実装APIとorchestration planを公開。zkPI/SDKの導入位置に近い [O1][o1] [O2][o2] |
-| **Swift共有台帳** | 銀行間支払の調整とtokenised deposit接続 | Swift運営の共通層と銀行側台帳。最終決済は既存システムを使う経路を説明 | 2026-07-09時点は初期利用準備完了・銀行によるlive pilot準備。全面商用移行とは書かれていない [S1][s1] [S2][s2] |
-| **Chainlink CCIP / CRE / ACE** | 外部情報・ポリシー・クロスチェーン処理の接続 | DON、TEE、DKG等。非公開APIへのアクセスと秘密計算を構成する | 2026-05の説明はprivacy機能と開発事例を含む。すべてが規制された金融FMIの本番事例という意味ではない [L1][l1] [L2][l2] |
-| **Progmat** | 国内デジタル証券発行・管理、金融商品実務との接続 | 発行者・信託・販売等の制度上の役割が重要。全関係者からの入力秘匿は本資料で未確認 | ST案件一覧とAvalanche L1への移行完了の提供者発表を確認。国内実務への導入が直接競合。CantonのJGB案件は除外 [J1][j1] [J4][j4] [J5][j5] |
-| **BOOSTRY / ibet for Fin** | 国内STの発行・流通とコンソーシアム運営 | メンバーによるネットワーク・標準化されたST取扱い。詳細な秘匿範囲は導入構成の確認が必要 | 公式コンソーシアム説明と運営開始の参加者発表を確認。日本の証券業務を一から実装する場合の比較対象 [B1][b1] [B2][b2] |
+| **R3 Corda** | Securities / asset-state management and interinstitutional workflows | Data sharing among relevant parties and double-spend prevention by notaries. The model does not necessarily have notaries read all transaction contents | Adoption for CSD Prague's DLT settlement announced. Network governance and integration into financial workflows are strong comparison axes [C1][c1] [C2][c2] |
+| **Kinexys / J.P. Morgan** | Bank payments, asset tokenization, and fund-related processing | Bank-operated services, private permissioned infrastructure, and products on public chains. Distinct from hiding inputs from the bank | Announced JPM Coin on Base, the first Fund Flow transaction, and other milestones on 2026-04-28. Competes through cash legs and customer relationships [K1][k1] [K2][k2] |
+| **Fnality** | Institutional digital-cash settlement | A system backed by funds held in central-bank accounts. Price formation for secret orders is not its primary focus | Sterling FnPS confirmed in the latest BoE supervisory materials. Phased-operation conditions apply; do not treat all currencies and capabilities as complete [F1][f1] [F2][f2] |
+| **Partior** | Cross-border payments and FX PvP | Settlement network of participating financial institutions. Specifications for confidential market computation are unverified in these materials | Separately announces live payment-network cases and a DvP **PoC** with OpenAssets. Alternative / integration candidate for cash legs and PvP [T1][t1] |
+| **Ownera / FinP2P** | Asset distribution across ledgers and coordination of settlement instructions | Each institution's Router, adapters, and agreement among participating institutions. Depends on underlying ledgers and payment infrastructure | Publishes implementation APIs and orchestration plans. Close to the integration position of zkPI/SDK [O1][o1] [O2][o2] |
+| **Swift shared ledger** | Interbank payment coordination and tokenised-deposit connectivity | Shared layer operated by Swift and bank-side ledgers. Describes paths using existing systems for final settlement | As of 2026-07-09, ready for initial use and preparing for bank live pilots. Does not state a full commercial transition [S1][s1] [S2][s2] |
+| **Chainlink CCIP / CRE / ACE** | Integration of external information, policies, and cross-chain processing | DONs, TEEs, DKG, and related mechanisms. Combines access to private APIs with confidential computation | The 2026-05 explanation includes privacy capabilities and development cases. This does not mean all are production cases of regulated financial FMIs [L1][l1] [L2][l2] |
+| **Progmat** | Japanese digital-securities issuance and administration, and integration with financial-product practice | Institutional roles such as issuers, trusts, and distributors are important. Hiding inputs from all relevant parties is unverified in these materials | ST project list and provider announcement of completed migration to Avalanche L1 confirmed. Directly competes in adoption within Japanese practice. Canton JGB projects excluded [J1][j1] [J4][j4] [J5][j5] |
+| **BOOSTRY / ibet for Fin** | Japanese ST issuance and circulation, and consortium operation | Member-operated network and standardized ST handling. Detailed confidentiality scope requires deployment-specific confirmation | Official consortium explanation and participants' announcement of operation launch confirmed. A comparison target when implementing Japanese securities workflows from scratch [B1][b1] [B2][b2] |
 
-### Corda: 共有範囲を限定する台帳と、秘密計算の違い
+### Corda: A Ledger with Limited Sharing Versus Confidential Computation
 
-Corda 5.2のnon-validating notaryは入力stateの参照等を扱い、commandや署名の全内容を受け取る必要はない。一方、取引参加ノードの検証と履歴取得には別の開示境界があり、Cordaの全ノードが同じ情報を見るという説明も、どの参加者にも取引が見えないという説明も誤りになる。[C2][c2]
+Corda 5.2's non-validating notary handles references to input states and similar information and need not receive the full contents of commands or signatures. Transaction participant validation and history retrieval, however, have separate disclosure boundaries. It would be incorrect to say either that all Corda nodes see the same information or that no participant can see transactions. [C2][c2]
 
-**比較判断:** ZKFMIが狙う「価格ルールや他者の注文を開かずに適用結果を検証する」用途と、Cordaで権利・契約状態を扱う用途を同じ案件で比較する。R3のSolana向け「Corda protocol」は従来のCorda台帳製品と分ける。2025-12の発表は2026年前半の開始予定であり、この発表だけから9月時点の実稼働を断定しない。[C3][c3]
+**Comparison judgment:** Compare ZKFMI's target use case, “verifying the result of applying price rules or other parties' orders without revealing them,” with Corda's handling of rights and contract state within the same project. Distinguish R3's “Corda protocol” for Solana from the established Corda ledger product. The 2025-12 announcement planned a launch in the first half of 2026; that announcement alone does not establish actual operation as of September. [C3][c3]
 
-### Kinexys・Fnality・Partior: 現金脚と営業接点が強い
+### Kinexys / Fnality / Partior: Strong Cash Legs and Customer Access
 
-Kinexysのサービス提供は、銀行の預金・顧客関係・運用責任と組み合わされている。Fnalityの監督上の位置づけやPartiorの支払経路も、暗号クレートを実装したことでは代替できない。[K1][k1] [F1][f1] [T1][t1]
+Kinexys services combine banking deposits, customer relationships, and operational responsibility. Fnality's supervisory position and Partior's payment paths likewise cannot be replaced simply by implementing cryptographic crates. [K1][k1] [F1][f1] [T1][t1]
 
-**比較判断:** 当面の案件では、これらを全面的に置き換える提案だけでなく、zkPIで外部計算を検証し既存現金脚へ接続する提案を比較する。ただし、接続可能性は本調査の提案であり、ZKFMIとの接続実績はない。
+**Comparison judgment:** For near-term projects, compare proposals to verify external computation with zkPI and connect to existing cash legs, as well as proposals to replace these systems entirely. Such connectivity is a proposal from this research; no ZKFMI integration track record exists.
 
-Fnality自身の2023年公表は初回live payment、BoEの2025–26年報は2024年12月の限度付き運用開始を記載する。イベントの表現と日付が異なるため、一つの「全面本番開始日」に統合していない。[F1][f1] [F2][f2]
+Fnality's own 2023 announcement refers to its first live payment, while the BoE 2025–26 report describes the start of operations subject to limits in December 2024. Because the events' descriptions and dates differ, they have not been merged into a single “full production launch date.” [F1][f1] [F2][f2]
 
-### Ownera・Swift・Chainlink: 指図の形式だけでは競争できない
+### Ownera / Swift / Chainlink: Instruction Formats Alone Are Not Enough to Compete
 
-FinP2Pは、取引の意図を複数Router間の合意と各台帳の命令に変換する具体的な仕組みを持つ。Swiftも銀行間commitmentを調整する共有層を整備している。**「既存台帳をつなぐ」「指図を標準化する」だけをzkPI固有の価値としない。**[O1][o1] [S1][s1]
+FinP2P has concrete mechanisms that convert trade intents into agreement among multiple Routers and commands for each ledger. Swift is also building a shared layer that coordinates commitments between banks. **Do not treat “connecting existing ledgers” or “standardizing instructions” alone as unique zkPI value.**[O1][o1] [S1][s1]
 
-Chainlinkの秘密HTTP処理はTEEと分散鍵生成を用いると説明される。ZKによる証明、MPCによる秘密入力の共同計算、TEE内での平文処理は信頼の置き方が違う。ベンダーの「verifiable」という一語から、同じ第三者検証能力があると採点しない。[L1][l1]
+Chainlink describes confidential HTTP processing using TEEs and distributed key generation. ZK proofs, joint computation over secret inputs through MPC, and plaintext processing inside a TEE place trust differently. Do not infer equivalent third-party verification capabilities from a vendor's use of the single word “verifiable.” [L1][l1]
 
-**比較判断:** 採用者には、指図の中に何の命題が束縛されるか、署名だけでなく何を再検証できるか、二重実行や片脚失敗の責任がどこにあるかを示す。台帳間で合意したことと法的な受渡しが完了したことを分けて比較する。
+**Comparison judgment:** Show adopters which propositions are bound into an instruction, what they can reverify beyond signatures, and where responsibility lies for duplicate execution or failure of one leg. Distinguish agreement across ledgers from completed legal delivery.
 
-### Progmat・ibet for Fin: 国内では制度と運用への接続を比較する
+### Progmat / ibet for Fin: Compare Connections to Japanese Institutions and Operations
 
-STの発行・権利移転・販売・記録管理を担う組織との接続が競争軸になる。ProgmatのST案件一覧と、ibet for Finのネットワーク・標準契約の説明は、この領域が暗号実装以外の業務を伴うことを示す。[J1][j1] [B1][b1]
+Connectivity to organizations responsible for ST issuance, rights transfers, distribution, and record administration is a competitive axis. Progmat's ST project list and ibet for Fin's descriptions of its network and standard contracts show that this field involves workflows beyond cryptographic implementation. [J1][j1] [B1][b1]
 
-非Cantonの台帳経路について、Avalancheの2026-02-25発表はCordaから専用Avalanche L1への移行計画を記載し、AvaCloudの公式投稿はその後の移行完了を公表している。後者は確認時に相対日付「1mo」と表示されたため、正確な完了日を推定しない。移行完了は提供者発表として扱い、稼働状況や性能を独自検証したものではない。[J4][j4] [J5][j5]
+For the non-Canton ledger path, Avalanche's announcement dated 2026-02-25 describes a plan to migrate from Corda to a dedicated Avalanche L1, and AvaCloud's official post subsequently announces completion. The latter displayed the relative date “1mo” when checked, so no exact completion date is inferred. Migration completion is treated as a provider announcement, not independently verified operating status or performance. [J4][j4] [J5][j5]
 
-**比較判断:** 日本の案件では優先して比較する。秘密の適格性・保証枠判定や担保計算が、既存の登録・信託・決済業務へどう組み込めるかを具体化する。投信案件のリリース原本は2026-08-28付、Web掲載は09-03で、外部投資家への募集・販売をしない実証と明記されている。「実運用環境での実証」を商用販売開始に読み替えない。この原本だけでは利用チェーンを特定できないため、非Canton台帳の実績を示す根拠には使わない。[J2][j2]
+**Comparison judgment:** Prioritize these comparisons in Japanese projects. Specify how confidential eligibility / guarantee-capacity checks and collateral computations could be incorporated into existing registration, trust, and settlement workflows. The investment-trust release original is dated 2026-08-28 and was posted on the Web on 09-03; it explicitly describes a demonstration without solicitation or sales to outside investors. Do not reinterpret a “demonstration in a live operating environment” as the launch of commercial sales. This original alone does not identify the chain used, so it is not used as evidence of a non-Canton ledger track record. [J2][j2]
 
-## 4. 秘密注文・秘密資産取引の比較
+## 4. Comparison of Confidential Orders and Confidential Asset Trading
 
-| 対象 | 市場・検証の仕組み | 秘密・信頼の境界 | 確認できた段階と比較上の意味 |
+| Target | Market and verification mechanism | Confidentiality and trust boundary | Confirmed stage and implication for comparison |
 | --- | --- | --- | --- |
-| **Renegade** | pairwise MPCがcollaborative SNARKを生成し、オンチェーンで残高を更新 | 接続先relayerは自分が担当するwalletの注文・残高を平文で読める。他relayerには隠す | Arbitrum One mainnet開始を公式サイトが公表。OCLOB/秘密取引の近接比較対象 [R1][r1] [R2][r2] [R3][r3] |
-| **Prime Match** | 金融機関と顧客の在庫照合をMPCで行う | 著者が定義した参加者・銀行の脅威モデル。ZKFMIと同じノード構成ではない | 2023年論文でJ.P. Morganのlive運用を報告。金融MPCが初めてという訴求を否定する先行実装 [P1][p1] |
-| **Penumbra** | shielded poolとブロック単位のbatch DEX、取引/claimの証明 | 現行仕様ではswap入力のassetとamountを公開。shielded transferの秘匿範囲とは異なる | 実装仕様を確認。sealed-bid batch swapは参照仕様で将来機能と明記 [N1][n1] [N2][n2] |
-| **Dusk** | 規制資産を意識した台帳・秘密移転・選択開示 | 取引モデルとアプリによる。公開account modelも存在 | Mainnetの接続仕様、NPEX等との協業を確認。各金融市場の実稼働と免許適用は個別確認が必要 [D1][d1] [D2][d2] |
+| **Renegade** | Pairwise MPC generates a collaborative SNARK and updates balances on-chain | The connected relayer can read orders and balances of the wallets it serves in plaintext. These are hidden from other relayers | Official site announces Arbitrum One mainnet launch. A close comparison for OCLOB / confidential trading [R1][r1] [R2][r2] [R3][r3] |
+| **Prime Match** | MPC inventory matching between a financial institution and its clients | Participant / bank threat model defined by the authors. Not the same node configuration as ZKFMI | A 2023 paper reports live operation at J.P. Morgan. A prior implementation refuting claims of being the first financial MPC system [P1][p1] |
+| **Penumbra** | Shielded pool, per-block batch DEX, and transaction / claim proofs | Current specifications disclose swap input assets and amounts. Different from the confidentiality scope of shielded transfers | Implementation specifications checked. Sealed-bid batch swaps are explicitly a future feature in the reference specification [N1][n1] [N2][n2] |
+| **Dusk** | Ledger, confidential transfers, and selective disclosure designed with regulated assets in mind | Depends on transaction model and application. A public account model also exists | Mainnet connection specifications and collaborations with NPEX and others confirmed. Actual operation of each financial market and applicability of licenses need individual checks [D1][d1] [D2][d2] |
 
-### Renegade: 最初に比較すべき秘密取引の実装
+### Renegade: The First Confidential-Trading Implementation to Compare
 
-MPCの結果としてZK証明を出し、秘密状態の決済につなげる構成は既に存在する。一方、公式のrelayer仕様では、顧客が委託したrelayerは注文とwallet残高を平文で読む。顧客が自分のrelayerを運営する選択も用意されている。[R1][r1] [R2][r2]
+An architecture producing ZK proofs as MPC outputs and linking them to settlement of confidential state already exists. However, under the official relayer specifications, a customer's delegated relayer reads orders and wallet balances in plaintext. Customers also have the option of operating their own relayers. [R1][r1] [R2][r2]
 
-**比較判断:** ZKFMIの秘密分散が顧客から計算ノードまで実際に維持されるなら、この委託境界に差がある。ただし、ノード群の結託条件、企業クライアントからのshare配送、復号可能なgatewayの有無まで示す必要がある。さらに、注文の有効性を示す証明と、対象注文を省略せず価格・時間優先を適用したことの証明を分ける。Renegadeが後者に非対応だと断定するための十分な監査はしていない。
+**Comparison judgment:** If ZKFMI actually maintains secret sharing from the customer to the computing nodes, there is a difference at this delegation boundary. It must nevertheless show the node group's collusion conditions, share delivery from corporate clients, and whether any gateway can decrypt. Further distinguish proofs of order validity from proofs that price-time priority was applied without omitting relevant orders. No audit sufficient to conclude that Renegade does not support the latter has been conducted.
 
-### Prime Match: 商用MPCの先行事例
+### Prime Match: A Prior Case of Commercial MPC
 
-著者による論文要旨は、プライバシーを保った在庫照合とJ.P. Morganでのlive運用を報告している。ここから確認できるのは論文発表時の実施であり、2026年の現在稼働・件数・契約提供範囲を再確認したものではない。[P1][p1]
+The authors' paper abstract reports privacy-preserving inventory matching and live operation at J.P. Morgan. This confirms execution at the time of publication, not a fresh verification of current operation in 2026, volumes, or the scope of contracted services. [P1][p1]
 
-**比較判断:** 計算対象、許容する結託、誤動作時の挙動、外部監査者が確認できる命題、決済までの接続範囲で比べる。速度の比較は同一条件の再実行なしでは行わない。
+**Comparison judgment:** Compare computation targets, tolerated collusion, behavior under faults, propositions external auditors can check, and integration scope through settlement. Do not compare speed without reruns under identical conditions.
 
-### Penumbra: 「private DEX」のラベルだけでは秘匿範囲は分からない
+### Penumbra: The “Private DEX” Label Does Not Establish Confidentiality Scope
 
-公式仕様では、通常のshielded transferとswap入力の情報開示は異なる。swapはassetとamountを明らかにし、後続のclaimで秘匿出力を生成する。sealed-bid版は将来拡張として説明される。[N1][n1] [N2][n2]
+Official specifications distinguish disclosure for ordinary shielded transfers from swap inputs. Swaps reveal assets and amounts; subsequent claims produce confidential outputs. The sealed-bid version is described as a future extension. [N1][n1] [N2][n2]
 
-**比較判断:** OCLOB/QOMMとの比較は「第三者からwalletが結び付くか」と「約定前の注文価格・量が読めるか」を別行にする。バッチ決済の実行順保護も、連続板の価格・時間優先とは別の市場設計である。
+**Comparison judgment:** In comparisons with OCLOB/QOMM, place “whether third parties can link wallets” and “whether order prices and quantities can be read before execution” in separate rows. Protection of execution ordering in batch settlement is also a different market design from price-time priority in a continuous order book.
 
-### Dusk: 規制資産向けの業務設計が重なる
+### Dusk: Overlap in Workflow Design for Regulated Assets
 
-Duskは秘密移転、選択開示、資産ライフサイクルとDvPを意識した構成を説明する。一方、取引所の接続ガイドはpublic account modelのMoonlightを指定しているため、Duskの全取引を一律に秘密とは扱わない。[D1][d1] [D2][d2]
+Dusk describes an architecture oriented toward confidential transfers, selective disclosure, asset lifecycles, and DvP. Its exchange integration guide, however, specifies the public account model Moonlight, so do not treat all Dusk transactions as uniformly confidential. [D1][d1] [D2][d2]
 
-**比較判断:** NPEXとの協業や特定事業者の免許を、任意のDusk上アプリに認可が及ぶ根拠にはしない。ZKFMI側もDeCCPのコードがあるだけで法的CCPやnovationが成立したとは扱わず、同じ基準で比較する。
+**Comparison judgment:** Do not use collaboration with NPEX or a particular operator's license as evidence that authorization extends to arbitrary applications on Dusk. Apply the same standard to ZKFMI: the existence of DeCCP code alone does not establish a legal CCP or novation.
 
-## 5. 秘密計算・アプリ基盤の比較
+## 5. Comparison of Confidential-Computation and Application Infrastructure
 
-| 対象 | 提供する機能 | 秘密・信頼の境界 | 確認できた段階と比較上の意味 |
+| Target | Capabilities provided | Confidentiality and trust boundary | Confirmed stage and implication for comparison |
 | --- | --- | --- | --- |
-| **Arcium** | Solanaと協調する汎用MPC、MXE、秘密アプリ | 現行Cerberusは少なくとも1メンバーが正直という仮定で秘密を保ち、異常検出時はabort。可用性は別条件 | 公式サイトはMainnet Alphaと表示。MPC開発基盤・秘密取引アプリの競合/調達候補 [A1][a1] [A2][a2] |
-| **Zama Protocol** | FHEによる暗号化状態上の演算、機密トークンと権限制御 | FHE演算と復号権限・分散鍵管理を分けて考える。KMSはstrong honest majorityを仮定 | 2025-12-31 mainnet開始、2026-01の秘密入札を公式公表。汎用秘密金融アプリの競合/調達候補 [Z1][z1] [Z2][z2] [Z3][z3] |
-| **Aztec** | Ethereum L2上のprivate/publicアプリ、端末側証明 | private witnessを端末側に置く構成。複数企業の秘密入力を共同計算する仕組みとは別 | Alpha V5。2026-08-07に重大な証明系脆弱性を公表、V6での修正予定を記載 [X1][x1] [X2][x2] |
-| **Hyperledger Fabric** | permissioned台帳、契約実行、組織間private data | 許可された組織のpeerに実データ、channel全体にはhash。ordererはprivate dataを受け取らない | 公式仕様を確認。金融機関が既存基盤上で内製する場合の比較対象 [H1][h1] |
+| **Arcium** | General-purpose MPC, MXEs, and confidential apps coordinated with Solana | Current Cerberus preserves confidentiality assuming at least 1 member is honest and aborts when abnormalities are detected. Availability is a separate condition | Official site displays Mainnet Alpha. Competitor / procurement candidate for MPC development infrastructure and confidential trading apps [A1][a1] [A2][a2] |
+| **Zama Protocol** | Computation over encrypted state through FHE, confidential tokens, and access control | Consider FHE computation separately from decryption authority and distributed key management. KMS assumes a strong honest majority | Officially announced mainnet launch on 2025-12-31 and a confidential auction in 2026-01. Competitor / procurement candidate for general-purpose confidential financial apps [Z1][z1] [Z2][z2] [Z3][z3] |
+| **Aztec** | Private/public applications on Ethereum L2 and client-side proving | Private witnesses remain on clients. Distinct from joint computation over secret inputs from multiple companies | Alpha V5. A critical proving-system vulnerability was announced on 2026-08-07, with a fix planned for V6 [X1][x1] [X2][x2] |
+| **Hyperledger Fabric** | Permissioned ledger, contract execution, and private data between organizations | Actual data goes to authorized organizations' peers; hashes go to the whole channel. Orderers do not receive private data | Official specifications checked. A comparison target for financial institutions building in-house on existing infrastructure [H1][h1] |
 
-### Arcium: 自分たちより弱い仮定のMPCと決め付けない
+### Arcium: Do Not Assume Its MPC Has Weaker Security Assumptions Than Ours
 
-現行docsはCerberusをdishonest-majority・detect-and-abort型と明記する。「自分たちは複数ノードだから安全、競合は中央管理」という比較は成立しない。少なくとも一者の正直さで守る秘匿性と、処理を最後まで完了できる可用性を分ける。[A2][a2]
+Current docs explicitly describe Cerberus as a dishonest-majority, detect-and-abort model. The comparison “we are secure because we have multiple nodes; competitors are centrally controlled” does not hold. Separate confidentiality protected by at least one honest party from availability that allows processing to complete. [A2][a2]
 
-**比較判断:** MPC基盤自体の再実装よりも、予約済み資産・資格・与信・注文順・決済権限をどのように一つの業務証跡へ束縛するかにZKFMIの開発理由を置く。Arcium上で同じ業務を構築する代替案も評価対象になる。
+**Comparison judgment:** Base the rationale for ZKFMI development on how reserved assets, eligibility, credit, order sequencing, and settlement authority are bound into one workflow evidence trail, rather than reimplementing MPC infrastructure itself. Building the same workflow on Arcium is also an alternative to evaluate.
 
-### Zama: 秘密演算と秘密入札は既に公開導入の段階
+### Zama: Confidential Computation and Auctions Have Reached Public Deployment
 
-公式発表は、mainnet開始とFHEを使ったsealed-bid auctionの実施を説明する。2025年のtestnet記事だけを根拠に「FHEはまだ実用前」とは書けない。[Z2][z2]
+Official announcements describe mainnet launch and execution of a sealed-bid auction using FHE. A 2025 testnet article alone cannot support saying “FHE is not yet practical.” [Z2][z2]
 
-鍵管理の公開仕様は、参加者数を`n`、許容する故障・悪意ある参加者数を`t`として、`t < n/3`のstrong honest majorityを前提に鍵生成・復号の完了を保証する。Arciumの少なくとも一者が正直なら秘密を保つdetect-and-abortモデルとは、結託条件と完了保証が違う。[Z3][z3] [A2][a2]
+The public key-management specification assumes a strong honest majority with `t < n/3`, where `n` is the number of participants and `t` the number of tolerated faulty or malicious participants, to guarantee completion of key generation and decryption. This differs in collusion conditions and completion guarantees from Arcium's detect-and-abort model, which preserves confidentiality with at least one honest party. [Z3][z3] [A2][a2]
 
-**比較判断:** 注文・担保計算をFHEに載せる案と、MPC＋証明を用いる案では、復号権限、計算可能な型、完了待ち、失敗・再試行、監査者が追える情報を揃えて比べる。本調査では両者の性能差を測定していない。
+**Comparison judgment:** When comparing FHE-based order / collateral computation with MPC + proofs, align decryption authority, supported computation types, completion waits, failures and retries, and information auditors can trace. This research did not measure performance differences between them.
 
-### Aztec: アプリ基盤としての価値と、その版の状態を分ける
+### Aztec: Separate Its Value as an Application Platform from the State of a Particular Version
 
-private関数を端末で実行・証明する構成は、秘密の保有状態を使うアプリの代替になる。[X1][x1] ただし、2026-08-07の公式告知はV5 Alphaの重大な証明系脆弱性とV6での修正予定を記載する。本調査時に参照した告知では、修正完了を確認できなかった。[X2][x2]
+Executing and proving private functions on clients provides an alternative for applications using confidential holdings state. [X1][x1] However, the official notice dated 2026-08-07 describes a critical proving-system vulnerability in V5 Alpha and a fix planned for V6. The notice consulted during this research did not confirm that the fix had been completed. [X2][x2]
 
-これは全バージョンのAztecが恒久的に危険という結論ではない。採用検討では対象バージョンと修正完了・移行証跡を再確認する。ZKFMIにも独立監査が未完了という制約があり、競合のAlpha段階だけを理由に自分たちを本番品質と位置づけない。
+This is not a conclusion that every Aztec version is permanently unsafe. Adoption evaluation should recheck the target version, completion of fixes, and migration evidence. ZKFMI also lacks a completed independent audit; do not position it as production-quality merely because a competitor is at the Alpha stage.
 
-### Fabric: 組織間の秘密共有と、演算者にも隠す秘密計算を分ける
+### Fabric: Separate Confidential Sharing Between Organizations from Computation Hidden Even from the Computing Entities
 
-Private Data Collectionは、許可されたpeer群へ実データを送り、他peerへhashを残す仕組みである。データを見せる組織を限定する用途には適合するが、そのままでは許可peer自身からも演算入力を隠すMPCの説明にはならない。[H1][h1]
+Private Data Collections send actual data to authorized peer groups and leave hashes for other peers. This suits limiting which organizations see data, but does not by itself describe MPC that hides computation inputs even from authorized peers. [H1][h1]
 
-**比較判断:** 全員から隠す必要がない業務なら、既存の組織間統治とFabricの方が導入理由を説明しやすい場合がある。ZKFMIを採る理由は、閲覧権限の制御だけでは満たせない秘密境界と外部検証要件で示す。
+**Comparison judgment:** If a workflow does not require secrecy from everyone, existing interorganizational governance and Fabric may sometimes provide a clearer adoption rationale. Justify adopting ZKFMI through confidentiality boundaries and external verification requirements that access control alone cannot satisfy.
 
-## 6. 差別化を主張する前に示すべきもの
+## 6. Evidence to Show Before Claiming Differentiation
 
-以下は競合の欠点一覧ではなく、比較から導くZKFMI側の検証課題である。新規実装や実験の実施をこのサーベイで承認・着手したものではない。
+The following are verification tasks for ZKFMI derived from the comparison, not a list of competitors' weaknesses. This survey does not authorize or begin new implementations or experiments.
 
-| 訴求候補 | 必要な証拠 | 主に比較する対象 |
+| Candidate proposition | Required evidence | Main comparison targets |
 | --- | --- | --- |
-| 運営者にも秘密の注文・価格ルール | 企業側でのshare生成からMPC・決済までの閲覧主体一覧、結託条件、平文復号点、鍵の管理者 | Renegade、Arcium、Prime Match |
-| 約定ルールを後から検証できる | 対象注文集合・受付順・適格性・価格/時間優先・部分約定を束縛する命題と、独立検証手順 | Renegade、Penumbra、Zama上の市場アプリ |
-| 計算結果と受渡しが一致する | 同じcommitmentを計算・指図・資産予約・両脚消費へ結び、再送と二重消費で状態が変わらない証跡 | Ownera、Corda、Chainlink |
-| 金融機関が導入できる | 発行/保管/登録/現金脚の責任分担、障害回復、監督開示、参加者加入・退出、法的な決済完了 | Kinexys、Fnality、Partior、Swift、Progmat、ibet for Fin、Dusk |
-| 長期間の機密性と検証可能性 | 署名、KEM、commitment、証明、TLS、保存データを分けた脅威モデルと移行・失効・再検証の経路 | Arcium、Zama、Aztecを含む採用構成全体 |
+| Orders and pricing rules hidden even from operators | List of entities with visibility from corporate-side share generation through MPC and settlement; collusion conditions; plaintext decryption points; key administrators | Renegade, Arcium, Prime Match |
+| Trade-execution rules can be verified afterward | Propositions binding the target order set, admission ordering, eligibility, price/time priority, and partial fills, plus independent verification procedures | Renegade, Penumbra, market apps on Zama |
+| Computation results match delivery | Evidence binding the same commitment to computation, instructions, asset reservations, and consumption of both legs, with state unchanged by retries or double-spend attempts | Ownera, Corda, Chainlink |
+| Financial institutions can adopt the system | Allocation of issuance / custody / registration / cash-leg responsibilities, disaster recovery, supervisory disclosure, participant entry and exit, and legal settlement completion | Kinexys, Fnality, Partior, Swift, Progmat, ibet for Fin, Dusk |
+| Long-term confidentiality and verifiability | Threat model distinguishing signatures, KEM, commitments, proofs, TLS, and stored data, plus migration, revocation, and reverification paths | Entire adopted configuration, including Arcium, Zama, and Aztec |
 
-「暗号化されている」「分散している」「検証可能」という表現だけでは上表を満たさない。特に、正しく評価した回路の証明、対象集合内の最良約定、法令上の最良執行義務は同じ命題ではない。
+Labels such as “encrypted,” “distributed,” and “verifiable” alone do not satisfy the table above. In particular, a proof of correct circuit evaluation, the best execution within a target set, and the statutory best-execution obligation are not the same proposition.
 
-### PQCの比較で保留すること
+### What Remains Open in the PQC Comparison
 
-今回の資料確認だけでは、各製品の署名・鍵交換・commitment・証明・台帳合意を通したPQC状態を網羅できない。**未確認を非対応と採点しない。** FHEという方式名やPQC署名ライブラリの採用だけで、システム全体を耐量子と呼ばない。自分たちについても、独立P0の完了と既存決済スタック全体の移行を区別する。
+The materials checked here do not comprehensively establish each product's PQC status across signatures, key exchange, commitments, proofs, and ledger consensus. **Do not score unverified items as unsupported.** Neither the FHE label nor adoption of a PQC signature library makes a whole system quantum-resistant. For our own system too, distinguish completion of standalone P0 from migration of the entire existing settlement stack.
 
-## 7. 競争上の行動案
+## 7. Proposed Competitive Actions
 
-1. **技術比較の最初の対象をRenegadeとArciumに置く。** 注文内容を読める主体と、出力証明が保証する市場規則の違いを具体化する。暗号名による比較から始めない。
-2. **日本の提案書ではProgmat・ibet for Finを必ず比較に含める。** 匿名性だけでなく、資格、資産登録、受渡し、開示と現行の業務責任を説明する。
-3. **Ownera・Chainlink・Swiftとの重複を認めた接続案を検討する。** zkPIを追加することで既存指図の何が独立検証可能になるかを提示する。
-4. **Kinexys・Fnality・Partiorは現金脚の競合であると同時に、接続先になり得ると考える。** 利用可能な接続契約/APIや法的受渡し条件は未確認であり、実装済みと紹介しない。
-5. **外部向け表現は候補となる構成と現在の受入れ段階に限定する。** 「世界初の金融MPC」「唯一の秘密取引」「競合より高速」「全体が耐量子」といった主張はこの調査からは導けない。
+1. **Make Renegade and Arcium the first technical comparison targets.** Specify differences in which entities can read orders and which market rules output proofs guarantee. Do not begin with cryptographic names.
+2. **Always include Progmat and ibet for Fin in Japanese proposals.** Explain eligibility, asset registration, delivery, disclosure, and existing workflow responsibilities alongside anonymity.
+3. **Consider integration proposals that acknowledge overlap with Ownera, Chainlink, and Swift.** Show which aspects of existing instructions become independently verifiable by adding zkPI.
+4. **View Kinexys, Fnality, and Partior as potential integration destinations as well as cash-leg competitors.** Available connection contracts / APIs and legal delivery conditions are unverified; do not present them as implemented.
+5. **Limit external wording to candidate configurations and the current acceptance stage.** This research does not support claims such as “the world's first financial MPC,” “the only confidential trading,” “faster than competitors,” or “the entire system is quantum-resistant.”
 
-本調査は17対象の比較であり、市場全体の網羅を主張しない。個別の既存取引所、カストディ、発行体向けSaaS、全てのFHE/TEE/MPCベンダーを列挙することより、ZKFMIの各層で何を購入・内製・接続するかの選択に直結する対象を優先した。
+This research compares 17 targets and does not claim complete market coverage. It prioritizes targets directly relevant to deciding what to buy, build, or connect at each ZKFMI layer, rather than listing individual existing exchanges, custodians, issuer SaaS products, and every FHE / TEE / MPC vendor.
 
-## 8. 一次資料と確認範囲
+## 8. Primary Sources and Scope Checked
 
-全リンクの確認日は2026-09-05。公開日は本文またはリンク名に明示された場合のみ記載した。日付のない仕様は版・確認日を基準にする。企業の発表は企業が公表した事実として扱い、当局・採用者・独立した運用監査と同一視しない。
+All links were checked on 2026-09-05. Publication dates are given only where explicitly stated in the body or link title. Undated specifications use the version and check date as the reference. Corporate announcements are treated as facts reported by those companies, not equated with regulatory materials, adopter evidence, or independent operational audits.
 
-| ID | 一次資料・公開日/版 | 主に確認したこと |
+| ID | Primary source and publication date / version | Main points checked |
 | --- | --- | --- |
-| C1 | [R3: CSD PragueによるCorda採用、2024-11-07][c1] | 証券決済向け採用の公表 |
-| C2 | [Corda 5.2: non-validating notary][c2] | UTXOの一意性、参加ノードとnotaryの開示差 |
-| C3 | [R3: Corda protocol発表、2025-12-12][c3] | Solana向け別プロダクトと予定の区別 |
-| K1 | [Kinexys milestones、2026-04-28][k1] | Base上のJPM Coin、Fund Flow初回取引等 |
-| K2 | [Kinexys製品ページ][k2] | 銀行決済・private permissioned資産基盤 |
-| F1 | [BoE: FMI Annual Report 2025–26][f1] | Fnalityの監督対象・限度付き運用の記載 |
-| F2 | [Fnality: 初回Sterling payment公表、2023-12-14][f2] | 初期live paymentの位置づけ |
-| T1 | [Partior公式][t1] | 支払/PvP、参加銀行の稼働事例、DvP PoCの区別 |
-| O1 | [Ownera: Intent-Based Orchestration][o1] | Router間のproposal/approvalと台帳間調整 |
-| O2 | [Ownera: Integration Use Case Guides][o2] | 取引・発行者・支払コネクタのAPI構成 |
-| S1 | [Swift: 共有台帳の初期利用準備、2026-07-09][s1] | live pilotの準備と既存システムによる最終決済 |
-| S2 | [Swift: March 2026 newsletter][s2] | Besu基盤、Swift運営、銀行側資産・資金管理 |
-| L1 | [Chainlink: privacy構成、2026-05-21][l1] | TEE・DKG、秘密HTTP、private token、開発事例 |
-| L2 | [Chainlink: CCIP、2026-04-22][l2] | 相互運用機能とメッセージプロトコルの境界 |
-| J1 | [Progmat ST案件実績][j1] | 国内ST案件の継続的な一覧 |
-| J2 | [Progmat: 国内籍トークン化投信の実証、原本2026-08-28・掲載09-03][j2] | 外部募集・販売をしない実証。原本だけでは利用チェーンを特定できない |
-| J3 | [MUFG: JGBレポ実証、2026-08-13][j3] | Cantonを使うため非Canton実績から除外 |
-| J4 | [Avalanche: Progmatの移行計画、2026-02-25][j4] | Cordaから専用Avalanche L1への移行計画 |
-| J5 | [AvaCloud公式: Progmatの移行完了の投稿][j5] | 提供者による移行完了発表。相対日付から正確な日付を推定しない |
-| B1 | [BOOSTRY: ibet for Finコンソーシアム説明][b1] | 公式検索索引の要約でネットワークとST標準を確認。本文抽出は不成功 |
-| B2 | [SBIほか: ibet for Fin運営開始、2021-06-15][b2] | 参加者による運営開始発表。現在の規模はここから推定しない |
-| R1 | [Renegade: relayerの役割][r1] | 接続walletの平文閲覧、pairwise MPC、自前relayer |
-| R2 | [Renegade: collaborative zkSNARK][r2] | MPC出力としての証明とオンチェーン決済 |
-| R3 | [Renegade公式][r3] | Arbitrum One mainnet開始の公表 |
-| P1 | [Prime Match論文要旨・書誌、2023][p1] | 著者による秘密在庫照合と当時のlive運用報告 |
-| N1 | [Penumbra: Batch Swaps仕様][n1] | V1と将来sealed-bid版の区別 |
-| N2 | [Penumbra: Privacy Features][n2] | transfer・swap・claim・LPごとの開示範囲 |
-| D1 | [Dusk公式][d1] | 資産業務と選択開示、NPEX等との関係 |
-| D2 | [Dusk: Exchange integration][d2] | mainnet endpointとMoonlight public account指定 |
-| A1 | [Arcium公式][a1] | Mainnet Alphaの表記 |
-| A2 | [Arcium: MPC protocols][a2] | Cerberusの脅威モデルとabort・可用性 |
-| Z1 | [Zama公式][z1] | FHEを使う機密金融アプリの構成と事例 |
-| Z2 | [Zama: Mainnet Season 1、2026-02-11][z2] | mainnet開始日と秘密入札の実施 |
-| Z3 | [Zama KMS: Threshold cryptography concepts][z3] | 分散鍵管理、strong honest majorityと鍵生成・復号の完了保証 |
-| X1 | [Aztec公式][x1] | 端末側証明とprivate/publicアプリ |
-| X2 | [Aztec: Alpha V5脆弱性告知、2026-08-07][x2] | 当該版の状態とV6修正予定。完了の確認は未取得 |
-| H1 | [Hyperledger Fabric: Private data][h1] | 許可peerへの実データと全体へのhash、ordererの境界 |
+| C1 | [R3: Corda adoption by CSD Prague, 2024-11-07][c1] | Announcement of adoption for securities settlement |
+| C2 | [Corda 5.2: non-validating notary][c2] | UTXO uniqueness and disclosure differences between participant nodes and notaries |
+| C3 | [R3: Corda protocol announcement, 2025-12-12][c3] | Distinguishing a separate Solana product and its planned status |
+| K1 | [Kinexys milestones, 2026-04-28][k1] | JPM Coin on Base, first Fund Flow transaction, and other milestones |
+| K2 | [Kinexys product page][k2] | Bank payments and private permissioned asset infrastructure |
+| F1 | [BoE: FMI Annual Report 2025–26][f1] | Fnality's supervised status and operations subject to limits |
+| F2 | [Fnality: First Sterling payment announcement, 2023-12-14][f2] | Status of the initial live payment |
+| T1 | [Partior official site][t1] | Distinguishing payments / PvP, participating banks' live cases, and a DvP PoC |
+| O1 | [Ownera: Intent-Based Orchestration][o1] | Proposal/approval among Routers and coordination across ledgers |
+| O2 | [Ownera: Integration Use Case Guides][o2] | API configuration for trading, issuer, and payment connectors |
+| S1 | [Swift: Shared ledger ready for initial use, 2026-07-09][s1] | Live-pilot preparation and final settlement through existing systems |
+| S2 | [Swift: March 2026 newsletter][s2] | Besu foundation, Swift operation, and bank-side asset / liquidity management |
+| L1 | [Chainlink: Privacy architecture, 2026-05-21][l1] | TEEs, DKG, confidential HTTP, private tokens, and development cases |
+| L2 | [Chainlink: CCIP, 2026-04-22][l2] | Boundary between interoperability capabilities and the messaging protocol |
+| J1 | [Progmat ST project track record][j1] | Ongoing list of Japanese ST projects |
+| J2 | [Progmat: Demonstration of a Japanese-domiciled tokenized investment trust, original 2026-08-28 / posted 09-03][j2] | Demonstration without external solicitation or sales. The original alone does not identify the chain used |
+| J3 | [MUFG: JGB repo demonstration, 2026-08-13][j3] | Excluded from the non-Canton track record because it uses Canton |
+| J4 | [Avalanche: Progmat migration plan, 2026-02-25][j4] | Plan to migrate from Corda to a dedicated Avalanche L1 |
+| J5 | [AvaCloud official post: Progmat migration completion][j5] | Provider announcement of completed migration. Do not infer an exact date from a relative date |
+| B1 | [BOOSTRY: ibet for Fin consortium explanation][b1] | Network and ST standards checked through the official search-index summary. Body extraction was unsuccessful |
+| B2 | [SBI and others: ibet for Fin operation launch, 2021-06-15][b2] | Participants' announcement of operation launch. Do not infer current scale from this |
+| R1 | [Renegade: Role of relayers][r1] | Plaintext visibility into connected wallets, pairwise MPC, and self-operated relayers |
+| R2 | [Renegade: collaborative zkSNARK][r2] | Proofs as MPC outputs and on-chain settlement |
+| R3 | [Renegade official site][r3] | Announcement of Arbitrum One mainnet launch |
+| P1 | [Prime Match paper abstract and bibliographic record, 2023][p1] | Authors' report of confidential inventory matching and live operation at the time |
+| N1 | [Penumbra: Batch Swaps specification][n1] | Distinguishing V1 from the future sealed-bid version |
+| N2 | [Penumbra: Privacy Features][n2] | Disclosure scope for transfers, swaps, claims, and LPs |
+| D1 | [Dusk official site][d1] | Asset workflows, selective disclosure, and relationships with NPEX and others |
+| D2 | [Dusk: Exchange integration][d2] | Mainnet endpoint and specification of Moonlight public accounts |
+| A1 | [Arcium official site][a1] | Mainnet Alpha label |
+| A2 | [Arcium: MPC protocols][a2] | Cerberus threat model, abort, and availability |
+| Z1 | [Zama official site][z1] | Architectures and cases of confidential financial apps using FHE |
+| Z2 | [Zama: Mainnet Season 1, 2026-02-11][z2] | Mainnet launch date and confidential auction execution |
+| Z3 | [Zama KMS: Threshold cryptography concepts][z3] | Distributed key management, strong honest majority, and completion guarantees for key generation / decryption |
+| X1 | [Aztec official site][x1] | Client-side proving and private/public apps |
+| X2 | [Aztec: Alpha V5 vulnerability notice, 2026-08-07][x2] | Status of that version and planned V6 fix. Completion has not been confirmed |
+| H1 | [Hyperledger Fabric: Private data][h1] | Actual data to authorized peers, hashes to the whole group, and the orderer boundary |
 
-Renegade白書の本文取得は502、Zama litepaperは閲覧ツールでcontent-typeエラーとなった箇所がある。上表の要約では、取得できた公式FAQ・仕様・発表を根拠とし、取得できなかった原本を読了扱いにしていない。BOOSTRYの本文抽出制約もB1に明示した。追加の実装監査・当局確認が必要な点は各節の未確認事項を引き継ぐ。
+Retrieval of the Renegade whitepaper body returned 502, and parts of the Zama litepaper produced a content-type error in the browsing tool. The table summaries rely on official FAQs, specifications, and announcements that were successfully retrieved; unavailable originals are not treated as read in full. BOOSTRY's body-extraction limitation is also stated in B1. Items requiring further implementation audits or regulatory confirmation remain as the unverified items in each section.
 
 [c1]: https://r3.com/r3s-corda-selected-as-first-authorized-dlt-platform-for-european-dlt-pilot-regime/
 [c2]: https://docs.r3.com/en/platform/corda/5.2/developing-applications/ledger/notaries/non-validating-notary.html

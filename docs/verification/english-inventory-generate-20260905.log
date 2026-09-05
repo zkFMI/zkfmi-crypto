@@ -1,0 +1,10 @@
+host=ngi-external022-vm1
+started_at=2026-09-05T14:47:57Z
+c856784f54dabc9a87ed163f1fa7117568c9bee81af5eb6af3e1f46681c46417  Cargo.lock
+b0c6040490b82953ac773f5cf179bdcd7a1da6f75612a6129902b5dd5ea1c025  src/bin/crypto-inventory.rs
+rustc 1.97.1 (8bab26f4f 2026-07-14)
+generated 1032 primitive entries
+grep_files=507 inventory_files=507 primitive_entries=1032 missing=0 stale=0
+source_hashes=825 markdown_from_json=PASS inventory_check=PASS
+completed_at=2026-09-05T14:48:01Z
+result=PASS

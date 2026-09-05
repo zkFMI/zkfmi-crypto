@@ -1,89 +1,111 @@
-# P0 暗号境界
+# P0 cryptographic boundaries
 
-## 実装範囲
+## Implementation scope
 
-実装は `ed25519-dalek =2.2.0`、`ml-dsa =0.1.1`、`ml-kem =0.3.2`、
-`x25519-dalek =2.0.1` に固定する。曲線の解決版は `curve25519-dalek 4.1.3`。
-`Cargo.lock` を同梱し、間接依存も固定する。新規暗号コアの自作はせず、用途別の
-バイト列API、鍵メタデータ、正規化、指定のハイブリッド合成だけを実装する。
+The implementation pins `ed25519-dalek =2.2.0`, `ml-dsa =0.1.1`, `ml-kem =0.3.2`,
+and `x25519-dalek =2.0.1`. The resolved curve dependency is `curve25519-dalek 4.1.3`.
+`Cargo.lock` also pins transitive dependencies. No cryptographic core is implemented
+from scratch: this crate supplies purpose-specific byte APIs, key metadata,
+canonicalization, and the specified hybrid compositions.
 
-登録済み操作は Ed25519 / ML-DSA-65 / Ed25519+ML-DSA-65 の署名・検証と、
-ML-KEM-768 / X25519+ML-KEM-768 のカプセル化・復号。FROST、Pedersen、
-Bulletproofs、ML-DSA-44、SLH-DSA、従来TLS、ハッシュの SuiteId は識別用であり、
-未登録の暗号操作は `UnsupportedSuite` で拒否する。既存サービスへは未配線。
+Registered operations are signing and verification with Ed25519, ML-DSA-65, and
+Ed25519+ML-DSA-65, plus encapsulation and decapsulation with ML-KEM-768 and
+X25519+ML-KEM-768. SuiteIds for FROST, Pedersen, Bulletproofs, ML-DSA-44, SLH-DSA,
+classical TLS, and hashes identify algorithms only. Unregistered cryptographic
+operations fail with `UnsupportedSuite`. Existing services are not yet integrated.
 
-## バックエンド選定と出典
+## Backend selection and provenance
 
-RustCrypto の ml-dsa 0.1.1 / ml-kem 0.3.2 を P0 の第一バックエンドとする。
-純RustでCツールチェーンが不要、Apache-2.0 OR MIT、MSRV宣言1.85である。
-自前トレイトはバイト列を使い、将来 aws-lc-rs へ差し替えられる境界にする。
-この選定は本番採用、外部監査、FIPS認証を意味しない。両クレートの上流は
-独立監査未実施と記載している。aws-lc-rs の採用は別途判断する。
+RustCrypto ml-dsa 0.1.1 and ml-kem 0.3.2 are the initial P0 backends. They are
+pure Rust, require no C toolchain, use Apache-2.0 OR MIT licenses, and declare
+MSRV 1.85. The crate's own traits use bytes so a future backend can use aws-lc-rs.
+This selection does not imply production adoption, an external audit, or FIPS
+validation. Both upstream crates state that they have not been independently
+audited. Adoption of aws-lc-rs remains a separate decision.
 
-| 上流 | 発行物のVCS commit | crates.io tarball SHA-256 |
+| Upstream | Published package VCS commit | crates.io tarball SHA-256 |
 | --- | --- | --- |
 | [RustCrypto/signatures ml-dsa](https://github.com/RustCrypto/signatures/tree/f75d5b829948988f18d9463f286805fb9410bcdd/ml-dsa) | `f75d5b829948988f18d9463f286805fb9410bcdd` | `add6b9d92e496f16f4526d68ff29da1483aba4b119baeab8bed3b9e3544a6f3d` |
 | [RustCrypto/KEMs ml-kem](https://github.com/RustCrypto/KEMs/tree/440768245bba59784b504269cb3087a6c21af45c/ml-kem) | `440768245bba59784b504269cb3087a6c21af45c` | `5e15f3e5b957493873e396a66914e83e616b6afe335cdef7efe5c6e1216aba66` |
 
-依存をCargoから利用し、上流実装のコピーや改変はしていない。
-古典側の乱数は rand_core 0.6、PQ側は独立したOS乱数の取得または rand_core 0.10。
-Ed25519側の signature 2 と ML-DSA側の signature 3 を共通トレイトとして扱わない。
-秘密鍵には各依存の zeroize 機能を有効にし、所有するseedと共有秘密は
-`Zeroizing` で保持する。seedインポート呼び出し側が所有する元バッファの消去は
-呼び出し側の責任。秘密鍵・Signer・共有秘密の保存用serdeは提供しない。
+These implementations are consumed through Cargo dependencies, without copying
+or modifying upstream code. Classical backends use rand_core 0.6; PQ backends
+use separate OS randomness acquisition or rand_core 0.10. The Ed25519 backend's
+signature 2 and the ML-DSA backend's signature 3 are not treated as a common trait.
+The dependencies' zeroize features are enabled for secret keys. Owned seeds and
+shared secrets are held in `Zeroizing`. Callers importing seeds must erase their
+own original buffers. No persistence serde is provided for secret keys, Signers,
+or shared secrets.
 
-## 署名と正規化
+## Signatures and canonicalization
 
-`SigningPreimage` の先頭は固定の `ZKFMI:CANONICAL:v1`。可変長値は
-u32のバイト長、配列はu32要素数、整数は固定幅big-endianでエンコードする。
-文字列はUTF-8の完全一致で扱い、暗黙のUnicode正規化や並べ替えはしない。
-object_idsはプロトコルで決めた順番。本文ハッシュはSHA-256の32バイトで固定し、
-本文自体の正規化は呼び出し側のプロトコルが定義する。
+`SigningPreimage` begins with the fixed domain `ZKFMI:CANONICAL:v1`. Variable-length
+values use a u32 byte-length prefix; arrays use a u32 element count; integers use
+fixed-width big-endian encoding. Strings are exact UTF-8 byte sequences, with no
+implicit Unicode normalization or sorting. `object_ids` follow the order defined
+by the protocol. The body hash is a fixed 32-byte SHA-256 value; the calling
+protocol defines canonicalization of the body itself.
 
-署名コンテキストは `ZKFMI:SIGNATURE:v1 || KeyPurpose(u16) || Suite(u16,u16)`。
-ML-DSAにはこれをFIPS 204 contextとして渡す。Ed25519には独立した
-`ZKFMI:ED25519-CONTEXT:v1` と長さ前置したcontext・messageを署名させる。
-ハイブリッドの両成分ともハイブリッドsuiteを束縛し、単独署名の転用を拒否する。
-両方の検証成功だけを受理し、片側失敗・欠落・入替では失敗する。
+The signature context is `ZKFMI:SIGNATURE:v1 || KeyPurpose(u16) || Suite(u16,u16)`.
+ML-DSA receives this as its FIPS 204 context. Ed25519 signs a separate
+`ZKFMI:ED25519-CONTEXT:v1` domain followed by length-prefixed context and message.
+Both hybrid components bind the hybrid suite, preventing reuse of standalone
+signatures. Acceptance requires both verifications to succeed. A failed, missing,
+or swapped component causes rejection.
 
-## KEM合成
+## KEM composition
 
-公開鍵は X25519 の32バイトと ML-KEM の1,184バイト。暗号文は送信側の一時
-X25519公開鍵32バイトと ML-KEM暗号文1,088バイトを固定順に連結する。
-HKDF-SHA256のsaltは `ZKFMI:HYBRID-KEM:v1`、infoは
-`ZKFMI:HYBRID-KEM:SESSION:v1`、出力は32バイト。
-ikmは `ss_x25519 || ss_mlkem || ct_x25519 || ct_mlkem || suite_id || suite_version`。
-suite_idとsuite_versionはそれぞれu16 big-endian。片側の秘密・暗号文の変更が
-出力へ反映されることを試験する。これは形式的安全性証明を代替しない。
+The public key consists of the 32-byte X25519 key and the 1,184-byte ML-KEM key.
+The ciphertext concatenates the sender's 32-byte ephemeral X25519 public key and
+the 1,088-byte ML-KEM ciphertext in a fixed order. HKDF-SHA256 uses
+`ZKFMI:HYBRID-KEM:v1` as salt and `ZKFMI:HYBRID-KEM:SESSION:v1` as info, producing
+32 output bytes. The input keying material is
+`ss_x25519 || ss_mlkem || ct_x25519 || ct_mlkem || suite_id || suite_version`.
+Both suite_id and suite_version are u16 big-endian values. Tests check that
+changing either component secret or ciphertext changes the output. This does not
+replace a formal security proof.
 
-X25519の非寄与な共有値と不正な長さを拒否する。ML-KEMはFIPS 203の
-implicit rejectionに従い、正しい長さの改ざん暗号文には異なる共有秘密を返す。
-古典側だけへのフォールバックはない。このKEM自体は相手の認証や鍵確認を行わず、
-TLSハンドシェイクやP1の設定変更も実装していない。
+Noncontributory X25519 shared values and invalid lengths are rejected. ML-KEM
+follows FIPS 203 implicit rejection: a tampered ciphertext of the correct length
+produces a different shared secret. There is no classical-only fallback. This KEM
+does not itself authenticate the peer or confirm possession of the resulting key.
+It does not implement a TLS handshake or P1 configuration changes.
 
-## 鍵管理の責任境界
+## Key-management responsibilities
 
-参加者IDは公開鍵と独立し、値を変更するAPIを持たない。鍵の有効期間は
-`[not_before, not_after)`、`revoked_at` の時点から失効する。時刻単位はUnix秒。
-`key_version` は1から増える鍵世代で、既知の鍵世代と一致しない利用を拒否する。
-一方、プロトコル・suite・更新証明の版は現在V1だけを受理する閉じた型。
+Participant IDs are independent of public keys and expose no mutation API. A key
+is valid during `[not_before, not_after)` and revoked from `revoked_at` onward.
+Timestamps use Unix seconds. `key_version` identifies successive key generations
+starting at 1; use of a generation that differs from the known generation is
+rejected. Protocol, suite, and rotation-proof versions are separate closed types
+that currently accept V1 only.
 
-初期登録と失効は認可済み管理操作として呼び出す。DeKYX bindingは不透明な参照で、
-資格の正当性をこのcrateが確認したとは扱わない。時計、期待するnetwork/deployment/
-contract/protocol、nonceの再利用検査、業務上の登録権限は呼び出し側が管理する。
+Initial registration and revocation must be invoked as authorized administrative
+operations. A DeKYX binding is an opaque reference; this crate does not establish
+the validity of the underlying qualification. The caller manages the clock,
+expected network/deployment/contract/protocol, nonce-reuse checks, and business
+authorization for registration.
 
-更新では旧鍵と新鍵の両方で、参加者・鍵ID・suite・世代・用途・公開鍵・有効期間・
-DeKYX参照を含む遷移に署名する。承認と応答のドメインは別で、応答も旧鍵IDに
-束縛する。両方向の検証を完了するまで状態は変更せず、成功時に旧鍵を失効させる。
-参加者・用途の変更、世代飛ばし、同一鍵の再利用、PQから古典のみへの逆移行は拒否する。
-更新証明は署名可能な鍵に適用する。KEM鍵の更新承認ポリシーはP1の接続側で定義する。
-Transport用途には通信認証の署名鍵も含む。KEM鍵の用途はTransportに限定するが、
-Ed25519等の認証署名鍵をTransport用途から排除しない。
+Rotation requires both old and new keys to sign the transition, including the
+participant, key IDs, suite, generation, purpose, public key, validity interval,
+and DeKYX reference. Approval and acknowledgement use separate domains; the
+acknowledgement also binds the old key ID. State changes only after both
+directions verify, and successful rotation revokes the old key. Changes of
+participant or purpose, skipped generations, reuse of the same key, and rollback
+from PQ to classical-only cryptography are rejected. Rotation proofs apply to
+signing-capable keys. The P1 integration layer defines authorization for KEM key
+rotation. Transport purpose includes signing keys used for communication
+authentication. KEM keys are restricted to Transport, but authentication signing
+keys such as Ed25519 are also permitted for Transport.
 
-公開DTOはserde対応で未知フィールドを拒否する。`RegistrySnapshot` は公開記録の
-保存形を提供するが、その読み込みを自動的に信頼済みレジストリへ変換しない。
-既存 `PublicManifest` / `EncryptedKeyStore` の認証・保存責任を置き換えない。
+Public DTOs support serde and reject unknown fields. `RegistrySnapshot` provides
+a storage representation for public records; deserialization does not
+automatically turn it into a trusted registry. This crate does not replace the
+authentication and persistence responsibilities of the existing `PublicManifest`
+or `EncryptedKeyStore`.
 
-メタデータの `post_quantum` は方式の分類であり、実装認証や全用途での安全性宣言ではない。
-ハッシュにはGrover等による安全性余裕の減少があり、Pedersenの完全秘匿性と
-量子攻撃で破られる束縛性も別の保証として扱う。
+The `post_quantum` metadata flag classifies an algorithm; it does not certify an
+implementation or assert security for every use. Reduced hash security margins
+under Grover and related algorithms are considered separately. Pedersen's
+perfect hiding and its binding property, which quantum attacks can break, are
+also treated as distinct guarantees.

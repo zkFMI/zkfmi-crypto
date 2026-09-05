@@ -1,0 +1,85 @@
+host=ngi-external022-vm1
+started_at=2026-09-05T14:56:34Z
+ed3dbfc91387a8e7827c107ef2af1fddf2edbca4ca138df69056793846115342  .cache/english-runtime-input-20260905.sha256
+rustc 1.97.1 (8bab26f4f 2026-07-14)
+cargo 1.97.1 (c980f4866 2026-06-30)
+
+running 9 tests
+test backend::tests::acvp_mldsa65_33_valid ... ok
+test backend::tests::acvp_mldsa65_42_modified_commitment_max_context ... ok
+test backend::tests::acvp_mldsa65_43_valid ... ok
+test backend::tests::acvp_mlkem768_26_encapsulation ... ok
+test backend::tests::acvp_mldsa65_31_modified_z ... ok
+test backend::tests::acvp_mlkem768_27_encapsulation ... ok
+test backend::tests::acvp_mlkem768_86_valid_decapsulation ... ok
+test backend::tests::acvp_mlkem768_88_implicit_rejection ... ok
+test backend::tests::rfc8032_ed25519_test_1 ... ok
+
+test result: ok. 9 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 9 tests
+test canonical_rejects_expiry_and_empty_identifiers ... ok
+test all_replay_boundaries_change_the_preimage ... ok
+test golden_hybrid_settlement_two_objects ... ok
+test golden_minimal_quote ... ok
+test golden_utf8_and_u64_limits ... ok
+test length_framing_prevents_concatenation_ambiguity ... ok
+test project_memory_is_well_formed_and_remote_only ... ok
+test wire_rejects_unknown_fields_suites_and_versions ... ok
+test fips_sizes_match_actual_rustcrypto_encodings ... ok
+
+test result: ok. 9 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 14 tests
+test ciphertext_wire_rejects_unknown_fields_and_missing_parts ... ok
+test kem_combiner_depends_on_both_secrets_and_both_ciphertexts ... ok
+test kem_rejects_low_order_x25519_and_bad_mlkem_keys ... ok
+test kem_real_roundtrip_and_ciphertext_integrity ... ok
+test provider_rejects_unregistered_capabilities_and_duplicate_registration ... ok
+test independent_standalone_signatures_cannot_be_lifted_into_hybrid ... ok
+test signature_accepts_both_valid ... ok
+test fresh_os_keys_work_through_backend_neutral_provider ... ok
+test signature_binds_purpose_message_and_hybrid_suite_context ... ok
+test signature_rejects_both_invalid ... ok
+test standalone_mlkem_uses_real_backend_and_strict_lengths ... ok
+test signature_rejects_classical_invalid ... ok
+test signature_rejects_pq_invalid ... ok
+test signature_rejects_missing_swapped_truncated_and_appended_components ... ok
+
+test result: ok. 14 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 13 tests
+test enrollment_rejects_invalid_shapes_and_cannot_overwrite_existing_keys ... ok
+test kem_keys_cannot_be_enrolled_as_quote_signature_keys ... ok
+test public_records_are_strict_serde_and_identifiers_are_nonempty ... ok
+test classical_to_hybrid_rotation_requires_both_successor_signatures ... ok
+test pq_to_classical_only_rotation_is_rejected ... ok
+test rotation_binds_new_key_identity_purpose_validity_and_dekyx_reference ... ok
+test rotation_rejects_stale_revoked_expired_or_future_keys_and_replay ... ok
+test preimage_verification_applies_key_lifecycle_suite_purpose_and_expiry ... ok
+test transport_authentication_signature_keys_preserve_purpose_separation ... ok
+test rotation_rejects_either_missing_invalid_or_swapped_direction_atomically ... ok
+test unknown_key_version_wrong_purpose_and_revocation_fail_closed ... ok
+test valid_bidirectional_rotation_preserves_participant_and_retires_old_key ... ok
+test validity_is_start_inclusive_end_exclusive_and_revocation_inclusive ... ok
+
+test result: ok. 13 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+grep_files=507 inventory_files=507 primitive_entries=1032 missing=0 stale=0
+source_hashes=825 markdown_from_json=PASS inventory_check=PASS
+image_id=sha256:0e2bcaef56d041a486784e54104a81aebe0da44bd03019bd70bc0401e42e4a97 digests=["rust@sha256:0e2bcaef56d041a486784e54104a81aebe0da44bd03019bd70bc0401e42e4a97"]
+completed_at=2026-09-05T14:56:38Z
+result=PASS
