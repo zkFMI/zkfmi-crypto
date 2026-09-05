@@ -51,7 +51,28 @@ fn distinct_nodes_approve_exactly_one_committee_and_message() {
             .unwrap()
     });
     let approval = policy.assemble(signatures.to_vec(), message, 150).unwrap();
+    let wire = approval.encode().unwrap();
+    assert_eq!(
+        zkfmi_crypto::quorum::QuorumApproval::decode(&wire).unwrap(),
+        approval
+    );
+    for length in [0, 8, 53, wire.len() - 1] {
+        assert!(zkfmi_crypto::quorum::QuorumApproval::decode(&wire[..length]).is_err());
+    }
+    let mut invalid = wire.clone();
+    invalid.push(0);
+    assert!(zkfmi_crypto::quorum::QuorumApproval::decode(&invalid).is_err());
+    invalid = wire.clone();
+    invalid[9] = 2;
+    assert!(zkfmi_crypto::quorum::QuorumApproval::decode(&invalid).is_err());
+    invalid = wire;
+    invalid[10] ^= 1;
+    assert!(zkfmi_crypto::quorum::QuorumApproval::decode(&invalid).is_err());
     policy.verify(&approval, message, 150).unwrap();
+    policy
+        .verify_archived_signatures(&approval, message)
+        .unwrap();
+    assert!(policy.verify(&approval, message, 201).is_err());
     assert!(policy
         .verify(&approval, b"another settlement", 150)
         .is_err());

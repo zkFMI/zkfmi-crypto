@@ -12,6 +12,8 @@ description = "Versioned cryptographic boundaries for the ZKFMI post-quantum mig
 
 [features]
 default = []
+# Deterministic, publicly known keys for downstream regression tests only.
+test-support = []
 # Host-only TLS; the signature/proof verifier remains usable without OpenSSL.
 tls = ["dep:openssl", "dep:openssl-src"]
 

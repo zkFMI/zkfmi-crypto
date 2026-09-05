@@ -8,6 +8,8 @@ pub mod hybrid;
 pub mod key;
 pub mod quorum;
 pub mod suite;
+#[cfg(feature = "test-support")]
+pub mod test_support;
 #[cfg(feature = "tls")]
 pub mod tls;
 pub mod traits;

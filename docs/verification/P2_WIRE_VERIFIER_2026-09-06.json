@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-09-05T17:33:26.729Z",
+  "task": "pqc-full-integration-20260905",
+  "status": "in_progress",
+  "checkpoint": "P2 canonical wire and governance-pinned DeFMI VM settlement verification",
+  "model": "GPT-6 max",
+  "source_files": 574,
+  "source_manifest": "P2_WIRE_VERIFIER_INPUTS_2026-09-06.sha256",
+  "source_manifest_sha256": "db2e0f0750ce67dab62234611ca02950af163dc6afeef627ede4687e11f19ee2",
+  "source_match": "All final manifest source bytes match the isolated local worktrees. Four Cargo.lock files changed during the last verification command and were imported with before/after hash checks.",
+  "protocols": {
+    "pq_quorum_approval": 1,
+    "zkpi_hybrid": 3,
+    "typed_zkpi_hybrid": 2,
+    "qomm_handoff": 8,
+    "qomm_pretrade_authority": 5,
+    "defmi_sqlite": 16,
+    "settlement_verifier_statement": 2
+  },
+  "changes": [
+    "Canonical bounded ML-DSA quorum approval encoding rejects truncation, trailing bytes, unsupported suite/version and unordered/duplicate signers.",
+    "Hybrid zkPI and typed zkPI retain both components. A venue requires its caller-enrolled committee, verifies both signature components and applies live key validity. Explicit classical decoding remains available for historical/compatibility records.",
+    "QOMM real proof coordinator and seven-node command now retain PQ approvals for payment and typed authorization; the seven-node command delegates DKG and signing to the canonical coordinator.",
+    "Handoff archives verify signature integrity without using the current clock to retroactively invalidate historical records; execution always uses a live enrolled policy.",
+    "DeFMI registered verifier statements, native SQLite records, VM records/state roots and RPC readback bind the PQ policy. VM product settlement requires the registered three-of-seven committee, never a key supplied by a settlement.",
+    "Populated legacy verifier stores fail before schema migration; no missing key is guessed and no ledger entry is deleted. Empty legacy verifier tables can acquire the new column.",
+    "Aethel changes in this checkpoint are verifier fixture compatibility only. Application ownership and foundation independence are unchanged."
+  ],
+  "verification": {
+    "remote_host": "softbank-l40s",
+    "workspace": "~/work/pqc-full-integration-20260905",
+    "image": "rust:1.97-bookworm",
+    "image_id": "sha256:0e2bcaef56d041a486784e54104a81aebe0da44bd03019bd70bc0401e42e4a97",
+    "rust": "1.97.1 (8bab26f4f 2026-07-14)",
+    "distinct_tests_passed": 175,
+    "groups": [
+      {
+        "run": "20260905T172447Z-defmi-rust",
+        "tests": {
+          "qomm_avalanche_vm": 52,
+          "qomm_defmi": 17,
+          "qomm_transport": 48,
+          "frost_dkg_recovery": 6,
+          "pretrade_authority": 1,
+          "crypto_quorum": 3
+        },
+        "result": "PASS",
+        "log": ".artifacts/20260905T172447Z-defmi-rust.log",
+        "log_sha256": "7da11e0529dbb59505681d891235fd16df2622b8cf86e3d850fead883931c9f7",
+        "input_before_sha256": "9cd104f2bec83d4ade980ad5e29f3c1ef00fe28fe0bea1fb1918da7093b73d60",
+        "input_after_sha256": "af08b123e34b382f3b062bd4f384b610f7b34a6395e6511e8df72986bbf01e91"
+      },
+      {
+        "run": "20260905T172804Z-defmi-rust",
+        "tests": {
+          "qomm_zkpi": 46,
+          "aethel_defmi_host": 2
+        },
+        "result": "PASS",
+        "log": ".artifacts/20260905T172804Z-defmi-rust.log",
+        "log_sha256": "130c8af29323d06e42027786cfbe0ae9809e62caecb21be6e1373f0938067262",
+        "input_before_sha256": "af08b123e34b382f3b062bd4f384b610f7b34a6395e6511e8df72986bbf01e91",
+        "input_after_sha256": "db2e0f0750ce67dab62234611ca02950af163dc6afeef627ede4687e11f19ee2"
+      }
+    ],
+    "checks": "All-target check and Clippy -D warnings for qomm-defmi, qomm-avalanche-vm, qomm-harness, qomm-transport, qomm-zkpi, aethel-defmi-host; crypto all-feature/all-target Clippy. QOMM demo checks its library and four real binaries, excluding the pre-existing helper auto-binary.",
+    "evidence_limits": "Deterministic real-cryptography regression tests. No new native engine, WAN, live chain or comparative performance experiment."
+  },
+  "remaining": [
+    "The full migration remains in progress. P1 note-opening confidentiality and WAN performance gates remain open.",
+    "P2 node keys currently identify cryptographic bootstrap identities, not yet DeKYX-confirmed legal operators. Enrollment, authorized rotation and revocation propagation remain unfinished.",
+    "OCLOB application certificates, Aethel receivable certificates, native facility caller-supplied venue paths, standing-pool approvals and other governance/credential/clearing boundaries still require PQ approval integration.",
+    "No post-change live Avalanche or seven-operator/WAN acceptance has run. The node lifecycle test signs an explicit health statement; the VM settlement test uses real cryptography with test-generated keys.",
+    "FROST, Pedersen commitments, range/anonymous proofs and TLS certificate authentication remain classical. Independent ML-DSA approvals do not make those primitives post-quantum.",
+    "P3-P6 credentials, clearing, cross-domain trust, hash-based audit proofs, checkpoint signing, key retirement and recovery gates remain open.",
+    "Dependency overlays remain unpublished and are not a release-ready immutable multi-repository dependency graph."
+  ]
+}

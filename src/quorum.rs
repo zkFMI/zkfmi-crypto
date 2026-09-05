@@ -14,6 +14,7 @@ use sha2::{Digest, Sha256};
 use std::collections::BTreeSet;
 
 pub const SUITE: Suite = Suite::new(SuiteId::MlDsa65);
+const APPROVAL_MAGIC: &[u8; 8] = b"ZKPQQRM1";
 
 #[derive(Clone, Debug, Eq, PartialEq, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
@@ -55,6 +56,134 @@ pub struct QuorumApproval {
     pub epoch: u64,
     pub committee: [u8; 32],
     pub signatures: Vec<MemberApproval>,
+}
+
+impl QuorumApproval {
+    fn validate_encoding(&self) -> Result<()> {
+        if self.suite != SUITE
+            || self.epoch == 0
+            || self.committee == [0; 32]
+            || self.signatures.is_empty()
+            || self.signatures.len() > 64
+        {
+            return Err(CryptoError::InvalidEncoding);
+        }
+        let mut previous = 0;
+        for member in &self.signatures {
+            if member.node <= previous
+                || member.key_version == 0
+                || member.signature.len() != crate::suite::ML_DSA_65_SIG_BYTES
+            {
+                return Err(CryptoError::InvalidEncoding);
+            }
+            previous = member.node;
+        }
+        Ok(())
+    }
+
+    /// Fixed big-endian scalars, bounded length-prefixed key IDs, and fixed
+    /// ML-DSA-65 signature lengths. No recursive or negotiable container.
+    pub fn encode(&self) -> Result<Vec<u8>> {
+        self.validate_encoding()?;
+        let mut out = APPROVAL_MAGIC.to_vec();
+        out.extend_from_slice(&u16::from(self.version).to_be_bytes());
+        out.extend_from_slice(&self.suite.encode());
+        out.extend_from_slice(&self.epoch.to_be_bytes());
+        out.extend_from_slice(&self.committee);
+        out.extend_from_slice(&(self.signatures.len() as u16).to_be_bytes());
+        for member in &self.signatures {
+            out.extend_from_slice(&member.node.to_be_bytes());
+            put_bytes(&mut out, member.key_id.as_str().as_bytes())?;
+            out.extend_from_slice(&member.key_version.to_be_bytes());
+            out.extend_from_slice(&member.signature);
+        }
+        Ok(out)
+    }
+
+    pub fn decode(raw: &[u8]) -> Result<Self> {
+        struct Reader<'a>(&'a [u8]);
+        impl<'a> Reader<'a> {
+            fn take(&mut self, count: usize) -> Result<&'a [u8]> {
+                let (head, tail) = self
+                    .0
+                    .split_at_checked(count)
+                    .ok_or(CryptoError::InvalidEncoding)?;
+                self.0 = tail;
+                Ok(head)
+            }
+            fn u16(&mut self) -> Result<u16> {
+                Ok(u16::from_be_bytes(
+                    self.take(2)?
+                        .try_into()
+                        .map_err(|_| CryptoError::InvalidEncoding)?,
+                ))
+            }
+            fn u32(&mut self) -> Result<u32> {
+                Ok(u32::from_be_bytes(
+                    self.take(4)?
+                        .try_into()
+                        .map_err(|_| CryptoError::InvalidEncoding)?,
+                ))
+            }
+        }
+        if raw.len() > 1 << 20 {
+            return Err(CryptoError::InvalidEncoding);
+        }
+        let mut reader = Reader(raw);
+        if reader.take(8)? != APPROVAL_MAGIC {
+            return Err(CryptoError::InvalidEncoding);
+        }
+        let version = Version::try_from(reader.u16()?)?;
+        if reader.take(4)? != SUITE.encode() {
+            return Err(CryptoError::UnsupportedSuite);
+        }
+        let epoch = u64::from_be_bytes(
+            reader
+                .take(8)?
+                .try_into()
+                .map_err(|_| CryptoError::InvalidEncoding)?,
+        );
+        let committee = reader
+            .take(32)?
+            .try_into()
+            .map_err(|_| CryptoError::InvalidEncoding)?;
+        let count = reader.u16()?;
+        if count == 0 || count > 64 {
+            return Err(CryptoError::InvalidEncoding);
+        }
+        let mut signatures = Vec::with_capacity(usize::from(count));
+        for _ in 0..count {
+            let node = reader.u16()?;
+            let length = reader.u32()? as usize;
+            if length == 0 || length > 256 {
+                return Err(CryptoError::InvalidEncoding);
+            }
+            let key_id = KeyId::new(
+                std::str::from_utf8(reader.take(length)?)
+                    .map_err(|_| CryptoError::InvalidEncoding)?,
+            )?;
+            let key_version = reader.u32()?;
+            let signature = reader.take(crate::suite::ML_DSA_65_SIG_BYTES)?.to_vec();
+            signatures.push(MemberApproval {
+                node,
+                key_id,
+                key_version,
+                signature,
+            });
+        }
+        if !reader.0.is_empty() {
+            return Err(CryptoError::InvalidEncoding);
+        }
+        let result = Self {
+            version,
+            suite: SUITE,
+            epoch,
+            committee,
+            signatures,
+        };
+        result.validate_encoding()?;
+        Ok(result)
+    }
 }
 
 impl QuorumPolicy {
@@ -174,9 +303,13 @@ impl QuorumPolicy {
     }
 
     pub fn verify_member(&self, approval: &MemberApproval, message: &[u8], now: u64) -> Result<()> {
+        self.member(approval.node)?.key.valid_at(now)?;
+        self.verify_member_signature(approval, message)
+    }
+
+    fn verify_member_signature(&self, approval: &MemberApproval, message: &[u8]) -> Result<()> {
         self.validate()?;
         let member = self.member(approval.node)?;
-        member.key.valid_at(now)?;
         if member.key.key_id != approval.key_id || member.key.key_version != approval.key_version {
             return Err(CryptoError::InvalidKey);
         }
@@ -206,6 +339,21 @@ impl QuorumPolicy {
     }
 
     pub fn verify(&self, approval: &QuorumApproval, message: &[u8], now: u64) -> Result<()> {
+        self.verify_archived_signatures(approval, message)?;
+        for signature in &approval.signatures {
+            self.member(signature.node)?.key.valid_at(now)?;
+        }
+        Ok(())
+    }
+
+    /// Cryptographic integrity for stored evidence only. This deliberately does
+    /// not authorize execution or establish validity at any time. Live callers
+    /// must use `verify` with their trusted clock and current enrolled policy.
+    pub fn verify_archived_signatures(
+        &self,
+        approval: &QuorumApproval,
+        message: &[u8],
+    ) -> Result<()> {
         if approval.suite != SUITE
             || approval.epoch != self.epoch
             || approval.committee != self.digest()?
@@ -220,7 +368,7 @@ impl QuorumPolicy {
                 return Err(CryptoError::DuplicateKey);
             }
             previous = signature.node;
-            self.verify_member(signature, message, now)?;
+            self.verify_member_signature(signature, message)?;
         }
         Ok(())
     }
