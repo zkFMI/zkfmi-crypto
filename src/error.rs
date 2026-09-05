@@ -7,6 +7,7 @@ pub enum CryptoError {
     InvalidEncoding,
     InvalidKey,
     InvalidSignature,
+    InvalidProof,
     InvalidCiphertext,
     InvalidPurpose,
     InvalidTime,

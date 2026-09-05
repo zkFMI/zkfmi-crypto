@@ -41,6 +41,8 @@ pub enum SuiteId {
     SlhDsaSha2_128s,
     X25519MlKem768,
     Ed25519MlDsa65,
+    /// Offline Miden public batch relation. No private financial relation is implied.
+    MidenPublicBatchV1,
 }
 
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Serialize, Deserialize)]
@@ -115,6 +117,7 @@ impl SuiteId {
             Self::SlhDsaSha2_128s => 0x104,
             Self::X25519MlKem768 => 0x201,
             Self::Ed25519MlDsa65 => 0x202,
+            Self::MidenPublicBatchV1 => 0x301,
         }
     }
 
@@ -127,6 +130,7 @@ impl SuiteId {
                 }
                 Self::PedersenRistretto255 => (false, Commitment, None, None, None),
                 Self::BulletproofsRistretto255 => (false, Proof, None, None, None),
+                Self::MidenPublicBatchV1 => (true, Proof, None, None, None),
                 Self::X25519Tls13 => (false, Transport, Some(32), None, Some(32)),
                 Self::Sha256 | Self::Sha512 | Self::Shake128 => (true, Hash, None, None, None),
                 Self::MlKem768 => (
@@ -200,6 +204,7 @@ impl TryFrom<u16> for SuiteId {
             0x104 => Ok(Self::SlhDsaSha2_128s),
             0x201 => Ok(Self::X25519MlKem768),
             0x202 => Ok(Self::Ed25519MlDsa65),
+            0x301 => Ok(Self::MidenPublicBatchV1),
             _ => Err(CryptoError::UnsupportedSuite),
         }
     }

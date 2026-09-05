@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "recorded_at": "2026-09-05T22:53:27Z",
+  "status": "component_verified",
+  "run": "20260905T224615Z-zkfmi-crypto",
+  "host": "softbank-l40s",
+  "remote_workspace": "work/pqc-astra-high-20260906",
+  "image": "sha256:0e2bcaef56d041a486784e54104a81aebe0da44bd03019bd70bc0401e42e4a97",
+  "rust": "1.97.1",
+  "input_before_sha256": "681c4ee038e29c93c80c3a3ab931ae36dac7b1f7699e64857214c234674acfca",
+  "input_after_sha256": "681c4ee038e29c93c80c3a3ab931ae36dac7b1f7699e64857214c234674acfca",
+  "log_sha256": "13850a1d6b83ba47d5d055e430b90d1d6de9779ce5d5446dcb13d9e14616bae4",
+  "checks": {
+    "crypto_tests": 50,
+    "crypto_clippy": "all features and all targets, -D warnings",
+    "miden_public_batch_tests": 3,
+    "miden_cli_roundtrip_tests": 1,
+    "miden_clippy": "all targets, -D warnings"
+  },
+  "source_sha256": {
+    "src/error.rs": "702870163bb3e95fc2e79b57c5237179bcc3b972e8c78e45aedfee17a7b40263",
+    "src/suite.rs": "9a229c855d9e703ba9b66caa1bcf3170700a5f3545e329be151372ed7f8d45bb",
+    "src/test_support.rs": "76c54ef453ac68431261c19cda54fdba6844354f47f4d097c97cea4c66a5894d",
+    "scripts/pqc-remote.sh": "0a2a7c030f291be4b41c30a44c5c00e400743de41f7ed75ca76bf256ba53ba40",
+    "scripts/pqc-import-verified.sh": "a2d1ef24befc5c5d66ed1bd242db59fb4826706afba5ade1967599c48d76f6cf"
+  },
+  "limitations": [
+    "This verifies the common crypto and bounded offline public STARK adapter only.",
+    "Final independent consumers, immutable pins, owned-crate cache clean, native runtime and WAN/performance acceptance remain pending.",
+    "Classical anonymous membership, Pedersen and FROST relations are not made post-quantum by signing their statements.",
+    "Miden VM 0.32.0 is an upstream unaudited alpha backend; this checkpoint is not a production security certification."
+  ]
+}

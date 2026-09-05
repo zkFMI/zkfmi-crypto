@@ -19,7 +19,10 @@ mkdir .artifacts/remote-run.lock || { echo 'another isolated remote run owns the
 trap 'rmdir .artifacts/remote-run.lock' EXIT
 ssh "${ssh_args[@]}" "$host" "mkdir -p ~/$remote/{src,.cache/tmp,.cache/cargo,.cache/target,.artifacts}"
 for repo in zkfmi-crypto qomm zkpi defmi oclob dekyx deccp aethel; do
-  rsync -az --delete --exclude=.git --exclude=.cache --exclude=.worktrees --exclude=.artifacts --exclude=target --exclude=node_modules --exclude=.runtime \
+  # Source edits made during the prior run may predate its cached rlibs.
+  # Preserve current receiver mtimes for unchanged bytes, and timestamp changed
+  # bytes at transfer time so Cargo cannot reuse an older source snapshot.
+  rsync -az --checksum --no-times --delete --exclude=.git --exclude=.cache --exclude=.worktrees --exclude=.artifacts --exclude=target --exclude=node_modules --exclude=.runtime \
     "$root/$repo/" "$host:$remote/src/$repo/"
 done
 printf -v remote_command 'bash -s -- %q %q %q %q %q' "$remote" "$project" "$command" "$run" "$native"
@@ -32,7 +35,7 @@ cd "$HOME/$1"
 exec > >(tee ".artifacts/$4.log") 2>&1
 run=$4
 record_inputs() {
-  find src -type f \( -name '*.rs' -o -name Cargo.toml -o -name Cargo.lock \
+  find src -type f \( -name '*.rs' -o -name '*.masm' -o -name Cargo.toml -o -name Cargo.lock \
     -o -name '*.cpp' -o -name '*.h' -o -name '*.patch' -o -name '*.sh' \
     -o -name '*Dockerfile*' -o -name Makefile \) -print0 | LC_ALL=C sort -z | xargs -0 sha256sum > ".artifacts/$run-input-$1.sha256"
   printf 'input_%s=' "$1"

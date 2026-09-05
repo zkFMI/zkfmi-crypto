@@ -20,14 +20,21 @@ while read -r after path; do
   [[ "$path" != *..* ]] || exit 2
   relative=${path#src/}
   before=$(awk -v path="$path" '$2 == path {print $1}' "$destination/before.sha256")
-  [[ "$before" =~ ^[0-9a-f]{64}$ && "$after" =~ ^[0-9a-f]{64}$ ]] || exit 2
+  [[ "$after" =~ ^[0-9a-f]{64}$ ]] || exit 2
   if [ "$before" = "$after" ]; then continue; fi
   local_path="$root/$relative"
-  [ -f "$local_path" ] && [ ! -L "$local_path" ] || exit 2
-  current=$(shasum -a 256 "$local_path" | cut -d ' ' -f 1)
-  if [ "$current" != "$before" ]; then
-    printf 'source changed since run: %s\n' "$relative" >&2
-    exit 1
+  if [ -z "$before" ]; then
+    # A standalone oracle may create its first lockfile. No existing source
+    # may be overwritten through this exception.
+    [[ "$relative" = */Cargo.lock ]] && [ ! -e "$local_path" ] && [ ! -L "$local_path" ] || exit 2
+  else
+    [[ "$before" =~ ^[0-9a-f]{64}$ ]] || exit 2
+    [ -f "$local_path" ] && [ ! -L "$local_path" ] || exit 2
+    current=$(shasum -a 256 "$local_path" | cut -d ' ' -f 1)
+    if [ "$current" != "$before" ]; then
+      printf 'source changed since run: %s\n' "$relative" >&2
+      exit 1
+    fi
   fi
   mkdir -p "$destination/$(dirname "$relative")"
   fetched="$destination/$relative"
