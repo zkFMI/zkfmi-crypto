@@ -28,4 +28,14 @@ RUN test "$(git -C /opt/MP-SPDZ rev-parse HEAD)" = 9d809599ea6ce627216a389ca7d98
     && ldd /opt/MP-SPDZ/malicious-shamir-party.x
 RUN cd /opt/MP-SPDZ \
     && sha256sum Networking/ssl_sockets.h libSPDZ.so malicious-shamir-party.x > .pqc-tls.sha256
+# These are isolated single-host regression credentials, never operator keys.
+# Real deployments use each owner's local CSR and an independently enrolled CA.
+RUN umask 077; cd /opt/MP-SPDZ/Player-Data \
+    && for node in 0 1 2 3 4 5 6; do \
+        openssl req -x509 -newkey ML-DSA-65 -noenc -days 30 \
+          -subj "/CN=P${node}" -addext "subjectAltName=DNS:P${node}" \
+          -keyout "P${node}.key" -out "P${node}.pem" || exit 1; \
+       done \
+    && openssl rehash . \
+    && chmod 0600 P[0-6].key
 WORKDIR /integration

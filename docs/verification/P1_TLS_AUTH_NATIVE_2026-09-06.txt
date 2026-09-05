@@ -1,0 +1,19 @@
+ccc7d6a496423ead58a3fc44f66a17f7fc692928395821bc546add38cefe58aa  Networking/ssl_sockets.h
+80432ac9740e7e3e4e7589ef86f4ce3bd77871e734405ed9099d90053515f8c3  libSPDZ.so
+b1639ee395bb9dc55c2e99695dd57c1685ab6e32e8a082ec1d0388563ae7ebf9  malicious-shamir-party.x
+OpenSSL 3.5.5 27 Jan 2026 (Library: OpenSSL 3.5.5 27 Jan 2026)
+ecdsa_secp256r1_sha256:ecdsa_secp384r1_sha384:ecdsa_secp521r1_sha512:ed25519:ed448:ecdsa_sha224:ecdsa_sha1:ecdsa_brainpoolP256r1tls13_sha256:ecdsa_brainpoolP384r1tls13_sha384:ecdsa_brainpoolP512r1tls13_sha512:rsa_pss_rsae_sha256:rsa_pss_rsae_sha384:rsa_pss_rsae_sha512:rsa_pss_pss_sha256:rsa_pss_pss_sha384:rsa_pss_pss_sha512:rsa_pkcs1_sha256:rsa_pkcs1_sha384:rsa_pkcs1_sha512:rsa_pkcs1_sha224:rsa_pkcs1_sha1:dsa_sha256:dsa_sha384:dsa_sha512:dsa_sha224:dsa_sha1:mldsa44:mldsa65:mldsa87
+subject=CN=P0
+sha256 Fingerprint=2C:31:96:7A:81:15:A5:3C:B6:9A:B0:0D:5E:47:6E:D1:09:EE:FF:93:E0:94:5A:2D:21:6C:07:75:A9:2F:73:7B
+subject=CN=P1
+sha256 Fingerprint=85:AF:C1:94:08:35:7C:B4:73:71:0B:00:67:69:58:6A:CE:0D:85:3C:9C:70:9F:26:34:40:09:48:0E:98:0F:20
+subject=CN=P2
+sha256 Fingerprint=DA:BC:E5:0F:67:FA:D7:A0:93:C4:73:00:E5:EC:4B:FC:A0:C2:EC:0F:FA:5C:C5:1C:50:98:B1:84:0F:64:90:8B
+subject=CN=P3
+sha256 Fingerprint=79:7A:75:A8:C0:6E:6F:4E:B6:0D:7C:40:D0:62:74:D0:95:B7:BD:AA:98:EE:E2:C6:2A:F4:60:60:A3:2B:98:38
+subject=CN=P4
+sha256 Fingerprint=45:F5:2B:F2:56:63:7D:1F:DD:16:67:16:96:BC:71:5E:94:96:C1:31:BD:D7:2B:D5:C3:9F:BF:4E:55:A8:83:BB
+subject=CN=P5
+sha256 Fingerprint=45:E7:F8:BA:6E:B5:C4:31:82:5C:4A:AF:FB:94:35:AE:FD:53:52:E8:6C:BE:38:A3:9D:FD:0F:0A:5E:AB:A3:E5
+subject=CN=P6
+sha256 Fingerprint=61:FF:E1:15:E7:F6:99:77:6A:D3:DE:69:42:B0:74:98:2C:EF:8F:4C:7F:77:35:60:42:76:0C:B7:34:20:8B:40

@@ -23,7 +23,7 @@ fi
 printf '%s\n' 'b28c91532a8b65a1f983b4c28b7488174e4a01008e29ce8e69bd789f28bc2a89  .cache/native-build/openssl-3.5.5.tar.gz' | sha256sum -c -
 printf 'started_at=%s\n' "$(date -u +%FT%TZ)"
 docker build --progress=plain --file .cache/native-build/Dockerfile \
-  --tag pqc-full-integration:rust-1.97.1-mpspdz-9d809599-openssl-3.5.5 .cache/native-build
-docker image inspect pqc-full-integration:rust-1.97.1-mpspdz-9d809599-openssl-3.5.5 --format 'image_id={{.Id}}'
+  --tag pqc-full-integration:rust-1.97.1-mpspdz-9d809599-openssl-3.5.5-pqc-auth-v2 .cache/native-build
+docker image inspect pqc-full-integration:rust-1.97.1-mpspdz-9d809599-openssl-3.5.5-pqc-auth-v2 --format 'image_id={{.Id}}'
 printf 'completed_at=%s\nresult=PASS\n' "$(date -u +%FT%TZ)"
 REMOTE

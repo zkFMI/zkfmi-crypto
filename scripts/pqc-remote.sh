@@ -30,7 +30,7 @@ run=$4
 record_inputs() {
   find src -type f \( -name '*.rs' -o -name Cargo.toml -o -name Cargo.lock \
     -o -name '*.cpp' -o -name '*.h' -o -name '*.patch' -o -name '*.sh' \
-    -o -name '*Dockerfile*' \) -print0 | LC_ALL=C sort -z | xargs -0 sha256sum > ".artifacts/$run-input-$1.sha256"
+    -o -name '*Dockerfile*' -o -name Makefile \) -print0 | LC_ALL=C sort -z | xargs -0 sha256sum > ".artifacts/$run-input-$1.sha256"
   printf 'input_%s=' "$1"
   sha256sum ".artifacts/$run-input-$1.sha256"
 }
@@ -38,7 +38,7 @@ image=rust:1.97-bookworm
 target=.cache/target
 native_mount=()
 if [ "$5" = 1 ]; then
-  image=pqc-full-integration:rust-1.97.1-mpspdz-9d809599-openssl-3.5.5
+  image=pqc-full-integration:rust-1.97.1-mpspdz-9d809599-openssl-3.5.5-pqc-auth-v2
   target=.cache/target-native
   image_id=$(docker image inspect "$image" --format '{{.Id}}')
   engine_dir=".cache/native-engine-${image_id#sha256:}"

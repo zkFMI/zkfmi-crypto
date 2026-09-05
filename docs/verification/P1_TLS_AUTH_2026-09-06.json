@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-09-05T20:13:32.371Z",
+  "task": "pqc-full-integration-20260905",
+  "status": "in_progress",
+  "model": "GPT-6 max",
+  "checkpoint": "P1 ML-DSA-65 transport authentication integration",
+  "source_manifest": "P1_TLS_AUTH_INPUTS_2026-09-06.sha256",
+  "source_manifest_sha256": "4ca9eeec443373e1f4c375c959d083795aad72771118031ee9c1f65d605f8e8b",
+  "source_files": 579,
+  "source_match": "Every recorded source input matches the isolated worktrees. Makefiles are now included in the verification input manifest.",
+  "protocols": {
+    "transport_policy": 2,
+    "tls": "1.3",
+    "key_exchange": "X25519MLKEM768",
+    "certificate_authentication": "mldsa65",
+    "certificate_signature_oid": "2.16.840.1.101.3.4.3.18"
+  },
+  "changes": [
+    "Shared TLS policy requires the single hybrid key-exchange group and ML-DSA-65 handshake signatures. Verification retains the existing CA and hostname trust checks and also requires ML-DSA-65 public keys and signatures for the complete verified certificate chain, including its trust anchor. Tickets and session caching remain disabled so reconnects perform fresh authentication and agreement.",
+    "QOMM node and proof-party, OCLOB server/client and DeFMI HTTPS constructors use this same policy. TLS authentication is ML-DSA-65 alone; it is not a composite TLS signature. Application approvals continue to require their separate classical and post-quantum components.",
+    "Node-local CSR and offline CA issuance generate independent ML-DSA-65 seeds through the pinned OpenSSL API. Issuance rejects classical requests, mismatched CA keys and substituted approved identities. Node enrollment rejects certificates outside the required authentication policy. Private PEM files retain owner-only permissions.",
+    "The MP-SPDZ socket adapter enforces the identical group, TLS version and signature allowlists, requires peer certificates on servers, checks every verified certificate's key and signature algorithm, and preserves hostname verification. The pinned adapter and linked native artifacts are verified against the build receipt before execution.",
+    "The dedicated native image contains newly generated single-host test credentials. Production provisioning still uses owner-local CSR and independently approved trust anchors. No existing ledger, deployed node or operator certificate was changed.",
+    "The old WAN configuration fixture contained a shell compiler and no trusted native build receipt. Its positive runtime assertion was corrected to require rejection. This fixture is explicitly not native execution evidence."
+  ],
+  "references": [
+    {
+      "url": "https://raw.githubusercontent.com/openssl/openssl/openssl-3.5.5/providers/common/capabilities.c",
+      "use": "Pinned upstream TLS provider definitions for X25519MLKEM768 and mldsa65."
+    },
+    {
+      "url": "https://docs.openssl.org/3.5/man7/EVP_PKEY-ML-DSA/",
+      "use": "OpenSSL ML-DSA-65 key and seed API."
+    },
+    {
+      "url": "https://docs.openssl.org/3.5/man3/SSL_CTX_set1_sigalgs/",
+      "use": "Closed signature-scheme allowlist configuration."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/openssl/openssl/openssl-3.5.5/ssl/t1_lib.c",
+      "use": "The pinned TLS verifier checks the negotiated signature scheme against both the certificate key OID and the advertised list."
+    }
+  ],
+  "verification": {
+    "remote_host": "softbank-l40s",
+    "workspace": "~/work/pqc-full-integration-20260905",
+    "image_id": "sha256:91d284e9e0f0ba3fed0a005997edff224182eb949a465f54a6c287c249e5c3a4",
+    "rust": "1.97.1 (8bab26f4f 2026-07-14)",
+    "distinct_tests_passed": 68,
+    "tests": {
+      "real_tcp_tls": 7,
+      "key_and_csr_lifecycle": 8,
+      "provisioning_configuration": 3,
+      "proof_party_service": 2,
+      "oclob_node": 41,
+      "native_seven_process_mpc": 1,
+      "defmi_rpc": 6
+    },
+    "run": "20260905T195425Z-oclob",
+    "result": "PASS",
+    "log": ".artifacts/20260905T195425Z-oclob.log",
+    "log_sha256": "32be82729a49941d2dc8dc23319e8006367ffed2ccafdf73de47b93b17244bd5",
+    "input_after_sha256": "4ca9eeec443373e1f4c375c959d083795aad72771118031ee9c1f65d605f8e8b",
+    "checks": "Affected QOMM transport and OCLOB node all-target Clippy, DeFMI core all-target/all-feature Clippy, all with warnings denied. Formatting, real TCP/TLS, CSR/provisioning, actual proof-party service, OCLOB node regression and DeFMI RPC release tests passed.",
+    "native_execution": "The existing canonical MpcRunner compiled the real matching circuit and executed seven malicious-Shamir processes twice after fresh connections. Every party's output agreed in both executions.",
+    "negative_cases": "Classical-only group in either direction; classical server or client leaf; classical CA with PQ leaves; wrong hostname; classical CSR; wrong CA private key or approved node identity. The rejection gates use real OpenSSL and TCP.",
+    "evidence_limits": "Ordinary deterministic regression evidence. Seven processes run on one host with laboratory credentials. No seven-operator deployment, live Avalanche TLS gateway acceptance, WAN/latency comparison, HSM provisioning or production PKI rollover. DeFMI RPC tests use the explicitly authorized local HTTP test path."
+  },
+  "native_build": {
+    "log": ".artifacts/20260905T195254Z-native-build.log",
+    "log_sha256": "769b8b1cf0cc7dd8379afb10d172e13cb17a8a4831074b5307572962f007ccd2",
+    "public_receipt": "P1_TLS_AUTH_NATIVE_2026-09-06.txt",
+    "public_receipt_sha256": "00041bf78ac519c6c72d2783abee4bae9e2a3c66a1e53cb20226a3d89f42bcc9",
+    "upstream_commit": "9d809599ea6ce627216a389ca7d984fbb75d0cb9",
+    "adapter_sha256": "ccc7d6a496423ead58a3fc44f66a17f7fc692928395821bc546add38cefe58aa",
+    "libspdz_sha256": "80432ac9740e7e3e4e7589ef86f4ce3bd77871e734405ed9099d90053515f8c3",
+    "party_binary_sha256": "b1639ee395bb9dc55c2e99695dd57c1685ab6e32e8a082ec1d0388563ae7ebf9",
+    "openssl_tarball_sha256": "b28c91532a8b65a1f983b4c28b7488174e4a01008e29ce8e69bd789f28bc2a89",
+    "linked_libraries": "The build log shows both native artifacts loading libssl.so.3 and libcrypto.so.3 from /opt/pqc-openssl/lib64 (OpenSSL 3.5.5)."
+  },
+  "remaining": [
+    "P1 is incomplete: note and threshold-opening delivery still use curve-DH masks. Independently provisioned PQ recipient keys and authenticated ciphertext persistence/recovery remain to be integrated.",
+    "Operators must enroll new certificate roots and replace node-local certificates deliberately. The live DeFMI HTTPS gateway must support the required key exchange and ML-DSA certificate chain. No public gateway or existing chain was migrated.",
+    "P1 WAN performance and certificate retirement/recovery, P2 reserve compatibility paths, P3 legacy KYB and encrypted holder custody, P4 inner authority/receipt signatures and rotation, P5 public batch proofs and P6 retirement/recovery remain open.",
+    "FROST, Pedersen binding and anonymous/nullifier proofs remain classical. TLS authentication and hybrid approval signatures do not make those proofs post-quantum.",
+    "No full system claim, ledger deletion, push, main merge or deployment. Unpublished path overlays and immutable release pins remain a separate integration release gate."
+  ]
+}
