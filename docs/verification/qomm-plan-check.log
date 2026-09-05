@@ -1,0 +1,11 @@
+checked_at=2026-09-05T06:09:16Z
+repository=/Users/shukob/Research/DeFMI/qomm
+commit=61596e523a4249031ae2471c78bd2249fea8f49b
+doc/ja/PQC_MIGRATION_PLAN.md
+single_authorized_file=PASS
+phase_structure=PASS
+heading_count=20
+diff_check=PASS
+43	1	doc/ja/PQC_MIGRATION_PLAN.md
+current_head_matches=PASS
+worktree_clean=PASS

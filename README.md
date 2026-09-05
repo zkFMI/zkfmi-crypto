@@ -29,6 +29,7 @@ softbank-l40s の `~/work/zkfmi-crypto/` だけに同期し、公式
 - [暗号契約と責任境界](docs/CRYPTO_CONTRACT.md): 登録済み方式、正規化、鍵更新、zeroize。
 - [NIST / RFC既知解の出典](tests/vectors/SOURCES.md): 固定コミットと原本・抜粋ハッシュ。
 - [暗号棚卸し](inventory/CRYPTO_INVENTORY.md): 7リポジトリのJSONから生成した一覧。
+- [独立P0の検収報告](docs/verification/P0_REPORT.md): S1〜S5のコミット、実行結果、変更範囲と保留事項。
 
 GitHub認証は着手時に無効だったため、GitHub上のリポジトリ作成とpushは未実施です。
 ローカルGitリポジトリとして管理し、将来作成する場合は発注どおりprivateを初期値にします。
