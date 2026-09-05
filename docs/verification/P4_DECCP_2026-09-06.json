@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-09-05T19:01:35.028Z",
+  "task": "pqc-full-integration-20260905",
+  "status": "in_progress",
+  "model": "GPT-6 max",
+  "checkpoint": "P4 DeCCP clearing authority integration",
+  "source_manifest": "P4_DECCP_INPUTS_2026-09-06.sha256",
+  "source_manifest_sha256": "72e3b29f9f21ad22f2b62e9681619317c4c4209683a84152daf433c7f496aee9",
+  "source_files": 574,
+  "source_match": "Every recorded source input matches the isolated worktrees.",
+  "protocols": {
+    "authority_digest": 2,
+    "approval_digest": 2,
+    "signature_suite": "Ed25519MlDsa65/v1"
+  },
+  "changes": [
+    "DeCCP clearing authorities use independently generated Ed25519 and ML-DSA-65 keys through the common hybrid signer. Every signature binds the complete enrolled authority set, member identity, key ID/generation, authority epoch and statement under the Governance purpose.",
+    "Participant admission, margin updates, cycle opening/closing, guarantee facility registration and default decisions require the hybrid quorum. New execution checks key validity and revocation at the caller-supplied authoritative time. Cycle opening no longer accepts a request-selected clock.",
+    "Snapshot restoration verifies archived hybrid integrity against an independently trusted authority set. Restoration does not extend key validity for subsequent operations.",
+    "The actual Aethel application host carries the expanded approval and key records. RPC normalization preserves opaque cryptographic registry identifiers, including 64-character hexadecimal spellings, and decodes both signature components.",
+    "Negative tests cover missing/corrupt components, stale epoch/digest/key generation, duplicate and insufficient signers, classical-only suite, expired/revoked keys, repeated PQ material, wrong purpose, omitted wire metadata and operation replay. Rejected execution preserves the complete clearing snapshot."
+  ],
+  "verification": {
+    "remote_host": "softbank-l40s",
+    "workspace": "~/work/pqc-full-integration-20260905",
+    "image_id": "sha256:aa83bce9de257fc59cb3edb989b78844adc95b25783e52177c60ee5f64df1261",
+    "rust": "1.97.1 (8bab26f4f 2026-07-14)",
+    "distinct_tests_passed": 66,
+    "tests": {
+      "deccp_core": 8,
+      "aethel_workspace": 58
+    },
+    "run": "20260905T190017Z-deccp",
+    "result": "PASS",
+    "log": ".artifacts/20260905T190017Z-deccp.log",
+    "log_sha256": "e938d0437066db1ec8fc53339e105318904e59e071082c4d4620140d555e752f",
+    "input_before_sha256": "4061ebb5c98da7462605f61a5ad71b489716a0e21c8301c02b47d87b8aa9c9ca",
+    "input_after_sha256": "72e3b29f9f21ad22f2b62e9681619317c4c4209683a84152daf433c7f496aee9",
+    "checks": "All-target warnings-denied Clippy and full release tests for DeCCP and Aethel; formatting.",
+    "evidence_limits": "Deterministic cryptographic and state-machine tests, including the actual Aethel host transaction dispatcher. Core port fixtures are explicit test boundaries; no external DeFMI deployment, consensus, WAN or performance acceptance is claimed."
+  },
+  "remaining": [
+    "P4 is incomplete. The outer DeFMI governance trust anchor, participant/provider and receipt signatures, CSD/guarantor authority, cross-domain finality and operator rotation propagation still require migration.",
+    "DeCCP authority replacement and rotation operations are not yet exposed; the key metadata and immutable authority digest prevent silent key substitution within an epoch.",
+    "P1 note/opening confidentiality, TLS certificate authentication and WAN measurement; P2 reserve compatibility paths; P3 encrypted holder custody and legacy KYB; P5 hash-based public audit proofs and P6 retirement/recovery remain open.",
+    "FROST, Pedersen binding and anonymous/nullifier proofs remain classical. No full post-quantum system claim, ledger deletion, push, main merge or deployment."
+  ]
+}
