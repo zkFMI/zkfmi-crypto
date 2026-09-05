@@ -11,3 +11,18 @@ license = "MIT"
 description = "Versioned cryptographic boundaries for the ZKFMI post-quantum migration"
 
 [dependencies]
+ed25519-dalek = { version = "=2.2.0", features = ["rand_core", "zeroize"] }
+ml-dsa = { version = "=0.1.1", default-features = false, features = ["alloc", "rand_core", "zeroize"] }
+ml-kem = { version = "=0.3.2", default-features = false, features = ["alloc", "zeroize"] }
+x25519-dalek = { version = "=2.0.1", features = ["static_secrets", "zeroize"] }
+rand_core_06 = { package = "rand_core", version = "=0.6.4", features = ["getrandom"] }
+getrandom_04 = { package = "getrandom", version = "0.4", features = ["sys_rng"] }
+hkdf = "0.12"
+sha2 = "0.10"
+zeroize = { version = "1.8", features = ["alloc"] }
+serde = { version = "1.0", features = ["derive"] }
+
+[dev-dependencies]
+serde_json = "1.0"
+hex = "0.4"
+toml = "0.8"
