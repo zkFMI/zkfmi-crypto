@@ -6,6 +6,7 @@ pub mod canonical;
 pub mod error;
 pub mod hybrid;
 pub mod key;
+pub mod quorum;
 pub mod suite;
 #[cfg(feature = "tls")]
 pub mod tls;

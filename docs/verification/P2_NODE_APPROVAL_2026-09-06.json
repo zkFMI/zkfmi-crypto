@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-09-05T16:44:22.374Z",
+  "status": "in_progress",
+  "phase": "P2 actual node approval path; downstream wire and verifier integration not yet complete",
+  "log": ".artifacts/20260905T164048Z-qomm-rust.log",
+  "log_sha256": "20b699094f5e17c5466b6c6da665ad7bc8c7e5b11336a4a34d9b559160a0e6d4",
+  "source_snapshot_sha256": "ffa1370b7b11ea3ff51dd84c79f72b3b28f0d62fd95c0f020d2f9081f00ae046",
+  "verified": [
+    "48 transport library tests and 6 actual DKG/recovery tests passed",
+    "3 real ML-DSA quorum tests passed, including duplicate member/key, altered context/committee/message, expiry/revocation and key-generation rejection",
+    "All-target transport and crypto Clippy -D warnings passed",
+    "Actual node-held keys sign domain-separated health probes before/after restart; no generic RPC bypass of local authorization, consumed jobs remain unusable"
+  ],
+  "implementation": [
+    "Encrypted durable proof state version 5 adds independent ML-DSA seed, public metadata, cached randomized identity attestations and the finalized PQ committee",
+    "Authenticated DKG peer enrollment and confirmations include ML-DSA; committee binds the same canonical FROST package",
+    "The existing frost_sign nonce-consumption path returns a PQ member approval for the same authorized message; the coordinator verifies both components"
+  ],
+  "limitations": [
+    "Health probes are cryptographic regression evidence, not actual payment/proof acceptance",
+    "Downstream zkPI, typed payment, DeFMI and application wire/state verification must carry and independently verify the PQ approval; the compatibility FROST return type currently discards the verified PQ component",
+    "Initial node keys use cryptographic identities, epoch 1 and a bounded one-year lease; DeKYX entity enrollment and authorized subsequent epochs/rotation remain unresolved",
+    "P1 classical note-opening envelopes and WAN/native lifecycle gates, and P3-P6 remain open"
+  ]
+}
