@@ -11,18 +11,27 @@ stamp=$(date -u +%Y%m%dT%H%M%SZ)
 commit=$(git rev-parse --verify HEAD 2>/dev/null || printf uncommitted)
 log="gate-${stamp}-${commit:0:12}.log"
 mkdir -p .artifacts
+dirty=0
+if [ -n "$(git status --porcelain --untracked-files=all)" ]; then dirty=1; fi
+manifest="input-${stamp}.sha256"
+git ls-files --cached --others --exclude-standard -z -- Cargo.toml Cargo.lock src tests .codex/project-memory \
+  | xargs -0 shasum -a 256 > ".artifacts/$manifest"
+input_hash=$(shasum -a 256 ".artifacts/$manifest" | cut -d ' ' -f 1)
 for attempt in 1 2 3; do
-  if ssh "${ssh_args[@]}" "$host" 'mkdir -p ~/work/zkfmi-crypto'; then break; fi
+  if ssh "${ssh_args[@]}" "$host" 'mkdir -p ~/work/zkfmi-crypto/.cache'; then break; fi
   if [ "$attempt" -eq 3 ]; then exit 1; fi
 done
 rsync -az --exclude=.git --exclude=.artifacts --exclude=.cache --exclude=target ./ "$host:work/zkfmi-crypto/"
+rsync -az ".artifacts/$manifest" "$host:work/zkfmi-crypto/.cache/$manifest"
 set +e
-ssh "${ssh_args[@]}" "$host" bash -s -- "$commit" "$log" <<'REMOTE' | tee ".artifacts/$log"
+ssh "${ssh_args[@]}" "$host" bash -s -- "$commit" "$log" "$manifest" "$input_hash" "$dirty" <<'REMOTE' | tee ".artifacts/$log"
 set -euo pipefail
 cd ~/work/zkfmi-crypto
 mkdir -p .artifacts .cache/cargo .cache/tmp
 exec > >(tee ".artifacts/$2") 2>&1
 printf 'host=%s\ncommit=%s\nstarted_at=%s\n' "$(hostname)" "$1" "$(date -u +%FT%TZ)"
+printf 'worktree_dirty=%s\ninput_manifest=%s\ninput_sha256=%s\n' "$5" "$3" "$4"
+sha256sum --check --status ".cache/$3"
 docker run --rm --network=host --cpus=4 --user "$(id -u):$(id -g)" \
   -e CARGO_HOME=/work/.cache/cargo -e CARGO_BUILD_JOBS=4 -e TMPDIR=/work/.cache/tmp \
   -e RUSTUP_HOME=/work/.cache/rustup \

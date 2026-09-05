@@ -16,6 +16,10 @@ use rand_core_06::RngCore as _;
 use std::collections::BTreeMap;
 use zeroize::{Zeroize, Zeroizing};
 
+#[cfg(test)]
+#[path = "backend_tests.rs"]
+mod tests;
+
 pub(crate) fn signature_context(purpose: KeyPurpose, suite: Suite) -> Vec<u8> {
     let mut out = b"ZKFMI:SIGNATURE:v1".to_vec();
     out.extend_from_slice(&purpose.code().to_be_bytes());
