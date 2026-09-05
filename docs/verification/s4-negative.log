@@ -1,0 +1,5 @@
+    Finished `release` profile [optimized] target(s) in 0.04s
+     Running `target/release/crypto-inventory check .cache/inventory-source .artifacts/inventory-negative-20260905`
+Error: "inventory mismatch: missing=[(\"aethel\", \"crates/aethel/tests/end_to_end.rs\")]; stale=[]"
+grep_files=507 inventory_files=506 primitive_entries=1031 missing=1 stale=0
+negative_probe_exit=1 expected_nonzero=PASS

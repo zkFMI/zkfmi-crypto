@@ -23,3 +23,37 @@ softbank-l40s の `~/work/zkfmi-crypto/` だけに同期し、公式
 
 発注書全文は [docs/orders/2026-09-05-p0-handoff.md](docs/orders/2026-09-05-p0-handoff.md)。
 計測していない性能値や、本番導入・FIPS 認証・外部監査の完了は主張しません。
+
+## 現在の成果物
+
+- [暗号契約と責任境界](docs/CRYPTO_CONTRACT.md): 登録済み方式、正規化、鍵更新、zeroize。
+- [NIST / RFC既知解の出典](tests/vectors/SOURCES.md): 固定コミットと原本・抜粋ハッシュ。
+- [暗号棚卸し](inventory/CRYPTO_INVENTORY.md): 7リポジトリのJSONから生成した一覧。
+
+GitHub認証は着手時に無効だったため、GitHub上のリポジトリ作成とpushは未実施です。
+ローカルGitリポジトリとして管理し、将来作成する場合は発注どおりprivateを初期値にします。
+
+## 棚卸しの再現
+
+原本リポジトリは読み取りだけで使用します。Mac上で行うのはコピーだけです。
+
+```sh
+scripts/capture-inventory.sh /Users/shukob/Research/DeFMI "$PWD/.cache/inventory-source"
+```
+
+生成されたスナップショットをsoftbank-l40sの専用ディレクトリ内
+`.cache/inventory-source/` へ同期した後、同じRust Docker環境で実行します。
+
+```sh
+cargo run --release --bin crypto-inventory -- generate .cache/inventory-source inventory
+scripts/inventory_check.sh .cache/inventory-source
+```
+
+既存スナップショットの上書きは拒否します。再採取するときは新しい名前を指定します。
+検出集合はGNU grepで独立に比較し、ファイル漏れ・余分なファイル・primitive漏れ・
+原本ハッシュ相違・JSONとMarkdownのずれを非ゼロ終了にします。
+固定スナップショットを配置済みの今回の環境では、全ゲートを次で再実行できます。
+
+```sh
+RUN_INVENTORY_CHECK=1 make remote-gate
+```
