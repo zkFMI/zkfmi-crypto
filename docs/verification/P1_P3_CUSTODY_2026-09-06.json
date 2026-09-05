@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-09-05T21:10:12.392Z",
+  "task": "pqc-astra-high-integration-20260906",
+  "status": "in_progress",
+  "checkpoint": "Authenticated recipient delivery core and encrypted DeKYX holder custody",
+  "source_manifest": "P1_P3_CUSTODY_INPUTS_2026-09-06.sha256",
+  "source_manifest_sha256": "5ff1ba1d0eeee9ff32d7dc20f3e4e7b2b43a2a6362651c90467c56303cfdcceb",
+  "changes": [
+    "Recipient envelopes combine independently generated X25519 and ML-KEM-768 secrets using the existing HKDF combiner, then use maintained RustCrypto AES-256-GCM; purpose, context, suite and recipient key are authenticated.",
+    "DeKYX custody encrypts original holder ML-DSA seed, canonical witness scalars and qualification data. Restoration verifies all issued credential bindings and preserves the original holder/nullifier; presentation still enforces current status and replay.",
+    "Exclusive guarded snapshot and source-hash-guarded remote formatting import isolate this continuation from the previous interrupted runtime."
+  ],
+  "dependencies": {
+    "aes_gcm": {
+      "version": "0.10.3",
+      "source": "https://github.com/RustCrypto/AEADs",
+      "documentation": "https://docs.rs/aes-gcm/0.10.3/aes_gcm/",
+      "license": "Apache-2.0 OR MIT",
+      "pin": "Cargo.lock registry checksum"
+    },
+    "aes": {
+      "version": "0.8.4",
+      "license": "Apache-2.0 OR MIT",
+      "pin": "Cargo.lock registry checksum"
+    }
+  },
+  "verification": {
+    "remote_host": "softbank-l40s",
+    "workspace": "~/work/pqc-astra-high-20260906",
+    "image_id": "sha256:0e2bcaef56d041a486784e54104a81aebe0da44bd03019bd70bc0401e42e4a97",
+    "rust": "1.97.1",
+    "run": "20260905T210740Z-zkfmi-crypto",
+    "result": "PASS",
+    "log": ".artifacts/20260905T210740Z-zkfmi-crypto.log",
+    "log_sha256": "536fd01170d5469e0c3cb289a134feee98b99cb54ead9e39fb9fa8730e3e93e9",
+    "crypto_tests": 50,
+    "dekyx_tests": 7,
+    "checks": [
+      "Seven workspace checks including actual QOMM service binaries; unrelated historical helper exclusion explicitly remains in runner.",
+      "Standalone zkPI CLI self-test requires both FROST and enrolled PQ approvals and rejects absent/corrupt PQ evidence.",
+      "DeKYX full release tests and all-target Clippy, crypto all-feature release tests and all-target/all-feature Clippy with warnings denied.",
+      "OpenSSL independently decrypts the RustCrypto AES-GCM payload."
+    ],
+    "limits": "Deterministic cryptographic evidence; no WAN, operator custody, HSM, live validator, or quantum anonymous-proof claim."
+  },
+  "remaining": [
+    "P1 note delivery consumer verification and threshold opening envelopes; the latter still use classical curve masks.",
+    "P2 real reserve execution and consumer compatibility gate; P3 legacy KYB and issuer administration.",
+    "P4 inner authority/receipt signatures and rotation; P5 public proof work; P6 retirement/recovery and immutable independent consumer pins.",
+    "No main writes, push, deployment or ledger deletion."
+  ]
+}

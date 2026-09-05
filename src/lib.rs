@@ -7,6 +7,7 @@ pub mod error;
 pub mod hybrid;
 pub mod key;
 pub mod quorum;
+pub mod sealed;
 pub mod suite;
 #[cfg(feature = "test-support")]
 pub mod test_support;

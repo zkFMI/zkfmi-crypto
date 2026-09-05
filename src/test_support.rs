@@ -60,3 +60,17 @@ pub fn public_fixture_pq_key(classical_public: &[u8; 32]) -> MlDsa65Signer {
         .into();
     MlDsa65Signer::from_seed(&seed)
 }
+
+/// Structurally valid encrypted bytes for public wire fixtures. The fixed
+/// recipient and object context are public; this is not a wallet delivery test.
+pub fn note_envelope() -> crate::sealed::SealedMessage {
+    use crate::traits::KemDecapsulator;
+    let key = crate::hybrid::kem::HybridKemKey::from_seed(&[37; 96]);
+    crate::sealed::SealedMessage::seal(
+        &key.public_key(),
+        crate::sealed::SealingPurpose::NoteOpening,
+        &[39; 32],
+        &[0; 40],
+    )
+    .unwrap()
+}

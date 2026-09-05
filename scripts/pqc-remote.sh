@@ -6,14 +6,17 @@ command=${2:?expected verification command}
 native=${PQC_NATIVE_ENGINE:-0}
 case "$native" in 0|1) ;; *) echo 'PQC_NATIVE_ENGINE must be 0 or 1' >&2; exit 2;; esac
 root=$(cd .. && pwd)
+test "$root" = /Users/shukob/Research/DeFMI/zkfmi-crypto/.worktrees/pqc-astra-high
 host=softbank-l40s
-remote=work/pqc-full-integration-20260905
+remote=work/pqc-astra-high-20260906
 stamp=$(date -u +%Y%m%dT%H%M%SZ)
 run="${stamp}-${project//\//-}"
 ssh_args=(-S /Users/shukob/Research/DeFMI/zkfmi-crypto/.cache/ssh-direct -o BatchMode=yes -o ProxyJump=none)
 printf -v RSYNC_RSH '%q ' ssh "${ssh_args[@]}"
 export RSYNC_RSH
 mkdir -p .artifacts
+mkdir .artifacts/remote-run.lock || { echo 'another isolated remote run owns the source snapshot' >&2; exit 2; }
+trap 'rmdir .artifacts/remote-run.lock' EXIT
 ssh "${ssh_args[@]}" "$host" "mkdir -p ~/$remote/{src,.cache/tmp,.cache/cargo,.cache/target,.artifacts}"
 for repo in zkfmi-crypto qomm zkpi defmi oclob dekyx deccp aethel; do
   rsync -az --delete --exclude=.git --exclude=.cache --exclude=.worktrees --exclude=.artifacts --exclude=target --exclude=node_modules --exclude=.runtime \
@@ -23,6 +26,7 @@ printf -v remote_command 'bash -s -- %q %q %q %q %q' "$remote" "$project" "$comm
 ssh "${ssh_args[@]}" "$host" "$remote_command" <<'REMOTE' | tee ".artifacts/$run.log"
 set -euo pipefail
 [ "$#" -eq 5 ] || { echo 'invalid remote verification arguments' >&2; exit 2; }
+test "$1" = work/pqc-astra-high-20260906
 umask 077
 cd "$HOME/$1"
 exec > >(tee ".artifacts/$4.log") 2>&1
@@ -38,7 +42,8 @@ image=rust:1.97-bookworm
 target=.cache/target
 native_mount=()
 if [ "$5" = 1 ]; then
-  image=pqc-full-integration:rust-1.97.1-mpspdz-9d809599-openssl-3.5.5-pqc-auth-v2
+  # Existing verified image content; another task cannot replace a mutable tag.
+  image=sha256:91d284e9e0f0ba3fed0a005997edff224182eb949a465f54a6c287c249e5c3a4
   target=.cache/target-native
   image_id=$(docker image inspect "$image" --format '{{.Id}}')
   engine_dir=".cache/native-engine-${image_id#sha256:}"

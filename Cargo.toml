@@ -18,6 +18,9 @@ test-support = []
 tls = ["dep:openssl", "dep:openssl-src"]
 
 [dependencies]
+# Recipient note/opening envelopes use the upstream AES-GCM implementation.
+aes-gcm = { version = "=0.10.3", default-features = false, features = ["aes", "alloc", "zeroize"] }
+aes = { version = "=0.8.4", features = ["zeroize"] }
 openssl = { version = "=0.10.81", features = ["vendored"], optional = true }
 # Keep the vendored TLS implementation on the reviewed OpenSSL 3.5 release.
 openssl-src = { version = "=300.5.5", optional = true }

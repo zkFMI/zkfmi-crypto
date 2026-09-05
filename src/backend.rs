@@ -136,6 +136,12 @@ pub struct MlDsa65Signer {
 }
 
 impl MlDsa65Signer {
+    /// Export only into authenticated encrypted custody. The returned buffer
+    /// zeroizes on drop; callers must not log or serialize it in cleartext.
+    pub fn custody_seed(&self) -> SecretBytes {
+        Zeroizing::new(self.key.as_seed().to_vec())
+    }
+
     pub fn generate() -> Result<Self> {
         let mut seed = Zeroizing::new([0u8; 32]);
         getrandom_04::fill(seed.as_mut()).map_err(|_| CryptoError::Randomness)?;
