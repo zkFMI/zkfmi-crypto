@@ -180,6 +180,6 @@ zkfmi-siteのファイル、既存Cargo.lock、pin、Dockerfile、composeは編�
 
 ## 判断を要する事項
 
-- リポジトリ公開範囲: 作成時の既定値は発注どおりprivate。publicへの変更はユーザー判断。
+- リポジトリ公開範囲: 初回発注時はprivateを既定としていたが、2026-09-05の追加指示でpublicに決定済み。GitHub認証が無効のため、GitHub上の作成・pushは引き続き未実施。
 - aws-lc-rs: P0はRustCryptoを採用済み。aws-lc-rsを本番候補として採用するかは別途判断。
 - TLS認証: ML-DSA証明書単独か二重証明書かは未選択。P1実装前に決定する。

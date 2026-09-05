@@ -30,9 +30,11 @@ softbank-l40s の `~/work/zkfmi-crypto/` だけに同期し、公式
 - [NIST / RFC既知解の出典](tests/vectors/SOURCES.md): 固定コミットと原本・抜粋ハッシュ。
 - [暗号棚卸し](inventory/CRYPTO_INVENTORY.md): 7リポジトリのJSONから生成した一覧。
 - [独立P0の検収報告](docs/verification/P0_REPORT.md): S1〜S5のコミット、実行結果、変更範囲と保留事項。
+- [Canton以外の競合サーベイ](docs/research/COMPETITORS_EX_CANTON_2026-09-05.md): 17対象の秘密境界、金融業務、成熟度とZKFMIの比較課題。
 
-GitHub認証は着手時に無効だったため、GitHub上のリポジトリ作成とpushは未実施です。
-ローカルGitリポジトリとして管理し、将来作成する場合は発注どおりprivateを初期値にします。
+公開範囲は2026-09-05のユーザー指示でpublicに決定しました。
+GitHub認証が無効のため、GitHub上のリポジトリ作成とpushは未実施です。
+認証復旧後はpublicで作成します。初回発注書のprivate指定はこの決定で更新されています。
 
 ## 棚卸しの再現
 
