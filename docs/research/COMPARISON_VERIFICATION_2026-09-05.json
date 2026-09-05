@@ -1,0 +1,24 @@
+{
+  "checked_at": "2026-09-05T13:35:36.674Z",
+  "markdown_files": 15,
+  "targets": 18,
+  "decisions": 9,
+  "strategies": 6,
+  "gates": 5,
+  "original_baseline_preserved": "4f26c09b8e3ad447cbd22ac5d9fd939d978d5b879939d275489c2c37135904c1",
+  "failures": [],
+  "project_jsonl_validation": "PASS",
+  "project_toml_validation": "PASS (remote Cargo TOML parser with package.metadata wrapper; no build)",
+  "source_manifest_rechecked": true,
+  "foundation_receipt_sha256": "7dd47af37f2757224d860d6feb6e59e1b84e4651b99170c567b0a25478a9a6fd",
+  "verified_at": "2026-09-05T13:40:02.946Z",
+  "final_wording_check": {
+    "verified_at": "2026-09-05T13:41:08.424Z",
+    "files": [
+      "docs/strategy/ZKFMI_STRATEGY_2026-09-05.md",
+      "../defmi/docs/APPLICATION_INDEPENDENCE_JA.md"
+    ],
+    "status": "PASS",
+    "change": "Clarified the OCLOB metadata mount and removed a duplicated conjunction; references and whitespace rechecked."
+  }
+}

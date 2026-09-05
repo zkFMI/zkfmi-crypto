@@ -1,0 +1,885 @@
+{
+  "schema_version": 1,
+  "captured_at": "2026-09-05T13:32:08.593Z",
+  "definition": "Unique HTTP(S) URLs in reference definitions of the five comparison documents. This is not a count of successful fetches, distinct publications, adopters or implementations.",
+  "unique_reference_urls": 77,
+  "fable_fetch_recheck": {
+    "referenced_urls": 38,
+    "successfully_opened_and_compared": 37,
+    "failed_original_url": "https://investors.tradeweb.com/news-releases/news-release-details/tradeweb-facilitates-landmark-chain-us-treasuries-transaction",
+    "official_replacement": "https://www.canton.network/canton-network-press-releases/tradeweb-on-chain-us-treasuries-canton",
+    "new_successful_urls": 23,
+    "record": "CANTON_FABLE_5_1_MAX_REVIEW_2026-09-05.md"
+  },
+  "urls": [
+    {
+      "url": "https://arxiv.org/abs/2310.09621",
+      "references": [
+        {
+          "file": "docs/research/COMPETITORS_EX_CANTON_2026-09-05.md",
+          "reference": "p1"
+        },
+        {
+          "file": "docs/research/COMPETITIVE_DECISIONS_2026-09-05.md",
+          "reference": "p1"
+        }
+      ]
+    },
+    {
+      "url": "https://aztec.network/",
+      "references": [
+        {
+          "file": "docs/research/COMPETITORS_EX_CANTON_2026-09-05.md",
+          "reference": "x1"
+        }
+      ]
+    },
+    {
+      "url": "https://aztec.network/blog/alpha-v5-proving-system-vulnerability",
+      "references": [
+        {
+          "file": "docs/research/COMPETITORS_EX_CANTON_2026-09-05.md",
+          "reference": "x2"
+        },
+        {
+          "file": "docs/research/COMPETITIVE_DECISIONS_2026-09-05.md",
+          "reference": "x2"
+        }
+      ]
+    },
+    {
+      "url": "https://blog.digitalasset.com/blog/customer-story-broadridge",
+      "references": [
+        {
+          "file": "docs/research/CANTON_NETWORK_2026-09-05.md",
+          "reference": "cn13"
+        },
+        {
+          "file": "docs/research/CANTON_FABLE_5_1_MAX_REVIEW_2026-09-05.md",
+          "reference": "cn13"
+        }
+      ]
+    },
+    {
+      "url": "https://blog.digitalasset.com/press-release/launch-of-proof-of-concept-trial-for-digital-collateral-management-using-japanese-government-bonds-jgbs",
+      "references": [
+        {
+          "file": "docs/research/CANTON_NETWORK_2026-09-05.md",
+          "reference": "j6"
+        },
+        {
+          "file": "docs/research/CANTON_FABLE_5_1_MAX_REVIEW_2026-09-05.md",
+          "reference": "j6"
+        }
+      ]
+    },
+    {
+      "url": "https://boostry.co.jp/blog/ibet-for-Fin",
+      "references": [
+        {
+          "file": "docs/research/COMPETITORS_EX_CANTON_2026-09-05.md",
+          "reference": "b1"
+        }
+      ]
+    },
+    {
+      "url": "https://canton.foundation/about-the-foundation/",
+      "references": [
+        {
+          "file": "docs/research/CANTON_FABLE_5_1_MAX_REVIEW_2026-09-05.md",
+          "reference": "cn31"
+        }
+      ]
+    },
+    {
+      "url": "https://canton.foundation/the-gsf-is-now-canton-foundation/",
+      "references": [
+        {
+          "file": "docs/research/CANTON_NETWORK_2026-09-05.md",
+          "reference": "cn24"
+        },
+        {
+          "file": "docs/research/CANTON_FABLE_5_1_MAX_REVIEW_2026-09-05.md",
+          "reference": "cn24"
+        }
+      ]
+    },
+    {
+      "url": "https://chain.link/blog/ccip-cross-chain-standard",
+      "references": [
+        {
+          "file": "docs/research/COMPETITORS_EX_CANTON_2026-09-05.md",
+          "reference": "l2"
+        }
+      ]
+    },
+    {
+      "url": "https://chain.link/blog/how-chainlink-is-bringing-privacy-to-blockchains",
+      "references": [
+        {
+          "file": "docs/research/COMPETITORS_EX_CANTON_2026-09-05.md",
+          "reference": "l1"
+        },
+        {
+          "file": "docs/research/COMPETITIVE_DECISIONS_2026-09-05.md",
+          "reference": "lnk1"
+        }
+      ]
+    },
+    {
+      "url": "https://docs.arcium.com/multi-party-execution-environments-mxes/mpc-protocols",
+      "references": [
+        {
+          "file": "docs/research/COMPETITORS_EX_CANTON_2026-09-05.md",
+          "reference": "a2"
+        },
+        {
+          "file": "docs/research/COMPETITIVE_DECISIONS_2026-09-05.md",
+          "reference": "a2"
+        }
+      ]
+    },
+    {
+      "url": "https://docs.canton.network/global-synchronizer/understand/overview",
+      "references": [
+        {
+          "file": "docs/research/CANTON_FABLE_5_1_MAX_REVIEW_2026-09-05.md",
+          "reference": "cn23"
+        }
+      ]
+    },
+    {
+      "url": "https://docs.canton.network/overview/learn/architecture",
+      "references": [
+        {
+          "file": "docs/research/CANTON_NETWORK_2026-09-05.md",
+          "reference": "cn1"
+        },
+        {
+          "file": "docs/research/CANTON_FABLE_5_1_MAX_REVIEW_2026-09-05.md",
+          "reference": "cn1"
+        }
+      ]
+    },
+    {
+      "url": "https://docs.canton.network/overview/learn/multi-synchronizer",
+      "references": [
+        {
+          "file": "docs/research/CANTON_NETWORK_2026-09-05.md",
+          "reference": "cn6"
+        },
+        {
+          "file": "docs/research/CANTON_FABLE_5_1_MAX_REVIEW_2026-09-05.md",
+          "reference": "cn6"
+        }
+      ]
+    },
+    {
+      "url": "https://docs.canton.network/overview/learn/privacy-model",
+      "references": [
+        {
+          "file": "docs/research/CANTON_NETWORK_2026-09-05.md",
+          "reference": "cn2"
+        },
+        {
+          "file": "docs/research/CANTON_FABLE_5_1_MAX_REVIEW_2026-09-05.md",
+          "reference": "cn2"
+        }
+      ]
+    },
+    {
+      "url": "https://docs.canton.network/overview/learn/trust-model",
+      "references": [
+        {
+          "file": "docs/research/CANTON_NETWORK_2026-09-05.md",
+          "reference": "cn5"
+        },
+        {
+          "file": "docs/research/CANTON_FABLE_5_1_MAX_REVIEW_2026-09-05.md",
+          "reference": "cn5"
+        }
+      ]
+    },
+    {
+      "url": "https://docs.canton.network/overview/reference/cross-sync-dvp-example",
+      "references": [
+        {
+          "file": "docs/research/CANTON_NETWORK_2026-09-05.md",
+          "reference": "cn7"
+        },
+        {
+          "file": "docs/research/CANTON_FABLE_5_1_MAX_REVIEW_2026-09-05.md",
+          "reference": "cn7"
+        }
+      ]
+    },
+    {
+      "url": "https://docs.canton.network/overview/reference/smart-contract-consensus",
+      "references": [
+        {
+          "file": "docs/research/CANTON_NETWORK_2026-09-05.md",
+          "reference": "cn3"
+        },
+        {
+          "file": "docs/research/CANTON_FABLE_5_1_MAX_REVIEW_2026-09-05.md",
+          "reference": "cn3"
+        }
+      ]
+    },
+    {
+      "url": "https://docs.canton.network/overview/reference/super-validator-components",
+      "references": [
+        {
+          "file": "docs/research/CANTON_FABLE_5_1_MAX_REVIEW_2026-09-05.md",
+          "reference": "cn22"
+        }
+      ]
+    },
+    {
+      "url": "https://docs.canton.network/overview/reference/synchronizer-overview",
+      "references": [
+        {
+          "file": "docs/research/CANTON_FABLE_5_1_MAX_REVIEW_2026-09-05.md",
+          "reference": "cn33"
+        }
+      ]
+    },
+    {
+      "url": "https://docs.canton.network/overview/reference/transaction-lifecycle",
+      "references": [
+        {
+          "file": "docs/research/CANTON_NETWORK_2026-09-05.md",
+          "reference": "cn4"
+        },
+        {
+          "file": "docs/research/CANTON_FABLE_5_1_MAX_REVIEW_2026-09-05.md",
+          "reference": "cn4"
+        }
+      ]
+    },
+    {
+      "url": "https://docs.daml.com/canton/architecture/overview.html",
+      "references": [
+        {
+          "file": "docs/research/CANTON_FABLE_5_1_MAX_REVIEW_2026-09-05.md",
+          "reference": "cn16"
+        }
+      ]
+    },
+    {
+      "url": "https://docs.daml.com/concepts/ledger-model/ledger-privacy.html",
+      "references": [
+        {
+          "file": "docs/research/CANTON_FABLE_5_1_MAX_REVIEW_2026-09-05.md",
+          "reference": "cn15"
+        }
+      ]
+    },
+    {
+      "url": "https://docs.dusk.network/developer/integrations/exchanges/",
+      "references": [
+        {
+          "file": "docs/research/COMPETITORS_EX_CANTON_2026-09-05.md",
+          "reference": "d2"
+        },
+        {
+          "file": "docs/research/COMPETITIVE_DECISIONS_2026-09-05.md",
+          "reference": "d2"
+        }
+      ]
+    },
+    {
+      "url": "https://docs.r3.com/en/platform/corda/5.2/developing-applications/ledger/notaries/non-validating-notary.html",
+      "references": [
+        {
+          "file": "docs/research/COMPETITORS_EX_CANTON_2026-09-05.md",
+          "reference": "c2"
+        },
+        {
+          "file": "docs/research/COMPETITIVE_DECISIONS_2026-09-05.md",
+          "reference": "c2"
+        }
+      ]
+    },
+    {
+      "url": "https://docs.sync.global/overview/overview.html",
+      "references": [
+        {
+          "file": "docs/research/CANTON_NETWORK_2026-09-05.md",
+          "reference": "cn8"
+        },
+        {
+          "file": "docs/research/CANTON_FABLE_5_1_MAX_REVIEW_2026-09-05.md",
+          "reference": "cn8"
+        }
+      ]
+    },
+    {
+      "url": "https://docs.zama.org/protocol/protocol/overview/coprocessor",
+      "references": [
+        {
+          "file": "docs/research/COMPETITIVE_DECISIONS_2026-09-05.md",
+          "reference": "z4"
+        }
+      ]
+    },
+    {
+      "url": "https://dusk.network/",
+      "references": [
+        {
+          "file": "docs/research/COMPETITORS_EX_CANTON_2026-09-05.md",
+          "reference": "d1"
+        },
+        {
+          "file": "docs/research/COMPETITIVE_DECISIONS_2026-09-05.md",
+          "reference": "d1"
+        }
+      ]
+    },
+    {
+      "url": "https://finp2p-docs.ownera.io/docs/integration-to-finp2p-api",
+      "references": [
+        {
+          "file": "docs/research/COMPETITORS_EX_CANTON_2026-09-05.md",
+          "reference": "o2"
+        }
+      ]
+    },
+    {
+      "url": "https://finp2p-docs.ownera.io/docs/orchestration-plan-capabilities",
+      "references": [
+        {
+          "file": "docs/research/COMPETITORS_EX_CANTON_2026-09-05.md",
+          "reference": "o1"
+        },
+        {
+          "file": "docs/research/COMPETITIVE_DECISIONS_2026-09-05.md",
+          "reference": "o1"
+        }
+      ]
+    },
+    {
+      "url": "https://fnality.com/news/fnality-commences-initial-phase-of-sterling-payment-operations-in-a-world-first?showiframe=true",
+      "references": [
+        {
+          "file": "docs/research/COMPETITORS_EX_CANTON_2026-09-05.md",
+          "reference": "f2"
+        }
+      ]
+    },
+    {
+      "url": "https://github.com/renegade-fi/renegade",
+      "references": [
+        {
+          "file": "docs/research/COMPETITIVE_DECISIONS_2026-09-05.md",
+          "reference": "r4"
+        }
+      ]
+    },
+    {
+      "url": "https://github.com/zama-ai/kms/blob/main/docs/getting-started/concepts.md",
+      "references": [
+        {
+          "file": "docs/research/COMPETITORS_EX_CANTON_2026-09-05.md",
+          "reference": "z3"
+        },
+        {
+          "file": "docs/research/COMPETITIVE_DECISIONS_2026-09-05.md",
+          "reference": "z3"
+        }
+      ]
+    },
+    {
+      "url": "https://guide.penumbra.zone/overview/privacy",
+      "references": [
+        {
+          "file": "docs/research/COMPETITORS_EX_CANTON_2026-09-05.md",
+          "reference": "n2"
+        }
+      ]
+    },
+    {
+      "url": "https://help.renegade.fi/hc/en-us/articles/32529961385363-What-is-a-collaborative-zkSNARK",
+      "references": [
+        {
+          "file": "docs/research/COMPETITORS_EX_CANTON_2026-09-05.md",
+          "reference": "r2"
+        }
+      ]
+    },
+    {
+      "url": "https://help.renegade.fi/hc/en-us/articles/32530262853395-What-are-relayers-on-Renegade",
+      "references": [
+        {
+          "file": "docs/research/COMPETITORS_EX_CANTON_2026-09-05.md",
+          "reference": "r1"
+        },
+        {
+          "file": "docs/research/COMPETITIVE_DECISIONS_2026-09-05.md",
+          "reference": "r1"
+        }
+      ]
+    },
+    {
+      "url": "https://help.renegade.fi/hc/en-us/articles/32530439391763-What-is-the-Renegade-peer-to-peer-network",
+      "references": [
+        {
+          "file": "docs/research/COMPETITIVE_DECISIONS_2026-09-05.md",
+          "reference": "r5"
+        }
+      ]
+    },
+    {
+      "url": "https://hyperledger-fabric.readthedocs.io/en/latest/private-data/private-data.html",
+      "references": [
+        {
+          "file": "docs/research/COMPETITORS_EX_CANTON_2026-09-05.md",
+          "reference": "h1"
+        },
+        {
+          "file": "docs/research/COMPETITIVE_DECISIONS_2026-09-05.md",
+          "reference": "h1"
+        }
+      ]
+    },
+    {
+      "url": "https://investors.tradeweb.com/news-releases/news-release-details/tradeweb-facilitates-landmark-chain-us-treasuries-transaction",
+      "references": [
+        {
+          "file": "docs/research/CANTON_NETWORK_2026-09-05.md",
+          "reference": "cn14"
+        },
+        {
+          "file": "docs/research/CANTON_FABLE_5_1_MAX_REVIEW_2026-09-05.md",
+          "reference": "cn14"
+        }
+      ]
+    },
+    {
+      "url": "https://partior.com/",
+      "references": [
+        {
+          "file": "docs/research/COMPETITORS_EX_CANTON_2026-09-05.md",
+          "reference": "t1"
+        },
+        {
+          "file": "docs/research/COMPETITIVE_DECISIONS_2026-09-05.md",
+          "reference": "t1"
+        }
+      ]
+    },
+    {
+      "url": "https://progmat.co.jp/concept/st_list/",
+      "references": [
+        {
+          "file": "docs/research/COMPETITORS_EX_CANTON_2026-09-05.md",
+          "reference": "j1"
+        },
+        {
+          "file": "docs/research/COMPETITIVE_DECISIONS_2026-09-05.md",
+          "reference": "j1"
+        }
+      ]
+    },
+    {
+      "url": "https://progmat.co.jp/news/2026-09-03-press/",
+      "references": [
+        {
+          "file": "docs/research/COMPETITORS_EX_CANTON_2026-09-05.md",
+          "reference": "j2"
+        }
+      ]
+    },
+    {
+      "url": "https://protocol.penumbra.zone/main/dex/swap.html",
+      "references": [
+        {
+          "file": "docs/research/COMPETITORS_EX_CANTON_2026-09-05.md",
+          "reference": "n1"
+        },
+        {
+          "file": "docs/research/COMPETITIVE_DECISIONS_2026-09-05.md",
+          "reference": "n1"
+        }
+      ]
+    },
+    {
+      "url": "https://prtimes.jp/main/html/rd/p/000000006.000172212.html",
+      "references": [
+        {
+          "file": "docs/research/CANTON_NETWORK_2026-09-05.md",
+          "reference": "j7"
+        },
+        {
+          "file": "docs/research/CANTON_FABLE_5_1_MAX_REVIEW_2026-09-05.md",
+          "reference": "j7"
+        }
+      ]
+    },
+    {
+      "url": "https://r3.com/r3-announces-launch-of-corda-protocol-on-behalf-of-r3-foundation-to-bring-institutional-grade-curated-yield-to-solana/",
+      "references": [
+        {
+          "file": "docs/research/COMPETITORS_EX_CANTON_2026-09-05.md",
+          "reference": "c3"
+        }
+      ]
+    },
+    {
+      "url": "https://r3.com/r3s-corda-selected-as-first-authorized-dlt-platform-for-european-dlt-pilot-regime/",
+      "references": [
+        {
+          "file": "docs/research/COMPETITORS_EX_CANTON_2026-09-05.md",
+          "reference": "c1"
+        },
+        {
+          "file": "docs/research/COMPETITIVE_DECISIONS_2026-09-05.md",
+          "reference": "c1"
+        }
+      ]
+    },
+    {
+      "url": "https://raw.githubusercontent.com/canton-foundation/cips/main/cip-0056/cip-0056.md",
+      "references": [
+        {
+          "file": "docs/research/CANTON_NETWORK_2026-09-05.md",
+          "reference": "cn26"
+        },
+        {
+          "file": "docs/research/CANTON_FABLE_5_1_MAX_REVIEW_2026-09-05.md",
+          "reference": "cn26"
+        }
+      ]
+    },
+    {
+      "url": "https://raw.githubusercontent.com/canton-network/splice/main/token-standard/splice-api-token-allocation-v1/daml/Splice/Api/Token/AllocationV1.daml",
+      "references": [
+        {
+          "file": "docs/research/CANTON_NETWORK_2026-09-05.md",
+          "reference": "cn34"
+        },
+        {
+          "file": "docs/research/CANTON_FABLE_5_1_MAX_REVIEW_2026-09-05.md",
+          "reference": "cn34"
+        }
+      ]
+    },
+    {
+      "url": "https://renegade.fi/",
+      "references": [
+        {
+          "file": "docs/research/COMPETITORS_EX_CANTON_2026-09-05.md",
+          "reference": "r3"
+        }
+      ]
+    },
+    {
+      "url": "https://usa.visa.com/about-visa/newsroom/press-releases.releaseId.22231.html",
+      "references": [
+        {
+          "file": "docs/research/CANTON_FABLE_5_1_MAX_REVIEW_2026-09-05.md",
+          "reference": "cn28"
+        }
+      ]
+    },
+    {
+      "url": "https://www.arcium.com/",
+      "references": [
+        {
+          "file": "docs/research/COMPETITORS_EX_CANTON_2026-09-05.md",
+          "reference": "a1"
+        }
+      ]
+    },
+    {
+      "url": "https://www.avax.network/about/blog/progmat-migrates-2b-tokenized-securities-to-avalanche",
+      "references": [
+        {
+          "file": "docs/research/COMPETITORS_EX_CANTON_2026-09-05.md",
+          "reference": "j4"
+        }
+      ]
+    },
+    {
+      "url": "https://www.bankofengland.co.uk/financial-stability/financial-market-infrastructure-supervision/report/fmi-annual-report-2025-26",
+      "references": [
+        {
+          "file": "docs/research/COMPETITORS_EX_CANTON_2026-09-05.md",
+          "reference": "f1"
+        },
+        {
+          "file": "docs/research/COMPETITIVE_DECISIONS_2026-09-05.md",
+          "reference": "f1"
+        }
+      ]
+    },
+    {
+      "url": "https://www.broadridge.com/press-release/2025/billions-in-average-daily-processed-trade-volumes-on-broadridge-dlt-repo-platform",
+      "references": [
+        {
+          "file": "docs/research/CANTON_NETWORK_2026-09-05.md",
+          "reference": "cn12"
+        },
+        {
+          "file": "docs/research/CANTON_FABLE_5_1_MAX_REVIEW_2026-09-05.md",
+          "reference": "cn12"
+        }
+      ]
+    },
+    {
+      "url": "https://www.cantex.io/",
+      "references": [
+        {
+          "file": "docs/research/CANTON_FABLE_5_1_MAX_REVIEW_2026-09-05.md",
+          "reference": "cn30"
+        }
+      ]
+    },
+    {
+      "url": "https://www.canton.io/publications/canton-whitepaper.pdf",
+      "references": [
+        {
+          "file": "docs/research/CANTON_NETWORK_2026-09-05.md",
+          "reference": "cn17"
+        },
+        {
+          "file": "docs/research/CANTON_FABLE_5_1_MAX_REVIEW_2026-09-05.md",
+          "reference": "cn17"
+        }
+      ]
+    },
+    {
+      "url": "https://www.canton.network/blog/a-technical-primer",
+      "references": [
+        {
+          "file": "docs/research/CANTON_FABLE_5_1_MAX_REVIEW_2026-09-05.md",
+          "reference": "cn21"
+        }
+      ]
+    },
+    {
+      "url": "https://www.canton.network/blog/how-canton-network-delivers-institutional-grade-privacy",
+      "references": [
+        {
+          "file": "docs/research/CANTON_FABLE_5_1_MAX_REVIEW_2026-09-05.md",
+          "reference": "cn19"
+        }
+      ]
+    },
+    {
+      "url": "https://www.canton.network/blog/logical-synchronizer-upgrades",
+      "references": [
+        {
+          "file": "docs/research/CANTON_NETWORK_2026-09-05.md",
+          "reference": "cn10"
+        },
+        {
+          "file": "docs/research/CANTON_FABLE_5_1_MAX_REVIEW_2026-09-05.md",
+          "reference": "cn10"
+        }
+      ]
+    },
+    {
+      "url": "https://www.canton.network/blog/zero-knowledge-proofs-whe-privacy-needs-more",
+      "references": [
+        {
+          "file": "docs/research/CANTON_FABLE_5_1_MAX_REVIEW_2026-09-05.md",
+          "reference": "cn18"
+        }
+      ]
+    },
+    {
+      "url": "https://www.canton.network/canton-network-press-releases/dtcc-and-digital-asset-partner-to-tokenize-dtc-custodied-u.s.-treasury-securities-on-the-canton-network",
+      "references": [
+        {
+          "file": "docs/research/CANTON_FABLE_5_1_MAX_REVIEW_2026-09-05.md",
+          "reference": "cn27"
+        }
+      ]
+    },
+    {
+      "url": "https://www.canton.network/canton-network-press-releases/the-canton-network-completes-the-most-comprehensive-blockchain-pilot-to-date-for-tokenized-real-world-assets",
+      "references": [
+        {
+          "file": "docs/research/CANTON_NETWORK_2026-09-05.md",
+          "reference": "cn11"
+        },
+        {
+          "file": "docs/research/CANTON_FABLE_5_1_MAX_REVIEW_2026-09-05.md",
+          "reference": "cn11"
+        }
+      ]
+    },
+    {
+      "url": "https://www.canton.network/canton-network-press-releases/the-canton-networks-global-synchronizer-and-canton-coin-go-live",
+      "references": [
+        {
+          "file": "docs/research/CANTON_NETWORK_2026-09-05.md",
+          "reference": "cn9"
+        },
+        {
+          "file": "docs/research/CANTON_FABLE_5_1_MAX_REVIEW_2026-09-05.md",
+          "reference": "cn9"
+        }
+      ]
+    },
+    {
+      "url": "https://www.canton.network/canton-network-press-releases/tradeweb-on-chain-us-treasuries-canton",
+      "references": [
+        {
+          "file": "docs/research/CANTON_NETWORK_2026-09-05.md",
+          "reference": "cn29"
+        },
+        {
+          "file": "docs/research/CANTON_FABLE_5_1_MAX_REVIEW_2026-09-05.md",
+          "reference": "cn29"
+        }
+      ]
+    },
+    {
+      "url": "https://www.canton.network/faq",
+      "references": [
+        {
+          "file": "docs/research/CANTON_FABLE_5_1_MAX_REVIEW_2026-09-05.md",
+          "reference": "cn20"
+        }
+      ]
+    },
+    {
+      "url": "https://www.fsa.go.jp/news/r7/sonota/20251107-2/01.html",
+      "references": [
+        {
+          "file": "docs/research/CANTON_FABLE_5_1_MAX_REVIEW_2026-09-05.md",
+          "reference": "j8"
+        }
+      ]
+    },
+    {
+      "url": "https://www.hydrax.io/blog/hydra-x-partners-with-canton-network-to-launch-the-first-structured-product-on-the-network-the-sigma-value-token/",
+      "references": [
+        {
+          "file": "docs/research/CANTON_FABLE_5_1_MAX_REVIEW_2026-09-05.md",
+          "reference": "cn32"
+        }
+      ]
+    },
+    {
+      "url": "https://www.jpmorgan.com/kinexys/index",
+      "references": [
+        {
+          "file": "docs/research/COMPETITORS_EX_CANTON_2026-09-05.md",
+          "reference": "k2"
+        }
+      ]
+    },
+    {
+      "url": "https://www.jpmorgan.com/payments/newsroom/kinexys-milestones-2026",
+      "references": [
+        {
+          "file": "docs/research/COMPETITORS_EX_CANTON_2026-09-05.md",
+          "reference": "k1"
+        },
+        {
+          "file": "docs/research/COMPETITIVE_DECISIONS_2026-09-05.md",
+          "reference": "k1"
+        }
+      ]
+    },
+    {
+      "url": "https://www.linkedin.com/posts/avacloud_progmat-inc-japans-largest-security-token-activity-7482536047919136768-zSy5",
+      "references": [
+        {
+          "file": "docs/research/COMPETITORS_EX_CANTON_2026-09-05.md",
+          "reference": "j5"
+        },
+        {
+          "file": "docs/research/COMPETITIVE_DECISIONS_2026-09-05.md",
+          "reference": "j5"
+        }
+      ]
+    },
+    {
+      "url": "https://www.linuxfoundation.org/press/largest-financial-institutions-join-the-global-synchronizer-foundation",
+      "references": [
+        {
+          "file": "docs/research/CANTON_FABLE_5_1_MAX_REVIEW_2026-09-05.md",
+          "reference": "cn25"
+        }
+      ]
+    },
+    {
+      "url": "https://www.mufg.jp/dam/pressrelease/2026/pdf/news-20260813-002_ja.pdf",
+      "references": [
+        {
+          "file": "docs/research/COMPETITORS_EX_CANTON_2026-09-05.md",
+          "reference": "j3"
+        },
+        {
+          "file": "docs/research/CANTON_NETWORK_2026-09-05.md",
+          "reference": "j3"
+        },
+        {
+          "file": "docs/research/CANTON_FABLE_5_1_MAX_REVIEW_2026-09-05.md",
+          "reference": "j3"
+        }
+      ]
+    },
+    {
+      "url": "https://www.sbigroup.co.jp/news/pdf/group/2021/0615_a.pdf",
+      "references": [
+        {
+          "file": "docs/research/COMPETITORS_EX_CANTON_2026-09-05.md",
+          "reference": "b2"
+        },
+        {
+          "file": "docs/research/COMPETITIVE_DECISIONS_2026-09-05.md",
+          "reference": "b2"
+        }
+      ]
+    },
+    {
+      "url": "https://www.swift.com/news-events/newsletters/faster-payments-smarter-standards-and-swifts-blockchain-based-shared-ledger-road-ahead-global-finance",
+      "references": [
+        {
+          "file": "docs/research/COMPETITORS_EX_CANTON_2026-09-05.md",
+          "reference": "s2"
+        }
+      ]
+    },
+    {
+      "url": "https://www.swift.com/news-events/press-releases/swifts-blockchain-ledger-ready-use-17-banks-set-pioneer-tokenised-cross-border-payments-trusted-global-infrastructure",
+      "references": [
+        {
+          "file": "docs/research/COMPETITORS_EX_CANTON_2026-09-05.md",
+          "reference": "s1"
+        },
+        {
+          "file": "docs/research/COMPETITIVE_DECISIONS_2026-09-05.md",
+          "reference": "s1"
+        }
+      ]
+    },
+    {
+      "url": "https://www.zama.org/",
+      "references": [
+        {
+          "file": "docs/research/COMPETITORS_EX_CANTON_2026-09-05.md",
+          "reference": "z1"
+        }
+      ]
+    },
+    {
+      "url": "https://www.zama.org/post/zama-developer-program-mainnet-season1-building-for-the-long-game",
+      "references": [
+        {
+          "file": "docs/research/COMPETITORS_EX_CANTON_2026-09-05.md",
+          "reference": "z2"
+        },
+        {
+          "file": "docs/research/COMPETITIVE_DECISIONS_2026-09-05.md",
+          "reference": "z2"
+        }
+      ]
+    }
+  ]
+}

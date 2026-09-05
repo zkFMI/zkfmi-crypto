@@ -28,11 +28,13 @@ softbank-l40s の `~/work/zkfmi-crypto/` だけに同期し、公式
 
 - [暗号契約と責任境界](docs/CRYPTO_CONTRACT.md): 登録済み方式、正規化、鍵更新、zeroize。
 - [NIST / RFC既知解の出典](tests/vectors/SOURCES.md): 固定コミットと原本・抜粋ハッシュ。
-- [暗号棚卸し](inventory/CRYPTO_INVENTORY.md): 7リポジトリのJSONから生成した一覧。
+- [暗号棚卸し](inventory/CRYPTO_INVENTORY.md): P0検収時点の7リポジトリの固定snapshotから生成。後続のAethel分離・OCLOB更新は含まない。
 - [独立P0の検収報告](docs/verification/P0_REPORT.md): S1〜S5のコミット、実行結果、変更範囲と保留事項。
-- [Canton以外の競合サーベイ](docs/research/COMPETITORS_EX_CANTON_2026-09-05.md): 17対象の秘密境界、金融業務、成熟度とZKFMIの比較課題。
-- [比較判断 v1.0](docs/research/COMPETITIVE_DECISIONS_2026-09-05.md): 17対象の扱い、確定した差、主張の限界と実装証拠。
-- [ZKFMI戦略 v1.0](docs/strategy/ZKFMI_STRATEGY_2026-09-05.md): 初期顧客・用途、提供単位、採用と開発の順序、指標と見直し条件。
+- [Canton以外の初回競合サーベイ](docs/research/COMPETITORS_EX_CANTON_2026-09-05.md): 歴史的原文として保持する17対象の秘密境界、金融業務、成熟度とZKFMIの比較課題。
+- [Canton Network追加調査](docs/research/CANTON_NETWORK_2026-09-05.md): Daml、validator / synchronizer、秘密・検証・DvPの境界、商用事例とZKFMIとの差。
+- [Claude Fable 5.1 Maxレビュー](docs/research/CANTON_FABLE_5_1_MAX_REVIEW_2026-09-05.md): Cantonの一次資料、予約・DvP、秘密境界と戦略の独立照合。
+- [比較判断 v1.2](docs/research/COMPETITIVE_DECISIONS_2026-09-05.md): Cantonを含む18対象の扱い、確定した差、主張の限界と実装証拠。
+- [ZKFMI戦略 v1.2](docs/strategy/ZKFMI_STRATEGY_2026-09-05.md): Cantonを競合・実装先・接続先候補に加えた初期顧客、提供単位、採用と開発の順序、指標と見直し条件。
 
 公開範囲は2026-09-05のユーザー指示でpublicに決定しました。
 GitHub認証が無効のため、GitHub上のリポジトリ作成とpushは未実施です。
