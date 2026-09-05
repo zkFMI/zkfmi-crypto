@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-09-05T18:11:28.601Z",
+  "task": "pqc-full-integration-20260905",
+  "model": "GPT-6 max",
+  "status": "in_progress",
+  "checkpoint": "P2 application fill/cancel, Aethel receivable and enrolled native facility verification",
+  "source_files": 574,
+  "source_manifest": "P2_APPLICATION_INPUTS_2026-09-06.sha256",
+  "source_manifest_sha256": "ed2ce583915ca7cd6612c12baca8bb96627f6be91907980ac71a3852bbd0e652",
+  "source_match": "Every final manifest entry matches its isolated local source bytes. The application run precedes only the three native facility source changes covered by the second run.",
+  "protocols": {
+    "application_reserve_scope": 2,
+    "application_note_fill": 2,
+    "application_note_release": 2,
+    "aethel_receivable_hybrid": 2
+  },
+  "changes": [
+    "Application reserve scopes bind the complete PQ committee digest and canonical FROST package. Native fills and cancellations require both signatures; the base payment also requires its enrolled PQ approval. Public expiry retains its original time-driven unsigned behavior.",
+    "OCLOB collaborative settlement pins both committees before state, carries the proof committee in the actual proof/certification flow, and writes/loads its explicit public enrollment file during native bootstrap.",
+    "Aethel receivable instructions carry a canonical PQ context approval; the application host builds its verifier from the governance-enrolled DeFMI record. No foundation-to-application dependency is introduced.",
+    "Archived fill recovery verifies both cryptographic components without treating the instruction deadline or current clock as execution time. This integrity-only API returns no VerifiedApplicationFill. Actual VM/facility execution checks live key validity.",
+    "Native facility product settlement builds its verifier from the venue/admission-epoch record, requiring PQ approval even when the supplied venue only allows classical signatures. Record identity, validity, widths and three-of-seven enrollment are enforced."
+  ],
+  "verification": {
+    "remote_host": "softbank-l40s",
+    "workspace": "~/work/pqc-full-integration-20260905",
+    "image": "pqc-full-integration:rust-1.97.1-mpspdz-9d809599-openssl-3.5.5",
+    "image_id": "sha256:aa83bce9de257fc59cb3edb989b78844adc95b25783e52177c60ee5f64df1261",
+    "rust": "1.97.1 (8bab26f4f 2026-07-14)",
+    "distinct_tests_passed": 156,
+    "groups": [
+      {
+        "run": "20260905T180400Z-oclob",
+        "tests": {
+          "oclob_settlement": 28,
+          "oclob_node": 41,
+          "defmi_vm_application_lifecycle": 13,
+          "aethel_receivable": 5,
+          "aethel_defmi_host": 2,
+          "zkpi": 46
+        },
+        "result": "PASS",
+        "log": ".artifacts/20260905T180400Z-oclob.log",
+        "log_sha256": "8790bcd1c438e8f8d8720d69e1005bc4aabc9606f20fd144c02e6ea6d5c1a2a8",
+        "input_before_sha256": "bd12fbcfb91f9c61c02851445dab8303df5c18c2387b403b417145f2555292fa",
+        "input_after_sha256": "506181bc451fed1996411df09e9271c07fb6c83bfd143866909c25dac905109e"
+      },
+      {
+        "run": "20260905T180903Z-defmi-rust",
+        "tests": {
+          "defmi_facility": 20,
+          "settlement_verifier": 1
+        },
+        "result": "PASS",
+        "log": ".artifacts/20260905T180903Z-defmi-rust.log",
+        "log_sha256": "e87a55bdce6ee850e9e5282d86870b9dc27a10f5570caa86b08fb2a85f8c4ce1",
+        "input_before_sha256": "7f2d46afe7ba0045a73be1fe2ff0370cd2158790e3b09a587e071c6a47c6d41a",
+        "input_after_sha256": "ed2ce583915ca7cd6612c12baca8bb96627f6be91907980ac71a3852bbd0e652"
+      }
+    ],
+    "checks": "Format plus all-target Clippy -D warnings for OCLOB node/settlement/demo, DeFMI VM/core/SDK, Aethel zkPI/host and zkPI. The native facility follow-up repeats affected core Clippy and its complete facility test file.",
+    "negative_cases": "Missing/corrupt/classical-only signatures, fewer-than-threshold or duplicate approvers, epoch/scope substitution, invalid base-payment PQ approval, expiry before new execution, archive corruption, and absent registered native verifier. VM serialized state and native facility state root remain unchanged after rejection.",
+    "evidence_limits": "Deterministic real-cryptography tests with generated test keys. Native engine image is used for its linked dependency; no native MPC execution, chain/WAN run or performance comparison is part of this checkpoint."
+  },
+  "remaining": [
+    "The full migration remains in progress. P1 encrypted note/opening delivery still uses Ristretto DH; no post-change WAN or comparative performance gate has run.",
+    "P2 standing-pool allocation approvals and other caller-supplied reservation/release verifier paths remain to be connected. Bootstrap node keys are not yet bound to DeKYX-confirmed legal operators; authorized rotation and revocation propagation remain unfinished.",
+    "P3 credentials, issuer/status-list signatures and participant authorization remain classical. P4 governance, clearing, guarantor/collateral and cross-domain authorization still need integration.",
+    "FROST, Pedersen binding, range/anonymous proofs and TLS certificate authentication remain classical. Independent ML-DSA quorum approval does not make these primitives post-quantum.",
+    "P5 hash-based public audit proofs and P6 checkpoint/retirement/recovery gates remain open. No live Avalanche or seven-operator acceptance is claimed.",
+    "Immutable dependency overlays are unpublished; no branch push, shared-main merge, deployment or ledger deletion occurred."
+  ]
+}
