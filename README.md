@@ -31,6 +31,8 @@ softbank-l40s の `~/work/zkfmi-crypto/` だけに同期し、公式
 - [暗号棚卸し](inventory/CRYPTO_INVENTORY.md): 7リポジトリのJSONから生成した一覧。
 - [独立P0の検収報告](docs/verification/P0_REPORT.md): S1〜S5のコミット、実行結果、変更範囲と保留事項。
 - [Canton以外の競合サーベイ](docs/research/COMPETITORS_EX_CANTON_2026-09-05.md): 17対象の秘密境界、金融業務、成熟度とZKFMIの比較課題。
+- [比較判断 v1.0](docs/research/COMPETITIVE_DECISIONS_2026-09-05.md): 17対象の扱い、確定した差、主張の限界と実装証拠。
+- [ZKFMI戦略 v1.0](docs/strategy/ZKFMI_STRATEGY_2026-09-05.md): 初期顧客・用途、提供単位、採用と開発の順序、指標と見直し条件。
 
 公開範囲は2026-09-05のユーザー指示でpublicに決定しました。
 GitHub認証が無効のため、GitHub上のリポジトリ作成とpushは未実施です。

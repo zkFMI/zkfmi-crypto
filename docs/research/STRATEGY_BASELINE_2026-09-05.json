@@ -1,0 +1,161 @@
+{
+  "schema_version": 1,
+  "purpose": "Read-only evidence baseline for competitive comparison and strategy; not an experiment manifest or production acceptance",
+  "captured_at": "2026-09-05T10:55:32Z",
+  "repositories": [
+    {
+      "name": "defmi",
+      "head": "33d0c97380c28c665d20d624d351fac559ef1ada",
+      "dirty_paths": []
+    },
+    {
+      "name": "oclob",
+      "head": "ac936854259216c44139018da5bb386ddb507009",
+      "dirty_paths": [
+        "Makefile",
+        "docs/RESERVATION_PRIVACY.md",
+        "research/experiment-ledger.jsonl",
+        "rust/oclob-demo/src/bin/native_acceptance/mod.rs",
+        "rust/oclob-node/src/bin/oclob-edge-submit.rs",
+        "rust/oclob-node/src/bin/oclob-lab-provision.rs",
+        "rust/oclob-node/src/bin/oclob-native-e2e.rs",
+        "rust/oclob-node/src/native_finality.rs",
+        "research/manifests/oclob_native_cycle_001.json",
+        "research/manifests/oclob_native_cycle_002.json",
+        "research/manifests/oclob_native_cycle_003.json",
+        "research/oclob_native_cycle_contract.json"
+      ]
+    },
+    {
+      "name": "qomm",
+      "head": "bd8674fd1b95901eb5a0f59f7fb934faf9f7927b",
+      "dirty_paths": []
+    },
+    {
+      "name": "zkpi",
+      "head": "62a4c4250ea7a2f5900fd8a5621b0e4201462029",
+      "dirty_paths": []
+    },
+    {
+      "name": "dekyx",
+      "head": "67eb59a1548740d15585a42d9cff8bc06ae95c5e",
+      "dirty_paths": []
+    },
+    {
+      "name": "deccp",
+      "head": "3660ebab170723d055be3cf26ea8e2f039d6514b",
+      "dirty_paths": []
+    }
+  ],
+  "files": [
+    {
+      "id": "L1",
+      "path": "/Users/shukob/Research/DeFMI/defmi/README.md",
+      "sha256": "ff7fd7c295a1e378c8b98cd9733eaccea29d2b4b13a7811c7eb0be4d0bd6f43d"
+    },
+    {
+      "id": "L2",
+      "path": "/Users/shukob/Research/DeFMI/defmi/POSITION.md",
+      "sha256": "20780b4f01a0a2a5df150fe9508bcc0474fa3aff5cbe9778a5a72ea106600b26"
+    },
+    {
+      "id": "L3",
+      "path": "/Users/shukob/Research/DeFMI/defmi/docs/NOTE_PROOF_SECURITY_REVIEW_20260905.md",
+      "sha256": "cd4012f8a7da919355c418fa08418c101a99b530cc063ab7dedcfa2989d87bf0"
+    },
+    {
+      "id": "L4",
+      "path": "/Users/shukob/Research/DeFMI/oclob/README.md",
+      "sha256": "8f0514bd4aa624a5511aaea592ab011895221bd113da08275ed6623dd596eca4"
+    },
+    {
+      "id": "L5",
+      "path": "/Users/shukob/Research/DeFMI/oclob/docs/NATIVE_MULTIFILL_JA.md",
+      "sha256": "ee6036c1a19198a98ea95ee59332eb1dba0bbeff9201f923fcf5ac4ab8b90b47"
+    },
+    {
+      "id": "L6",
+      "path": "/Users/shukob/Research/DeFMI/oclob/artifacts/oclob_native_multifill.json",
+      "sha256": "ed871ddd926d5865f0e8c3f3c58a8dcdcdf7f18108fa5759424752e8d200b970"
+    },
+    {
+      "id": "L7",
+      "path": "/Users/shukob/Research/DeFMI/oclob/research/experiment-ledger.jsonl",
+      "sha256": "92d5eabef6f3699c692b448cc267bcaca5e22856c5e357012d4aabd6380873fb"
+    },
+    {
+      "id": "L8",
+      "path": "/Users/shukob/Research/DeFMI/oclob/research/oclob_native_cycle_contract.json",
+      "sha256": "b79ab992fb5fd2d5abf1c0cfe9eea6707f3188b57debdd97c555107160ea9d9a"
+    },
+    {
+      "id": "L9",
+      "path": "/Users/shukob/Research/DeFMI/oclob/research/manifests/oclob_native_cycle_002.json",
+      "sha256": "e5d96442c80c99158d607b4eb841704259c575c0f23e556f099282809b2ceb04"
+    },
+    {
+      "id": "L10",
+      "path": "/Users/shukob/Research/DeFMI/qomm/README.md",
+      "sha256": "4a777a30f232c48c739af6797c2f5d0569560aaeea04e8d09671118f3ea42820"
+    },
+    {
+      "id": "L11",
+      "path": "/Users/shukob/Research/DeFMI/qomm/research/contract.json",
+      "sha256": "8c783133f6f737784497d700d9738a6ab9623c524fe36cae85635cb9f4153333"
+    },
+    {
+      "id": "L12",
+      "path": "/Users/shukob/Research/DeFMI/qomm/research/ledger.jsonl",
+      "sha256": "417f1a757d60e8ee73b16885aa4d0f3ba4dbf4ba1ed079812397082e19e42b25"
+    },
+    {
+      "id": "L13",
+      "path": "/Users/shukob/Research/DeFMI/zkpi/README.md",
+      "sha256": "8724da69536bbf5833d4ac3f9ceaf94a658ad5ddf2cf67cd3858fed8bd7db96f"
+    },
+    {
+      "id": "L14",
+      "path": "/Users/shukob/Research/DeFMI/dekyx/README.md",
+      "sha256": "1c456cf89903778556180d2b84068cc0fd8b2e3250d5d839e795119b27f5d679"
+    },
+    {
+      "id": "L15",
+      "path": "/Users/shukob/Research/DeFMI/deccp/README.md",
+      "sha256": "825c7eaae93b2084f021ff4356efc42055db00d62f024967f5262d7ad5263635"
+    }
+  ],
+  "confirmed_local_receipt": {
+    "path": "/Users/shukob/Research/DeFMI/oclob/artifacts/oclob_native_multifill.json",
+    "sha256": "ed871ddd926d5865f0e8c3f3c58a8dcdcdf7f18108fa5759424752e8d200b970",
+    "verdict": "smoke_only",
+    "atomically_settled_fills": 2,
+    "canonical_transactions": 1,
+    "node_observations": 14,
+    "mpc_containers": 7,
+    "validator_containers": 5,
+    "independent_operators": false,
+    "wan_evidence": false
+  },
+  "earliest_unresolved_native_gate": {
+    "contract_id": "oclob-native-cycle-v1",
+    "contract_sha256": "b79ab992fb5fd2d5abf1c0cfe9eea6707f3188b57debdd97c555107160ea9d9a",
+    "last_recorded_experiment": "oclob-native-cycle-rough-001",
+    "verdict": "rejected",
+    "note": "At this snapshot no completed two-round cycle artifact; ongoing uncommitted work belongs to another task. Do not reset or replace it."
+  },
+  "qomm_research_gate": {
+    "contract_id": "QOMM-PRODUCT-2026-08-24",
+    "contract_sha256": "8c783133f6f737784497d700d9738a6ab9623c524fe36cae85635cb9f4153333",
+    "stage": "smoke",
+    "external_validation_required": true
+  },
+  "strategy_assumption": {
+    "priority": "Financial-institution adoption evaluation",
+    "status": "Planning assumption pending customer evidence; optional user preference question had no answer at drafting time"
+  },
+  "exclusions": [
+    "No runtime source, experiment contract or existing ledger changed",
+    "No competitor code execution, performance benchmark or security audit",
+    "No outreach, contract, purchase, deployment or GitHub publication"
+  ]
+}

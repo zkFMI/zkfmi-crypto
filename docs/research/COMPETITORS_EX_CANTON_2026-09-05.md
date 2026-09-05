@@ -2,6 +2,8 @@
 
 調査日・情報確認日: **2026-09-05**。対象はZKFMI全体（QOMM / OCLOB / zkPI / DeFMI / DeKYX / DeCCP）の顧客課題に重なる**17の製品・基盤**。暗号ライブラリの選定比較ではない。
 
+**追加調査:** 同日の[比較判断 v1.0](COMPETITIVE_DECISIONS_2026-09-05.md)と[戦略 v1.0](../strategy/ZKFMI_STRATEGY_2026-09-05.md)に、Renegadeの照合証明・市場方式、更新後のZKFMI実装証拠、採用と開発の優先順位を反映した。本書は初回サーベイの確認範囲を保持する。
+
 ## 1. 判断の要点
 
 **比較の優先対象は、秘密取引のRenegade、MPC基盤のArcium、金融機関向けのCorda・Kinexys・Progmat、取引と決済を接続するOwneraである。** この優先順位は、機能の重なりと顧客接点からの本調査の判断であり、市場シェア順位ではない。
