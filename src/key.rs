@@ -106,9 +106,6 @@ impl KeyRecord {
             return Err(CryptoError::InvalidKey);
         }
         match (meta.purpose, self.purpose) {
-            (CryptoPurpose::Signature, KeyPurpose::Transport) => {
-                return Err(CryptoError::InvalidPurpose)
-            }
             (CryptoPurpose::Signature, _) => (),
             (CryptoPurpose::Transport | CryptoPurpose::Kem, KeyPurpose::Transport) => (),
             _ => return Err(CryptoError::InvalidPurpose),

@@ -39,6 +39,59 @@ fn transition() -> (KeyRegistry, KeyRecord) {
 }
 
 #[test]
+fn transport_authentication_signature_keys_preserve_purpose_separation() {
+    let signer = Ed25519Signer::from_seed(&[21; 32]);
+    let mut key = record(&signer, "transport-auth", 1);
+    key.purpose = KeyPurpose::Transport;
+    let id = key.key_id.clone();
+    let mut registry = KeyRegistry::default();
+    registry.insert_initial(key).unwrap();
+    let preimage = SigningPreimage {
+        protocol: "transport-auth".into(),
+        protocol_version: Version::V1,
+        network_id: "net".into(),
+        deployment_id: "node".into(),
+        contract_id: "mtls".into(),
+        tx_kind: KeyPurpose::Transport,
+        object_ids: vec!["peer".into()],
+        sequence_or_nonce: 1,
+        expires_at: 50,
+        suite: signer.suite(),
+        body_hash: [7; 32],
+    };
+    let signature = signer
+        .sign(KeyPurpose::Transport, &preimage.encode().unwrap())
+        .unwrap();
+    assert!(registry
+        .verify_preimage(
+            &id,
+            1,
+            20,
+            &preimage,
+            &signature,
+            &Provider::rustcrypto().unwrap()
+        )
+        .is_ok());
+    assert_eq!(
+        registry.lookup(&id, 1, KeyPurpose::Quote, 20),
+        Err(CryptoError::InvalidPurpose)
+    );
+}
+
+#[test]
+fn kem_keys_cannot_be_enrolled_as_quote_signature_keys() {
+    use zkfmi_crypto::{backend::MlKem768Key, traits::KemDecapsulator};
+    let signer = Ed25519Signer::from_seed(&[21; 32]);
+    let kem = MlKem768Key::generate().unwrap();
+    let mut key = record(&signer, "kem", 1);
+    key.suite = kem.suite();
+    key.public_key = kem.public_key();
+    assert_eq!(key.validate(), Err(CryptoError::InvalidPurpose));
+    key.purpose = KeyPurpose::Transport;
+    assert!(key.validate().is_ok());
+}
+
+#[test]
 fn validity_is_start_inclusive_end_exclusive_and_revocation_inclusive() {
     let signer = Ed25519Signer::from_seed(&[1; 32]);
     let mut key = record(&signer, "a", 1);
