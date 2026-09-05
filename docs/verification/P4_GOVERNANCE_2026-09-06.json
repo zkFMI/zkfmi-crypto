@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-09-05T19:28:37.774Z",
+  "task": "pqc-full-integration-20260905",
+  "status": "in_progress",
+  "model": "GPT-6 max",
+  "checkpoint": "P4 DeFMI hybrid governance and genesis integration",
+  "source_manifest": "P4_GOVERNANCE_INPUTS_2026-09-06.sha256",
+  "source_manifest_sha256": "def7ab10b29b826507c491a9da7b23b4caa64443a5a6ffddbeb73068018ac2ae",
+  "source_files": 576,
+  "source_match": "Every recorded source input matches the isolated worktrees.",
+  "protocols": {
+    "defmi_genesis_wire": "QOMMGEN2",
+    "governance_signing_domain": 3,
+    "committee_digest_domain": 2,
+    "signature_suite": "Ed25519MlDsa65/v1"
+  },
+  "changes": [
+    "DeFMI governance nodes carry common KeyRecord metadata and independent hybrid signing handles. Key identity/generation, suite, purpose, validity, revocation, participant binding, threshold, epoch and chain domain are committed by the enrolled committee digest. Both key components must be unique across members.",
+    "Governance signatures bind the member identity, committee digest, chain domain, parent state root and complete operation statement. The RPC requires the closed suite and committee digest, and rejects classical-only or malformed signatures before state changes.",
+    "The consensus entry and allocation preview bind the authoritative block timestamp. Native SQLite execution and client preflight use an explicit host clock. No request can supply the verifier clock; unset consensus verification time fails closed.",
+    "QOMM bootstrap/acceptance, OCLOB canonical settlement/private admission, DeFMI harnesses, native bridges and the Aethel application host carry the hybrid approvals. Corporate read-only bridges now have an explicit authorizer that cannot sign or verify governance approvals.",
+    "Genesis wire version 2 carries canonical bounded key records, rejects old magic/classical keys/trailing or noncanonical bytes, and validates member key lifetimes. The public development genesis generator uses independently labeled public fixture seeds and never represents production provisioning.",
+    "Deterministic negative tests reject incomplete/corrupt components, substituted committee or epoch, wrong domain/root/statement, duplicate or insufficient signers, omitted suite, wrong key metadata, expiry and premature use. Actual VM and SQLite rejection leaves the complete state/root unchanged; replay remains closed."
+  ],
+  "verification": {
+    "remote_host": "softbank-l40s",
+    "workspace": "~/work/pqc-full-integration-20260905",
+    "image_id": "sha256:aa83bce9de257fc59cb3edb989b78844adc95b25783e52177c60ee5f64df1261",
+    "rust": "1.97.1 (8bab26f4f 2026-07-14)",
+    "distinct_tests_passed": 472,
+    "tests": {
+      "defmi_core": 254,
+      "defmi_vm_and_binaries": 61,
+      "oclob_node_and_settlement": 70,
+      "qomm_demo_and_real_binaries": 29,
+      "aethel_workspace": 58
+    },
+    "run": "20260905T192117Z-oclob",
+    "result": "PASS",
+    "log": ".artifacts/20260905T192117Z-oclob.log",
+    "log_sha256": "b8fd34798bba6d102298d6c2c74c83c3394f0d55e1174cd98e71ab428fd7490a",
+    "input_before_sha256": "ac1202ec15a1a7d1851086c1dc8b850027c1ae174cdf766805065618dfbf2cfb",
+    "input_after_sha256": "def7ab10b29b826507c491a9da7b23b4caa64443a5a6ffddbeb73068018ac2ae",
+    "checks": "Full DeFMI core/VM release regression tests, OCLOB node/settlement, QOMM library and four real binaries, and the full Aethel workspace. All affected targets passed warnings-denied Clippy. The DeFMI harness and all five real QOMM application binaries were also checked. Formatting passed.",
+    "evidence_limits": "Ordinary deterministic cryptographic and state-machine tests. No new MP-SPDZ run, seven-operator deployment, live Avalanche acceptance, WAN or latency study. Classical proof/receipt/participant tests remain regression evidence, not post-quantum evidence."
+  },
+  "remaining": [
+    "P4 is incomplete: participant, provider, guarantor/CSD and receipt signatures, cross-domain finality certificates and governance/clearing rotation propagation still need migration.",
+    "The new genesis requires explicit operator enrollment and chain rollout. Existing legacy chains are not automatically converted. SQLite authorizer configuration remains an operator trust boundary; approved enrollment/rotation of an existing ledger and durable production key provisioning are not implemented by this checkpoint.",
+    "Expired governance authorizations cannot initiate new execution. Archived acceptance recovery across key retirement and outstanding cross-domain obligations requires the P6 lifecycle work.",
+    "P1 note/opening confidentiality, TLS certificate authentication and WAN measurement; P2 reserve compatibility paths; P3 encrypted holder custody and legacy KYB; P5 hash-based public audit proofs and P6 retirement/recovery remain open.",
+    "FROST, Pedersen binding, anonymous/nullifier proofs and the remaining direct classical signatures are not post-quantum. No full system claim, ledger deletion, push, main merge or deployment."
+  ],
+  "genesis_artifact": {
+    "config": "defmi/avalanche/defmivm/config/test-genesis.json",
+    "config_sha256": "e8fa5929e0588e103fb1216cad3b06df5b73cee02da176b9d17aa1ab6c8933ef",
+    "config_bytes": 234135,
+    "wire_sha256": "5ec95ee36baae69f44bc098e365170ff03f2ede77630fb876ea7708573e9a624",
+    "wire_bytes": 51838,
+    "verification": "The real qomm-avalanche-vm CLI consumed the generated JSON and emitted QOMMGEN2 bytes. The checked-in public development config is byte-identical to that tested input. No existing chain or ledger was reset."
+  }
+}
