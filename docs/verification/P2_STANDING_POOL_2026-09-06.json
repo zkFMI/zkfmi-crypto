@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-09-05T18:24:59.976Z",
+  "task": "pqc-full-integration-20260905",
+  "status": "in_progress",
+  "model": "GPT-6 max",
+  "checkpoint": "P2 standing Maker pool allocation approvals",
+  "source_manifest": "P2_STANDING_POOL_INPUTS_2026-09-06.sha256",
+  "source_manifest_sha256": "0b17fbea9f21680c00c66bc88f4c0ae188ccde97ba54820d36ba895a63d9653b",
+  "source_files": 574,
+  "source_match": "Every recorded source input matches the isolated worktrees.",
+  "protocols": {
+    "standing_pool_allocation_statement": 2
+  },
+  "changes": [
+    "Both real coordinator interfaces retain ML-DSA approvals after nodes authorize the exact split, instead of discarding the PQ component. Node authorization verifies the base payment PQ certificate under its own committee.",
+    "Allocation DTOs and canonical statements retain the PQ certificate. The VM verifies both components under the committee already enrolled for the standing pool venue and epoch.",
+    "Real VM reservation tests reject omitted, corrupt, stale-epoch and sub-threshold PQ approvals without changing state. Existing tests still re-sign both components when exercising monetary conservation and stale-parent rejection."
+  ],
+  "verification": {
+    "remote_host": "softbank-l40s",
+    "workspace": "~/work/pqc-full-integration-20260905",
+    "image_id": "sha256:aa83bce9de257fc59cb3edb989b78844adc95b25783e52177c60ee5f64df1261",
+    "rust": "1.97.1 (8bab26f4f 2026-07-14)",
+    "distinct_tests_passed": 108,
+    "tests": {
+      "qomm_transport": 48,
+      "actual_dkg_and_node_recovery": 6,
+      "defmi_vm": 54
+    },
+    "run": "20260905T181604Z-qomm-rust",
+    "result": "PASS",
+    "log": ".artifacts/20260905T181604Z-qomm-rust.log",
+    "log_sha256": "bc827660a51f310407cb51ca3bb9e19b3c71eda8763db2e0dea85ec04ceb242e",
+    "input_before_sha256": "1c0548789f599eeb56fca592a4b366f5dc4a18c4286791ca3011ee37718db906",
+    "input_after_sha256": "0b17fbea9f21680c00c66bc88f4c0ae188ccde97ba54820d36ba895a63d9653b",
+    "checks": "Format and all-target warnings-denied Clippy for transport, DeFMI core and VM. QOMM demo library and all four real binaries passed Clippy; the pre-existing helper autobin is excluded.",
+    "evidence_limits": "Deterministic cryptographic and state-machine tests. No new MPC, live Avalanche, WAN or performance experiment."
+  },
+  "remaining": [
+    "Full migration remains in progress. Other native reservation/release caller-supplied verifier paths and the reserve signing compatibility API still require closure.",
+    "P1 note/opening confidentiality and WAN measurement; P2 legal operator enrollment and complete rotation/revocation propagation; P3-P6 issuer/participant/governance/clearing/cross-domain signatures, public audit proofs, retirement and recovery remain open.",
+    "FROST, Pedersen binding, range/anonymous proofs and TLS certificate authentication remain classical.",
+    "No push, shared-main merge, deployment or ledger deletion. Dependency overlays are unpublished."
+  ]
+}
