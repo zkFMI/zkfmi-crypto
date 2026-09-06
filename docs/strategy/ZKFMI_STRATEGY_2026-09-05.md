@@ -173,7 +173,7 @@ Do not derive prices, market size, or expected orders from this research. Estima
 
 ### Publication Policy
 
-zkfmi-crypto was published publicly on [GitHub main](https://github.com/shukob/zkfmi-crypto) on 2026-09-05. Public comparison tables retain sources and versions; do not label competitors' unverified items as “absent.” Agree conditions with the partner for individual customers' confidential materials and reproducibility materials that may be published.
+zkfmi-crypto was published publicly on [GitHub main](https://github.com/zkFMI/zkfmi-crypto) on 2026-09-05. Public comparison tables retain sources and versions; do not label competitors' unverified items as “absent.” Agree conditions with the partner for individual customers' confidential materials and reproducibility materials that may be published.
 
 ### Research Claims
 
