@@ -43,7 +43,7 @@ validation, or completion of an external audit.
 - [ZKFMI strategy v1.2](docs/strategy/ZKFMI_STRATEGY_2026-09-05.md): initial customers, offering scope, adoption and development sequence, metrics, and review conditions, including Canton as a competitor and possible implementation or integration platform.
 
 The user selected public visibility on 2026-09-05. The repository is published
-on `main` at [shukob/zkfmi-crypto](https://github.com/shukob/zkfmi-crypto).
+on `main` at [shukob/zkfmi-crypto](https://github.com/zkFMI/zkfmi-crypto).
 This decision supersedes the private visibility specified in the original work order.
 
 ## Reproducing the inventory
