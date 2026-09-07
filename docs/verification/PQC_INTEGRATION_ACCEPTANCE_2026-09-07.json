@@ -303,5 +303,43 @@
       "dekyx": "4ea50f5c25482c680716622d39b008dd6e0645c8",
       "deccp": "934343fd59db866b83772253a082d7da371ac230"
     }
+  },
+  "seventh_run": {
+    "id": "20260907t221515z-68892-pqc-native-acceptance",
+    "result": "PASS",
+    "reason": "Same sources as the sixth run plus one fix in qomm-transport: ProofPartyConfig::validate decoded the 32-byte hybrid fingerprint of the trusted DeFMI receipt key as an Ed25519 point and refused about half of all valid fingerprints, including the development receipt key of the public demo network built from qomm main; the check now uses the application-key fingerprint decoder. Every dependant re-pinned and re-locked; the eight main branches were fast-forwarded to these revisions.",
+    "receipts": "zkfmi-crypto/.artifacts/20260907t221515z-68892-pqc-native-acceptance",
+    "top_level_log_sha256": "7b3cd8f75c0676eb7929b7350ecef8346857b8053a69f80d9a2ab24de80ff4f2",
+    "source_before_sha256": "411b5e421a9a75e83dee0f1181614cda00f8f1194b148b4c4577e18cd1054fee",
+    "scenario_artifacts_sha256": "f523cb48158bae836b8a74d6852d7d90ea642bc0d4b29a9aafebb90b27385b2b",
+    "crypto_pin": "f8b8f9a780af0d776d6821fba472762291807da8",
+    "scenarios": {
+      "market": {
+        "artifact": "zkfmi-crypto/.artifacts/20260907t221515z-68892-pqc-native-acceptance/market.json",
+        "sha256": "d22450df7bed3a12caaac86508d7671cac69c57534c32647114e7c55dca9e102"
+      },
+      "finality": {
+        "artifact": "zkfmi-crypto/.artifacts/20260907t221515z-68892-pqc-native-acceptance/finality.json",
+        "sha256": "55a3b4c4e777aa65ef6087c8e3fe195adb24faf500ab56af079d0970f69aa966"
+      },
+      "lifecycle": {
+        "artifact": "zkfmi-crypto/.artifacts/20260907t221515z-68892-pqc-native-acceptance/lifecycle.json",
+        "sha256": "d306e48fde0f77c42b13a5403e1fe2d3475d1e0b7d00002d4255b5209317edc3"
+      }
+    },
+    "experiment_ledger": {
+      "records_appended": 3,
+      "ledger": "oclob/research/experiment-ledger.jsonl"
+    },
+    "revisions_under_test": {
+      "zkfmi-crypto": "9a183c90b6ee6af17fce26ca4b235bdb543dc0a0",
+      "zkpi": "cc9cfa9c65ff3e065b926abdb08d0b7bfebb666c",
+      "defmi": "bc543696c7504b332735c14ed2e5c33267848e78",
+      "qomm": "4d634d26140a7bfa4755857c9b4b8b39e9b2f885",
+      "oclob": "31ce9a32c9922e1c8fb7f5a4f857b9c9b8966612",
+      "aethel": "0f95102b2c18cf06c454aaa16269450c183b6a19",
+      "dekyx": "4ea50f5c25482c680716622d39b008dd6e0645c8",
+      "deccp": "934343fd59db866b83772253a082d7da371ac230"
+    }
   }
 }
