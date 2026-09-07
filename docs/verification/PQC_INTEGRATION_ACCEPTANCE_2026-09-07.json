@@ -89,9 +89,9 @@
     "production_deployment_evidence": false,
     "external_audit": false,
     "fips_validation": false,
-    "performance_comparison": false,
+    "performance_comparison": "measured on 2026-09-07 (primitives) and 2026-09-08 (deployed OCLOB images end to end); see docs/PQC_E2E_LATENCY_2026-09-08.md",
     "mathematical_proofs_migrated_to_post_quantum": false,
-    "non_consensus_viewing_grant_and_spend_disclosure_migrated": false,
+    "non_consensus_viewing_grant_and_spend_disclosure_migrated": "migrated on 2026-09-08 (sixth run); the 2026-09-07 runs recorded false",
     "corporate_api_restart_exact_wire_claim": "deterministic journal gate plus native API/custody execution; the native scenario did not separately repeat the exact corporate API crash window"
   },
   "release_pinning": {
@@ -226,6 +226,82 @@
       "aethel": "05301f6",
       "dekyx": "4ea50f5",
       "deccp": "934343f"
+    }
+  },
+  "fifth_run": {
+    "id": "20260907t211123z-8608-pqc-native-acceptance",
+    "result": "PASS",
+    "reason": "Run on 2026-09-08 (JST) after four changes: qomm_mpc::engine_policy::EnginePin (the engine receipt is hashed once per process and re-checked by file identity per round), the resident seven-party mesh in oclob-mpc::MpcRunner (service form of the matching program fed through named pipes; the node executor still spawns per round), the v3 FROST peer identity covering the 1,984-byte hybrid publication key (proof-party state schema 7), and hybrid signatures on DeFMI viewing grants and spend disclosures (qomm:defmi:view:v3). qomm-batch-audit re-pinned to zkfmi-crypto 9a183c90.",
+    "receipts": "zkfmi-crypto/.artifacts/20260907t211123z-8608-pqc-native-acceptance",
+    "top_level_log_sha256": "25dd01675f5887901690d772b0d837445d908a258179a17e42571b2989d83e9c",
+    "source_before_sha256": "17bc942bd08dafb4a9c08848a14372395513fae774b8bba870847e4bd16432a8",
+    "scenario_artifacts_sha256": "4ab42a9b8ff32e99a284dbce57575adbde3bb3ab6e4619cabbab31b843bbe6f8",
+    "crypto_pin": "f8b8f9a780af0d776d6821fba472762291807da8",
+    "scenarios": {
+      "market": {
+        "artifact": "zkfmi-crypto/.artifacts/20260907t211123z-8608-pqc-native-acceptance/market.json",
+        "sha256": "363332c99a5cec88c267f5fdc0b642a35f7567887a11e46f40d3efd5f75946e1"
+      },
+      "finality": {
+        "artifact": "zkfmi-crypto/.artifacts/20260907t211123z-8608-pqc-native-acceptance/finality.json",
+        "sha256": "58c5292292f1bfee78e082dbf43b97a6aeb0eb2a320d6cfea7b86b562ee8135b"
+      },
+      "lifecycle": {
+        "artifact": "zkfmi-crypto/.artifacts/20260907t211123z-8608-pqc-native-acceptance/lifecycle.json",
+        "sha256": "7e1406e42ae2d83becf39a2280e355e58f1a5c91b9d4a29be6cacb68361c4743"
+      }
+    },
+    "experiment_ledger": {
+      "records_appended": 3,
+      "ledger": "oclob/research/experiment-ledger.jsonl"
+    },
+    "revisions_under_test": {
+      "zkfmi-crypto": "9a183c90b6ee6af17fce26ca4b235bdb543dc0a0",
+      "zkpi": "1366f4c0c20924c5c2665a13fe0901de3a4f76f8",
+      "defmi": "4a6081f653516d1b17ba650b9d8f5c4e5bcb2bc7",
+      "qomm": "b1d962c232808bd66ec108b38bd10b928f725ca9",
+      "oclob": "6360d02d982e02b69ffa0a290ff7f6fc19341baf",
+      "aethel": "4babcdccfed53ffc828c0aeb8e42f7bc54abfec5",
+      "dekyx": "4ea50f5c25482c680716622d39b008dd6e0645c8",
+      "deccp": "934343fd59db866b83772253a082d7da371ac230"
+    }
+  },
+  "sixth_run": {
+    "id": "20260907t213339z-7787-pqc-native-acceptance",
+    "result": "PASS",
+    "reason": "Same sources as the fifth run except one manifest line: defmi/rust/defmi/Cargo.toml pins the optional qomm-batch-audit dependency by git revision (zkpi 1366f4c) instead of a sibling path ../../../zkpi, the last sibling path in the graph, found when a Docker build from a lone defmi checkout failed. Every dependant re-pinned and re-locked; the eight main branches were fast-forwarded to these revisions.",
+    "receipts": "zkfmi-crypto/.artifacts/20260907t213339z-7787-pqc-native-acceptance",
+    "top_level_log_sha256": "7017037469d4b379a48d3ee7e5704334aa5ed12a36cefe533f848870b2091468",
+    "source_before_sha256": "a7c4fe471d9338c8f9d36af21879e717f8ee13eed3c945bf2a35b12e017bc2e4",
+    "scenario_artifacts_sha256": "aa0e7873624547584b94a349e4ddd886dbbb4c86fe3231e446f54502e2f0caca",
+    "crypto_pin": "f8b8f9a780af0d776d6821fba472762291807da8",
+    "scenarios": {
+      "market": {
+        "artifact": "zkfmi-crypto/.artifacts/20260907t213339z-7787-pqc-native-acceptance/market.json",
+        "sha256": "c13aa312e9d2c6f2563fbc77d5e65831cac362b4bf09f2af9e6f58040a300066"
+      },
+      "finality": {
+        "artifact": "zkfmi-crypto/.artifacts/20260907t213339z-7787-pqc-native-acceptance/finality.json",
+        "sha256": "144b4443d82cd3de156e5fba265e16392a70754446a3e5ec2bd3845282a398f1"
+      },
+      "lifecycle": {
+        "artifact": "zkfmi-crypto/.artifacts/20260907t213339z-7787-pqc-native-acceptance/lifecycle.json",
+        "sha256": "936b23c35b61d3489c6b52ffad382b3e44d12c84b34c3e554762e83bf8f06f45"
+      }
+    },
+    "experiment_ledger": {
+      "records_appended": 3,
+      "ledger": "oclob/research/experiment-ledger.jsonl"
+    },
+    "revisions_under_test": {
+      "zkfmi-crypto": "9a183c90b6ee6af17fce26ca4b235bdb543dc0a0",
+      "zkpi": "1366f4c0c20924c5c2665a13fe0901de3a4f76f8",
+      "defmi": "99b5eb271e1e0e405f70679697722e978cd706a3",
+      "qomm": "b9b5b5215c756a91ca5d04d5c859bb655a19cb23",
+      "oclob": "f3d3a32734f1f5ffa61c5a9a769f5d9c269decf6",
+      "aethel": "1423e66694269cd580aefe37a330f7842e88db8d",
+      "dekyx": "4ea50f5c25482c680716622d39b008dd6e0645c8",
+      "deccp": "934343fd59db866b83772253a082d7da371ac230"
     }
   }
 }
