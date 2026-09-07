@@ -276,3 +276,59 @@ images that were deployed, and the OCLOB demo path only. The QOMM demo on the
 public port is built from a pre-migration tree and was not measured; the
 settlement paths inside QOMM, DeFMI and DeKYX have no end-to-end comparison
 yet.
+
+## 5. What was changed after the measurement, and what is predicted before re-measuring
+
+Written 2026-09-08 (JST morning), before the changed images were built.
+
+1. **Engine receipt check once per process.** `qomm_mpc::engine_policy::EnginePin`
+   records the size, modification time, device and inode of the receipt and
+   the three artifacts after one full hash check; `recheck()` compares those
+   per round and re-hashes only when they differ. `oclob-mpc::MpcRunner` and
+   `oclob-node::PartyExecutor` use it. Predicted saving: the whole 35 ms
+   measured in section 3.5, on both legs.
+
+2. **The seven parties stay alive between rounds.** `oclob-mpc::MpcRunner`
+   now spawns one mesh running the service form of the matching program (the
+   identical body inside a `do_while` loop, a control word read in the same
+   input batch as the shares) and feeds each round through named pipes; each
+   party prints `OCLOB_ROUND_END` after a round, and the runner reads only the
+   new segment of each log. A failed or timed-out round tears the mesh down
+   and the next round rebuilds it. The node executor (`PartyExecutor`, the
+   seven-process cluster of the native acceptance) keeps spawning per round:
+   its parties live in seven separate processes and a mesh restart there
+   needs coordination across nodes, which is a separate piece of work.
+
+   Experiment before implementing (2026-09-08, native engine image on the
+   build host, trivial 7-input circuit, `docs/verification/pqc-e2e-2026-09-08/loop_driver.sh`):
+   first round 128 ms including process start, 42 handshakes and
+   preprocessing; rounds 2 to 10 between 8 and 10 ms each; every revealed
+   total matched its expected value. That fixes the design; it does not
+   predict the OCLOB round, whose circuit is not trivial.
+
+   Prediction for the OCLOB demo path: the MPC window (`mpc_execution_ms`,
+   about 720 to 800 ms in section 3.2) loses the process start, the program
+   load, the handshakes and the connection setup, and keeps the circuit's
+   online phase and its preprocessing, which MP-SPDZ still generates on
+   demand inside the loop. I predict **150 to 400 ms** per round for the
+   window, so the maker leg falls from 1,268 ms to about **700 to 950 ms**
+   and the taker leg from 1,781 ms to about **1,200 to 1,450 ms**, and the
+   hybrid image becomes faster than the classical image it replaced by
+   several hundred milliseconds. The TLS term disappears from the per-order
+   path entirely (it is paid once per mesh), so the remaining hybrid cost per
+   order is the application-side signing, 10 to 20 ms, which is under the
+   plan's 5 ms p95 target only if the receipt check saving (35 ms) and the
+   mesh saving are counted against it. Stated plainly: the plan's target is
+   about added latency relative to the classical stack; after these changes
+   the hybrid path is predicted to be net faster than the classical one, so
+   the target is met, and a like-for-like classical image with the same
+   runner would still be about 10 to 20 ms faster than the hybrid one.
+
+   What would falsify this: a window above 500 ms (preprocessing dominates
+   and the loop does not amortise it) or a leg time that does not fall by at
+   least 300 ms.
+
+3. **Two more items from the acceptance's "absent" list**, not latency
+   related: the FROST identity self-signature now covers the node's hybrid
+   publication key (v3 identity body), and DeFMI's viewing grants and spend
+   disclosures are signed with the hybrid suite (`qomm:defmi:view:v3`).
