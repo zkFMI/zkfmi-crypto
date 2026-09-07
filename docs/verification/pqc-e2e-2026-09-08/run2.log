@@ -1,0 +1,149 @@
+hybrid=oclob-server:main-20260908 classical=oclob-server:20260907 tag=run2
+start 2026-09-07T21:50:41Z host=ngi-external022-vm1 load=2.47 4.33 4.49
+3a229efcfcee166ef5645f1e77b182fa7d677209778508082a1d537f9063f4a8
+edd1598eede28c744e1db45ab8732e1c430759f3f4b84f3413cc1b79b0fc3f54
+port 18810 healthy after 2 s
+port 18811 healthy after 0 s
+[oclob-server:main-20260908] sha256:9145e6fb704b423e57c43a435acf682996ed65668ca965e21197c722ef4e7273
+[oclob-server:20260907] sha256:6ab5d588bd48e60ba8328f0567befca482ad5a18d56fe91ae27401462b21113f
+== e2e rounds 2026-09-07T21:50:45Z
+{"round": 0, "warmup": true, "variant": "hybrid", "leg": "maker", "wall_ms": 1196.4, "execution_ms": null, "fills": 0, "status": "executed", "ok": true}
+{"round": 0, "warmup": true, "variant": "hybrid", "leg": "taker", "wall_ms": 1519.0, "execution_ms": null, "fills": 1, "status": "executed", "ok": true}
+{"round": 0, "warmup": true, "variant": "classical", "leg": "maker", "wall_ms": 1316.5, "execution_ms": null, "fills": 0, "status": "executed", "ok": true}
+{"round": 0, "warmup": true, "variant": "classical", "leg": "taker", "wall_ms": 1715.8, "execution_ms": null, "fills": 1, "status": "executed", "ok": true}
+{"round": 1, "warmup": true, "variant": "hybrid", "leg": "maker", "wall_ms": 978.4, "execution_ms": null, "fills": 0, "status": "executed", "ok": true}
+{"round": 1, "warmup": true, "variant": "hybrid", "leg": "taker", "wall_ms": 1493.1, "execution_ms": null, "fills": 1, "status": "executed", "ok": true}
+{"round": 1, "warmup": true, "variant": "classical", "leg": "maker", "wall_ms": 1195.7, "execution_ms": null, "fills": 0, "status": "executed", "ok": true}
+{"round": 1, "warmup": true, "variant": "classical", "leg": "taker", "wall_ms": 1793.0, "execution_ms": null, "fills": 1, "status": "executed", "ok": true}
+{"round": 2, "warmup": false, "variant": "hybrid", "leg": "maker", "wall_ms": 923.4, "execution_ms": null, "fills": 0, "status": "executed", "ok": true}
+{"round": 2, "warmup": false, "variant": "hybrid", "leg": "taker", "wall_ms": 1517.6, "execution_ms": null, "fills": 1, "status": "executed", "ok": true}
+{"round": 2, "warmup": false, "variant": "classical", "leg": "maker", "wall_ms": 1240.5, "execution_ms": null, "fills": 0, "status": "executed", "ok": true}
+{"round": 2, "warmup": false, "variant": "classical", "leg": "taker", "wall_ms": 1721.6, "execution_ms": null, "fills": 1, "status": "executed", "ok": true}
+{"round": 3, "warmup": false, "variant": "hybrid", "leg": "maker", "wall_ms": 993.3, "execution_ms": null, "fills": 0, "status": "executed", "ok": true}
+{"round": 3, "warmup": false, "variant": "hybrid", "leg": "taker", "wall_ms": 1506.1, "execution_ms": null, "fills": 1, "status": "executed", "ok": true}
+{"round": 3, "warmup": false, "variant": "classical", "leg": "maker", "wall_ms": 1199.3, "execution_ms": null, "fills": 0, "status": "executed", "ok": true}
+{"round": 3, "warmup": false, "variant": "classical", "leg": "taker", "wall_ms": 1730.2, "execution_ms": null, "fills": 1, "status": "executed", "ok": true}
+{"round": 4, "warmup": false, "variant": "hybrid", "leg": "maker", "wall_ms": 970.5, "execution_ms": null, "fills": 0, "status": "executed", "ok": true}
+{"round": 4, "warmup": false, "variant": "hybrid", "leg": "taker", "wall_ms": 1476.5, "execution_ms": null, "fills": 1, "status": "executed", "ok": true}
+{"round": 4, "warmup": false, "variant": "classical", "leg": "maker", "wall_ms": 1413.8, "execution_ms": null, "fills": 0, "status": "executed", "ok": true}
+{"round": 4, "warmup": false, "variant": "classical", "leg": "taker", "wall_ms": 1752.2, "execution_ms": null, "fills": 1, "status": "executed", "ok": true}
+{"round": 5, "warmup": false, "variant": "hybrid", "leg": "maker", "wall_ms": 1016.9, "execution_ms": null, "fills": 0, "status": "executed", "ok": true}
+{"round": 5, "warmup": false, "variant": "hybrid", "leg": "taker", "wall_ms": 1504.7, "execution_ms": null, "fills": 1, "status": "executed", "ok": true}
+{"round": 5, "warmup": false, "variant": "classical", "leg": "maker", "wall_ms": 1267.8, "execution_ms": null, "fills": 0, "status": "executed", "ok": true}
+{"round": 5, "warmup": false, "variant": "classical", "leg": "taker", "wall_ms": 1866.2, "execution_ms": null, "fills": 1, "status": "executed", "ok": true}
+{"round": 6, "warmup": false, "variant": "hybrid", "leg": "maker", "wall_ms": 1412.2, "execution_ms": null, "fills": 0, "status": "executed", "ok": true}
+{"round": 6, "warmup": false, "variant": "hybrid", "leg": "taker", "wall_ms": 1477.4, "execution_ms": null, "fills": 1, "status": "executed", "ok": true}
+{"round": 6, "warmup": false, "variant": "classical", "leg": "maker", "wall_ms": 1191.8, "execution_ms": null, "fills": 0, "status": "executed", "ok": true}
+{"round": 6, "warmup": false, "variant": "classical", "leg": "taker", "wall_ms": 1745.9, "execution_ms": null, "fills": 1, "status": "executed", "ok": true}
+{"round": 7, "warmup": false, "variant": "hybrid", "leg": "maker", "wall_ms": 1007.4, "execution_ms": null, "fills": 0, "status": "executed", "ok": true}
+{"round": 7, "warmup": false, "variant": "hybrid", "leg": "taker", "wall_ms": 1465.3, "execution_ms": null, "fills": 1, "status": "executed", "ok": true}
+{"round": 7, "warmup": false, "variant": "classical", "leg": "maker", "wall_ms": 1202.7, "execution_ms": null, "fills": 0, "status": "executed", "ok": true}
+{"round": 7, "warmup": false, "variant": "classical", "leg": "taker", "wall_ms": 1664.3, "execution_ms": null, "fills": 1, "status": "executed", "ok": true}
+{"round": 8, "warmup": false, "variant": "hybrid", "leg": "maker", "wall_ms": 963.9, "execution_ms": null, "fills": 0, "status": "executed", "ok": true}
+{"round": 8, "warmup": false, "variant": "hybrid", "leg": "taker", "wall_ms": 1489.7, "execution_ms": null, "fills": 1, "status": "executed", "ok": true}
+{"round": 8, "warmup": false, "variant": "classical", "leg": "maker", "wall_ms": 1175.3, "execution_ms": null, "fills": 0, "status": "executed", "ok": true}
+{"round": 8, "warmup": false, "variant": "classical", "leg": "taker", "wall_ms": 1722.8, "execution_ms": null, "fills": 1, "status": "executed", "ok": true}
+{"round": 9, "warmup": false, "variant": "hybrid", "leg": "maker", "wall_ms": 981.4, "execution_ms": null, "fills": 0, "status": "executed", "ok": true}
+{"round": 9, "warmup": false, "variant": "hybrid", "leg": "taker", "wall_ms": 1523.6, "execution_ms": null, "fills": 1, "status": "executed", "ok": true}
+{"round": 9, "warmup": false, "variant": "classical", "leg": "maker", "wall_ms": 1177.1, "execution_ms": null, "fills": 0, "status": "executed", "ok": true}
+{"round": 9, "warmup": false, "variant": "classical", "leg": "taker", "wall_ms": 1659.5, "execution_ms": null, "fills": 1, "status": "executed", "ok": true}
+{"round": 10, "warmup": false, "variant": "hybrid", "leg": "maker", "wall_ms": 970.4, "execution_ms": null, "fills": 0, "status": "executed", "ok": true}
+{"round": 10, "warmup": false, "variant": "hybrid", "leg": "taker", "wall_ms": 1472.3, "execution_ms": null, "fills": 1, "status": "executed", "ok": true}
+{"round": 10, "warmup": false, "variant": "classical", "leg": "maker", "wall_ms": 1157.8, "execution_ms": null, "fills": 0, "status": "executed", "ok": true}
+{"round": 10, "warmup": false, "variant": "classical", "leg": "taker", "wall_ms": 1663.8, "execution_ms": null, "fills": 1, "status": "executed", "ok": true}
+{"round": 11, "warmup": false, "variant": "hybrid", "leg": "maker", "wall_ms": 990.9, "execution_ms": null, "fills": 0, "status": "executed", "ok": true}
+{"round": 11, "warmup": false, "variant": "hybrid", "leg": "taker", "wall_ms": 1482.6, "execution_ms": null, "fills": 1, "status": "executed", "ok": true}
+{"round": 11, "warmup": false, "variant": "classical", "leg": "maker", "wall_ms": 1175.6, "execution_ms": null, "fills": 0, "status": "executed", "ok": true}
+{"round": 11, "warmup": false, "variant": "classical", "leg": "taker", "wall_ms": 1675.6, "execution_ms": null, "fills": 1, "status": "executed", "ok": true}
+{"round": 12, "warmup": false, "variant": "hybrid", "leg": "maker", "wall_ms": 1032.5, "execution_ms": null, "fills": 0, "status": "executed", "ok": true}
+{"round": 12, "warmup": false, "variant": "hybrid", "leg": "taker", "wall_ms": 1507.5, "execution_ms": null, "fills": 1, "status": "executed", "ok": true}
+{"round": 12, "warmup": false, "variant": "classical", "leg": "maker", "wall_ms": 1184.4, "execution_ms": null, "fills": 0, "status": "executed", "ok": true}
+{"round": 12, "warmup": false, "variant": "classical", "leg": "taker", "wall_ms": 1663.4, "execution_ms": null, "fills": 1, "status": "executed", "ok": true}
+{"round": 13, "warmup": false, "variant": "hybrid", "leg": "maker", "wall_ms": 1017.4, "execution_ms": null, "fills": 0, "status": "executed", "ok": true}
+{"round": 13, "warmup": false, "variant": "hybrid", "leg": "taker", "wall_ms": 1462.7, "execution_ms": null, "fills": 1, "status": "executed", "ok": true}
+{"round": 13, "warmup": false, "variant": "classical", "leg": "maker", "wall_ms": 1181.6, "execution_ms": null, "fills": 0, "status": "executed", "ok": true}
+{"round": 13, "warmup": false, "variant": "classical", "leg": "taker", "wall_ms": 1685.6, "execution_ms": null, "fills": 1, "status": "executed", "ok": true}
+{"round": 14, "warmup": false, "variant": "hybrid", "leg": "maker", "wall_ms": 1021.1, "execution_ms": null, "fills": 0, "status": "executed", "ok": true}
+{"round": 14, "warmup": false, "variant": "hybrid", "leg": "taker", "wall_ms": 1448.4, "execution_ms": null, "fills": 1, "status": "executed", "ok": true}
+{"round": 14, "warmup": false, "variant": "classical", "leg": "maker", "wall_ms": 1186.5, "execution_ms": null, "fills": 0, "status": "executed", "ok": true}
+{"round": 14, "warmup": false, "variant": "classical", "leg": "taker", "wall_ms": 1660.8, "execution_ms": null, "fills": 1, "status": "executed", "ok": true}
+{"round": 15, "warmup": false, "variant": "hybrid", "leg": "maker", "wall_ms": 1035.9, "execution_ms": null, "fills": 0, "status": "executed", "ok": true}
+{"round": 15, "warmup": false, "variant": "hybrid", "leg": "taker", "wall_ms": 1517.2, "execution_ms": null, "fills": 1, "status": "executed", "ok": true}
+{"round": 15, "warmup": false, "variant": "classical", "leg": "maker", "wall_ms": 1185.4, "execution_ms": null, "fills": 0, "status": "executed", "ok": true}
+{"round": 15, "warmup": false, "variant": "classical", "leg": "taker", "wall_ms": 1678.7, "execution_ms": null, "fills": 1, "status": "executed", "ok": true}
+{"round": 16, "warmup": false, "variant": "hybrid", "leg": "maker", "wall_ms": 1067.5, "execution_ms": null, "fills": 0, "status": "executed", "ok": true}
+{"round": 16, "warmup": false, "variant": "hybrid", "leg": "taker", "wall_ms": 1500.3, "execution_ms": null, "fills": 1, "status": "executed", "ok": true}
+{"round": 16, "warmup": false, "variant": "classical", "leg": "maker", "wall_ms": 1199.8, "execution_ms": null, "fills": 0, "status": "executed", "ok": true}
+{"round": 16, "warmup": false, "variant": "classical", "leg": "taker", "wall_ms": 1701.9, "execution_ms": null, "fills": 1, "status": "executed", "ok": true}
+{"round": 17, "warmup": false, "variant": "hybrid", "leg": "maker", "wall_ms": 1023.2, "execution_ms": null, "fills": 0, "status": "executed", "ok": true}
+{"round": 17, "warmup": false, "variant": "hybrid", "leg": "taker", "wall_ms": 1513.9, "execution_ms": null, "fills": 1, "status": "executed", "ok": true}
+{"round": 17, "warmup": false, "variant": "classical", "leg": "maker", "wall_ms": 1210.9, "execution_ms": null, "fills": 0, "status": "executed", "ok": true}
+{"round": 17, "warmup": false, "variant": "classical", "leg": "taker", "wall_ms": 1689.0, "execution_ms": null, "fills": 1, "status": "executed", "ok": true}
+{"round": 18, "warmup": false, "variant": "hybrid", "leg": "maker", "wall_ms": 1020.0, "execution_ms": null, "fills": 0, "status": "executed", "ok": true}
+{"round": 18, "warmup": false, "variant": "hybrid", "leg": "taker", "wall_ms": 1555.9, "execution_ms": null, "fills": 1, "status": "executed", "ok": true}
+{"round": 18, "warmup": false, "variant": "classical", "leg": "maker", "wall_ms": 1219.2, "execution_ms": null, "fills": 0, "status": "executed", "ok": true}
+{"round": 18, "warmup": false, "variant": "classical", "leg": "taker", "wall_ms": 1715.4, "execution_ms": null, "fills": 1, "status": "executed", "ok": true}
+{"round": 19, "warmup": false, "variant": "hybrid", "leg": "maker", "wall_ms": 1019.5, "execution_ms": null, "fills": 0, "status": "executed", "ok": true}
+{"round": 19, "warmup": false, "variant": "hybrid", "leg": "taker", "wall_ms": 1565.1, "execution_ms": null, "fills": 1, "status": "executed", "ok": true}
+{"round": 19, "warmup": false, "variant": "classical", "leg": "maker", "wall_ms": 1296.6, "execution_ms": null, "fills": 0, "status": "executed", "ok": true}
+{"round": 19, "warmup": false, "variant": "classical", "leg": "taker", "wall_ms": 1712.6, "execution_ms": null, "fills": 1, "status": "executed", "ok": true}
+{"round": 20, "warmup": false, "variant": "hybrid", "leg": "maker", "wall_ms": 1052.4, "execution_ms": null, "fills": 0, "status": "executed", "ok": true}
+{"round": 20, "warmup": false, "variant": "hybrid", "leg": "taker", "wall_ms": 1522.7, "execution_ms": null, "fills": 1, "status": "executed", "ok": true}
+{"round": 20, "warmup": false, "variant": "classical", "leg": "maker", "wall_ms": 1181.8, "execution_ms": null, "fills": 0, "status": "executed", "ok": true}
+{"round": 20, "warmup": false, "variant": "classical", "leg": "taker", "wall_ms": 1748.2, "execution_ms": null, "fills": 1, "status": "executed", "ok": true}
+{"round": 21, "warmup": false, "variant": "hybrid", "leg": "maker", "wall_ms": 1034.6, "execution_ms": null, "fills": 0, "status": "executed", "ok": true}
+{"round": 21, "warmup": false, "variant": "hybrid", "leg": "taker", "wall_ms": 1509.4, "execution_ms": null, "fills": 1, "status": "executed", "ok": true}
+{"round": 21, "warmup": false, "variant": "classical", "leg": "maker", "wall_ms": 1208.5, "execution_ms": null, "fills": 0, "status": "executed", "ok": true}
+{"round": 21, "warmup": false, "variant": "classical", "leg": "taker", "wall_ms": 1713.0, "execution_ms": null, "fills": 1, "status": "executed", "ok": true}
+
+== summary (measured rounds only) ==
+variant   leg      n  wall med  wall p95  wall mean  exec med  exec p95 fills
+hybrid    maker   20    1018.5    1067.5     1027.7       nan       nan     0
+hybrid    taker   20    1505.4    1555.9     1500.9       nan       nan    20
+classical maker   20    1195.5    1296.6     1212.8       nan       nan     0
+classical taker   20    1707.2    1752.2     1708.5       nan       nan    20
+maker: hybrid - classical, wall median -177.1 ms, p95 -229.1 ms
+taker: hybrid - classical, wall median -201.8 ms, p95 -196.3 ms
+== tls handshakes 2026-09-07T21:52:45Z
+OpenSSL 3.5.5 27 Jan 2026 (Library: OpenSSL 3.5.5 27 Jan 2026)
+== certificate DER sizes
+rsa-s 783 bytes
+ed-s 320 bytes
+mldsa-s 5511 bytes
+== rsa server groups=X25519
+   Protocol version: TLSv1.3
+   Peer certificate: CN=rsa-server
+   Peer Temp Key: X25519, 253 bits
+13776 connections in 3.90s; 3532.31 connections/user sec, bytes read 0
+13776 connections in 11 real seconds, 0 bytes read per connection
+== rsa mutual groups=X25519
+   Protocol version: TLSv1.3
+   Peer certificate: CN=rsa-server
+   Peer Temp Key: X25519, 253 bits
+10221 connections in 6.01s; 1700.67 connections/user sec, bytes read 0
+10221 connections in 11 real seconds, 0 bytes read per connection
+== ed server groups=X25519
+   Protocol version: TLSv1.3
+   Peer certificate: CN=ed-server
+   Peer Temp Key: X25519, 253 bits
+20847 connections in 6.55s; 3182.75 connections/user sec, bytes read 0
+20847 connections in 11 real seconds, 0 bytes read per connection
+== ed mutual groups=X25519
+   Protocol version: TLSv1.3
+   Peer certificate: CN=ed-server
+   Peer Temp Key: X25519, 253 bits
+18817 connections in 6.81s; 2763.14 connections/user sec, bytes read 0
+18817 connections in 11 real seconds, 0 bytes read per connection
+== mldsa server groups=X25519MLKEM768
+   Protocol version: TLSv1.3
+   Peer certificate: CN=P0
+   Negotiated TLS1.3 group: X25519MLKEM768
+8419 connections in 3.68s; 2287.77 connections/user sec, bytes read 0
+8419 connections in 11 real seconds, 0 bytes read per connection
+== mldsa mutual groups=X25519MLKEM768
+   Protocol version: TLSv1.3
+   Peer certificate: CN=P0
+   Negotiated TLS1.3 group: X25519MLKEM768
+5134 connections in 6.11s; 840.26 connections/user sec, bytes read 0
+5134 connections in 11 real seconds, 0 bytes read per connection
+end 2026-09-07T21:53:58Z load=3.88 4.77 4.66

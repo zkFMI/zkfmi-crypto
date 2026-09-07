@@ -332,3 +332,49 @@ Written 2026-09-08 (JST morning), before the changed images were built.
    related: the FROST identity self-signature now covers the node's hybrid
    publication key (v3 identity body), and DeFMI's viewing grants and spend
    disclosures are signed with the hybrid suite (`qomm:defmi:view:v3`).
+
+## 6. Measurement of the changed image, and the prediction of section 5 against it
+
+Run 2026-09-07T21:48Z to 21:53Z UTC (2026-09-08 06:50 JST) on the same
+host, same method as section 3.1 (20 rounds per image after 2 warm-ups,
+alternating): the new hybrid image `oclob-server:main-20260908` (oclob
+f3d3a32: resident mesh, pinned receipt check, the accepted revisions of the
+sixth native acceptance run) against the same classical image as before.
+Records: `docs/verification/pqc-e2e-2026-09-08/e2e-records-run2.jsonl`,
+`run2.log`.
+
+| leg | classical median / p95 | hybrid (resident) median / p95 | hybrid − classical | against the hybrid of section 3.1 |
+|---|---:|---:|---:|---:|
+| maker (rests) | 1,195.5 / 1,296.6 ms | **1,018.5 / 1,067.5 ms** | **−177.1 ms** (p95 −229.1) | −249.5 ms |
+| taker (fills, settles) | 1,707.2 / 1,752.2 ms | **1,505.4 / 1,555.9 ms** | **−201.8 ms** (p95 −196.3) | −275.6 ms |
+
+The first hybrid maker leg of the run (a warm-up) took 1,196 ms and includes
+the mesh start; every later leg ran on the live mesh. Standard deviation 30
+to 100 ms (one maker outlier at 1,412 ms).
+
+**Against the plan's targets:** the hybrid path is now faster than the
+classical stack it replaced on both legs, so the throughput target (≥ 95 %)
+and the added-latency target (≤ 5 ms at p95) are both met against that
+baseline. A like-for-like classical image with the same resident runner would
+still be an estimated 10 to 20 ms faster than the hybrid one per filled
+order, from the application-side hybrid signing (section 4, item 3); that
+estimate is not measured.
+
+**The prediction in section 5 was too optimistic**, by about 100 to 150 ms
+per leg: the legs fell by 250 and 276 ms rather than by at least 300, and a
+smoke test of the new image inside the build showed `mpc_execution_ms`
+of about 545 ms (three rounds, measured while the acceptance run was
+sharing the host), above the 500 ms line set in advance. What the resident
+mesh removed per round is the process start, the program load, the
+connection setup with its 42 handshakes and the receipt hash, together
+about 250 ms. What it did not remove is the circuit itself: MP-SPDZ
+generates the malicious-Shamir preprocessing on demand inside the loop, so
+each round still pays its preprocessing and online phases, about 500 ms for
+this circuit (8 slots × 8 wires, comparisons, a 16-level depth sort). The
+prediction had assumed a larger share of the window was start-up. The
+falsifying condition named in section 5 ("preprocessing dominates and the
+loop does not amortise it") is what happened.
+
+Where the remaining time would go next, not done: preprocessing ahead of
+demand (MP-SPDZ's `-b` batching or an offline phase between orders), and a
+smaller circuit for the common single-fill case.
