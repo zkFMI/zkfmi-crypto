@@ -96,11 +96,11 @@ completion of an external audit.
 - [Comparison decisions v1.2](docs/research/COMPETITIVE_DECISIONS_2026-09-05.md): treatment of 18 targets including Canton, established differences, limits on claims, and implementation evidence.
 - [ZKFMI strategy v1.2](docs/strategy/ZKFMI_STRATEGY_2026-09-05.md): initial customers, offering scope, adoption and development sequence, metrics, and review conditions, including Canton as a competitor and possible implementation or integration platform.
 
-The user selected public visibility on 2026-09-05 and the target organization is
-[`zkFMI`](https://github.com/zkFMI). Repository deletion and re-push are managed
-outside this integration task. Treat the remote URL and revision set as pending
-until every remote HEAD has been fetched and reconciled after that re-push. This
-decision supersedes the private visibility specified in the original work order.
+The user selected public visibility on 2026-09-05. The repository is published
+on `main` at [zkFMI/zkfmi-crypto](https://github.com/zkFMI/zkfmi-crypto) in the
+[`zkFMI`](https://github.com/zkFMI) organisation; the integration lane is the
+`codex/pqc-astra-high` branch of each repository. This decision supersedes the
+private visibility specified in the original work order.
 
 ## Reproducing the inventory
 
