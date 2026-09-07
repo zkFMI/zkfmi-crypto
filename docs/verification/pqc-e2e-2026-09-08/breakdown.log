@@ -1,0 +1,30 @@
+{"round": 0, "variant": "hybrid", "leg": "maker", "wall_ms": 1391.6, "mpc_execution_ms": 831.822234}
+{"round": 0, "variant": "hybrid", "leg": "taker", "wall_ms": 1777.5, "mpc_execution_ms": 729.808168}
+{"round": 0, "variant": "classical", "leg": "maker", "wall_ms": 1202.2, "mpc_execution_ms": 730.636236}
+{"round": 0, "variant": "classical", "leg": "taker", "wall_ms": 1692.6, "mpc_execution_ms": 721.120459}
+{"round": 1, "variant": "hybrid", "leg": "maker", "wall_ms": 1258.8, "mpc_execution_ms": 720.517925}
+{"round": 1, "variant": "hybrid", "leg": "taker", "wall_ms": 1882.4, "mpc_execution_ms": 810.1863519999999}
+{"round": 1, "variant": "classical", "leg": "maker", "wall_ms": 1217.3, "mpc_execution_ms": 749.7008539999999}
+{"round": 1, "variant": "classical", "leg": "taker", "wall_ms": 1688.3, "mpc_execution_ms": 719.395518}
+{"round": 2, "variant": "hybrid", "leg": "maker", "wall_ms": 1274.1, "mpc_execution_ms": 729.280288}
+{"round": 2, "variant": "hybrid", "leg": "taker", "wall_ms": 1827.8, "mpc_execution_ms": 769.722983}
+{"round": 2, "variant": "classical", "leg": "maker", "wall_ms": 1250.9, "mpc_execution_ms": 780.134091}
+{"round": 2, "variant": "classical", "leg": "taker", "wall_ms": 1679.3, "mpc_execution_ms": 709.24958}
+{"round": 3, "variant": "hybrid", "leg": "maker", "wall_ms": 1378.4, "mpc_execution_ms": 801.086729}
+{"round": 3, "variant": "hybrid", "leg": "taker", "wall_ms": 1787.0, "mpc_execution_ms": 730.562791}
+{"round": 3, "variant": "classical", "leg": "maker", "wall_ms": 1189.4, "mpc_execution_ms": 720.452839}
+{"round": 3, "variant": "classical", "leg": "taker", "wall_ms": 1693.9, "mpc_execution_ms": 719.415674}
+{"round": 4, "variant": "hybrid", "leg": "maker", "wall_ms": 1343.0, "mpc_execution_ms": 793.202442}
+{"round": 4, "variant": "hybrid", "leg": "taker", "wall_ms": 1814.0, "mpc_execution_ms": 750.74767}
+{"round": 4, "variant": "classical", "leg": "maker", "wall_ms": 1217.4, "mpc_execution_ms": 720.3732980000001}
+{"round": 4, "variant": "classical", "leg": "taker", "wall_ms": 1692.4, "mpc_execution_ms": 719.467655}
+{"round": 5, "variant": "hybrid", "leg": "maker", "wall_ms": 1420.0, "mpc_execution_ms": 852.49485}
+{"round": 5, "variant": "hybrid", "leg": "taker", "wall_ms": 1809.5, "mpc_execution_ms": 740.283217}
+{"round": 5, "variant": "classical", "leg": "maker", "wall_ms": 1201.5, "mpc_execution_ms": 720.133639}
+{"round": 5, "variant": "classical", "leg": "taker", "wall_ms": 1721.0, "mpc_execution_ms": 741.7441329999999}
+
+variant    leg    wall_med  mpc_med  rest_med(wall-mpc)
+hybrid     maker    1360.7    797.1    554.8
+hybrid     taker    1811.7    745.5   1060.6
+classical  maker    1209.7    725.5    471.2
+classical  taker    1692.5    719.4    972.2
