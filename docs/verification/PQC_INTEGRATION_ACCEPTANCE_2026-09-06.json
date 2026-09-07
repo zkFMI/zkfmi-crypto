@@ -1,0 +1,296 @@
+{
+  "schema_version": 1,
+  "record_id": "zkfmi-pqc-integration-acceptance-2026-09-06",
+  "status": "integration_acceptance_pass_release_pinning_pending",
+  "classification": "smoke_only",
+  "historical_p0_record_unchanged": true,
+  "run": {
+    "id": "20260906t110145z-44291-pqc-native-acceptance",
+    "result": "PASS",
+    "exit_code": 0,
+    "started_at": "2026-09-06T11:02:02Z",
+    "completed_at": "2026-09-06T11:17:09Z",
+    "duration_seconds": 907,
+    "host": "ngi-external022-vm1",
+    "remote_run_root": "/home/ubuntu/work/pqc-astra-high-20260906/.cache/native-runs/20260906t110145z-44291-pqc-native-acceptance",
+    "artifact_root": ".artifacts/20260906t110145z-44291-pqc-native-acceptance",
+    "top_level_log": ".artifacts/20260906t110145z-44291-pqc-native-acceptance.log",
+    "top_level_log_sha256": "4ea73c1419e4e8a5419e54b7012c751c8a835a46c980b3799eb6d98c782fa8ce"
+  },
+  "source": {
+    "manifest_entries": 1119,
+    "manifest_file_sha256": "3460765104640f2efd0d6e0be693b1a87cf5fd83c5c14a2347982caa0e51f51f",
+    "local_remote_before_equal": true,
+    "local_remote_after_equal": true,
+    "before_after_equal": true,
+    "current_report_bytes_in_accepted_manifest": false,
+    "current_report_bytes_note": "This consolidated report and receipt were authored after the successful run; the recorded manifest is the immutable input evidence for the code and protocol bytes that executed. The experiment-ledger postflight append also occurred after the source equality guard.",
+    "crypto_dependency": {
+      "name": "zkfmi-crypto",
+      "pinned_revision": "26ebfe96563a05c3379219f7fdacea137ab5fb4f",
+      "local_rust_and_cargo_bytes_identical": true,
+      "final_release_pin": false
+    }
+  },
+  "protocol_inputs": {
+    "path_base": "integration_sibling_root",
+    "before_after_equal": true,
+    "receipt_sha256": "ec30e876e53ddea2b2456cd4b203e6a5da43212f74ffac3bbac1241a6ca325b9",
+    "scenarios": [
+      {
+        "name": "market",
+        "contract_id": "oclob-native-market-v2",
+        "contract_path": "oclob/research/oclob_native_market_v2_contract.json",
+        "contract_sha256": "0e01378323b129f6fdd92aa7a59d353b2a034fbc1cf404a895bbd6a4e619a185",
+        "manifest_id": "oclob-native-market-pqc-custody-003",
+        "manifest_path": "oclob/research/manifests/oclob_native_market_003.json",
+        "manifest_sha256": "bec05e500fe03d2134713bb549aeea5e8cc180c27f6f2a7350b844a628c9d950"
+      },
+      {
+        "name": "finality",
+        "contract_id": "oclob-native-finality-v2",
+        "contract_path": "oclob/research/oclob_native_finality_v2_contract.json",
+        "contract_sha256": "308d47bfc84c19784dc6606bf17db783f4d7579a4b48b5c97a12654599cf4886",
+        "manifest_id": "oclob-native-finality-pqc-custody-003",
+        "manifest_path": "oclob/research/manifests/oclob_native_finality_003.json",
+        "manifest_sha256": "99b469ab5fba4fc075e9fc92fb9f56fc44934c8271e0f469d1fc86453e4d64f5"
+      },
+      {
+        "name": "lifecycle",
+        "contract_id": "oclob-native-lifecycle-v2",
+        "contract_path": "oclob/research/oclob_native_lifecycle_v2_contract.json",
+        "contract_sha256": "74093488ce6e3accd983a8b2ad025fd0ed3226bb8cd2165a2e5024edf3904743",
+        "manifest_id": "oclob-native-lifecycle-pqc-custody-005",
+        "manifest_path": "oclob/research/manifests/oclob_native_lifecycle_005.json",
+        "manifest_sha256": "297f6cd960f528791d7155ed577217c7d81873afdac2628e24d9871edcc1644d"
+      }
+    ]
+  },
+  "native_images": {
+    "verified_base_id": "sha256:91d284e9e0f0ba3fed0a005997edff224182eb949a465f54a6c287c249e5c3a4",
+    "before_after_equal": true,
+    "receipt_sha256": "dbf184876a5a1bb20d30e892e1676269e15ffb6c6693618f6f5b9080850a60ed",
+    "labels_verified": [
+      "run_id",
+      "source_manifest_sha256",
+      "base_image_id"
+    ],
+    "cluster": {
+      "tag": "oclob-pqc-native-cluster:20260906t110145z-44291-pqc-native-acceptance",
+      "image_id": "sha256:a23c98e6dd2cfbd079235ab869e0528b7ae0effe0569f125176a3a5d87ca87c1",
+      "repository_digest": "sha256:a23c98e6dd2cfbd079235ab869e0528b7ae0effe0569f125176a3a5d87ca87c1"
+    },
+    "avalanche": {
+      "tag": "oclob-pqc-native-avalanche:20260906t110145z-44291-pqc-native-acceptance",
+      "image_id": "sha256:c249b407e4d63dc76f85ea809dc16438b7496152294dd75e51ec511f1a6b8814",
+      "repository_digest": "sha256:c249b407e4d63dc76f85ea809dc16438b7496152294dd75e51ec511f1a6b8814"
+    }
+  },
+  "native_transport": {
+    "tls_version": "TLS 1.3",
+    "required_group": "X25519MLKEM768",
+    "adapter_path": "Networking/ssl_sockets.h",
+    "adapter_sha256": "ccc7d6a496423ead58a3fc44f66a17f7fc692928395821bc546add38cefe58aa",
+    "adapter_libspdz_and_malicious_shamir_receipt_verified": true,
+    "mp_spdz_program_source_sha256": "809eced81d8ffd8369d33f532c1dbab5171c6b7a4aa7a8f5a17fc3f576073121",
+    "mp_spdz_compiled_receipt_sha256": "d3a44bb5444415a45d398323c50e0325b8d80537b5a3b638ddd08d00accc4e51"
+  },
+  "scenarios": {
+    "artifact_path_base": "zkfmi_crypto_repository_root",
+    "market": {
+      "artifact": ".artifacts/20260906t110145z-44291-pqc-native-acceptance/market.json",
+      "artifact_sha256": "841f54d5f59a28d2acf8f4d5c58bf8b544fa1bc11fbf6c0f5a2004fa3e9c6596",
+      "status": "smoke_only",
+      "admitted_orders": 3,
+      "completed_rounds": 3,
+      "fills": 2,
+      "trade_notional": 9030,
+      "mpc_nodes": 7,
+      "validator_roots": 5,
+      "node_finality_observations": 14,
+      "claim_authorization_response_signatures": 4,
+      "fresh_claim_authorization_keys": 8,
+      "post_match_financial_approval_signatures": 0,
+      "canonical_exit_75_restart": true,
+      "canonical_response_loss_recovered": true,
+      "restart_did_not_duplicate_settlement": true,
+      "validator_restart_recovered": true
+    },
+    "finality": {
+      "artifact": ".artifacts/20260906t110145z-44291-pqc-native-acceptance/finality.json",
+      "artifact_sha256": "913ca3afdbd4ba1f320128d30b3925ca59cdbba046dcd1457a48e4d880c01474",
+      "status": "smoke_only",
+      "fills": 1,
+      "trade_quantity": 40,
+      "trade_price": 100,
+      "mpc_nodes": 7,
+      "validator_roots": 5,
+      "node_finality_observations": 7,
+      "recipient_claims_redeemed": 3,
+      "claim_authorization_response_signatures": 2,
+      "fresh_claim_authorization_keys": 4,
+      "post_match_financial_approval_signatures": 0,
+      "private_finalization_retry_unchanged": true,
+      "recovered_note_funded_next_order": true,
+      "validator_restart_recovered": true,
+      "elapsed_ms": 21899
+    },
+    "lifecycle": {
+      "artifact": ".artifacts/20260906t110145z-44291-pqc-native-acceptance/lifecycle.json",
+      "artifact_sha256": "25c7dd141f634d1d779df5df6f7b6350d65f0c619d58ffae69e9f27ed0af3bd8",
+      "status": "smoke_only",
+      "completed_rounds": 2,
+      "total_fills": 3,
+      "atomic_first_batch_fills": 2,
+      "releases": 2,
+      "mpc_nodes": 7,
+      "validator_roots": 5,
+      "node_finality_observations": 14,
+      "recipient_claims_redeemed": 9,
+      "claim_authorization_response_signatures": 6,
+      "fresh_claim_authorization_keys": 12,
+      "post_match_financial_approval_signatures": 0,
+      "partial_fill_cancellation_wallet_sequence": 6,
+      "expiry_wallet_sequence": 8,
+      "final_facility_sequences": [
+        8,
+        5
+      ],
+      "node_restart_state_preserved": true,
+      "validator_restart_recovered": true,
+      "elapsed_ms": 81052
+    },
+    "p6_recovery_retirement": {
+      "artifact": ".artifacts/20260906t110145z-44291-pqc-native-acceptance/remote/p6-recovery.log",
+      "artifact_sha256": "41a5fbbb33660295bba701b57b812567578cf6d818c8aea32f84d2e05351ad44",
+      "started_at": "2026-09-06T11:16:07Z",
+      "completed_at": "2026-09-06T11:17:07Z",
+      "passed": 2,
+      "failed": 0,
+      "result": "PASS"
+    }
+  },
+  "process_evidence": {
+    "persistent_container_starts": 34,
+    "market_container_starts": 14,
+    "finality_container_starts": 10,
+    "lifecycle_container_starts": 10,
+    "runner_resources_absent_after_cleanup": true,
+    "unrelated_compose_projects_targeted": false
+  },
+  "supporting_gates": [
+    {
+      "run_id": "20260905T235518Z-qomm-rust",
+      "scope": "broad QOMM checks, transport and demo tests, and strict Clippy",
+      "result": "PASS",
+      "log_sha256": "102a61a460470677e4775dc07922c2649fb94c2e39bb69f2e659c0598ea5229c"
+    },
+    {
+      "run_id": "20260905T235848Z-oclob",
+      "scope": "broad OCLOB native gate: 125 tests and workspace all-target strict Clippy",
+      "result": "PASS",
+      "log_sha256": "62456e8aab955702eb1d3b66f753f08d8699969bba182d7e31322f636559a8f9"
+    },
+    {
+      "run_id": "20260906T050355Z-aethel",
+      "scope": "obligation-wallet registered hybrid authorization, umbrella E2E, and strict Clippy",
+      "result": "PASS",
+      "log_sha256": "a1c1798d8eefc3c67cf2e28b5a511744d21470ade35cbc9ac4e60a05b45b652d"
+    },
+    {
+      "run_id": "20260906T062917Z-defmi-rust",
+      "scope": "NoteClaim hybrid authorization and DeFMI lifecycle/recovery gate",
+      "result": "PASS",
+      "log_sha256": "2ed199d537ff3625eb8ecc72bc63ae01daf98d2a64916acdc39ea6dbd738043f"
+    },
+    {
+      "run_id": "20260906T075758Z-oclob",
+      "scope": "participant-owned claim custody standard gate",
+      "result": "PASS",
+      "log_sha256": "9bdc59114b73dd0ee29365074b45efbdc69957238aa53dec1d15d1014ac7b135"
+    },
+    {
+      "run_id": "20260906T102435Z-oclob",
+      "scope": "exact private-state receipt retry, reopen and tamper regressions, node tests, checks, and strict Clippy",
+      "result": "PASS",
+      "log_sha256": "e93fbef01ddc9a3350d1776fa77b682e4bdceac3fc61ac95aa0e18a9e0110c25"
+    }
+  ],
+  "experiment_ledger": {
+    "path": "oclob/research/experiment-ledger.jsonl",
+    "path_base": "integration_sibling_root",
+    "records_before_postflight": 62,
+    "records_after_postflight": 65,
+    "parsed_records": 65,
+    "unique_experiment_ids": 65,
+    "sha256": "c7c742aa5a52018f38a04e22c92b72840d1d992b72da3fe2ed5fb3437f770f76",
+    "append_timing": "after_source_before_after_equality_guard",
+    "appended_records": [
+      {
+        "experiment_id": "20260906t110145z-44291-pqc-native-acceptance-market",
+        "stage": "RUN_ROUGH_END_TO_END_AND_OBSERVE_FINAL_METRIC",
+        "verdict": "smoke_only",
+        "postflight_receipt": "market.json",
+        "postflight_receipt_sha256": "841f54d5f59a28d2acf8f4d5c58bf8b544fa1bc11fbf6c0f5a2004fa3e9c6596"
+      },
+      {
+        "experiment_id": "20260906t110145z-44291-pqc-native-acceptance-finality",
+        "stage": "RUN_ROUGH_END_TO_END_AND_OBSERVE_FINAL_METRIC",
+        "verdict": "smoke_only",
+        "postflight_receipt": "finality.json",
+        "postflight_receipt_sha256": "913ca3afdbd4ba1f320128d30b3925ca59cdbba046dcd1457a48e4d880c01474"
+      },
+      {
+        "experiment_id": "20260906t110145z-44291-pqc-native-acceptance-lifecycle",
+        "stage": "RUN_ROUGH_END_TO_END_AND_OBSERVE_FINAL_METRIC",
+        "verdict": "smoke_only",
+        "postflight_receipt": "lifecycle.json",
+        "postflight_receipt_sha256": "25c7dd141f634d1d779df5df6f7b6350d65f0c619d58ffae69e9f27ed0af3bd8"
+      }
+    ]
+  },
+  "dependency_boundaries": {
+    "aethel": {
+      "role": "application_consumer",
+      "not_resolved_by": [
+        "zkfmi-crypto",
+        "qomm",
+        "zkpi",
+        "defmi",
+        "oclob",
+        "dekyx",
+        "deccp"
+      ],
+      "cargo_manifest_and_metadata_check": "PASS",
+      "final_pin_recheck": "pending"
+    }
+  },
+  "evidence_limits": {
+    "single_host": true,
+    "independent_operators": false,
+    "wan_evidence": false,
+    "physical_hsm_evidence": false,
+    "production_deployment_evidence": false,
+    "external_audit": false,
+    "fips_validation": false,
+    "performance_comparison": false,
+    "mathematical_proofs_migrated_to_post_quantum": false,
+    "non_consensus_viewing_grant_and_spend_disclosure_migrated": false,
+    "corporate_api_restart_exact_wire_claim": "deterministic journal gate plus native API/custody execution; the native scenario did not separately repeat the exact corporate API crash window"
+  },
+  "release_pinning": {
+    "status": "pending_after_user_managed_github_organization_repush",
+    "remote_heads_verified_after_repush": false,
+    "final_revisions": {
+      "zkfmi-crypto": null,
+      "qomm": null,
+      "zkpi": null,
+      "defmi": null,
+      "oclob": null,
+      "dekyx": null,
+      "deccp": null,
+      "aethel": null
+    },
+    "required_next_gate": "Fetch every remote HEAD after the organization re-push, reconcile all eight accepted source trees, pin immutable revisions, regenerate locks, and rerun the required release gates."
+  }
+}

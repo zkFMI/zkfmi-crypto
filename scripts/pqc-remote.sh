@@ -22,7 +22,7 @@ for repo in zkfmi-crypto qomm zkpi defmi oclob dekyx deccp aethel; do
   # Source edits made during the prior run may predate its cached rlibs.
   # Preserve current receiver mtimes for unchanged bytes, and timestamp changed
   # bytes at transfer time so Cargo cannot reuse an older source snapshot.
-  rsync -az --checksum --no-times --delete --exclude=.git --exclude=.cache --exclude=.worktrees --exclude=.artifacts --exclude=target --exclude=node_modules --exclude=.runtime \
+  rsync -az --checksum --no-times --delete --exclude=.git --exclude=.codex --exclude=.cache --exclude=.worktrees --exclude=.artifacts --exclude=target --exclude=node_modules --exclude=.runtime \
     "$root/$repo/" "$host:$remote/src/$repo/"
 done
 printf -v remote_command 'bash -s -- %q %q %q %q %q' "$remote" "$project" "$command" "$run" "$native"
@@ -41,7 +41,7 @@ record_inputs() {
   printf 'input_%s=' "$1"
   sha256sum ".artifacts/$run-input-$1.sha256"
 }
-image=rust:1.97-bookworm
+image=sha256:0e2bcaef56d041a486784e54104a81aebe0da44bd03019bd70bc0401e42e4a97
 target=.cache/target
 native_mount=()
 if [ "$5" = 1 ]; then

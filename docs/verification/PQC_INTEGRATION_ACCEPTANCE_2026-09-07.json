@@ -1,0 +1,101 @@
+{
+ "schema_version": 1,
+ "record_id": "zkfmi-pqc-integration-acceptance-2026-09-07",
+ "status": "integration_acceptance_pass_release_pinning_pending",
+ "classification": "smoke_only",
+ "supersedes": "zkfmi-pqc-integration-acceptance-2026-09-06",
+ "reason": "Rerun of the native acceptance after merging main into every lane branch (zkpi, qomm, defmi): main carries the 2026-09-07 zero-relation opening fix (reconciliation, range linkages, quote-proof winner opening, rule-audit equality; see defmi/docs/SOUNDNESS_FINDING_GENERAL_OPENING_2026-09-07.md). Lane changes made to pass the gates: dropped a test that include_str!'d codex memory (zkfmi-crypto), removed unused [patch] overlays whose lock ordering was non-deterministic (qomm, aethel), regenerated the qomm/defmi/aethel lock files in the container, filled the NoteClaim authorization field in the aethel host tests.",
+ "run": {
+  "id": "20260907t073951z-59900-pqc-native-acceptance",
+  "result": "PASS",
+  "host": "ngi-external022-vm1 (softbank-l40s)",
+  "remote_run_root": "/home/ubuntu/work/pqc-astra-high-20260906/.cache/native-runs/20260907t073951z-59900-pqc-native-acceptance",
+  "receipts": ".artifacts/20260907t073951z-59900-pqc-native-acceptance",
+  "top_level_log_sha256": "950c95feedaa0a1d9186225952d2a3367481e447d53c0005dfb36fc24084db58"
+ },
+ "source": {
+  "local_before_after_equal": true,
+  "manifest_entries": 1123,
+  "source_before_sha256": "7b7ed75ab411a30ea4a5b2f7ffec333db881059090f5ccfbb94319221e4ab238",
+  "crypto_dependency": {
+   "name": "zkfmi-crypto",
+   "pinned_revision": "26ebfe96563a05c3379219f7fdacea137ab5fb4f",
+   "local_rust_and_cargo_bytes_identical": true,
+   "final_release_pin": false
+  },
+  "lane_heads_at_run": {
+   "zkpi": "254d7e4 (merge of main 53a8153)",
+   "qomm": "c2d0e24 (merge of main be4719e)",
+   "defmi": "7128ff1 (merge of main cf753fc)",
+   "zkfmi-crypto": "6143b01",
+   "oclob": "6d96ec7",
+   "dekyx": "f9e7c43",
+   "deccp": "eb99088",
+   "aethel": "039339d"
+  },
+  "uncommitted_lane_work_included": "yes; the codex in-progress P1-P6 changes present in the worktrees were part of the synced source and are committed on the lane branches after this run"
+ },
+ "supporting_gates": [
+  {
+   "run_id": "20260907T0737Z-zkfmi-crypto workspace check",
+   "scope": "cargo metadata --locked and cargo check --locked --all-targets --all-features across all nine workspaces (pqc-workspace-check.sh)",
+   "result": "PASS",
+   "log_sha256": "7c14255e87e4c06fd1ce64f7b62f9ad5d5f94256bc43eca49f7dbb7c04bdde44"
+  }
+ ],
+ "scenarios": {
+  "market": {
+   "artifact": ".artifacts/20260907t073951z-59900-pqc-native-acceptance/market.json",
+   "artifact_sha256": "891a1c6472d274fd95f464c153f9c8c12022c81280bffa98a67543296d767789",
+   "status": "smoke_only",
+   "manifest_id": "oclob-native-market-pqc-custody-003",
+   "contract_sha256": "0e01378323b129f6fdd92aa7a59d353b2a034fbc1cf404a895bbd6a4e619a185",
+   "validator_restart_recovered": true,
+   "independent_operators": false,
+   "wan_evidence": false
+  },
+  "finality": {
+   "artifact": ".artifacts/20260907t073951z-59900-pqc-native-acceptance/finality.json",
+   "artifact_sha256": "7c3a94ebfb8f9c5677f03291e72f814e1886066e67f0d9e9c795e18a61126a62",
+   "status": "smoke_only",
+   "manifest_id": "oclob-native-finality-pqc-custody-003",
+   "contract_sha256": "308d47bfc84c19784dc6606bf17db783f4d7579a4b48b5c97a12654599cf4886",
+   "validator_restart_recovered": true,
+   "independent_operators": false,
+   "wan_evidence": false
+  },
+  "lifecycle": {
+   "artifact": ".artifacts/20260907t073951z-59900-pqc-native-acceptance/lifecycle.json",
+   "artifact_sha256": "e11f0894df2f8b18f63e9c4c85db00ccd16252d85fa56d8e3a9cf34cbf0d2e5e",
+   "status": "smoke_only",
+   "manifest_id": "oclob-native-lifecycle-pqc-custody-005",
+   "contract_sha256": "74093488ce6e3accd983a8b2ad025fd0ed3226bb8cd2165a2e5024edf3904743",
+   "validator_restart_recovered": true,
+   "independent_operators": false,
+   "wan_evidence": false
+  }
+ },
+ "experiment_ledger": {
+  "path": "oclob/research/experiment-ledger.jsonl",
+  "records_before_postflight": 65,
+  "records_after_postflight": 68,
+  "sha256_after": "2ce76b15b39cb388e19bae9a52a0aa1b42556e11427103981d54564fc069008f"
+ },
+ "evidence_limits": {
+  "single_host": true,
+  "independent_operators": false,
+  "wan_evidence": false,
+  "physical_hsm_evidence": false,
+  "production_deployment_evidence": false,
+  "external_audit": false,
+  "fips_validation": false,
+  "performance_comparison": false,
+  "mathematical_proofs_migrated_to_post_quantum": false,
+  "non_consensus_viewing_grant_and_spend_disclosure_migrated": false,
+  "corporate_api_restart_exact_wire_claim": "deterministic journal gate plus native API/custody execution; the native scenario did not separately repeat the exact corporate API crash window"
+ },
+ "release_pinning": {
+  "status": "pending",
+  "required_next_gate": "Pin the lane heads as immutable git revisions in dependency order, remove the sibling [patch] overlays, regenerate locks, rerun the workspace check and this acceptance, then merge each lane branch into main."
+ }
+}

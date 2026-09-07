@@ -1,4 +1,4 @@
-# P0 cryptographic boundaries
+# Cryptographic boundaries and integration contract
 
 ## Implementation scope
 
@@ -12,7 +12,10 @@ Registered operations are signing and verification with Ed25519, ML-DSA-65, and
 Ed25519+ML-DSA-65, plus encapsulation and decapsulation with ML-KEM-768 and
 X25519+ML-KEM-768. SuiteIds for FROST, Pedersen, Bulletproofs, ML-DSA-44, SLH-DSA,
 classical TLS, and hashes identify algorithms only. Unregistered cryptographic
-operations fail with `UnsupportedSuite`. Existing services are not yet integrated.
+operations fail with `UnsupportedSuite`. Consumer integration is implemented in
+the synchronized QOMM, zkPI, DeFMI, OCLOB, DeKYX, DeCCP, and Aethel source
+snapshot; each consumer remains responsible for its protocol-specific trust,
+state, and authorization checks.
 
 ## Backend selection and provenance
 
@@ -67,9 +70,13 @@ replace a formal security proof.
 
 Noncontributory X25519 shared values and invalid lengths are rejected. ML-KEM
 follows FIPS 203 implicit rejection: a tampered ciphertext of the correct length
-produces a different shared secret. There is no classical-only fallback. This KEM
-does not itself authenticate the peer or confirm possession of the resulting key.
-It does not implement a TLS handshake or P1 configuration changes.
+produces a different shared secret. There is no classical-only fallback. This
+KEM does not itself authenticate the peer or confirm possession of the resulting
+key. P1 consumers bind recipient records, contexts, versions, and durable
+ciphertexts at their application boundaries. The native transport adapter
+separately requires TLS 1.3 with X25519MLKEM768, while application services pin
+the allowed peer-certificate fingerprints. Those transport policies do not turn
+this standalone KEM into an authenticated handshake.
 
 ## Key-management responsibilities
 
@@ -93,10 +100,10 @@ acknowledgement also binds the old key ID. State changes only after both
 directions verify, and successful rotation revokes the old key. Changes of
 participant or purpose, skipped generations, reuse of the same key, and rollback
 from PQ to classical-only cryptography are rejected. Rotation proofs apply to
-signing-capable keys. The P1 integration layer defines authorization for KEM key
-rotation. Transport purpose includes signing keys used for communication
-authentication. KEM keys are restricted to Transport, but authentication signing
-keys such as Ed25519 are also permitted for Transport.
+signing-capable keys. Consumer registries define authorization and durable
+custody for KEM key rotation. Transport purpose includes signing keys used for
+communication authentication. KEM keys are restricted to Transport, but
+authentication signing keys such as Ed25519 are also permitted for Transport.
 
 Public DTOs support serde and reject unknown fields. `RegistrySnapshot` provides
 a storage representation for public records; deserialization does not
@@ -109,3 +116,42 @@ implementation or assert security for every use. Reduced hash security margins
 under Grover and related algorithms are considered separately. Pedersen's
 perfect hiding and its binding property, which quantum attacks can break, are
 also treated as distinct guarantees.
+
+## Implemented migration boundaries
+
+The accepted synchronized snapshot assigns the following responsibilities. The
+stage names describe integration coverage; they are not independent security
+certifications.
+
+| Stage | Implemented boundary |
+| --- | --- |
+| P1 | TLS 1.3 X25519MLKEM768 transport policy, ML-DSA-65 certificate keys and chain signatures, application-level pinned certificate ACLs, hybrid recipient KEM/AEAD envelopes, durable recipient-key lifecycle checks, and exact retry/restart behavior. |
+| P2 | Typed and versioned execution wires, roster-pinned Ed25519 plus ML-DSA winner authentication, registered per-node ML-DSA settlement approvals, standing-pool and application authorization, and fail-closed legacy rejection. |
+| P3 | DeKYX issuer and status authorization, independent holder possession keys, encrypted holder custody, lifecycle checks, and legacy-schema rejection. |
+| P4 | Hybrid governance, participant/provider/guarantor/CSD/DeCCP/cross-domain/Aethel authorization; participant-owned one-time claim keys and signed custody responses; clearing and receipt bindings. |
+| P5 | Bounded public-root, settled-batch, receipt, and zkPI relation evidence with typed versions and explicit size limits. The underlying proof systems remain the algorithms identified by their registered suites. |
+| P6 | Historical checkpoint verification, retirement and recovery rules, archived-state restoration, and fail-closed recovery when required key or provenance evidence is absent. |
+
+Application services bind registered keys to protocol identities rather than
+accepting a signer-selected public key. They verify purpose, suite, generation,
+validity, revocation, and authoritative host time at the point of use. Durable
+paths persist randomized signed responses before returning them and replay the
+exact stored wire on retry and restart. New wire and snapshot generations reject
+missing fields and earlier authorization formats explicitly.
+
+## Limits of the contract
+
+Hybrid transport and outer authorization do not make every mathematical proof
+post-quantum. FROST, Pedersen commitments, Bulletproof/range proofs, Triptych,
+OR-DLEQ and the anonymous relation proofs retain their stated classical or
+information-theoretic properties. The accepted integration binds active
+financial execution to hybrid application approvals around those proofs; it
+does not replace their mathematical cores. Scoped-wallet `ViewingGrant` and
+`SpendDisclosure` remain non-consensus disclosure controls and were not
+migrated as execution authorization.
+
+The acceptance evidence is a deterministic and native single-host run. It is
+not evidence of seven independent operators, WAN behavior, physical HSMs,
+production key ceremonies, FIPS validation, a third-party audit, or measured
+security/performance equivalence. Final repository revisions and remote HEADs
+remain pending until the user-managed GitHub organization re-push is complete.
