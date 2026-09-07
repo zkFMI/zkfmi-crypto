@@ -177,13 +177,13 @@ fn under(file: &str, directory: &str) -> bool {
 fn comparisons(entries: &[Entry]) -> Vec<CountComparison> {
     let mut expected = BTreeMap::from([
         ("qomm-transport", ("defmi", 34)),
-        ("qomm-defmi", ("defmi", 25)),
+        ("defmi", ("defmi", 25)),
         ("qomm-proofs", ("defmi", 12)),
         ("qomm-harness", ("defmi", 12)),
-        ("qomm-zk", ("defmi", 9)),
+        ("zkfmi-zk", ("defmi", 9)),
         ("oclob-node", ("oclob", 9)),
         ("qomm-avalanche-vm", ("defmi", 8)),
-        ("qomm-zkpi", ("defmi", 7)),
+        ("zkpi", ("defmi", 7)),
         ("zkpi-defmi-sdk", ("defmi", 3)),
         ("oclob-settlement", ("oclob", 3)),
         ("oclob-demo", ("oclob", 3)),
@@ -493,15 +493,15 @@ fn context(repo: &str, name: &str, file: &str) -> (String, Phase) {
                 "Messages between corporate and MPC nodes, and key lifecycles",
                 Phase::P2,
             ),
-            "qomm-zkpi" | "zkpi-defmi-sdk" => (
+            "zkpi" | "zkpi-defmi-sdk" => (
                 "zkPI, settlement instructions, and reservation evidence",
                 Phase::P2,
             ),
-            "qomm-defmi" | "qomm-avalanche-vm" => (
+            "defmi" | "qomm-avalanche-vm" => (
                 "DeFMI ledger, settlement execution, and finality",
                 Phase::P2,
             ),
-            "qomm-proofs" | "qomm-zk" => (
+            "qomm-proofs" | "zkfmi-zk" => (
                 "Secret values, commitments, and public verification",
                 Phase::P5,
             ),

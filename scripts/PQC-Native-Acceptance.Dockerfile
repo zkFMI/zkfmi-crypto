@@ -45,7 +45,7 @@ RUN --mount=type=cache,id=pqc-native-acceptance-cargo-registry,target=/usr/local
     --mount=type=cache,id=pqc-native-acceptance-target,target=/build/target \
     cd /integration/defmi/rust \
     && env -u MP_SPDZ_ROOT cargo build --locked --release \
-       -p qomm-avalanche-vm --bin qomm-avalanche-vm \
+       -p defmi-avalanche-vm --bin qomm-avalanche-vm \
     && install -m 0755 /build/target/release/qomm-avalanche-vm /opt/oclob-bin/
 
 FROM ${PQC_NATIVE_BASE} AS avalanche-download

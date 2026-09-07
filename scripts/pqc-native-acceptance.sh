@@ -246,7 +246,7 @@ docker run --rm --init --network=host --cpus=8 \
   -v "$run_root:/integration" \
   -w /integration/src/defmi/rust \
   "$base_id" bash -euc \
-  'env -u MP_SPDZ_ROOT cargo test --locked --release -p qomm-avalanche-vm --test recovery' \
+  'env -u MP_SPDZ_ROOT cargo test --locked --release -p defmi-avalanche-vm --test recovery' \
   2>&1 | tee receipts/p6-recovery.log
 sha256sum receipts/p6-recovery.log > receipts/p6-recovery.sha256
 printf 'p6_completed_at=%s\np6_result=PASS\n' "$(date -u +%FT%TZ)" >> receipts/run.txt
