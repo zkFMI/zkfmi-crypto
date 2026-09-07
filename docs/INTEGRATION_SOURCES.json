@@ -1,121 +1,130 @@
 {
-  "schema_version": 1,
-  "status": "unpublished_candidate",
-  "base_commits": {
-    "qomm": "26026b5807ce6bd093e363ddc8e71b53b084cb19",
-    "zkpi": "b50704ab27dac55f3ccef70a5c97ab7eb3893f39",
-    "defmi": "d8a54fa89676d7ca993c8683658e5dcdb37788c2",
-    "dekyx": "af06561a2075f7e449a24c3bfe8e2e0a1a5df5e5",
-    "deccp": "b2dc95bb01d3fc50c96249962f5ea8344a857d6d",
-    "zkfmi-crypto": "25e69708b978b7d1a79258c3318b720f0ead952e",
-    "aethel": "845ea7765c708f2d544b14007d34c750948921ef",
-    "oclob": "617290b9776c2987f84696921180d4123533693f"
+ "schema_version": 1,
+ "status": "published_candidate_after_cycle_break",
+ "base_commits": {
+  "qomm": "26026b5807ce6bd093e363ddc8e71b53b084cb19",
+  "zkpi": "b50704ab27dac55f3ccef70a5c97ab7eb3893f39",
+  "defmi": "d8a54fa89676d7ca993c8683658e5dcdb37788c2",
+  "dekyx": "af06561a2075f7e449a24c3bfe8e2e0a1a5df5e5",
+  "deccp": "b2dc95bb01d3fc50c96249962f5ea8344a857d6d",
+  "zkfmi-crypto": "25e69708b978b7d1a79258c3318b720f0ead952e",
+  "aethel": "845ea7765c708f2d544b14007d34c750948921ef",
+  "oclob": "617290b9776c2987f84696921180d4123533693f"
+ },
+ "owners": {
+  "qomm-dsl": "zkpi",
+  "qomm-law": "qomm",
+  "qomm-sim": "zkpi",
+  "qomm-mpc": "zkpi",
+  "qomm-transport": "zkpi",
+  "qomm-audit": "zkpi",
+  "qomm-measure": "zkpi",
+  "qomm-proofs": "zkpi",
+  "qomm-zk": "zkpi",
+  "qomm-zkpi": "zkpi",
+  "qomm-defmi": "defmi",
+  "zkpi-defmi-sdk": "defmi",
+  "qomm-avalanche-vm": "defmi",
+  "dekyx-core": "dekyx",
+  "deccp-core": "deccp"
+ },
+ "preserved": [
+  {
+   "from": "defmi/rust/qomm-transport/src/proof_party.rs",
+   "to": "qomm/rust/qomm-transport/src/proof_party.rs",
+   "sha256": "7170415c0dc59bf8e9d6d93b980c4e7cc866138cdce06f28b70f33eeeef15b58"
   },
-  "owners": {
-    "qomm-dsl": "qomm",
-    "qomm-law": "qomm",
-    "qomm-sim": "qomm",
-    "qomm-mpc": "qomm",
-    "qomm-transport": "qomm",
-    "qomm-audit": "qomm",
-    "qomm-measure": "qomm",
-    "qomm-proofs": "zkpi",
-    "qomm-zk": "zkpi",
-    "qomm-zkpi": "zkpi",
-    "qomm-defmi": "defmi",
-    "zkpi-defmi-sdk": "defmi",
-    "qomm-avalanche-vm": "defmi",
-    "dekyx-core": "dekyx",
-    "deccp-core": "deccp"
+  {
+   "from": "defmi/rust/qomm-transport/src/proof_party_application_tests.rs",
+   "to": "qomm/rust/qomm-transport/src/proof_party_application_tests.rs",
+   "sha256": "476b81a9a7f5e696c317ff8a58647df17e5e2c52cd1d21046cd30dc495aec7f2"
   },
-  "preserved": [
-    {
-      "from": "defmi/rust/qomm-transport/src/proof_party.rs",
-      "to": "qomm/rust/qomm-transport/src/proof_party.rs",
-      "sha256": "7170415c0dc59bf8e9d6d93b980c4e7cc866138cdce06f28b70f33eeeef15b58"
-    },
-    {
-      "from": "defmi/rust/qomm-transport/src/proof_party_application_tests.rs",
-      "to": "qomm/rust/qomm-transport/src/proof_party_application_tests.rs",
-      "sha256": "476b81a9a7f5e696c317ff8a58647df17e5e2c52cd1d21046cd30dc495aec7f2"
-    },
-    {
-      "from": "defmi/rust/qomm-zk/src/sigma.rs",
-      "to": "zkpi/rust/qomm-zk/src/sigma.rs",
-      "sha256": "86d4e95c51c9f907c790007a34c9be5242f536532c8555264d24daa9ab9c06a4"
-    },
-    {
-      "from": "qomm/rust/qomm-zk/src/range.rs",
-      "to": "zkpi/rust/qomm-zk/src/range.rs",
-      "sha256": "95dde6e206e25e1d3fd3f1a481f2c8eec789c12d68a668b9127f82f86042db4a"
-    },
-    {
-      "from": "qomm/rust/qomm-zkpi/src/lib.rs",
-      "to": "zkpi/rust/qomm-zkpi/src/lib.rs",
-      "sha256": "2cd1f6877d4c192ebd4cafcb17396b205a4eceedd9d5cc99418bbf23c83e1fb1"
-    }
-  ],
-  "retired": [
-    {
-      "directory": "qomm/rust/qomm-proofs",
-      "canonical": "zkpi/rust/qomm-proofs"
-    },
-    {
-      "directory": "qomm/rust/qomm-zk",
-      "canonical": "zkpi/rust/qomm-zk"
-    },
-    {
-      "directory": "qomm/rust/qomm-zkpi",
-      "canonical": "zkpi/rust/qomm-zkpi"
-    },
-    {
-      "directory": "qomm/rust/qomm-defmi",
-      "canonical": "defmi/rust/qomm-defmi"
-    },
-    {
-      "directory": "qomm/rust/zkpi-defmi-sdk",
-      "canonical": "defmi/rust/zkpi-defmi-sdk"
-    },
-    {
-      "directory": "zkpi/rust/qomm-measure",
-      "canonical": "qomm/rust/qomm-measure"
-    },
-    {
-      "directory": "defmi/rust/qomm-dsl",
-      "canonical": "qomm/rust/qomm-dsl"
-    },
-    {
-      "directory": "defmi/rust/qomm-sim",
-      "canonical": "qomm/rust/qomm-sim"
-    },
-    {
-      "directory": "defmi/rust/qomm-mpc",
-      "canonical": "qomm/rust/qomm-mpc"
-    },
-    {
-      "directory": "defmi/rust/qomm-transport",
-      "canonical": "qomm/rust/qomm-transport"
-    },
-    {
-      "directory": "defmi/rust/qomm-audit",
-      "canonical": "qomm/rust/qomm-audit"
-    },
-    {
-      "directory": "defmi/rust/qomm-measure",
-      "canonical": "qomm/rust/qomm-measure"
-    },
-    {
-      "directory": "defmi/rust/qomm-proofs",
-      "canonical": "zkpi/rust/qomm-proofs"
-    },
-    {
-      "directory": "defmi/rust/qomm-zk",
-      "canonical": "zkpi/rust/qomm-zk"
-    },
-    {
-      "directory": "defmi/rust/qomm-zkpi",
-      "canonical": "zkpi/rust/qomm-zkpi"
-    }
-  ],
-  "release_gate": "Publish reviewed owner commits, update Git rev pins and regenerate locks without path patches before independent release."
+  {
+   "from": "defmi/rust/qomm-zk/src/sigma.rs",
+   "to": "zkpi/rust/qomm-zk/src/sigma.rs",
+   "sha256": "86d4e95c51c9f907c790007a34c9be5242f536532c8555264d24daa9ab9c06a4"
+  },
+  {
+   "from": "qomm/rust/qomm-zk/src/range.rs",
+   "to": "zkpi/rust/qomm-zk/src/range.rs",
+   "sha256": "95dde6e206e25e1d3fd3f1a481f2c8eec789c12d68a668b9127f82f86042db4a"
+  },
+  {
+   "from": "qomm/rust/qomm-zkpi/src/lib.rs",
+   "to": "zkpi/rust/qomm-zkpi/src/lib.rs",
+   "sha256": "2cd1f6877d4c192ebd4cafcb17396b205a4eceedd9d5cc99418bbf23c83e1fb1"
+  }
+ ],
+ "retired": [
+  {
+   "directory": "qomm/rust/qomm-proofs",
+   "canonical": "zkpi/rust/qomm-proofs"
+  },
+  {
+   "directory": "qomm/rust/qomm-zk",
+   "canonical": "zkpi/rust/qomm-zk"
+  },
+  {
+   "directory": "qomm/rust/qomm-zkpi",
+   "canonical": "zkpi/rust/qomm-zkpi"
+  },
+  {
+   "directory": "qomm/rust/qomm-defmi",
+   "canonical": "defmi/rust/qomm-defmi"
+  },
+  {
+   "directory": "qomm/rust/zkpi-defmi-sdk",
+   "canonical": "defmi/rust/zkpi-defmi-sdk"
+  },
+  {
+   "directory": "zkpi/rust/qomm-measure",
+   "canonical": "qomm/rust/qomm-measure"
+  },
+  {
+   "directory": "defmi/rust/qomm-dsl",
+   "canonical": "qomm/rust/qomm-dsl"
+  },
+  {
+   "directory": "defmi/rust/qomm-sim",
+   "canonical": "qomm/rust/qomm-sim"
+  },
+  {
+   "directory": "defmi/rust/qomm-mpc",
+   "canonical": "qomm/rust/qomm-mpc"
+  },
+  {
+   "directory": "defmi/rust/qomm-transport",
+   "canonical": "qomm/rust/qomm-transport"
+  },
+  {
+   "directory": "defmi/rust/qomm-audit",
+   "canonical": "qomm/rust/qomm-audit"
+  },
+  {
+   "directory": "defmi/rust/qomm-measure",
+   "canonical": "qomm/rust/qomm-measure"
+  },
+  {
+   "directory": "defmi/rust/qomm-proofs",
+   "canonical": "zkpi/rust/qomm-proofs"
+  },
+  {
+   "directory": "defmi/rust/qomm-zk",
+   "canonical": "zkpi/rust/qomm-zk"
+  },
+  {
+   "directory": "defmi/rust/qomm-zkpi",
+   "canonical": "zkpi/rust/qomm-zkpi"
+  }
+ ],
+ "release_gate": "Publish reviewed owner commits, update Git rev pins and regenerate locks without path patches before independent release.",
+ "moves": [
+  {
+   "date": "2026-09-07",
+   "from": "qomm/rust/{qomm-transport,qomm-mpc,qomm-audit,qomm-dsl,qomm-sim,qomm-measure}",
+   "to": "zkpi/rust/",
+   "reason": "break the defmi <-> qomm dependency cycle so that every repository can pin immutable revisions: defmi depends on zkpi only; qomm (law, demo, harness) depends on zkpi and defmi",
+   "fixtures": "qomm/tests/fixtures/persistence copied to zkpi/tests/fixtures/persistence for qomm-mpc's checked-in Transactions test"
+  }
+ ]
 }

@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
  "record_id": "zkfmi-pqc-integration-acceptance-2026-09-07",
- "status": "integration_acceptance_pass_release_pinning_pending",
+ "status": "integration_acceptance_pass_release_pinning_in_progress",
  "classification": "smoke_only",
  "supersedes": "zkfmi-pqc-integration-acceptance-2026-09-06",
  "reason": "Rerun of the native acceptance after merging main into every lane branch (zkpi, qomm, defmi): main carries the 2026-09-07 zero-relation opening fix (reconciliation, range linkages, quote-proof winner opening, rule-audit equality; see defmi/docs/SOUNDNESS_FINDING_GENERAL_OPENING_2026-09-07.md). Lane changes made to pass the gates: dropped a test that include_str!'d codex memory (zkfmi-crypto), removed unused [patch] overlays whose lock ordering was non-deterministic (qomm, aethel), regenerated the qomm/defmi/aethel lock files in the container, filled the NoteClaim authorization field in the aethel host tests.",
@@ -110,5 +110,40 @@
   ],
   "blocker": "Cross-repository dependency cycle on the lane: defmi/rust consumes qomm-transport, qomm-mpc, qomm-dsl, qomm-sim, qomm-audit and qomm-measure from qomm, while qomm/rust consumes qomm-defmi, zkpi-defmi-sdk and qomm-avalanche-vm from defmi. Immutable git pins cannot express that cycle (one side is always stale and cargo would resolve two revisions of the same crate); the lane builds only through the sibling [patch] overlays. Breaking the cycle is the crate consolidation in CRATE_LAYOUT.md (move the committee half of qomm-transport under zkpi so that defmi depends on zkpi only).",
   "lane_branches_remain": "codex/pqc-astra-high on defmi, qomm, oclob, aethel carry the accepted state; build them as sibling checkouts under one root as scripts/pqc-remote.sh does."
+ },
+ "second_run": {
+  "id": "20260907t090826z-88934-pqc-native-acceptance",
+  "result": "PASS",
+  "reason": "Rerun after moving qomm-transport, qomm-mpc, qomm-audit, qomm-dsl, qomm-sim and qomm-measure from qomm/rust to zkpi/rust to break the defmi <-> qomm dependency cycle (see CRATE_LAYOUT.md); manifests of qomm, defmi, oclob and aethel re-sourced to zkpi, locks regenerated in the container, unused patch entries removed (aethel).",
+  "receipts": "zkfmi-crypto/.artifacts/20260907t090826z-88934-pqc-native-acceptance",
+  "top_level_log_sha256": "00766de5f48f054e50f8bdf25f0c50ff3caea9dd83c8e0f8a191f3c60f077cdf",
+  "source_before_sha256": "71411b0208ffbc7b4b808bdfa97dd9406a2db4eea5aa153029b7c8c56541d88d",
+  "scenarios": {
+   "market": {
+    "artifact": "zkfmi-crypto/.artifacts/20260907t090826z-88934-pqc-native-acceptance/market.json",
+    "artifact_sha256": "e0bc801e3390efc255953b8a8343945c8eeb00c34d21d373014051b2572e991c",
+    "status": "smoke_only"
+   },
+   "finality": {
+    "artifact": "zkfmi-crypto/.artifacts/20260907t090826z-88934-pqc-native-acceptance/finality.json",
+    "artifact_sha256": "705e997baf7ffe17f2069704dc6017e428bde5f51eec65b95bfa2d0a3a17d7e3",
+    "status": "smoke_only"
+   },
+   "lifecycle": {
+    "artifact": "zkfmi-crypto/.artifacts/20260907t090826z-88934-pqc-native-acceptance/lifecycle.json",
+    "artifact_sha256": "19b913031f0530d7c59ebf55904f747cbd4c1f0f63a7e897d3d05921ae9ba1a6",
+    "status": "smoke_only"
+   }
+  },
+  "workspace_check": {
+   "log_sha256": "a29c491a97d0a40f54414b778bbb0ae04acf7a979584b484e5fdf9855f4efc05",
+   "result": "PASS",
+   "workspaces": 9
+  },
+  "experiment_ledger": {
+   "records_after_postflight": 71,
+   "unique_experiment_ids": 71,
+   "sha256_after": "e331543e21a4e8d2c6eaeaf93a1806ecb5828c4f946cc9a5ccda6fa4ed5aa87d"
+  }
  }
 }
