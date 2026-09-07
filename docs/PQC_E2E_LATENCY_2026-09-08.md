@@ -378,3 +378,21 @@ loop does not amortise it") is what happened.
 Where the remaining time would go next, not done: preprocessing ahead of
 demand (MP-SPDZ's `-b` batching or an offline phase between orders), and a
 smaller circuit for the common single-fill case.
+
+### 6.1 Where inside the leg, new image (six alternating rounds, host idle, `breakdown2.log`)
+
+| leg | window | classical median | hybrid (resident) median | difference |
+|---|---|---:|---:|---:|
+| maker | MPC round (`mpc_execution_ms`) | 736.8 ms | **568.9 ms** | −167.9 ms |
+| maker | everything else in the request | 461.5 ms | 449.4 ms | −12.1 ms |
+| taker | MPC round | 799.8 ms | **570.6 ms** | −229.2 ms |
+| taker | everything else in the request | 977.8 ms | 949.3 ms | −28.5 ms |
+
+The MPC window is where the resident mesh shows: 570 ms, down from about
+750 to 800 ms, and equal on both legs now that nothing but the circuit is
+inside it. "Everything else" is within 30 ms of the classical image on both
+legs, against +84 to +88 ms before: the receipt hash is gone, and the
+application-side hybrid signing is inside the scatter of these six rounds.
+So the 570 ms that remain per order are the circuit's preprocessing and
+online phases, as section 6 concluded, and the next lever is the circuit and
+its preprocessing, not the transport or the receipt.
