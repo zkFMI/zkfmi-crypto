@@ -95,7 +95,20 @@
   "corporate_api_restart_exact_wire_claim": "deterministic journal gate plus native API/custody execution; the native scenario did not separately repeat the exact corporate API crash window"
  },
  "release_pinning": {
-  "status": "pending",
-  "required_next_gate": "Pin the lane heads as immutable git revisions in dependency order, remove the sibling [patch] overlays, regenerate locks, rerun the workspace check and this acceptance, then merge each lane branch into main."
+  "status": "partial",
+  "merged_to_main": {
+   "zkfmi-crypto": "caeaff3",
+   "zkpi": "254d7e4",
+   "dekyx": "09c2c1a",
+   "deccp": "7cb59cc"
+  },
+  "not_merged": [
+   "defmi",
+   "qomm",
+   "oclob",
+   "aethel"
+  ],
+  "blocker": "Cross-repository dependency cycle on the lane: defmi/rust consumes qomm-transport, qomm-mpc, qomm-dsl, qomm-sim, qomm-audit and qomm-measure from qomm, while qomm/rust consumes qomm-defmi, zkpi-defmi-sdk and qomm-avalanche-vm from defmi. Immutable git pins cannot express that cycle (one side is always stale and cargo would resolve two revisions of the same crate); the lane builds only through the sibling [patch] overlays. Breaking the cycle is the crate consolidation in CRATE_LAYOUT.md (move the committee half of qomm-transport under zkpi so that defmi depends on zkpi only).",
+  "lane_branches_remain": "codex/pqc-astra-high on defmi, qomm, oclob, aethel carry the accepted state; build them as sibling checkouts under one root as scripts/pqc-remote.sh does."
  }
 }
