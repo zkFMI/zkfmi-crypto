@@ -1,183 +1,231 @@
 {
- "schema_version": 1,
- "record_id": "zkfmi-pqc-integration-acceptance-2026-09-07",
- "status": "integration_acceptance_pass_release_pinned",
- "classification": "smoke_only",
- "supersedes": "zkfmi-pqc-integration-acceptance-2026-09-06",
- "reason": "Rerun of the native acceptance after merging main into every lane branch (zkpi, qomm, defmi): main carries the 2026-09-07 zero-relation opening fix (reconciliation, range linkages, quote-proof winner opening, rule-audit equality; see defmi/docs/SOUNDNESS_FINDING_GENERAL_OPENING_2026-09-07.md). Lane changes made to pass the gates: dropped a test that include_str!'d codex memory (zkfmi-crypto), removed unused [patch] overlays whose lock ordering was non-deterministic (qomm, aethel), regenerated the qomm/defmi/aethel lock files in the container, filled the NoteClaim authorization field in the aethel host tests.",
- "run": {
-  "id": "20260907t073951z-59900-pqc-native-acceptance",
-  "result": "PASS",
-  "host": "ngi-external022-vm1 (softbank-l40s)",
-  "remote_run_root": "/home/ubuntu/work/pqc-astra-high-20260906/.cache/native-runs/20260907t073951z-59900-pqc-native-acceptance",
-  "receipts": ".artifacts/20260907t073951z-59900-pqc-native-acceptance",
-  "top_level_log_sha256": "950c95feedaa0a1d9186225952d2a3367481e447d53c0005dfb36fc24084db58"
- },
- "source": {
-  "local_before_after_equal": true,
-  "manifest_entries": 1123,
-  "source_before_sha256": "7b7ed75ab411a30ea4a5b2f7ffec333db881059090f5ccfbb94319221e4ab238",
-  "crypto_dependency": {
-   "name": "zkfmi-crypto",
-   "pinned_revision": "26ebfe96563a05c3379219f7fdacea137ab5fb4f",
-   "local_rust_and_cargo_bytes_identical": true,
-   "final_release_pin": false
+  "schema_version": 1,
+  "record_id": "zkfmi-pqc-integration-acceptance-2026-09-07",
+  "status": "integration_acceptance_pass_release_pinned",
+  "classification": "smoke_only",
+  "supersedes": "zkfmi-pqc-integration-acceptance-2026-09-06",
+  "reason": "Rerun of the native acceptance after merging main into every lane branch (zkpi, qomm, defmi): main carries the 2026-09-07 zero-relation opening fix (reconciliation, range linkages, quote-proof winner opening, rule-audit equality; see defmi/docs/SOUNDNESS_FINDING_GENERAL_OPENING_2026-09-07.md). Lane changes made to pass the gates: dropped a test that include_str!'d codex memory (zkfmi-crypto), removed unused [patch] overlays whose lock ordering was non-deterministic (qomm, aethel), regenerated the qomm/defmi/aethel lock files in the container, filled the NoteClaim authorization field in the aethel host tests.",
+  "run": {
+    "id": "20260907t073951z-59900-pqc-native-acceptance",
+    "result": "PASS",
+    "host": "ngi-external022-vm1 (softbank-l40s)",
+    "remote_run_root": "/home/ubuntu/work/pqc-astra-high-20260906/.cache/native-runs/20260907t073951z-59900-pqc-native-acceptance",
+    "receipts": ".artifacts/20260907t073951z-59900-pqc-native-acceptance",
+    "top_level_log_sha256": "950c95feedaa0a1d9186225952d2a3367481e447d53c0005dfb36fc24084db58"
   },
-  "lane_heads_at_run": {
-   "zkpi": "254d7e4 (merge of main 53a8153)",
-   "qomm": "c2d0e24 (merge of main be4719e)",
-   "defmi": "7128ff1 (merge of main cf753fc)",
-   "zkfmi-crypto": "6143b01",
-   "oclob": "6d96ec7",
-   "dekyx": "f9e7c43",
-   "deccp": "eb99088",
-   "aethel": "039339d"
+  "source": {
+    "local_before_after_equal": true,
+    "manifest_entries": 1123,
+    "source_before_sha256": "7b7ed75ab411a30ea4a5b2f7ffec333db881059090f5ccfbb94319221e4ab238",
+    "crypto_dependency": {
+      "name": "zkfmi-crypto",
+      "pinned_revision": "26ebfe96563a05c3379219f7fdacea137ab5fb4f",
+      "local_rust_and_cargo_bytes_identical": true,
+      "final_release_pin": false
+    },
+    "lane_heads_at_run": {
+      "zkpi": "254d7e4 (merge of main 53a8153)",
+      "qomm": "c2d0e24 (merge of main be4719e)",
+      "defmi": "7128ff1 (merge of main cf753fc)",
+      "zkfmi-crypto": "6143b01",
+      "oclob": "6d96ec7",
+      "dekyx": "f9e7c43",
+      "deccp": "eb99088",
+      "aethel": "039339d"
+    },
+    "uncommitted_lane_work_included": "yes; the codex in-progress P1-P6 changes present in the worktrees were part of the synced source and are committed on the lane branches after this run"
   },
-  "uncommitted_lane_work_included": "yes; the codex in-progress P1-P6 changes present in the worktrees were part of the synced source and are committed on the lane branches after this run"
- },
- "supporting_gates": [
-  {
-   "run_id": "20260907T0737Z-zkfmi-crypto workspace check",
-   "scope": "cargo metadata --locked and cargo check --locked --all-targets --all-features across all nine workspaces (pqc-workspace-check.sh)",
-   "result": "PASS",
-   "log_sha256": "7c14255e87e4c06fd1ce64f7b62f9ad5d5f94256bc43eca49f7dbb7c04bdde44"
-  }
- ],
- "scenarios": {
-  "market": {
-   "artifact": ".artifacts/20260907t073951z-59900-pqc-native-acceptance/market.json",
-   "artifact_sha256": "891a1c6472d274fd95f464c153f9c8c12022c81280bffa98a67543296d767789",
-   "status": "smoke_only",
-   "manifest_id": "oclob-native-market-pqc-custody-003",
-   "contract_sha256": "0e01378323b129f6fdd92aa7a59d353b2a034fbc1cf404a895bbd6a4e619a185",
-   "validator_restart_recovered": true,
-   "independent_operators": false,
-   "wan_evidence": false
-  },
-  "finality": {
-   "artifact": ".artifacts/20260907t073951z-59900-pqc-native-acceptance/finality.json",
-   "artifact_sha256": "7c3a94ebfb8f9c5677f03291e72f814e1886066e67f0d9e9c795e18a61126a62",
-   "status": "smoke_only",
-   "manifest_id": "oclob-native-finality-pqc-custody-003",
-   "contract_sha256": "308d47bfc84c19784dc6606bf17db783f4d7579a4b48b5c97a12654599cf4886",
-   "validator_restart_recovered": true,
-   "independent_operators": false,
-   "wan_evidence": false
-  },
-  "lifecycle": {
-   "artifact": ".artifacts/20260907t073951z-59900-pqc-native-acceptance/lifecycle.json",
-   "artifact_sha256": "e11f0894df2f8b18f63e9c4c85db00ccd16252d85fa56d8e3a9cf34cbf0d2e5e",
-   "status": "smoke_only",
-   "manifest_id": "oclob-native-lifecycle-pqc-custody-005",
-   "contract_sha256": "74093488ce6e3accd983a8b2ad025fd0ed3226bb8cd2165a2e5024edf3904743",
-   "validator_restart_recovered": true,
-   "independent_operators": false,
-   "wan_evidence": false
-  }
- },
- "experiment_ledger": {
-  "path": "oclob/research/experiment-ledger.jsonl",
-  "records_before_postflight": 65,
-  "records_after_postflight": 68,
-  "sha256_after": "2ce76b15b39cb388e19bae9a52a0aa1b42556e11427103981d54564fc069008f"
- },
- "evidence_limits": {
-  "single_host": true,
-  "independent_operators": false,
-  "wan_evidence": false,
-  "physical_hsm_evidence": false,
-  "production_deployment_evidence": false,
-  "external_audit": false,
-  "fips_validation": false,
-  "performance_comparison": false,
-  "mathematical_proofs_migrated_to_post_quantum": false,
-  "non_consensus_viewing_grant_and_spend_disclosure_migrated": false,
-  "corporate_api_restart_exact_wire_claim": "deterministic journal gate plus native API/custody execution; the native scenario did not separately repeat the exact corporate API crash window"
- },
- "release_pinning": {
-  "status": "done",
-  "dependency_order": "zkfmi-crypto <- zkpi <- defmi <- qomm; oclob and aethel consume zkpi, defmi (and qomm for aethel); dekyx and deccp are leaves",
-  "final_revisions": {
-   "zkpi": "6228efed75648ac546cd5926797c847deb681dff",
-   "qomm": "958473e148b17744b9cd0b895817019f83e542de",
-   "defmi": "1b9b0b1d28f6cbd30479fc01399e541ac9379519",
-   "oclob": "f9dad504441047a4afc383593a4d0fdb772f8b48",
-   "dekyx": "09c2c1a7295e8cab592aca6af2f89381c3c110ac",
-   "deccp": "7cb59ccc228f739bd7c532f4ab2419ca4e2e0eee",
-   "aethel": "5e50f2046de70a0a5058029c741c62ffcbd6852a"
-  },
-  "zkfmi_crypto_pin": "26ebfe96563a05c3379219f7fdacea137ab5fb4f (src, Cargo.toml and Cargo.lock byte-identical on main)",
-  "overlays_removed": true,
-  "main_fast_forwarded_to_lane": true,
-  "note": "zkfmi-crypto's own main is fast-forwarded to the commit that carries this record."
- },
- "second_run": {
-  "id": "20260907t090826z-88934-pqc-native-acceptance",
-  "result": "PASS",
-  "reason": "Rerun after moving qomm-transport, qomm-mpc, qomm-audit, qomm-dsl, qomm-sim and qomm-measure from qomm/rust to zkpi/rust to break the defmi <-> qomm dependency cycle (see CRATE_LAYOUT.md); manifests of qomm, defmi, oclob and aethel re-sourced to zkpi, locks regenerated in the container, unused patch entries removed (aethel).",
-  "receipts": "zkfmi-crypto/.artifacts/20260907t090826z-88934-pqc-native-acceptance",
-  "top_level_log_sha256": "00766de5f48f054e50f8bdf25f0c50ff3caea9dd83c8e0f8a191f3c60f077cdf",
-  "source_before_sha256": "71411b0208ffbc7b4b808bdfa97dd9406a2db4eea5aa153029b7c8c56541d88d",
+  "supporting_gates": [
+    {
+      "run_id": "20260907T0737Z-zkfmi-crypto workspace check",
+      "scope": "cargo metadata --locked and cargo check --locked --all-targets --all-features across all nine workspaces (pqc-workspace-check.sh)",
+      "result": "PASS",
+      "log_sha256": "7c14255e87e4c06fd1ce64f7b62f9ad5d5f94256bc43eca49f7dbb7c04bdde44"
+    }
+  ],
   "scenarios": {
-   "market": {
-    "artifact": "zkfmi-crypto/.artifacts/20260907t090826z-88934-pqc-native-acceptance/market.json",
-    "artifact_sha256": "e0bc801e3390efc255953b8a8343945c8eeb00c34d21d373014051b2572e991c",
-    "status": "smoke_only"
-   },
-   "finality": {
-    "artifact": "zkfmi-crypto/.artifacts/20260907t090826z-88934-pqc-native-acceptance/finality.json",
-    "artifact_sha256": "705e997baf7ffe17f2069704dc6017e428bde5f51eec65b95bfa2d0a3a17d7e3",
-    "status": "smoke_only"
-   },
-   "lifecycle": {
-    "artifact": "zkfmi-crypto/.artifacts/20260907t090826z-88934-pqc-native-acceptance/lifecycle.json",
-    "artifact_sha256": "19b913031f0530d7c59ebf55904f747cbd4c1f0f63a7e897d3d05921ae9ba1a6",
-    "status": "smoke_only"
-   }
-  },
-  "workspace_check": {
-   "log_sha256": "a29c491a97d0a40f54414b778bbb0ae04acf7a979584b484e5fdf9855f4efc05",
-   "result": "PASS",
-   "workspaces": 9
+    "market": {
+      "artifact": ".artifacts/20260907t073951z-59900-pqc-native-acceptance/market.json",
+      "artifact_sha256": "891a1c6472d274fd95f464c153f9c8c12022c81280bffa98a67543296d767789",
+      "status": "smoke_only",
+      "manifest_id": "oclob-native-market-pqc-custody-003",
+      "contract_sha256": "0e01378323b129f6fdd92aa7a59d353b2a034fbc1cf404a895bbd6a4e619a185",
+      "validator_restart_recovered": true,
+      "independent_operators": false,
+      "wan_evidence": false
+    },
+    "finality": {
+      "artifact": ".artifacts/20260907t073951z-59900-pqc-native-acceptance/finality.json",
+      "artifact_sha256": "7c3a94ebfb8f9c5677f03291e72f814e1886066e67f0d9e9c795e18a61126a62",
+      "status": "smoke_only",
+      "manifest_id": "oclob-native-finality-pqc-custody-003",
+      "contract_sha256": "308d47bfc84c19784dc6606bf17db783f4d7579a4b48b5c97a12654599cf4886",
+      "validator_restart_recovered": true,
+      "independent_operators": false,
+      "wan_evidence": false
+    },
+    "lifecycle": {
+      "artifact": ".artifacts/20260907t073951z-59900-pqc-native-acceptance/lifecycle.json",
+      "artifact_sha256": "e11f0894df2f8b18f63e9c4c85db00ccd16252d85fa56d8e3a9cf34cbf0d2e5e",
+      "status": "smoke_only",
+      "manifest_id": "oclob-native-lifecycle-pqc-custody-005",
+      "contract_sha256": "74093488ce6e3accd983a8b2ad025fd0ed3226bb8cd2165a2e5024edf3904743",
+      "validator_restart_recovered": true,
+      "independent_operators": false,
+      "wan_evidence": false
+    }
   },
   "experiment_ledger": {
-   "records_after_postflight": 71,
-   "unique_experiment_ids": 71,
-   "sha256_after": "e331543e21a4e8d2c6eaeaf93a1806ecb5828c4f946cc9a5ccda6fa4ed5aa87d"
-  }
- },
- "third_run": {
-  "id": "20260907t093507z-94546-pqc-native-acceptance",
-  "result": "PASS",
-  "reason": "Final run on the release-pinned layout: every repository pins the others by immutable git revision, no sibling [patch] overlays remain, and each lane branch is fast-forwarded into main.",
-  "receipts": "zkfmi-crypto/.artifacts/20260907t093507z-94546-pqc-native-acceptance",
-  "top_level_log_sha256": "54d3b4e0a8847297f58fca5fddca667d79546abfaee0ba6474da5d61b7e52645",
-  "source_before_sha256": "469f35bd8a3c50127181b83032de09e6cd7467a7158f36abac6cff61871e8700",
-  "scenarios": {
-   "market": {
-    "artifact": "zkfmi-crypto/.artifacts/20260907t093507z-94546-pqc-native-acceptance/market.json",
-    "artifact_sha256": "b2383b7037312426c41e34342e0bc3ce393243e5c70f99a2b82f8c3c2dd259e3",
-    "status": "smoke_only"
-   },
-   "finality": {
-    "artifact": "zkfmi-crypto/.artifacts/20260907t093507z-94546-pqc-native-acceptance/finality.json",
-    "artifact_sha256": "baae5339e2fc980ff1a71233572744ef79671301806e2fcd9beb88f4a935656f",
-    "status": "smoke_only"
-   },
-   "lifecycle": {
-    "artifact": "zkfmi-crypto/.artifacts/20260907t093507z-94546-pqc-native-acceptance/lifecycle.json",
-    "artifact_sha256": "9fc2f0bbd8c8747ac48012a382b746277b154aab03d98b9f3117f10d4c364f99",
-    "status": "smoke_only"
-   }
+    "path": "oclob/research/experiment-ledger.jsonl",
+    "records_before_postflight": 65,
+    "records_after_postflight": 68,
+    "sha256_after": "2ce76b15b39cb388e19bae9a52a0aa1b42556e11427103981d54564fc069008f"
   },
-  "workspace_check": {
-   "log_sha256": "bf4b816d2598e2e59d7ebf4e12054875f13927e6173bb1969952bf3c3757c15c",
-   "result": "PASS",
-   "workspaces": 9
+  "evidence_limits": {
+    "single_host": true,
+    "independent_operators": false,
+    "wan_evidence": false,
+    "physical_hsm_evidence": false,
+    "production_deployment_evidence": false,
+    "external_audit": false,
+    "fips_validation": false,
+    "performance_comparison": false,
+    "mathematical_proofs_migrated_to_post_quantum": false,
+    "non_consensus_viewing_grant_and_spend_disclosure_migrated": false,
+    "corporate_api_restart_exact_wire_claim": "deterministic journal gate plus native API/custody execution; the native scenario did not separately repeat the exact corporate API crash window"
   },
-  "experiment_ledger": {
-   "records_after_postflight": 74,
-   "sha256_after": "5cbcd77eb9a4bd1f825e9b751ed5d597faad4dfd36741c61e6f8326e02d654e7"
+  "release_pinning": {
+    "status": "done",
+    "dependency_order": "zkfmi-crypto <- zkpi <- defmi <- qomm; oclob and aethel consume zkpi, defmi (and qomm for aethel); dekyx and deccp are leaves",
+    "final_revisions": {
+      "zkpi": "6228efed75648ac546cd5926797c847deb681dff",
+      "qomm": "958473e148b17744b9cd0b895817019f83e542de",
+      "defmi": "1b9b0b1d28f6cbd30479fc01399e541ac9379519",
+      "oclob": "f9dad504441047a4afc383593a4d0fdb772f8b48",
+      "dekyx": "09c2c1a7295e8cab592aca6af2f89381c3c110ac",
+      "deccp": "7cb59ccc228f739bd7c532f4ab2419ca4e2e0eee",
+      "aethel": "5e50f2046de70a0a5058029c741c62ffcbd6852a"
+    },
+    "zkfmi_crypto_pin": "26ebfe96563a05c3379219f7fdacea137ab5fb4f (src, Cargo.toml and Cargo.lock byte-identical on main)",
+    "overlays_removed": true,
+    "main_fast_forwarded_to_lane": true,
+    "note": "zkfmi-crypto's own main is fast-forwarded to the commit that carries this record."
+  },
+  "second_run": {
+    "id": "20260907t090826z-88934-pqc-native-acceptance",
+    "result": "PASS",
+    "reason": "Rerun after moving qomm-transport, qomm-mpc, qomm-audit, qomm-dsl, qomm-sim and qomm-measure from qomm/rust to zkpi/rust to break the defmi <-> qomm dependency cycle (see CRATE_LAYOUT.md); manifests of qomm, defmi, oclob and aethel re-sourced to zkpi, locks regenerated in the container, unused patch entries removed (aethel).",
+    "receipts": "zkfmi-crypto/.artifacts/20260907t090826z-88934-pqc-native-acceptance",
+    "top_level_log_sha256": "00766de5f48f054e50f8bdf25f0c50ff3caea9dd83c8e0f8a191f3c60f077cdf",
+    "source_before_sha256": "71411b0208ffbc7b4b808bdfa97dd9406a2db4eea5aa153029b7c8c56541d88d",
+    "scenarios": {
+      "market": {
+        "artifact": "zkfmi-crypto/.artifacts/20260907t090826z-88934-pqc-native-acceptance/market.json",
+        "artifact_sha256": "e0bc801e3390efc255953b8a8343945c8eeb00c34d21d373014051b2572e991c",
+        "status": "smoke_only"
+      },
+      "finality": {
+        "artifact": "zkfmi-crypto/.artifacts/20260907t090826z-88934-pqc-native-acceptance/finality.json",
+        "artifact_sha256": "705e997baf7ffe17f2069704dc6017e428bde5f51eec65b95bfa2d0a3a17d7e3",
+        "status": "smoke_only"
+      },
+      "lifecycle": {
+        "artifact": "zkfmi-crypto/.artifacts/20260907t090826z-88934-pqc-native-acceptance/lifecycle.json",
+        "artifact_sha256": "19b913031f0530d7c59ebf55904f747cbd4c1f0f63a7e897d3d05921ae9ba1a6",
+        "status": "smoke_only"
+      }
+    },
+    "workspace_check": {
+      "log_sha256": "a29c491a97d0a40f54414b778bbb0ae04acf7a979584b484e5fdf9855f4efc05",
+      "result": "PASS",
+      "workspaces": 9
+    },
+    "experiment_ledger": {
+      "records_after_postflight": 71,
+      "unique_experiment_ids": 71,
+      "sha256_after": "e331543e21a4e8d2c6eaeaf93a1806ecb5828c4f946cc9a5ccda6fa4ed5aa87d"
+    }
+  },
+  "third_run": {
+    "id": "20260907t093507z-94546-pqc-native-acceptance",
+    "result": "PASS",
+    "reason": "Final run on the release-pinned layout: every repository pins the others by immutable git revision, no sibling [patch] overlays remain, and each lane branch is fast-forwarded into main.",
+    "receipts": "zkfmi-crypto/.artifacts/20260907t093507z-94546-pqc-native-acceptance",
+    "top_level_log_sha256": "54d3b4e0a8847297f58fca5fddca667d79546abfaee0ba6474da5d61b7e52645",
+    "source_before_sha256": "469f35bd8a3c50127181b83032de09e6cd7467a7158f36abac6cff61871e8700",
+    "scenarios": {
+      "market": {
+        "artifact": "zkfmi-crypto/.artifacts/20260907t093507z-94546-pqc-native-acceptance/market.json",
+        "artifact_sha256": "b2383b7037312426c41e34342e0bc3ce393243e5c70f99a2b82f8c3c2dd259e3",
+        "status": "smoke_only"
+      },
+      "finality": {
+        "artifact": "zkfmi-crypto/.artifacts/20260907t093507z-94546-pqc-native-acceptance/finality.json",
+        "artifact_sha256": "baae5339e2fc980ff1a71233572744ef79671301806e2fcd9beb88f4a935656f",
+        "status": "smoke_only"
+      },
+      "lifecycle": {
+        "artifact": "zkfmi-crypto/.artifacts/20260907t093507z-94546-pqc-native-acceptance/lifecycle.json",
+        "artifact_sha256": "9fc2f0bbd8c8747ac48012a382b746277b154aab03d98b9f3117f10d4c364f99",
+        "status": "smoke_only"
+      }
+    },
+    "workspace_check": {
+      "log_sha256": "bf4b816d2598e2e59d7ebf4e12054875f13927e6173bb1969952bf3c3757c15c",
+      "result": "PASS",
+      "workspaces": 9
+    },
+    "experiment_ledger": {
+      "records_after_postflight": 74,
+      "sha256_after": "5cbcd77eb9a4bd1f825e9b751ed5d597faad4dfd36741c61e6f8326e02d654e7"
+    }
+  },
+  "fourth_run": {
+    "id": "20260907t121247z-23374-pqc-native-acceptance",
+    "result": "PASS",
+    "reason": "Run on the renamed crates (CRATE_LAYOUT step 2): zkpi, zkfmi-zk, zkfmi-measure, defmi, defmi-avalanche-vm and the per-repository harnesses, every repository re-pinned to the revisions carrying the new names and to one zkfmi-crypto revision (9a183c90, library sources identical to 26ebfe96). A first attempt of this run failed only its local source-manifest comparison because oclob/docker/Dockerfile was committed during the run; this run had no concurrent edits.",
+    "receipts": "zkfmi-crypto/.artifacts/20260907t121247z-23374-pqc-native-acceptance",
+    "top_level_log_sha256": "353c83c4939122e8109665386e7df3c236d656988aa6384b1c85c48675084c57",
+    "source_before_sha256": "fc65a4e9dbb4e6740432c8c5b14072668f0257df3e6c5bd9514364ee32f3cf2c",
+    "scenarios": {
+      "market": {
+        "artifact": "zkfmi-crypto/.artifacts/20260907t121247z-23374-pqc-native-acceptance/market.json",
+        "artifact_sha256": "baa61d2201670b61d7d2e4cdc377901576bc4062fcb645cd38fd5d396dac6130",
+        "status": "smoke_only"
+      },
+      "finality": {
+        "artifact": "zkfmi-crypto/.artifacts/20260907t121247z-23374-pqc-native-acceptance/finality.json",
+        "artifact_sha256": "b79ceb6b26f65760654ee55eca3682efec1d005f463ef1eec3cae6a423ed05d1",
+        "status": "smoke_only"
+      },
+      "lifecycle": {
+        "artifact": "zkfmi-crypto/.artifacts/20260907t121247z-23374-pqc-native-acceptance/lifecycle.json",
+        "artifact_sha256": "64a6a9ea838dc2cd8eb784e9763bf0a754792515538b329ee05d89003be55f2d",
+        "status": "smoke_only"
+      }
+    },
+    "workspace_check": {
+      "log": "20260907T114106Z-zkfmi-crypto.log",
+      "log_sha256": "5631b32e48eb442c27736d6fa34f691194208e4d7a30b7836a9cd598aab7e6b2",
+      "result": "PASS",
+      "workspaces": 9
+    },
+    "renamed_workspace_tests": {
+      "zkpi_rust": "cargo test --locked --release --workspace: 489 passed across zkpi and defmi after two pre-existing test defects were fixed (ZKPI_WIRE.md generated section carried a hand-written note; a forgery test iterated past its ten cases)"
+    },
+    "experiment_ledger": {
+      "records_after_postflight": 77,
+      "sha256_after": "4f1e3a1b4b5af3b44546d6c87a855f3014d2ee963e31ce5e212f5817e26acec9"
+    },
+    "final_revisions": {
+      "zkfmi-crypto": "9a183c90b6ee6af17fce26ca4b235bdb543dc0a0",
+      "zkpi": "d346304",
+      "defmi": "6715562",
+      "qomm": "538a63d",
+      "oclob": "55ac4e4 (before this record)",
+      "aethel": "05301f6",
+      "dekyx": "4ea50f5",
+      "deccp": "934343f"
+    }
   }
- }
 }
