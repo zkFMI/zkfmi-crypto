@@ -341,5 +341,44 @@
       "dekyx": "4ea50f5c25482c680716622d39b008dd6e0645c8",
       "deccp": "934343fd59db866b83772253a082d7da371ac230"
     }
+  },
+  "eighth_run": {
+    "id": "20260907t224724z-84718-pqc-native-acceptance",
+    "result": "PASS",
+    "reason": "Same sources as the seventh run plus two qomm-demo fixes found while starting the public demo network from qomm main: the gateway compared Maker and Taker mandate keys (hybrid application-key fingerprints) against the classical Ed25519 purpose keys of the participant snapshot and refused every mandate, and the live-acceptance report module sat in src/bin where cargo discovered it as a broken binary. aethel re-pinned to that qomm revision. The eight main branches were fast-forwarded to these revisions.",
+    "receipts": "zkfmi-crypto/.artifacts/20260907t224724z-84718-pqc-native-acceptance",
+    "top_level_log_sha256": "975ede15ca9d26f74a05c922a991c98747fe64eaa13ddeabe5eebb04cc19f6cd",
+    "source_before_sha256": "2b576ebe41ad828b704f54e1fc7d8233dfe67de02b011a081794b073646cf90c",
+    "scenario_artifacts_sha256": "782faa3f4c1e4d5f0e1f0b18f60a63cb979a1ec1ab6991bddd8c74e434d9e192",
+    "crypto_pin": "f8b8f9a780af0d776d6821fba472762291807da8",
+    "scenarios": {
+      "market": {
+        "artifact": "zkfmi-crypto/.artifacts/20260907t224724z-84718-pqc-native-acceptance/market.json",
+        "sha256": "4252a3b2f5bbbba6fee05ef6299d8d7a47796b002f73004460e035882648572d"
+      },
+      "finality": {
+        "artifact": "zkfmi-crypto/.artifacts/20260907t224724z-84718-pqc-native-acceptance/finality.json",
+        "sha256": "bff5b9ea0a4ea4d36e95c5701788a07cefafa0d592828f7d6c5370a53a799530"
+      },
+      "lifecycle": {
+        "artifact": "zkfmi-crypto/.artifacts/20260907t224724z-84718-pqc-native-acceptance/lifecycle.json",
+        "sha256": "a623302dd97347c5939b3fb7a2d6731ba642829b8e6c087110f2fab18d7ce0ce"
+      }
+    },
+    "experiment_ledger": {
+      "records_appended": 3,
+      "ledger": "oclob/research/experiment-ledger.jsonl"
+    },
+    "revisions_under_test": {
+      "zkfmi-crypto": "9a183c90b6ee6af17fce26ca4b235bdb543dc0a0",
+      "zkpi": "cc9cfa9c65ff3e065b926abdb08d0b7bfebb666c",
+      "defmi": "bc543696c7504b332735c14ed2e5c33267848e78",
+      "qomm": "04ba78c80ab7267f9ebdb518903cd13e1db5c7eb",
+      "oclob": "4ae9a7ac30223086e5106068912bf1bb922cef09",
+      "aethel": "6e0361282cd63ccb958c17914245a0210f83d4e3",
+      "dekyx": "4ea50f5c25482c680716622d39b008dd6e0645c8",
+      "deccp": "934343fd59db866b83772253a082d7da371ac230"
+    },
+    "demo_network_note": "The QOMM demo network built from qomm 04ba78c starts (all 22 services healthy, gateway seeds resident Maker state on the seven MPC nodes) but its first round is refused by ensure_maker_facility: \"canonical Maker facility differs from its signed maximum\". Not resolved on 2026-09-08; the public port 8800 kept the pre-migration network."
   }
 }
