@@ -1,0 +1,174 @@
+{
+  "schema_version": 1,
+  "record_id": "qomm-crate-split-release-2026-09-08",
+  "result": "PASS",
+  "classification": "smoke_only",
+  "source_revision": "480acde1b6b632748b852c741e1ed1ef08dd49f9",
+  "build": {
+    "source": "qomm/demo-network/Dockerfile",
+    "dependency_resolution": "immutable git revisions with --locked; no sibling source overlays",
+    "source_host": "softbank-l40s",
+    "app_image": "sha256:4e467348ae25a6befe7a03c0e5132433f944c762462e883a2cfb25737cadc0cd",
+    "mpc_image": "sha256:e20ff0647c699dcc2722865e8b0688f1aa81944205c36b5ab568448544d9784a",
+    "defmi_image": "sha256:51785d655719a2d52e73efadb528c9795948eafa189c2afd7c587eadc3df4304"
+  },
+  "tests": {
+    "qomm": {
+      "command": "cargo test --locked -p qomm-proofs -p qomm-transport -p qomm-demo --all-features",
+      "passed": 138,
+      "ignored": 1,
+      "log_sha256": "0cec201d536493a59f3561e5c7eb5069c457870d68e4f4c879460b8659df95b5"
+    },
+    "oclob": {
+      "command": "cargo test --locked --workspace",
+      "passed": 148,
+      "ignored": 1,
+      "log_sha256": "4d75783741ad28e9e0ec549c71851800c26d0d6d3915d3806f8d3674c7e044b7"
+    },
+    "workspaces": {
+      "command": "bash scripts/pqc-workspace-check.sh",
+      "result": "PASS",
+      "log_sha256": "b24e9f825bde40225b9d0c2276ccebf1bd76d4319bd0e7be7feae84264a4eed4"
+    },
+    "ignored_native_tests": "One native-only test in each unit suite is declared ignored upstream; native execution was verified separately by the real QOMM and OCLOB cluster acceptances."
+  },
+  "real_lifecycle": {
+    "seven_mpc_nodes": true,
+    "five_avalanche_validators": true,
+    "buy_sell": true,
+    "two_consecutive_no_fill_refunds": true,
+    "post_refund_buy": true,
+    "participant_restart": true,
+    "all_mpc_ledger_gateway_restart": true,
+    "post_restart_buy": true,
+    "settled": 4,
+    "released": 2,
+    "unfinalized": 0,
+    "local_execution_fallback": false,
+    "holds": [
+      {
+        "sequence": 0,
+        "outbox_state": "settled",
+        "canonical_status": "consumed",
+        "queue_finalized": true,
+        "local_fallback": false,
+        "transaction_id": "77f055b45cf915deff61ed066e0eab3fa71daf1c15d4df36798f3900399add21"
+      },
+      {
+        "sequence": 1,
+        "outbox_state": "settled",
+        "canonical_status": "consumed",
+        "queue_finalized": true,
+        "local_fallback": false,
+        "transaction_id": "39c732290cc63c5856d2ca232d589d7fecde0de80e788bb2ecf65f4079ab9f66"
+      },
+      {
+        "sequence": 2,
+        "outbox_state": "released",
+        "canonical_status": "released",
+        "queue_finalized": true,
+        "local_fallback": false,
+        "transaction_id": "61c2fd67812411bbe716a6b413f7963a6a148af53b3bef12281fb91e3765b98c"
+      },
+      {
+        "sequence": 3,
+        "outbox_state": "released",
+        "canonical_status": "released",
+        "queue_finalized": true,
+        "local_fallback": false,
+        "transaction_id": "81f700bd4a6ee5db87cd46fdfad8513b9fd070648d637f707b16b3fb98d8d13d"
+      },
+      {
+        "sequence": 4,
+        "outbox_state": "settled",
+        "canonical_status": "consumed",
+        "queue_finalized": true,
+        "local_fallback": false,
+        "transaction_id": "e5ea6e8f9409877baf29616a9c41bf6c8028a1d496a92704f14fc722e73bd03d"
+      },
+      {
+        "sequence": 5,
+        "outbox_state": "settled",
+        "canonical_status": "consumed",
+        "queue_finalized": true,
+        "local_fallback": false,
+        "transaction_id": "99d334b1d89a34072d61aa656bfd01129b3daa5359e71352ae4e8755936f87d5"
+      }
+    ],
+    "files": {
+      "01-buy.json": {
+        "sha256": "aa2d6d68865f0ce163d71193154ae5e52b862cfd88efe9817e608d156e1dbc16",
+        "verified": true,
+        "aborted": false,
+        "settlement": {
+          "automatic": true,
+          "state_root": "f6f8a18b3aa4e8f798df8470039a2acfda9793700ec8963abdcab95a1fb372f3",
+          "status": "settled"
+        }
+      },
+      "02-sell.json": {
+        "sha256": "3d2c8c903e90f7b9005e97c369410409e07d14a66e4f19baef665496a27c3810",
+        "verified": true,
+        "aborted": false,
+        "settlement": {
+          "automatic": true,
+          "state_root": "bf3d6a2157277c0e691cd55c7abb9e3f6bd1c15dde65c4ef0354ab54205ace10",
+          "status": "settled"
+        }
+      },
+      "03-no-fill.json": {
+        "sha256": "957c19987eaed175da565f438a84a38f44f9032b751c9d626ddf096b4952ff36",
+        "verified": true,
+        "aborted": false,
+        "settlement": {
+          "automatic": false,
+          "state_root": "5a93b47e96cf8a370ed0471b57256dfdea66e09a60255f4e038455304d737b68",
+          "status": "released"
+        }
+      },
+      "04-no-fill.json": {
+        "sha256": "5e3dd91b076e1b38a0587cf30ffc51ec0c41b6068f74d312f32de70295295012",
+        "verified": true,
+        "aborted": false,
+        "settlement": {
+          "automatic": false,
+          "state_root": "c681cfea141eff5c178bbea03b617bc5c45d275b6490103c5ac34d0887bd173f",
+          "status": "released"
+        }
+      },
+      "05-post-refund-buy.json": {
+        "sha256": "fdc65a3eac6794abf1aa8becccb30f10fcfd9960c4af3b744269f8f622f0b0a3",
+        "verified": true,
+        "aborted": false,
+        "settlement": {
+          "automatic": true,
+          "state_root": "cb455fff073c011351cfcaed6ab98edeac3e76718bd9842fc3a80d13f693fc56",
+          "status": "settled"
+        }
+      },
+      "07-final.json": {
+        "sha256": "f3d76397673bc14932491241d8b8cebc147a808d98a6daa4789e99eed9bfb1a5"
+      },
+      "restart-all/restart-all.02-rfq.json": {
+        "sha256": "0c0568570705ddde0ba135c217f3273a2a3d0aac0a15900f26a1074252238a40",
+        "verified": true,
+        "aborted": false,
+        "settlement": {
+          "automatic": true,
+          "state_root": "76bb3253aeb3ea4a6e8c5f9bcc607d1e31bd6aac2a9a537f5e13741d0a88f9df",
+          "status": "settled"
+        }
+      },
+      "restart-all/restart-all.03-wait.json": {
+        "sha256": "90613b0ea70a886ac60e557a848b42dd5c01c8c3ef3d6099e8c867fa2f6d75f9"
+      }
+    }
+  },
+  "limits": {
+    "single_host": true,
+    "independent_operators": false,
+    "external_audit": false,
+    "production_ready": false,
+    "post_quantum_mathematical_proofs": false
+  }
+}

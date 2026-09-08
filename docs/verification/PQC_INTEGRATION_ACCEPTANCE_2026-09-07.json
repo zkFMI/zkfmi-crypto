@@ -3,6 +3,67 @@
   "record_id": "zkfmi-pqc-integration-acceptance-2026-09-07",
   "status": "integration_acceptance_pass_release_pinned",
   "classification": "smoke_only",
+  "latest_run": "ninth_run",
+  "ninth_run": {
+    "id": "20260908t071221z-32876-pqc-native-acceptance",
+    "result": "PASS",
+    "classification": "smoke_only",
+    "reason": "Final immutable-pin acceptance after separating venue-owned QOMM proof/transport crates from shared zkPI crates and correcting hybrid-signature identity derivation, restart-stable policy signatures, quote packing bounds, recipient enrollment, canonical no-fill accounting, and current note-nullifier lookups.",
+    "receipts": "zkfmi-crypto/.artifacts/20260908t071221z-32876-pqc-native-acceptance",
+    "top_level_log_sha256": "f81e3515e508ad92b3daae01901ecc341b1edffd4b1e7a84c368288e59420864",
+    "source_before_sha256": "a5fb5560ee5dd888c43af1077f26dfa5b45aee2faa941a87f5159744d27cbe1e",
+    "source_before_after_equal": true,
+    "scenario_artifacts_sha256": "ed3fc99543a8c1012d78a32f2c6421eacf03709ceb9701a38969a0aae0d2b353",
+    "crypto_pin": "8675b6d7d65f2437963de7184149af3c56d92d45",
+    "scenarios": {
+      "market": {
+        "artifact": "zkfmi-crypto/.artifacts/20260908t071221z-32876-pqc-native-acceptance/market.json",
+        "artifact_sha256": "a56116bcf97eb4d94836f34adfde8bcf9d31d7f5654584e979e49635170e1694",
+        "manifest_id": "oclob-native-market-pqc-custody-003",
+        "contract_sha256": "0e01378323b129f6fdd92aa7a59d353b2a034fbc1cf404a895bbd6a4e619a185",
+        "validator_restart_recovered": true,
+        "verdict": "smoke_only"
+      },
+      "finality": {
+        "artifact": "zkfmi-crypto/.artifacts/20260908t071221z-32876-pqc-native-acceptance/finality.json",
+        "artifact_sha256": "9ce3fbd25fb2ac18645de166529835619cd48350fe417bec9515861ac7f5b080",
+        "manifest_id": "oclob-native-finality-pqc-custody-003",
+        "contract_sha256": "308d47bfc84c19784dc6606bf17db783f4d7579a4b48b5c97a12654599cf4886",
+        "validator_restart_recovered": true,
+        "verdict": "smoke_only"
+      },
+      "lifecycle": {
+        "artifact": "zkfmi-crypto/.artifacts/20260908t071221z-32876-pqc-native-acceptance/lifecycle.json",
+        "artifact_sha256": "e980e68eda473d1ac9fd1d3490326ed34f59db7e7fda62cff8881ff8d7a51a59",
+        "manifest_id": "oclob-native-lifecycle-pqc-custody-005",
+        "contract_sha256": "74093488ce6e3accd983a8b2ad025fd0ed3226bb8cd2165a2e5024edf3904743",
+        "validator_restart_recovered": true,
+        "verdict": "smoke_only"
+      }
+    },
+    "p6_recovery": {
+      "result": "PASS",
+      "tests_passed": 2,
+      "log_sha256": "01982bb620d31df81fb80a6e5300a81c6362b52196c0fc5e059ae815b23e8048"
+    },
+    "experiment_ledger": {
+      "path": "oclob/research/experiment-ledger.jsonl",
+      "records_before_postflight": 89,
+      "records_after_postflight": 92,
+      "sha256_after": "cfa48c328c8a716c6d12dccf941c07eb837ea00e85a8e96f8542967fceff6026"
+    },
+    "revisions_under_test": {
+      "zkfmi-crypto": "f9bb4143f558a78282c9a0221a308c14578cb103",
+      "zkpi": "fc9579070484859aff9110a927be79c1ffe22b70",
+      "defmi": "15243a7d70169f0c83382139b2db5e2778d51258",
+      "qomm": "480acde1b6b632748b852c741e1ed1ef08dd49f9",
+      "oclob": "005224f6361b7da66630580ba45c29a69ad8cb0b",
+      "aethel": "e7b14c9364c33e845c9e93ee4203ff5b7262e297",
+      "dekyx": "9518393a58be731fe25147e77d22926062fca33a",
+      "deccp": "c64c16c25e6398740a52ba0e81505e1869db569f"
+    },
+    "demo_network_note": "Single-host functional regression evidence. Seven MPC nodes and five real Avalanche validators are not independently operated organizations. No production, WAN, external audit, FIPS validation, or post-quantum mathematical-proof claim."
+  },
   "supersedes": "zkfmi-pqc-integration-acceptance-2026-09-06",
   "reason": "Rerun of the native acceptance after merging main into every lane branch (zkpi, qomm, defmi): main carries the 2026-09-07 zero-relation opening fix (reconciliation, range linkages, quote-proof winner opening, rule-audit equality; see defmi/docs/SOUNDNESS_FINDING_GENERAL_OPENING_2026-09-07.md). Lane changes made to pass the gates: dropped a test that include_str!'d codex memory (zkfmi-crypto), removed unused [patch] overlays whose lock ordering was non-deterministic (qomm, aethel), regenerated the qomm/defmi/aethel lock files in the container, filled the NoteClaim authorization field in the aethel host tests.",
   "run": {
