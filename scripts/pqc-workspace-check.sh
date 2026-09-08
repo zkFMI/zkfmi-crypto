@@ -13,17 +13,8 @@ for workspace in zkfmi-crypto qomm/rust zkpi/rust defmi/rust oclob dekyx deccp a
     printf 'foundation workspace unexpectedly resolves an Aethel package: %s\n' "$workspace" >&2
     exit 1
   fi
-  cargo fmt --all
-  if [ "$workspace" = qomm/rust ]; then
-    # Baseline helper qomm_live_acceptance_report.rs is incorrectly discovered
-    # as a standalone binary (super import, no main). Keep that unrelated
-    # failure visible; check the actual application target separately.
-    cargo check --locked --workspace --all-targets --all-features --exclude qomm-demo
-    cargo check --locked -p qomm-demo --lib --bin qomm_live_acceptance \
-      --bin qomm_participant_node --bin qomm_mpc_node --bin qomm_frontend
-  else
-    cargo check --locked --workspace --all-targets --all-features
-  fi
+  cargo fmt --all -- --check
+  cargo check --locked --workspace --all-targets --all-features
 done
 
 # qomm-batch-audit declares its own workspace and is therefore intentionally
@@ -39,5 +30,5 @@ if grep -Eq '"name":"aethel[^"]*"' "$metadata"; then
   printf 'foundation workspace unexpectedly resolves an Aethel package: %s\n' "$workspace" >&2
   exit 1
 fi
-cargo fmt --all
+cargo fmt --all -- --check
 cargo check --locked --workspace --all-targets --all-features
