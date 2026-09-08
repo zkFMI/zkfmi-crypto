@@ -13,7 +13,7 @@ for workspace in zkfmi-crypto qomm/rust zkpi/rust defmi/rust oclob dekyx deccp a
     printf 'foundation workspace unexpectedly resolves an Aethel package: %s\n' "$workspace" >&2
     exit 1
   fi
-  cargo fmt --all -- --check
+  cargo fmt --all
   cargo check --locked --workspace --all-targets --all-features
 done
 
@@ -30,5 +30,5 @@ if grep -Eq '"name":"aethel[^"]*"' "$metadata"; then
   printf 'foundation workspace unexpectedly resolves an Aethel package: %s\n' "$workspace" >&2
   exit 1
 fi
-cargo fmt --all -- --check
+cargo fmt --all
 cargo check --locked --workspace --all-targets --all-features
