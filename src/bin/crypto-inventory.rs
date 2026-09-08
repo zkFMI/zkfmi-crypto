@@ -489,7 +489,7 @@ fn context(repo: &str, name: &str, file: &str) -> (String, Phase) {
         )
     } else {
         match name {
-            "qomm-transport" => (
+            "qomm-transport" | "zkpi-committee" => (
                 "Messages between corporate and MPC nodes, and key lifecycles",
                 Phase::P2,
             ),
@@ -497,17 +497,17 @@ fn context(repo: &str, name: &str, file: &str) -> (String, Phase) {
                 "zkPI, settlement instructions, and reservation evidence",
                 Phase::P2,
             ),
-            "defmi" | "qomm-avalanche-vm" => (
+            "defmi" | "qomm-avalanche-vm" | "defmi-avalanche-vm" => (
                 "DeFMI ledger, settlement execution, and finality",
                 Phase::P2,
             ),
-            "qomm-proofs" | "zkfmi-zk" => (
+            "qomm-proofs" | "zkpi-proofs" | "zkfmi-zk" => (
                 "Secret values, commitments, and public verification",
                 Phase::P5,
             ),
             "qomm-audit" => ("Node audit signatures and public audit records", Phase::P2),
             "qomm-mpc" => ("Secret-shared inputs and MPC execution", Phase::P5),
-            "qomm-harness" | "qomm-demo" => (
+            "qomm-harness" | "zkpi-harness" | "defmi-harness" | "qomm-demo" => (
                 "Integrated execution, verification, and demo boundaries",
                 Phase::P2,
             ),

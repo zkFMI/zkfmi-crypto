@@ -1,6 +1,6 @@
 {
  "schema_version": 1,
- "status": "published_candidate_after_cycle_break",
+ "status": "step_4_split_candidate_pending_pinned_acceptance",
  "base_commits": {
   "qomm": "26026b5807ce6bd093e363ddc8e71b53b084cb19",
   "zkpi": "b50704ab27dac55f3ccef70a5c97ab7eb3893f39",
@@ -16,18 +16,21 @@
   "qomm-law": "qomm",
   "qomm-sim": "zkpi",
   "qomm-mpc": "zkpi",
-  "qomm-transport": "zkpi",
+  "qomm-transport": "qomm",
+  "zkpi-committee": "zkpi",
   "qomm-audit": "zkpi",
   "zkfmi-measure": "zkpi",
-  "qomm-proofs": "zkpi",
+  "qomm-proofs": "qomm",
+  "zkpi-proofs": "zkpi",
   "zkfmi-zk": "zkpi",
   "zkpi": "zkpi",
   "defmi": "defmi",
   "zkpi-defmi-sdk": "defmi",
-  "qomm-avalanche-vm": "defmi",
+  "defmi-avalanche-vm": "defmi",
   "dekyx-core": "dekyx",
   "deccp-core": "deccp"
  },
+ "historical_records_note": "base_commits, preserved and retired describe the original consolidation; later moves supersede historical paths without rewriting their evidence hashes.",
  "preserved": [
   {
    "from": "defmi/rust/qomm-transport/src/proof_party.rs",
@@ -119,6 +122,15 @@
  ],
  "release_gate": "Publish reviewed owner commits, update Git rev pins and regenerate locks without path patches before independent release.",
  "moves": [
+  {
+   "date": "2026-09-08",
+   "from": "zkpi/rust/{qomm-proofs,qomm-transport}",
+   "to": "zkpi/rust/{zkpi-proofs,zkpi-committee} plus QOMM venue-only crates",
+   "venue_proof_modules": ["rule_audit", "policy_audit", "state_audit", "liquidity"],
+   "venue_transport_modules": ["roles", "resident_quote", "kyb_wire", "ethereum_rpc", "rtt", "relay", "client", "binding", "rfq_frame", "wan_deployment", "kyb_lifecycle"],
+   "venue_binaries": ["serve_qomm", "prepare_wan_deployment", "discover_wan_inventory", "seven_node_cluster", "run_state_audit"],
+   "reason": "One owner per crate; shared authorization, quote proofs and recipient encryption stay in zkPI so no DeFMI or OCLOB dependency points to QOMM. Wire labels and historical receipts are unchanged."
+  },
   {
    "date": "2026-09-07",
    "from": "qomm/rust/{qomm-transport,qomm-mpc,qomm-audit,qomm-dsl,qomm-sim,zkfmi-measure}",
