@@ -1,0 +1,28 @@
+--- a/src/cbmc-gc/ssa_to_circuit/boolean.cpp
++++ b/src/cbmc-gc/ssa_to_circuit/boolean.cpp
+@@ -169,9 +169,16 @@
+-  // The __CPROVER_initialize function sets some variables internal to CBMC. I am not exactly sure
+-  // why, but if __CPROVER_threads_exited is not initialized (which is what __CPROVER_initialize
+-  // does, among other things) the generated circuit is not always correct.
+-  goto_symext::statet s1;
+-  bmc.symex.symex_with_state(s1, module.goto_functions(), module.goto_functions().function_map.at("__CPROVER_initialize").body);
+-  bmc.equation.convert_assignments(bv_cbmc);
+-
+-  // now run symbolic execution step by step
+-  goto_symex_steppert stepper{bmc.symex, module.function_getter(), func};
++  // Initialize globals in the SAME symbolic state as the function body.
++  // A separate symex state creates global#1 while the fresh stepper reads
++  // global#0, leaving even static const tables as unbound circuit inputs.
++  // Prepend the standard generated C initializer, not a new crypto algorithm.
++  goto_programt initialized_func;
++  initialized_func.copy_from(func);
++  code_function_callt initialize_call;
++  initialize_call.function() = symbol_exprt{
++    "__CPROVER_initialize", module.func_type("__CPROVER_initialize")};
++  auto initialize = initialized_func.insert_before(initialized_func.instructions.begin());
++  initialize->make_function_call(initialize_call);
++  initialize->function = func_name;
++  initialized_func.update();
++
++  // now run symbolic execution step by step
++  goto_symex_steppert stepper{bmc.symex, module.function_getter(), initialized_func};

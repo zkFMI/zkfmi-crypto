@@ -1,0 +1,496 @@
+{
+  "contract_id": "zkfmi-private-pq-cosnark-trial-v1",
+  "contract_sha256": "45dc526721b4f174c794557d15f1bc171a8bf4ef41fe210e5901bdd5402e26fb",
+  "coordinator_private_witness_api": false,
+  "duration_seconds": 35.423009439,
+  "earliest_unresolved_gate": "Independent validation of the normalized/masking composition and security parameters; operational financial commitment adapters, DeFMI transaction/restart lifecycle and independent-operator acceptance remain unverified.",
+  "experiment_id": "cosnark-rough-011",
+  "failure": null,
+  "independent_operator_deployment": false,
+  "manifest_sha256": "a4ba44b54e4f0ed3233916adb1c74e8e620d063e80d7a5fcb8f9e08994014f41",
+  "native_corrupt_threshold": 2,
+  "native_parties": 7,
+  "native_runs": [
+    {
+      "compiled_artifacts": [
+        [
+          "Programs/Bytecode/cocode002_001-0.bc",
+          "ac7aaeb297521a10321b786298350f604b8ae6b28c05e54b399b5a288fc376ea"
+        ],
+        [
+          "Programs/Schedules/cocode002_001.sch",
+          "b3391be4018cf8a3dcd92b1db26c8689b40331982399d693ee750db911b16f00"
+        ]
+      ],
+      "party_exit_codes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "program": "cocode002_001",
+      "rejection_reason": null,
+      "released_field_count": 0,
+      "seconds": 2.831756296,
+      "seven_context_views_equal": true,
+      "source_sha256": "5cc98c06e104ad03908e21fc8f8cdb97d24ece988b5c9bec52fbd5757e98b467"
+    },
+    {
+      "compiled_artifacts": [
+        [
+          "Programs/Bytecode/cocode002_002-0.bc",
+          "a856a825ea705a04be6b9fb9096988203d9833a2ca407dd5a1b89438a836bd81"
+        ],
+        [
+          "Programs/Schedules/cocode002_002.sch",
+          "98bfeaaa951524dc6f28e1b32c980245bc7086e61fb0fbefe98338ad0ea4c6d1"
+        ]
+      ],
+      "party_exit_codes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "program": "cocode002_002",
+      "rejection_reason": null,
+      "released_field_count": 2,
+      "seconds": 0.263042563,
+      "seven_context_views_equal": true,
+      "source_sha256": "49f9b43babffefa6a2843ade615f9b16f088972af11e5683180affcb49fbbdda"
+    },
+    {
+      "compiled_artifacts": [
+        [
+          "Programs/Bytecode/cocode002_003-0.bc",
+          "b7678dd9b4ca0743fc01a21aa41cc1ddf39404e8d19158cce3b2fafeeaa1279f"
+        ],
+        [
+          "Programs/Schedules/cocode002_003.sch",
+          "8a75ef2d6c0da011ef82ee4569c33ad9f4fa9e786e22f89cfdaf29b188806143"
+        ]
+      ],
+      "party_exit_codes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "program": "cocode002_003",
+      "rejection_reason": null,
+      "released_field_count": 4,
+      "seconds": 0.561203667,
+      "seven_context_views_equal": true,
+      "source_sha256": "0d0647e86f8e672498201c1b2cef803468af99ceff9600049eb546bc66c0c2fd"
+    },
+    {
+      "compiled_artifacts": [
+        [
+          "Programs/Bytecode/cocode002_004-0.bc",
+          "5b796b506a4bfd0bfdb8407333ce3b4f02b13b30c0cc3b2717b1a46a9e714163"
+        ],
+        [
+          "Programs/Schedules/cocode002_004.sch",
+          "c80bd0322b0e4b5d1fb9023767786421c8b71301309d000da0804b8a3d6237af"
+        ]
+      ],
+      "party_exit_codes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "program": "cocode002_004",
+      "rejection_reason": null,
+      "released_field_count": 4,
+      "seconds": 0.545691642,
+      "seven_context_views_equal": true,
+      "source_sha256": "cc9021dd09e3c1e20a69e27addf081eb4a4f4fc911ed4266be5485d3bfb0ac27"
+    },
+    {
+      "compiled_artifacts": [
+        [
+          "Programs/Bytecode/cocode002_005-0.bc",
+          "6794fa87e4aacf117165240126c1e517ecdf3afc140c0db569877a1f84715427"
+        ],
+        [
+          "Programs/Schedules/cocode002_005.sch",
+          "32d0677a9a9d4d5d3ed1c429de5cd268b73f24b4b4a01fcc2ffb2b5a8ca61601"
+        ]
+      ],
+      "party_exit_codes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "program": "cocode002_005",
+      "rejection_reason": null,
+      "released_field_count": 4,
+      "seconds": 0.546750093,
+      "seven_context_views_equal": true,
+      "source_sha256": "6fcaa2a7f309dccc09bb049abbf717c83bd84796a90f8bddb2b179b45ff56107"
+    },
+    {
+      "compiled_artifacts": [
+        [
+          "Programs/Bytecode/cocode002_006-0.bc",
+          "39dbe0f3b84aeecc252cbb1e29fc622b4a4874df6c4f06a9649a3502dfe679f5"
+        ],
+        [
+          "Programs/Schedules/cocode002_006.sch",
+          "ecb19e84fea21355421c9aaffe302fb8e189b65b0713fa5ba83c6a4959023a37"
+        ]
+      ],
+      "party_exit_codes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "program": "cocode002_006",
+      "rejection_reason": null,
+      "released_field_count": 4,
+      "seconds": 0.592801698,
+      "seven_context_views_equal": true,
+      "source_sha256": "e8aaf1c6d0b0a6efdfebb47c9def406cde03465b2f2555f3333807bbf8cea338"
+    },
+    {
+      "compiled_artifacts": [
+        [
+          "Programs/Bytecode/cocode002_007-0.bc",
+          "b99a7afba5ab0c45742543ad6e976ee1471905254a5ed1c38650e046b82dd661"
+        ],
+        [
+          "Programs/Schedules/cocode002_007.sch",
+          "9dcfce1b96865e8918f182913210d9bb95fe5940c96111a5b471eb762d1cad79"
+        ]
+      ],
+      "party_exit_codes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "program": "cocode002_007",
+      "rejection_reason": null,
+      "released_field_count": 4,
+      "seconds": 0.605165358,
+      "seven_context_views_equal": true,
+      "source_sha256": "e38bb7d061b9f438abea681357c87ac14c9655dfde16f7002d1e1bf4dfb94273"
+    },
+    {
+      "compiled_artifacts": [
+        [
+          "Programs/Bytecode/cocode002_008-0.bc",
+          "b21ca63cae4b0ffe33124d5bfebcf61b036105702982ee6a2431318c7e20da62"
+        ],
+        [
+          "Programs/Schedules/cocode002_008.sch",
+          "8f2db2b0b83ad3c80df23e665c68341683d0a0a7181728bd9871a5c99528350d"
+        ]
+      ],
+      "party_exit_codes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "program": "cocode002_008",
+      "rejection_reason": null,
+      "released_field_count": 4,
+      "seconds": 0.546627975,
+      "seven_context_views_equal": true,
+      "source_sha256": "a8144b2831b151aa531425206c58b9a8d9c43a6369f206d166f6a2b757dcc5ff"
+    },
+    {
+      "compiled_artifacts": [
+        [
+          "Programs/Bytecode/cocode002_009-0.bc",
+          "ee3b9f4d3559f352e8cc108494e20bfefea8aa1451b9f1b8ab0004e5e10dacf5"
+        ],
+        [
+          "Programs/Schedules/cocode002_009.sch",
+          "b87de84c3ce8e2c7f2df46fbf56e0303a55527903fd821c0ed6b4ea8e68a1e60"
+        ]
+      ],
+      "party_exit_codes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "program": "cocode002_009",
+      "rejection_reason": null,
+      "released_field_count": 4,
+      "seconds": 0.565754592,
+      "seven_context_views_equal": true,
+      "source_sha256": "863949245856cca49f5bc7924fe2a77e934ab4f2fcc2bfccb02f100d707b230e"
+    },
+    {
+      "compiled_artifacts": [
+        [
+          "Programs/Bytecode/cocode002_010-0.bc",
+          "19b3d97155ad4f7892a40ac83fd4e4e976916123935323cb8ab335859e9be817"
+        ],
+        [
+          "Programs/Schedules/cocode002_010.sch",
+          "47b5b9ee2cbb2bc9b0a47f9e4e11c098f1697c845ca5a5d191ee204e5c42e989"
+        ]
+      ],
+      "party_exit_codes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "program": "cocode002_010",
+      "rejection_reason": null,
+      "released_field_count": 4,
+      "seconds": 0.509341445,
+      "seven_context_views_equal": true,
+      "source_sha256": "98a30c8027ded6e031ffdea7c23b032feec18b2b569304a925380330160c25f1"
+    },
+    {
+      "compiled_artifacts": [
+        [
+          "Programs/Bytecode/cocode002_011-0.bc",
+          "7a09b4b60080ec22496db3a6af5814759322fb1bb1109b93c0f91ca431f2a9d4"
+        ],
+        [
+          "Programs/Schedules/cocode002_011.sch",
+          "019bd150cc356a678985466b58d2bdcf4fafd88e3dcb721a2b0658e9687b7708"
+        ]
+      ],
+      "party_exit_codes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "program": "cocode002_011",
+      "rejection_reason": null,
+      "released_field_count": 1,
+      "seconds": 0.254687039,
+      "seven_context_views_equal": true,
+      "source_sha256": "fe6c5167a5de3e7598c5acc36af6258d9f401d2cfcfd2d64f045581f6ed27647"
+    },
+    {
+      "compiled_artifacts": [
+        [
+          "Programs/Bytecode/cocode002_012-0.bc",
+          "162246cdabbd456e0e0132de7afbf592a00c8ee3e7de322a7ca7b85d0c250554"
+        ],
+        [
+          "Programs/Schedules/cocode002_012.sch",
+          "8e79d6f44d9469740a9423611d79003be1c4b7cb906401556c6f5a985c0a2b00"
+        ]
+      ],
+      "party_exit_codes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "program": "cocode002_012",
+      "rejection_reason": null,
+      "released_field_count": 3,
+      "seconds": 0.408694086,
+      "seven_context_views_equal": true,
+      "source_sha256": "a0e850d8f465a9560f54e8e3521e3a1ea39bea37ef41acc23b4a7237ca9bcc77"
+    },
+    {
+      "compiled_artifacts": [
+        [
+          "Programs/Bytecode/cocode002_013-0.bc",
+          "c914d0331e4138b6aed14e977cb4d0befa8dc6f5b7cc31fe9cce0e6840924c2c"
+        ],
+        [
+          "Programs/Schedules/cocode002_013.sch",
+          "99d9134476c94150c22c21fb1a97e329f342d1d3b454782b62b7cd0dcf2c2b7d"
+        ]
+      ],
+      "party_exit_codes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "program": "cocode002_013",
+      "rejection_reason": null,
+      "released_field_count": 1,
+      "seconds": 0.281911165,
+      "seven_context_views_equal": true,
+      "source_sha256": "29778f2ce11b4f18f251a25a9ff773ef9ba721580d0eee0bf723e99137f311ba"
+    },
+    {
+      "compiled_artifacts": [
+        [
+          "Programs/Bytecode/cocode002_014-0.bc",
+          "a438c0a6106c2e21bf7ed4ef6358b41e5fe831f6d4ff02f4c1b281b48c1031f7"
+        ],
+        [
+          "Programs/Schedules/cocode002_014.sch",
+          "ddf97491af8e5d75e34d090679f9f2cf1c79fa36a483a0fb75688a2c6bd6ecbf"
+        ]
+      ],
+      "party_exit_codes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "program": "cocode002_014",
+      "rejection_reason": null,
+      "released_field_count": 3,
+      "seconds": 0.58449062,
+      "seven_context_views_equal": true,
+      "source_sha256": "fd1cd97e034b16047b68a810713e3e814d140a61a11bb4a5c67b0d7c1a26bc62"
+    },
+    {
+      "compiled_artifacts": [
+        [
+          "Programs/Bytecode/cocode002_015-0.bc",
+          "6695fcd865086d4f9a448d1093108d402af3ee6de17d03abae226df03c751c66"
+        ],
+        [
+          "Programs/Schedules/cocode002_015.sch",
+          "3e1165af590c1c433b5bea0c9d62055456e8031ed7927f8757d59966edaf5deb"
+        ]
+      ],
+      "party_exit_codes": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "program": "cocode002_015",
+      "rejection_reason": "challenge view mismatch",
+      "released_field_count": 0,
+      "seconds": 0.36318941,
+      "seven_context_views_equal": false,
+      "source_sha256": "db6674522a233a798ea11a7d45ac103b4267e17c2a82c0176c935340b60be178"
+    },
+    {
+      "compiled_artifacts": [
+        [
+          "Programs/Bytecode/cocode002_016-0.bc",
+          "ac7aaeb297521a10321b786298350f604b8ae6b28c05e54b399b5a288fc376ea"
+        ],
+        [
+          "Programs/Schedules/cocode002_016.sch",
+          "244269784d1eeb0746151fe8f71cb099e8a470bc77ded41e38503a0848d32fa0"
+        ]
+      ],
+      "party_exit_codes": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "program": "cocode002_016",
+      "rejection_reason": "invalid financial witness",
+      "released_field_count": 0,
+      "seconds": 2.691856551,
+      "seven_context_views_equal": true,
+      "source_sha256": "5cc98c06e104ad03908e21fc8f8cdb97d24ece988b5c9bec52fbd5757e98b467"
+    }
+  ],
+  "negative_cases": {
+    "changed codeword opening": true,
+    "changed deployment mode or identifier": true,
+    "changed final evaluation claim": true,
+    "changed proof commitment root": true,
+    "changed public statement": true,
+    "inconsistent per-party challenge view": true,
+    "invalid witness": true
+  },
+  "owner_local_repeated_query_rejections": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+  ],
+  "point_prediction": 1,
+  "primary_metric_observed": true,
+  "primary_metric_value": 1,
+  "private_inputs_generated_in_per_party_children": true,
+  "production_security_or_post_quantum_parameter_promotion": false,
+  "proof_sha256": "f5776d530db5ba63bc484e40cbfc9b7652446022eaee842c3276d77d523d6128",
+  "single_host": true,
+  "source_inputs": {
+    "Cargo.lock": "3a7d69b416dd1a564f7912be95b6f8acf2d567874554624014be3be0b855c905",
+    "Cargo.toml": "0c9ee9026d1d5132b7667e9cb1cf9c1795598b4a0e712abbb9a624f94d29e66b",
+    "contract.json": "45dc526721b4f174c794557d15f1bc171a8bf4ef41fe210e5901bdd5402e26fb",
+    "experiment-002.json": "5daad3a7f840a22d395dadaa34b06b41eda352cfb99b21a33aaff307862e3a76",
+    "experiment-011.json": "a4ba44b54e4f0ed3233916adb1c74e8e620d063e80d7a5fcb8f9e08994014f41",
+    "src/algebra.rs": "cc184888edca06a137aafef59718d8a7f1a18409fcaa3d6a8f4912e8b887546e",
+    "src/circuit.rs": "16e864d7ed20550b33a235552f3dfba8248ac35799048aab5cec0e61f346c755",
+    "src/field.rs": "4a3b2d2d799234fabe184c5f36bf1b880a18fe52164818b10a07630af9024367",
+    "src/full_trial.rs": "fadb98cf5f1d81c33f9730b6e16ec881f81a43e61abd5ea489875ecafed5d281",
+    "src/lib.rs": "7e7b73452cd6c01f4e6830c7723f319f142a6d187df454be41361abe6d2b9759",
+    "src/main.rs": "cbd23abea074e4db4d4eb76ed72b074adf1d2a48dd7a06658199701c76fc14ec",
+    "src/mpc_program.rs": "d6a4786f8ddda213a5e3e077ca3782a5621111102565c1d56dc86a8b84022571",
+    "src/native.rs": "ee5c1e3202f8fccb5cfd52cc28081498240c0ec8def3947de60cc48525760707",
+    "src/party.rs": "1e4a9bf706fea05fa84db66c56ff6b59a84adbb22d7f2f7565b22dd5d4b98f8b",
+    "src/pcs.rs": "d07020e6f8e9caa5bcd08625400243844379e7e4b641c3ea5423bff7b3a4df91",
+    "src/prover.rs": "f9442e79c068014e07d62f4ea76f7931192c16dd87253abb35a47aeb9942de22",
+    "src/transcript.rs": "50e2c3577d4fa9760bef32177fab908241fde7947e64a825e82dd85c371d26eb",
+    "src/verifier.rs": "7138b30825b9f9ac152aed2c37ecc393a43ad2357d2719a26e6500b716ec386f"
+  },
+  "stage": "RUN_ROUGH_END_TO_END_AND_OBSERVE_FINAL_METRIC",
+  "standalone_public_verifier_accepted": true,
+  "started_unix_seconds": 1788865166,
+  "verdict": "smoke_only"
+}

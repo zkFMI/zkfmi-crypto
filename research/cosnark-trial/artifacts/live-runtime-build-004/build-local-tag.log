@@ -1,0 +1,42 @@
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 460B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/oclob-pqc-native-avalanche:20260908t071221z-32876-pqc-native-acceptance
+#2 DONE 0.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context:
+#3 transferring context: 2B done
+#3 DONE 0.1s
+
+#4 [1/3] FROM docker.io/library/oclob-pqc-native-avalanche:20260908t071221z-32876-pqc-native-acceptance@sha256:a73477f22efc696d6690a6e65c217b84a46ae50af5243d760ffc612d81b4a6e3
+#4 resolve docker.io/library/oclob-pqc-native-avalanche:20260908t071221z-32876-pqc-native-acceptance@sha256:a73477f22efc696d6690a6e65c217b84a46ae50af5243d760ffc612d81b4a6e3 0.0s done
+#4 ...
+
+#5 [internal] load build context
+#5 transferring context: 83B done
+#5 DONE 0.1s
+
+#4 [1/3] FROM docker.io/library/oclob-pqc-native-avalanche:20260908t071221z-32876-pqc-native-acceptance@sha256:a73477f22efc696d6690a6e65c217b84a46ae50af5243d760ffc612d81b4a6e3
+#4 DONE 0.4s
+
+#6 [2/3] COPY 00-qomm-runtime.conf /etc/ld.so.conf.d/00-qomm-runtime.conf
+#6 DONE 0.1s
+
+#7 [3/3] RUN ldconfig
+#7 DONE 0.2s
+
+#8 exporting to image
+#8 exporting layers
+#8 exporting layers 0.2s done
+#8 exporting manifest sha256:de897a294bf57f123b0e71fb99113d38fc72d32a433fa49dc08cd794b1471f42 0.0s done
+#8 exporting config sha256:3137f44447cecb6c048eb0c24b12dc7ce9ec307e5b90f719189bc590f4724135 0.0s done
+#8 exporting attestation manifest sha256:f07f612046766cbce4b455ad9fae031f1345e8c448646ed88ec1d490ed630d77 0.0s done
+#8 exporting manifest list sha256:70592bee29073c53bfb5d199d097443c79f08c135c9da0354dfab2cf028cd8e5
+#8 exporting manifest list sha256:70592bee29073c53bfb5d199d097443c79f08c135c9da0354dfab2cf028cd8e5 0.0s done
+#8 naming to docker.io/library/zkfmi-cocode-live-runtime:004 done
+#8 unpacking to docker.io/library/zkfmi-cocode-live-runtime:004 0.1s done
+#8 DONE 0.5s

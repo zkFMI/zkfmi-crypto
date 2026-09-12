@@ -1,0 +1,41 @@
+--- a/src/cbmc-gc/ssa_to_circuit/boolean.cpp
++++ b/src/cbmc-gc/ssa_to_circuit/boolean.cpp
+@@ -216,3 +216,4 @@
+-    else if(step_it->is_function_call())
+-    {
+-      if(auto func_call = handle_function_call(bmc, stepper, module))
++    else if(step_it->is_function_call())
++    {
++      literalt call_guard = emit_validity ? bv_cbmc.convert(step_it->guard) : const_literal(true);
++      if(auto func_call = handle_function_call(bmc, stepper, module))
+@@ -228,1 +229,22 @@
+-        func_calls.push_back(to_bool_function_call(*func_call, bv_cbmc, stepper.state()));
++        auto bool_call = to_bool_function_call(*func_call, bv_cbmc, stepper.state());
++        if(emit_validity)
++        {
++          // Every module carries its execution-validity byte in the circuit
++          // ABI. This is private circuit wiring, not a new C input or secret.
++          function_vart validity;
++          validity.var = extract_variable_info(irep_idt{
++            as_string(bool_call.name) + "::OUTPUT_assertions@" + std::to_string(bool_call.call_id)});
++          validity.type = unsignedbv_typet{8};
++          literalt callee_valid = const_literal(true);
++          for(size_t bit = 0; bit < 8; ++bit)
++          {
++            boolbv_mapt::map_bitt literal;
++            literal.is_set = true;
++            literal.l = prop->new_variable();
++            validity.literals.push_back(literal);
++            callee_valid = prop->land(callee_valid, bit == 0 ? literal.l : !literal.l);
++          }
++          bool_call.returns.push_back(validity);
++          execution_valid = prop->land(execution_valid, prop->limplies(call_guard, callee_valid));
++        }
++        func_calls.push_back(std::move(bool_call));
+@@ -247,4 +269,2 @@
+-    // A skipped module needs an explicit validity return in its ABI. Refuse
+-    // modular circuits until that propagation exists rather than omit checks.
+-    if(!func_calls.empty() || func_name != "mpc_main")
+-      throw std::runtime_error{"emit-validity requires a monolithic mpc_main"};
++    // Child validity is joined above through an explicit module output.
++    // Only a fully linked circuit, with no unresolved module inputs, is admissible.

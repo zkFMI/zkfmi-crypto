@@ -1,0 +1,28 @@
+{
+  "experiment_id": "cocode-live-avalanche-004",
+  "contract_id": "zkfmi-cocode-live-avalanche-v1",
+  "contract_sha256": "f962d52dcd5d26943cebf50689a6b0fc3d29edbf7e317610b67d2fea0e6a7de0",
+  "closed_plan": ["RUN_ROUGH_END_TO_END_AND_OBSERVE_FINAL_METRIC"],
+  "rough_command": "internal:live_avalanche",
+  "bottleneck": "Run003 launched AvalancheGo but every VM plugin failed to load libSPDZ.so because subprocess startup strips LD_LIBRARY_PATH.",
+  "causal_hypothesis": "Registering the already pinned MP-SPDZ/PQC-OpenSSL paths in the image loader cache permits the exact same VM bytes to run under the plugin's empty environment.",
+  "single_intended_change": "Derived runtime image adds only /etc/ld.so.conf.d/00-qomm-runtime.conf and ldconfig output; preserve exact VM/driver/proof/script bytes, UID10001 and private service-home tmpfs.",
+  "baseline": "cocode-live-avalanche-003: blocked, primary0, 194.693 seconds; five VM loader failures and ANR health timeout.",
+  "evaluation_population": "One fresh isolated five-validator chain, frozen native003 fill/no-fill proofs, all chunks and canonical negatives, one validator restart; same host is not independent operators.",
+  "point_prediction": 1,
+  "likely_prediction_error": "The first actual VM RPC, consensus or large-state path reveals a boundary not reached by previous loader-blocked attempts.",
+  "rejection_rule": "Any missing real acceptance, differing roots, absent restart readback, changed proof parameters, non-semantic error counted as rejection or existing deployment mutation blocks acceptance.",
+  "promotion_rule": "At most smoke_only; no security certification, independent operators, full application migration or production promotion.",
+  "public_proof_directory": "/proofs",
+  "public_input_sha256": {
+    "receipt.json": "44db45723797a0df0877b3bd184585a659eb5cc1cc49330affa57cc83745d83a",
+    "fill/proof.json": "7dcc998836f0eed42b35e3d4bd551e6ed79fe379146535c111b86e0c95805790",
+    "fill/statement.json": "fccb5e8f93580ff30efb32be5234cf22f03d4b7a0e12b2688f981f1006c48d52",
+    "nofill/proof.json": "8f66e6cd040d4badcfbe711c14d4dd4e856ce8f751b6bb489fd3d37427eac50a",
+    "nofill/statement.json": "87d0a368824bfb50468dcc09605abeb1bb953bf1eacbfaab5718def4e26c6d31"
+  },
+  "network_image": "sha256:70592bee29073c53bfb5d199d097443c79f08c135c9da0354dfab2cf028cd8e5",
+  "base_network_image": "sha256:a73477f22efc696d6690a6e65c217b84a46ae50af5243d760ffc612d81b4a6e3",
+  "runtime_uid": 10001,
+  "network_isolation": "Fresh network-none container; read-only image plus private service-home tmpfs; loopback validators; no published ports; public proof mount read-only; no prior service state."
+}

@@ -1,0 +1,9 @@
+{
+  "protocol": "cocode-normalized-malicious-mpc-research-v1",
+  "deployment_mode": "pq-only",
+  "deployment_id": "cosnark-rough-009-1788864539",
+  "circuit_sha512": "d02e65c21e083de3722e73c7e6d8bd8a653bf73d7ffe692f4c1f177b3fd3050c1e0c1a7f6822ca7d5da6f25510a0d287fd0b275dc22bafd7332a33679272cec9",
+  "reserve": 65535,
+  "parties": 7,
+  "max_corrupt": 2
+}

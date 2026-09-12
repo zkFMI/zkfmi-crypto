@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "kind": "owned_native_whole_path_verification",
+  "verified_at": "2026-09-09T13:57:24Z",
+  "verdict": "smoke_only",
+  "contract_id": "zkfmi-cocode-owned-native-integration-v1",
+  "contract_sha256": "5352072bd2e087f2f8f3483bcb1f71612ce9c88a97002a8a94cbda2a7003ac9c",
+  "manifest_sha256": "62e3c2dee7a4dd21019a93a896056f93e56c83fe54fe5456b9e9e9241b91c5a7",
+  "receipt_sha256": "1e7c6e97302d66788444bd9878d28d131257869ec000df5fc5675bd730545954",
+  "source_verification": {
+    "client_feature_tests": 23,
+    "native_all_target_tests": 30,
+    "clippy": "passed, release/all-targets/-D warnings",
+    "log_sha256": "e84a534462bf6db2a7a690b679cbe6380fedf4718c7a89e7fcd254f004936b48",
+    "matching_source_inputs": 28,
+    "noncompiled_AppleDouble_entries": 7,
+    "local_source_mismatches": 0
+  },
+  "whole_result": {
+    "point_prediction": 1,
+    "observed": 1,
+    "seconds": 639.496217393,
+    "positive_native_programs": 46,
+    "positive_party_exits": 322,
+    "negative_native_programs": 1,
+    "negative_party_exits": 7,
+    "canonical_applied_blocks": 740,
+    "canonical_negative_gates": 8,
+    "proof_native_negative_gates": 6,
+    "fill_proof_bytes": 192349191,
+    "nofill_proof_bytes": 192349192,
+    "pending_upload_chunks": 367,
+    "pending_state_bytes": 256567354,
+    "fill_initializer_source_sha256": "dd4a76c4ef67aa608e7c101851bc3a0a6521c45ad4c92fe65355f5964be55970",
+    "nofill_initializer_source_sha256": "d1083ee5c3a786c0bb2988170d8e176c9dd13c840c129cb4fc7b6f1f652c68af",
+    "initializer_readback": "Actual compiled public program reads six owner fields per party and initializes balances/quantity/price from secret owner_values, not old fixed issuance."
+  },
+  "public_verification": {
+    "container": "753cd118d5ac3425d9228bc03073bf543a105fb3f315f103412aa9c340dc798d",
+    "exit_code": 0,
+    "network": "none",
+    "mounts": "read-only frozen runner and public artifacts only; no keys/inputs/shares",
+    "log_sha256": "5d0299c70b276499ad4a0ea60083a957d93889a4638b6bef323aed9f14ee6fb3",
+    "isolation_sha256": "e598cd7d453236960983653fe6815a19442c7a2074c68a632650fab1615ab90b"
+  },
+  "ledger": {
+    "prior_local_sha256": "69bc31e647f5724fdbcf342dd1bbafba45f4990091e4820399be8ee9f577f4ad",
+    "prior_bytes_preserved": true,
+    "note": "The isolated remote source snapshot lacked query-agreement-002; only this new run's exact receipt was appended to the current local ledger. No old local rows were replaced."
+  },
+  "remote_public_root": "/home/ubuntu/work/pqc-greenfield-20260909/owner-input-003/public-001",
+  "limits": [
+    "Laboratory owner process and same-host files, not enrolled venue parties or encrypted worker transport.",
+    "No operational QOMM/OCLOB order matching or role/account ownership proof.",
+    "Canonical in-process State/Block acceptance is not a new live validator deployment.",
+    "No security/composition/concrete PQ parameter certification or independent operator custody.",
+    "Full On/Off application integration remains incomplete; existing ledgers and public deployments unchanged."
+  ]
+}

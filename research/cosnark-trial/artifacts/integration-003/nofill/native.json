@@ -1,0 +1,623 @@
+[
+  {
+    "program": "cocodeint_001",
+    "source_sha256": "7b58af601c509e69a46230f1834e381c3e0706bf07f6a3bad9f6abe8d78d0ef8",
+    "compiled_artifacts": [
+      [
+        "Programs/Bytecode/cocodeint_001-0.bc",
+        "bf15c871a15a1a56da31592dadcccbfc15bb0b28447104f8369731353e2b053c"
+      ],
+      [
+        "Programs/Schedules/cocodeint_001.sch",
+        "4c64fb1f66b4faf85af93b4aebade4151fdc67c93a5d2b1374794451988820b0"
+      ]
+    ],
+    "party_exit_codes": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "seconds": 14.216010228,
+    "released_field_count": 0,
+    "seven_context_views_equal": true,
+    "rejection_reason": null
+  },
+  {
+    "program": "cocodeint_002",
+    "source_sha256": "51620d3d351537f7dfc2c411b5e937bab0de31d3dfabc1e541d5db17c68a6a22",
+    "compiled_artifacts": [
+      [
+        "Programs/Bytecode/cocodeint_002-0.bc",
+        "deafac0542147b2b7a1a21c3470183753311f64f3bb5114d1c91fe086b5ec8c0"
+      ],
+      [
+        "Programs/Schedules/cocodeint_002.sch",
+        "d9d0db2f5e8e9f99df7540265a0a6629f5e1320111f870dd7b3b195cb6397e83"
+      ]
+    ],
+    "party_exit_codes": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "seconds": 0.308966676,
+    "released_field_count": 2,
+    "seven_context_views_equal": true,
+    "rejection_reason": null
+  },
+  {
+    "program": "cocodeint_003",
+    "source_sha256": "3b48bd045ee1658216a5de3abb0670d0e716626ca44dbd951a260984810e8210",
+    "compiled_artifacts": [
+      [
+        "Programs/Bytecode/cocodeint_003-0.bc",
+        "a7856d84b3d86eb52115872cfd6c4ae107b41d577d05285f10057cc6c6989d3b"
+      ],
+      [
+        "Programs/Schedules/cocodeint_003.sch",
+        "562c13067cb00d8bfbbaa723020b3c61c37aa1555b1263d131cc70b8bf84d458"
+      ]
+    ],
+    "party_exit_codes": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "seconds": 0.329113138,
+    "released_field_count": 2,
+    "seven_context_views_equal": true,
+    "rejection_reason": null
+  },
+  {
+    "program": "cocodeint_004",
+    "source_sha256": "9400a9127b65f728f4ffaa28ca3dc178ae7afa5dd088f8879be6ada4956286ac",
+    "compiled_artifacts": [
+      [
+        "Programs/Bytecode/cocodeint_004-0.bc",
+        "7cff3023b80e28442638eab5046a9b0fc36070121377ab720634bd735627a6b5"
+      ],
+      [
+        "Programs/Schedules/cocodeint_004.sch",
+        "554edea3d3cdfa468c54d1a65c92c7125cb11109e5a13a15613f16f24b4ca569"
+      ]
+    ],
+    "party_exit_codes": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "seconds": 23.014077686,
+    "released_field_count": 4,
+    "seven_context_views_equal": true,
+    "rejection_reason": null
+  },
+  {
+    "program": "cocodeint_005",
+    "source_sha256": "4f5541fd3a902a406d911a385adea55410ef6255e87ce135634b3c8f3cb44b1c",
+    "compiled_artifacts": [
+      [
+        "Programs/Bytecode/cocodeint_005-0.bc",
+        "fd67fe87330180e458d592dd94b52303682ed3c2ffe376632f1a38f212013e06"
+      ],
+      [
+        "Programs/Schedules/cocodeint_005.sch",
+        "b35705a5ff63b0771ecef42ec6922980d14b48a21b3b34ae213eb04bdeaf36ca"
+      ]
+    ],
+    "party_exit_codes": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "seconds": 12.741884269,
+    "released_field_count": 4,
+    "seven_context_views_equal": true,
+    "rejection_reason": null
+  },
+  {
+    "program": "cocodeint_006",
+    "source_sha256": "f5cff24045c7981909033c0ef9ce83a0ab5210a9eb92caf60d606cab83049e6a",
+    "compiled_artifacts": [
+      [
+        "Programs/Bytecode/cocodeint_006-0.bc",
+        "b588122aecf4aefce61a5fc88953808f5676cfa43e8dc905b983528be07c6a0a"
+      ],
+      [
+        "Programs/Schedules/cocodeint_006.sch",
+        "cefaa5c3da810b9c668cf72e60420a9aa78c155514feefeed0863099fccebbeb"
+      ]
+    ],
+    "party_exit_codes": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "seconds": 7.177250466,
+    "released_field_count": 4,
+    "seven_context_views_equal": true,
+    "rejection_reason": null
+  },
+  {
+    "program": "cocodeint_007",
+    "source_sha256": "cc3b310dae4698f823c049a0a53798ee22873168d91ae3e4f471ada29f0ba8cc",
+    "compiled_artifacts": [
+      [
+        "Programs/Bytecode/cocodeint_007-0.bc",
+        "3d5867ef940c7372a7e8e4765152a481736a8e15f7abd9294e4623ac66c8712e"
+      ],
+      [
+        "Programs/Schedules/cocodeint_007.sch",
+        "05a30fa3d51c610b96dfa35704eca49d89ee2a89a11ea0c3a8a1007d47ccf7b2"
+      ]
+    ],
+    "party_exit_codes": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "seconds": 6.412783883,
+    "released_field_count": 4,
+    "seven_context_views_equal": true,
+    "rejection_reason": null
+  },
+  {
+    "program": "cocodeint_008",
+    "source_sha256": "a0fd3000280fc7c95246bd6caa5141f23fe0cd8151bfbdee35c60adfa06ff215",
+    "compiled_artifacts": [
+      [
+        "Programs/Bytecode/cocodeint_008-0.bc",
+        "bf3331a16f4822092f3c191f9381115843bf7275e608bffd23aaa0165f38a494"
+      ],
+      [
+        "Programs/Schedules/cocodeint_008.sch",
+        "fe7a78d0baeebe3185ff243d314b4dc9ac5330738d0eb6e3120d83b58769c2f7"
+      ]
+    ],
+    "party_exit_codes": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "seconds": 5.262782878,
+    "released_field_count": 4,
+    "seven_context_views_equal": true,
+    "rejection_reason": null
+  },
+  {
+    "program": "cocodeint_009",
+    "source_sha256": "0dc1dab7b48035e089964a4d43322e26310015164d8d91cc61d7e56886ca53e7",
+    "compiled_artifacts": [
+      [
+        "Programs/Bytecode/cocodeint_009-0.bc",
+        "076d394039f7044bb9fe7da9cf1d6b675700a464d46044751f10622dd6d149db"
+      ],
+      [
+        "Programs/Schedules/cocodeint_009.sch",
+        "66ba7025847c64dce3382e5d5d74fc4a965f418d9545be0c558ee01fbf36b05b"
+      ]
+    ],
+    "party_exit_codes": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "seconds": 5.121858899,
+    "released_field_count": 4,
+    "seven_context_views_equal": true,
+    "rejection_reason": null
+  },
+  {
+    "program": "cocodeint_010",
+    "source_sha256": "1b5707ef9d8563b3ac464b0098f6e3f24d87b215a20992b8884a3ec7d98e3e04",
+    "compiled_artifacts": [
+      [
+        "Programs/Bytecode/cocodeint_010-0.bc",
+        "3a45c0ffc56d31c7cc75743b23be2e9edec50c21fc3ddb2122c11f422d7b33fa"
+      ],
+      [
+        "Programs/Schedules/cocodeint_010.sch",
+        "f23ee119073b2b96c9a458ab4ed59e76a01aabf9dcab29a6d06faead428c5d59"
+      ]
+    ],
+    "party_exit_codes": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "seconds": 4.957582009,
+    "released_field_count": 4,
+    "seven_context_views_equal": true,
+    "rejection_reason": null
+  },
+  {
+    "program": "cocodeint_011",
+    "source_sha256": "51eedb68ae2af5c70236086a43cb26a41f618e7bf4cbba65d73a2625053fe2ba",
+    "compiled_artifacts": [
+      [
+        "Programs/Bytecode/cocodeint_011-0.bc",
+        "75f1bf1f558f12e26530810b334a489d0d9b8eb86ca107a8aa44ee346eb5c972"
+      ],
+      [
+        "Programs/Schedules/cocodeint_011.sch",
+        "c37b21241056e3a10f9a450033512da04d621c38441a16f99e7924ca52076f13"
+      ]
+    ],
+    "party_exit_codes": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "seconds": 5.366851374,
+    "released_field_count": 4,
+    "seven_context_views_equal": true,
+    "rejection_reason": null
+  },
+  {
+    "program": "cocodeint_012",
+    "source_sha256": "6f7377406092901cb97b9b28640e07d4367dd885c515b858d4ccbcf1f63a0e59",
+    "compiled_artifacts": [
+      [
+        "Programs/Bytecode/cocodeint_012-0.bc",
+        "ecb7cc9d3f1a0869e29c12398bc1ceca7149a90c49013b7d62e92e48a3cfcbb2"
+      ],
+      [
+        "Programs/Schedules/cocodeint_012.sch",
+        "b0b93abcc57673bccfa623b6f7ba2a7175702d6b19df4e706789a94e68f1ddf6"
+      ]
+    ],
+    "party_exit_codes": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "seconds": 4.94925467,
+    "released_field_count": 4,
+    "seven_context_views_equal": true,
+    "rejection_reason": null
+  },
+  {
+    "program": "cocodeint_013",
+    "source_sha256": "df10900f94a9361cb78739347153cbedf8881ff88c6a1a1050d8e5245ba7210a",
+    "compiled_artifacts": [
+      [
+        "Programs/Bytecode/cocodeint_013-0.bc",
+        "08fdf17628ca52358670eeb7230dff7ebb8c531734d3ff81ec41c278508ec7b0"
+      ],
+      [
+        "Programs/Schedules/cocodeint_013.sch",
+        "d11aac34b2a858e8c2285cc0a65384e0e2d49f9829c20eabfef4c63de398faca"
+      ]
+    ],
+    "party_exit_codes": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "seconds": 5.162760926,
+    "released_field_count": 4,
+    "seven_context_views_equal": true,
+    "rejection_reason": null
+  },
+  {
+    "program": "cocodeint_014",
+    "source_sha256": "027e348e94e1af55024d2c406a6edffd1f39c959402269a7fdb603eead19e7fb",
+    "compiled_artifacts": [
+      [
+        "Programs/Bytecode/cocodeint_014-0.bc",
+        "ae5acdc410601f824e4173a88e0bf7481aa1d0e003969a4c57fecd92028fa788"
+      ],
+      [
+        "Programs/Schedules/cocodeint_014.sch",
+        "74fb033c33af26dd8343bd394d375026b73b661a74201f1e01906fd8c936e86a"
+      ]
+    ],
+    "party_exit_codes": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "seconds": 5.015474303,
+    "released_field_count": 4,
+    "seven_context_views_equal": true,
+    "rejection_reason": null
+  },
+  {
+    "program": "cocodeint_015",
+    "source_sha256": "62b0155e0dcf7a677d38891ecbd000938840b926161ab5ead7569692c19af590",
+    "compiled_artifacts": [
+      [
+        "Programs/Bytecode/cocodeint_015-0.bc",
+        "1a062febb30af3963219eed8d22895754869ee483ae49372a68062fbe58992f3"
+      ],
+      [
+        "Programs/Schedules/cocodeint_015.sch",
+        "cd5349a97dae814136f4a0427982970becf945bf789b0188533342d860d8f7d0"
+      ]
+    ],
+    "party_exit_codes": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "seconds": 4.809094723,
+    "released_field_count": 4,
+    "seven_context_views_equal": true,
+    "rejection_reason": null
+  },
+  {
+    "program": "cocodeint_016",
+    "source_sha256": "29e4da5661fcaec208c0b2a02e5efc99fc487ce3b47c61fc116bb9300ff654f2",
+    "compiled_artifacts": [
+      [
+        "Programs/Bytecode/cocodeint_016-0.bc",
+        "9c77628668a4b1d776fe12411d430185f7df8741723e31915df2e2c84c7523c3"
+      ],
+      [
+        "Programs/Schedules/cocodeint_016.sch",
+        "4abb8402233eef4446597696a30be04fc907c5e70fd5409934ff6ca93747b6a6"
+      ]
+    ],
+    "party_exit_codes": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "seconds": 0.312807852,
+    "released_field_count": 1,
+    "seven_context_views_equal": true,
+    "rejection_reason": null
+  },
+  {
+    "program": "cocodeint_017",
+    "source_sha256": "1ea7b545b4d6d5b828e4a19b805c12fdfc12dc396f7be7db51a224295b87fd45",
+    "compiled_artifacts": [
+      [
+        "Programs/Bytecode/cocodeint_017-0.bc",
+        "9c397d2e99c46049151948ee83ac2b1554aaab48f810babc020b91ad950e4cc1"
+      ],
+      [
+        "Programs/Schedules/cocodeint_017.sch",
+        "38cf09867912ad9ad64237956cec517c8fef8fff300659d72d458a082a68c4ca"
+      ]
+    ],
+    "party_exit_codes": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "seconds": 0.54682102,
+    "released_field_count": 3,
+    "seven_context_views_equal": true,
+    "rejection_reason": null
+  },
+  {
+    "program": "cocodeint_018",
+    "source_sha256": "278c5dd4ed152d2c56d6cd532526bd883e3e4e33d25bd9d48c3fa2b3858b440c",
+    "compiled_artifacts": [
+      [
+        "Programs/Bytecode/cocodeint_018-0.bc",
+        "e3f00f0e891239b50a636a88eade26a9643b65829587c1de3f4caaecf5de2875"
+      ],
+      [
+        "Programs/Schedules/cocodeint_018.sch",
+        "ce97c7ba87812c5262d9006fd9a29780b5e962bcdcdcf4c1478430c43cb2a5a0"
+      ]
+    ],
+    "party_exit_codes": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "seconds": 0.307394052,
+    "released_field_count": 1,
+    "seven_context_views_equal": true,
+    "rejection_reason": null
+  },
+  {
+    "program": "cocodeint_019",
+    "source_sha256": "8720a9273315f613a9253a26521ccd5fa1629edaef31323ad52e3469d170611d",
+    "compiled_artifacts": [
+      [
+        "Programs/Bytecode/cocodeint_019-0.bc",
+        "bd3ab07ebe83d2170af0ce7cbe3e3e85885ca9b762e1bd977fbf2d55f82542a4"
+      ],
+      [
+        "Programs/Schedules/cocodeint_019.sch",
+        "a30872a373350c6477c7875ef03db6a016ac242bb4819e805a1939ca63894558"
+      ]
+    ],
+    "party_exit_codes": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "seconds": 0.327125571,
+    "released_field_count": 3,
+    "seven_context_views_equal": true,
+    "rejection_reason": null
+  },
+  {
+    "program": "cocodeint_020",
+    "source_sha256": "7e9c327e864af2014ebbe6caa1c68156d5358b55a6acbca6800ba3d0ef533f95",
+    "compiled_artifacts": [
+      [
+        "Programs/Bytecode/cocodeint_020-0.bc",
+        "c8c6ff7712bca8ee7a62cec32436516494c2137c5516e0760434a444c27036e0"
+      ],
+      [
+        "Programs/Schedules/cocodeint_020.sch",
+        "2f7df169ae8cb16dd44eb2f7595da4eb62d41f975393b2256022a15d016df652"
+      ]
+    ],
+    "party_exit_codes": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "seconds": 0.323535226,
+    "released_field_count": 1,
+    "seven_context_views_equal": true,
+    "rejection_reason": null
+  },
+  {
+    "program": "cocodeint_021",
+    "source_sha256": "a480d97c89d1f85a04fadec647ec2ad1bcee1165a4683207c51ecf379ee26154",
+    "compiled_artifacts": [
+      [
+        "Programs/Bytecode/cocodeint_021-0.bc",
+        "b0db11a27d0d131aa30326e7573925997ede803f6867ef8482b985211e010042"
+      ],
+      [
+        "Programs/Schedules/cocodeint_021.sch",
+        "40c7a9500b63d3c73d4b8ba58111cc9abed955c0e763b75afe401d8105ae5c33"
+      ]
+    ],
+    "party_exit_codes": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "seconds": 0.33905794,
+    "released_field_count": 3,
+    "seven_context_views_equal": true,
+    "rejection_reason": null
+  },
+  {
+    "program": "cocodeint_022",
+    "source_sha256": "614f628ebb4071e117e969c2aa64d59b57d6695a15a52e6579e78fdd07c2f34c",
+    "compiled_artifacts": [
+      [
+        "Programs/Bytecode/cocodeint_022-0.bc",
+        "ec4eefefd066782d3ff53d347ac643ae73641f81a3850874068ac8bea3dd8f12"
+      ],
+      [
+        "Programs/Schedules/cocodeint_022.sch",
+        "3649099d4aa4238d0976be1e2b6794c724ca11d2337fef5aeef32551ec98b24b"
+      ]
+    ],
+    "party_exit_codes": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "seconds": 0.805332659,
+    "released_field_count": 1,
+    "seven_context_views_equal": true,
+    "rejection_reason": null
+  },
+  {
+    "program": "cocodeint_023",
+    "source_sha256": "ed161f133ca5d86feb6eff8c2f3946f1f100e8ca2159d9fe881fa20aca8abd62",
+    "compiled_artifacts": [
+      [
+        "Programs/Bytecode/cocodeint_023-0.bc",
+        "20de2ab4cb6dc814e3cdbe8b83c74d95f64a64cc3df19cf8b0eac3c55394edc8"
+      ],
+      [
+        "Programs/Schedules/cocodeint_023.sch",
+        "7c0c77a9280c23af8e07c0c8457b7934f085fc8d0026b06db1892c0d61d17992"
+      ]
+    ],
+    "party_exit_codes": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "seconds": 7.119383831,
+    "released_field_count": 3,
+    "seven_context_views_equal": true,
+    "rejection_reason": null
+  }
+]

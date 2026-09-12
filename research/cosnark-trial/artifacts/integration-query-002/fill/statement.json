@@ -1,0 +1,9 @@
+{
+  "deployment_id": "cocode-defmi-query-agreement-002",
+  "book_id": "private-four-account-book",
+  "operation_id": "fill",
+  "sequence": 1,
+  "before_commitment": "43b3c58e713f9c28603841f015b4b469fc6d3f770647adaa2e046872e974e2caf854d80d996560f2b2671c43622e60bf1ef815a197eb83289e4677efb052e085",
+  "after_commitment": "e297438e8621c02f6af79222b2d92007169a90c08cb0221876eec3c13f139160c893c414c9d82f426d820854650b1a599f63a448573e3e9cbf6322d80ea268cc",
+  "no_fill": false
+}

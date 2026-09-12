@@ -1,0 +1,11 @@
+{
+  "policy": {
+    "version": 1,
+    "deployment_id": "cocode-sealed-native-001",
+    "mode": "on"
+  },
+  "book_id": "private-four-account-book",
+  "operation_id": "invalid",
+  "sequence": 1,
+  "no_fill": false
+}

@@ -1,0 +1,35 @@
+{
+  "purpose": "Compile the exact existing hybrid recipient-envelope computation into private proof wires. No algorithm substitution or public shared-secret output is permitted.",
+  "mlkem": {
+    "repository": "https://github.com/pq-code-package/mlkem-native.git",
+    "commit": "637d076aa113d8faaec2277ed4a46b657acaf35f",
+    "license_choice": "MIT (upstream offers Apache-2.0 OR ISC OR MIT)",
+    "source_license": "Upstream LICENSE and all source copyright headers must accompany any imported or distributed source and generated artifacts.",
+    "adapter": "mlkem-encapsulation-circuit.c",
+    "configuration": "ML-KEM-768, portable C, serial FIPS202, deterministic encapsulation; unmodified algorithm source, supported volatile-byte zeroization hook for the assembly-free frontend",
+    "public_known_answer": "../../../tests/vectors/mlkem-native-768-known-answer.bin",
+    "public_known_answer_sha256": "46ff0a6ae4de6816351dfd73d606b375bd722f9c82e5b0fb07fcacaa3cd1335e",
+    "acceptance": "Successful compilation alone is insufficient. Retain unwinding assertions and require their satisfaction, correct key validation and exact cross-implementation ciphertext/shared-secret known answers before admitting a generated circuit."
+  },
+  "bearssl": {
+    "repository": "https://www.bearssl.org/git/BearSSL",
+    "commit": "7bea48e5e850ab4cafbe68d3765cdaba13a86d6f",
+    "license": "MIT, copyright Thomas Pornin; retain LICENSE.txt and source headers",
+    "purpose": "C reference for X25519, HKDF-SHA256 and AES-256-GCM only, not a TLS replacement",
+    "adapters": ["x25519-encapsulation-circuit.c", "recipient-envelope-circuit.c"],
+    "x25519_module_abi": "The scoped d-to-OUTPUT_d token rename annotates the destination of f255_mul, f255_square, f255_add, f255_sub and f255_mul_a24 for HyCC's documented pointer module ABI. It changes no core expression. reduce_final_f255 and secret-control cswap remain inline. Native C known-answer bytes remain identical after annotation.",
+    "public_known_answers": [
+      {
+        "path": "../../../tests/vectors/bearssl-x25519-known-answer.bin",
+        "sha256": "d20082c2a0628bb76ad67950cf493783c91356cf69e0c15507c050d9bcde44f5",
+        "scope": "Nonuniform deterministic seed, recipient, ephemeral public key and shared secret; exact Rust X25519 agreement including seed endianness."
+      },
+      {
+        "path": "../../../tests/vectors/bearssl-envelope-known-answer.bin",
+        "sha256": "2a2d245fe6bc2fcff4c72c6d2e16e0508a4f5c6381d5d1a2fac32be8601f756c",
+        "scope": "Exact Rust HKDF/AAD/AES-GCM arithmetic agreement only; fixed ct/recipient bytes are not valid KEM objects or evidence of full encapsulation."
+      }
+    ]
+  },
+  "status": "Integration in progress. No generated encrypted-note relation is accepted yet."
+}

@@ -1,0 +1,7 @@
+panic: user: unknown userid 1000
+
+goroutine 1 [running]:
+github.com/ava-labs/avalanche-network-runner/local.init.1()
+	/home/runner/work/avalanche-network-runner/avalanche-network-runner/avalanche-network-runner/local/network.go:154 +0xde
+live verdict="blocked" seconds=0.462
+trial error: No such file or directory (os error 2)

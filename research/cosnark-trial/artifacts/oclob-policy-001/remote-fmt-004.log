@@ -1,0 +1,218 @@
+Diff in /workspace/rust/oclob-demo/src/bin/native_acceptance/mod.rs:1:
+ //! Native-note path. This module never reads corporate wallet configuration.
+ use super::*;
+-use ed25519_dalek::{Signature, SigningKey};
+-use oclob_node::native_admission::{AdmissionAuthority, AdmissionRpcServer};
+-use oclob_node::network::{server_tls_context, Principal};
+ use defmi::application_reservation::ApplicationReserveScope;
+ use defmi::avalanche::AvalancheNoteBridge;
+ use defmi::facility::{
+Diff in /workspace/rust/oclob-demo/src/bin/native_acceptance/mod.rs:9:
+     AssetDefinition, AssetKind, CreditFacilityGrant, GuarantorDefinition, GuarantorKind,
+ };
+ use defmi::note_chain::{CsdIssuerDefinition, NoteIssuance, NoteOutput};
++use ed25519_dalek::{Signature, SigningKey};
++use oclob_node::native_admission::{AdmissionAuthority, AdmissionRpcServer};
++use oclob_node::network::{server_tls_context, Principal};
+ use serde::Deserialize;
+ use zkpi_defmi_sdk::application::oclob_manifest_v1;
+ 
+Diff in /workspace/rust/oclob-edge/src/lib.rs:15:
+ use oclob_core::application_crypto::{Signature, Signer, SigningKey, VerifyingKey};
+ use oclob_core::{Digest32, OrderCommitment, SecretOrder, TimeInForce};
+ use openssl::symm::{Cipher, Crypter, Mode};
+-use zkfmi_zk::pedersen::Pedersen;
+-use zkpi::handles::Handle;
+ use rand_core::{CryptoRng, RngCore};
+ use serde::{Deserialize, Serialize};
+ use sha2::{Digest, Sha256};
+Diff in /workspace/rust/oclob-edge/src/lib.rs:28:
+ use zkfmi_crypto::hybrid::kem::{HybridKemEncapsulator, HybridKemKey};
+ use zkfmi_crypto::suite::{Suite, SuiteId, ML_KEM_768_EK_BYTES};
+ use zkfmi_crypto::traits::{KemDecapsulator, KemEncapsulator};
++use zkfmi_zk::pedersen::Pedersen;
++use zkpi::handles::Handle;
+ use zkpi_defmi_sdk::admission::ReservationAdmission;
+ use zkpi_defmi_sdk::application::oclob_manifest_v1;
+ use zkpi_defmi_sdk::reservation::ReservationPermit;
+Diff in /workspace/rust/oclob-mpc/src/lib.rs:79:
+ pub const ROUND_END_MARKER: &str = "OCLOB_ROUND_END";
+ 
+ /// The one body line the resident form leaves out (see `matching_service_program`).
+-const PERSISTENCE_WRITE: &str =
+-    "sint.write_to_file(private_book_wires + settlement_proof_wires)";
++const PERSISTENCE_WRITE: &str = "sint.write_to_file(private_book_wires + settlement_proof_wires)";
+ 
+ impl MpcRunner {
+     pub fn compile(root: impl AsRef<Path>) -> Result<Self, MpcError> {
+Diff in /workspace/rust/oclob-mpc/src/lib.rs:356:
+         timeout: Duration,
+     ) -> Result<Vec<String>, MpcError> {
+         if party_files.len() != MPC_PARTIES {
+-            return Err(MpcError::Input("one input file per party is required".into()));
++            return Err(MpcError::Input(
++                "one input file per party is required".into(),
++            ));
+         }
+         // Party 0 carries the control word (1 = serve another round) in the
+         // same batch as its shares; the compiler merges all inputs of the
+Diff in /workspace/rust/oclob-node/src/bin/native_lifecycle_acceptance/mod.rs:1:
+ //! Actual native lifecycle laboratory, reusing the resident protocol and VM.
+ use super::*;
++use defmi::application_settlement::ApplicationNoteRelease;
+ use oclob_node::native_lifecycle::{
+     certify_native_release, order_lifecycle, LifecycleCommand, LifecycleFinality,
+     NativeReleaseConfirmation, NativeReleaseRequest,
+Diff in /workspace/rust/oclob-node/src/bin/native_lifecycle_acceptance/mod.rs:6:
+ };
+ use oclob_ordering::OrderCertificate;
+-use defmi::application_settlement::ApplicationNoteRelease;
+ 
+ pub(super) fn run(
+     phase: &str,
+Diff in /workspace/rust/oclob-node/src/corporate_api.rs:9:
+     certificate_fingerprint, client_tls_context, ClientIdentityConfig, ClusterPublicConfig,
+     ServerTlsConfig,
+ };
++use defmi::application_settlement::ApplicationNoteFill;
++use defmi::avalanche::AvalancheClient;
+ use oclob_settlement::native::{
+     project_pending_native_head, NativeClaimAuthorizationIssue,
+     NativeParticipantClaimAuthorizations,
+Diff in /workspace/rust/oclob-node/src/corporate_api.rs:15:
+ };
+-use defmi::application_settlement::ApplicationNoteFill;
+-use defmi::avalanche::AvalancheClient;
+ use serde::{Deserialize, Serialize};
+ use std::net::{TcpListener, TcpStream, ToSocketAddrs};
+ use std::time::Duration;
+Diff in /workspace/rust/oclob-node/src/corporate_api.rs:310:
+         use defmi::avalanche::{AvalancheClient, AvalancheNoteBridge};
+         use defmi::facility::QuorumAuthorizer;
+         use defmi::notes::{note_nullifier, Wallet};
++        use std::collections::BTreeMap;
+         use zkfmi_zk::pedersen::Pedersen;
+         use zkpi::handles::Identity;
+-        use std::collections::BTreeMap;
+         let client = private_client(&self.config, &self.identity)?.chain()?;
+         let root = client.state_root()?;
+         let facility = if self.journal.reservations()?.is_empty() {
+Diff in /workspace/rust/oclob-node/src/corporate_authorization.rs:6:
+ };
+ use crate::network::ClientIdentityConfig;
+ use curve25519_dalek::scalar::Scalar;
+-use oclob_core::application_crypto::SigningKey;
+-use oclob_core::{SecretOrder, Side};
+-use oclob_dekyx::{AnonymousPresentation, DemoEligibilityWallet};
+-use oclob_settlement::pretrade::{select_funding_ring, CorporateFunding, PrivateReserveRequest};
+ use defmi::application_reservation::{ApplicationReserveMandate, ApplicationReserveScope};
+ use defmi::avalanche::{AvalancheClient, AvalancheNoteBridge};
+ use defmi::facility::QuorumAuthorizer;
+Diff in /workspace/rust/oclob-node/src/corporate_authorization.rs:16:
+ use defmi::notes::Wallet;
+-use zkfmi_zk::pedersen::Pedersen;
+-use zkpi::handles::{Handle, Identity};
++use oclob_core::application_crypto::SigningKey;
++use oclob_core::{SecretOrder, Side};
++use oclob_dekyx::{AnonymousPresentation, DemoEligibilityWallet};
++use oclob_settlement::pretrade::{select_funding_ring, CorporateFunding, PrivateReserveRequest};
+ use rand::RngCore;
+ use serde::{Deserialize, Serialize};
+ use sha2::{Digest, Sha256};
+Diff in /workspace/rust/oclob-node/src/corporate_authorization.rs:22:
++use zkfmi_zk::pedersen::Pedersen;
++use zkpi::handles::{Handle, Identity};
+ use zkpi_defmi_sdk::application::oclob_manifest_v1;
+ use zkpi_defmi_sdk::reservation::order_authorization_commitment;
+ 
+Diff in /workspace/rust/oclob-node/src/corporate_submission.rs:11:
+ use crate::network::{client_tls_context, ClientIdentityConfig, ClusterPublicConfig};
+ use oclob_edge::{NodeEncryptionKey, SealedReservationAuthority, MPC_PARTIES};
+ use oclob_settlement::pretrade::FinalizedReservation;
+-use zkpi::handles::Identity;
+ use sha2::{Digest, Sha256};
+ use std::time::{Duration, SystemTime, UNIX_EPOCH};
++use zkpi::handles::Identity;
+ 
+ #[derive(Clone, Copy, Eq, PartialEq)]
+ pub enum SubmissionCheckpoint {
+Diff in /workspace/rust/oclob-node/src/native_finality.rs:4:
+ 
+ use crate::executor::{NodeExecutionReceipt, ProofSlotMetadata};
+ use crate::{NodeError, NodeShareStore, PrivateStateFinality};
++use defmi::application_reservation::ApplicationReserveScope;
++use defmi::application_settlement::ApplicationNoteFillBatch;
++use defmi::avalanche::{AcceptedTransition, AvalancheClient};
+ use oclob_core::Digest32;
+ use oclob_settlement::native::{
+     NativeFillAuthorizationRequest, NativeFillVerifier, NativeReservationTrust,
+Diff in /workspace/rust/oclob-node/src/native_finality.rs:10:
+ };
+ use oclob_settlement::pretrade::PrivateAdmissionClient;
+-use defmi::application_reservation::ApplicationReserveScope;
+-use defmi::application_settlement::ApplicationNoteFillBatch;
+-use defmi::avalanche::{AcceptedTransition, AvalancheClient};
+ use serde::{Deserialize, Serialize};
+ use serde_json::json;
+ use sha2::{Digest, Sha256};
+Diff in /workspace/rust/oclob-node/src/native_wallet.rs:10:
+ use defmi::facility::QuorumAuthorizer;
+ use defmi::note_chain::{NoteClaimKind, NoteOutput};
+ use defmi::notes::Wallet;
+-use zkfmi_zk::pedersen::Pedersen;
+-use zkpi::handles::Identity;
+ use sha2::{Digest, Sha256};
+ use std::collections::BTreeMap;
++use zkfmi_zk::pedersen::Pedersen;
++use zkpi::handles::Identity;
+ 
+ /// Corporate-only result. Do not serialize/log the private witness. The
+ /// canonical note IDs can be used privately to select the next funding input.
+Diff in /workspace/rust/oclob-settlement/src/avalanche.rs:279:
+ mod tests {
+     use super::*;
+     use crate::SettlementEngine;
++    use defmi::facility::QuorumAuthorizer;
+     use oclob_core::{OrderCommitment, PublicFill, SecretOrder, Side, TimeInForce};
+     use oclob_ordering::OrderingCommittee;
+     use oclob_proofs::{
+Diff in /workspace/rust/oclob-settlement/src/avalanche.rs:285:
+         public_fills_digest, TransitionProof, TransitionStatement, VerifiedTransitionProof,
+     };
+-    use defmi::facility::QuorumAuthorizer;
+     use rand::rngs::OsRng;
+     use std::fs;
+ 
+Diff in /workspace/rust/oclob-settlement/tests/native_batch_membership.rs:1:
+-use oclob_settlement::native::native_batch_binding;
+ use defmi::application_reservation::ApplicationReserveScope;
++use oclob_settlement::native::native_batch_binding;
+ 
+ fn scope() -> ApplicationReserveScope {
+     ApplicationReserveScope {
+Diff in /workspace/rust/oclob-settlement/tests/pretrade.rs:1:
+ //! Unit-level real-cryptography checks; live chain evidence is a separate gate.
+ use curve25519_dalek::scalar::Scalar;
+-use oclob_core::application_crypto::SigningKey;
+-use oclob_dekyx::deterministic_demo_environment;
+-use oclob_settlement::pretrade::{select_funding_ring, CorporateFunding, PrivateReserveRequest};
+ use defmi::application_reservation::ApplicationReserveMandate;
+ use defmi::application_reservation::ApplicationReserveScope;
+ use defmi::avalanche::CanonicalCreditFacility;
+Diff in /workspace/rust/oclob-settlement/tests/pretrade.rs:9:
+ use defmi::facility::{CreditFacilitySnapshot, CreditFacilityStatus};
+ use defmi::note_chain::NoteOutput;
+ use defmi::notes::{decode_spend_proof, NoteLedger, Wallet};
+-use zkfmi_zk::pedersen::Pedersen;
++use oclob_core::application_crypto::SigningKey;
++use oclob_dekyx::deterministic_demo_environment;
++use oclob_settlement::pretrade::{select_funding_ring, CorporateFunding, PrivateReserveRequest};
+ use rand::rngs::{OsRng, StdRng};
+ use rand::SeedableRng;
+ use std::collections::BTreeSet;
+Diff in /workspace/rust/oclob-settlement/tests/pretrade.rs:16:
++use zkfmi_zk::pedersen::Pedersen;
+ use zkpi_defmi_sdk::application::oclob_manifest_v1;
+ use zkpi_defmi_sdk::reservation::order_authorization_commitment;
+ 
+make: *** [Makefile:51: remote-test] Error 1

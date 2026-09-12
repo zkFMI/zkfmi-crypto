@@ -1,0 +1,26 @@
+{
+  "experiment_id": "cocode-defmi-integration-001",
+  "contract_id": "zkfmi-cocode-defmi-integration-v1",
+  "contract_sha256": "44b45868cadcefa44340f42bc7199762d7d1f8a9ebb78e86496667b06804944f",
+  "closed_plan": ["RUN_ROUGH_END_TO_END_AND_OBSERVE_FINAL_METRIC"],
+  "rough_command": "internal:native_to_canonical_defmi",
+  "bottleneck": "The native standalone smoke is not tied to authoritative DeFMI balances or canonical transport and recovery.",
+  "causal_hypothesis": "Code-committed before/after book openings batched into the financial witness relation, plus canonical chunk transport, bind exactly the persisted four-account transition without exposing original balances.",
+  "single_intended_change": "Replace the standalone smoke-only boundary with the complete research-gated native-to-canonical settlement adapter; retain the existing PCS arithmetic, domains, native protocol, query count and default deployment behavior.",
+  "baseline": "cosnark-rough-012: real private proof passes, canonical settlement integration absent",
+  "evaluation_population": "Fresh distributed private synthetic four-account issuance, one real native private u64 DvP proof, exact persisted commitment recovery, one real no-fill proof, actual native invalid-product rejection, and mutations of the real canonical transactions and proof.",
+  "point_prediction": 1,
+  "likely_prediction_error": "The larger bounded circuit exceeds compiler resources or the recovered book commitment differs before a canonical accepted transition.",
+  "rejection_rule": "Any missing real native execution, unbound authoritative state, weakened cryptographic or transport dimension, accepted negative, or missing persisted recovery blocks completion.",
+  "promotion_rule": "At most smoke_only; no production promotion, quantum-composition conclusion, or public deployment.",
+  "negative_gates": [
+    "wrong authoritative previous book commitment",
+    "changed output book commitment",
+    "changed proof opening",
+    "mixed deployment mode or identifier",
+    "replayed operation",
+    "stale book sequence after recovery",
+    "altered or incomplete canonical proof chunks",
+    "invalid private product or negative balance"
+  ]
+}

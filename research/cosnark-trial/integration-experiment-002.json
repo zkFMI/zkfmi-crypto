@@ -1,0 +1,27 @@
+{
+  "experiment_id": "cocode-defmi-integration-002",
+  "contract_id": "zkfmi-cocode-defmi-integration-v1",
+  "contract_sha256": "44b45868cadcefa44340f42bc7199762d7d1f8a9ebb78e86496667b06804944f",
+  "closed_plan": ["RUN_ROUGH_END_TO_END_AND_OBSERVE_FINAL_METRIC"],
+  "rough_command": "internal:native_to_canonical_defmi",
+  "bottleneck": "001 cannot read the image's root-owned mode-0600 laboratory TLS key fixtures as uid1000, so clean engine copy fails before any private computation.",
+  "causal_hypothesis": "A fresh isolated copy owned by the execution uid, with key modes preserved, permits the identical native-to-canonical candidate to run.",
+  "single_intended_change": "Read the clean fixture from /trial/clean-engine, copied once inside the pinned container and chowned only within that new isolated directory; no algorithm, proof, key contents or verification-gate change.",
+  "baseline": "cocode-defmi-integration-001: primary0, fixture copy Permission denied, receipt and exact source preserved",
+  "new_causal_evidence": "All seven /opt/MP-SPDZ/Player-Data/P*.key files report Permission denied under uid1000; cp exits before the native engine starts.",
+  "evaluation_population": "Fresh private four-account issuance, native u64 DvP, exact private book recovery, native no-fill proof, canonical transaction and persisted-state acceptance plus all declared negatives.",
+  "point_prediction": 1,
+  "likely_prediction_error": "The larger circuit reaches a compiler or native adapter limit after the ownership fix.",
+  "rejection_rule": "Any missing real native execution, unbound authoritative state, accepted negative, weakened parameter, or missing recovery blocks completion.",
+  "promotion_rule": "At most smoke_only; no production promotion or quantum-security conclusion.",
+  "negative_gates": [
+    "wrong authoritative previous book commitment",
+    "changed output book commitment",
+    "changed proof opening",
+    "mixed deployment mode or identifier",
+    "replayed operation",
+    "stale book sequence after recovery",
+    "altered or incomplete canonical proof chunks",
+    "invalid private product or negative balance"
+  ]
+}

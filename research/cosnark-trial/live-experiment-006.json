@@ -1,0 +1,30 @@
+{
+  "experiment_id": "cocode-live-avalanche-006",
+  "contract_id": "zkfmi-cocode-live-avalanche-v1",
+  "contract_sha256": "f962d52dcd5d26943cebf50689a6b0fc3d29edbf7e317610b67d2fea0e6a7de0",
+  "closed_plan": [
+    "RUN_ROUGH_END_TO_END_AND_OBSERVE_FINAL_METRIC"
+  ],
+  "rough_command": "internal:live_avalanche",
+  "bottleneck": "Run005 completed the full pending proof upload and persisted it, then queried metadata immediately after ANR health returned; node3 had not yet registered the custom-chain RPC, so HTTP404 aborted the run.",
+  "causal_hypothesis": "Waiting for all five actual custom-chain roots to equal the expected persisted root before exact metadata readback tolerates normal restart RPC registration latency while retaining the same root, metadata and timeout requirements.",
+  "single_intended_change": "Reorder post-restart checks: bounded custom-chain root recovery wait first, then strict network/genesis metadata equality. Preserve frozen005 VM, native binary, v1 proofs and all limits.",
+  "baseline": "cocode-live-avalanche-005: blocked, primary0,550.755938307 seconds. Full pending State256566972 bytes with367 proof chunks; node3 began custom-chain creation at01:08:48.301, driver failed before route registration at01:08:50.356.",
+  "evaluation_population": "Same frozen native003 fill/no-fill proofs on one fresh five-validator chain; all proof chunks, existing negatives, node3 restart after the full>64MiB pending fill upload and a final node3 restart after both commits. Same host is not independent operators.",
+  "point_prediction": 1,
+  "likely_prediction_error": "Actual pending-state reconstruction or later canonical acceptance still fails after the previously premature metadata readback is moved behind the existing bounded root-recovery wait.",
+  "require_pending_upload_restart": true,
+  "rejection_rule": "Any missing real all-five acceptance or pending/final restart, mismatched root or metadata, changed timeout/proof/transport bound, or treating HTTP404 itself as successful verification blocks acceptance.",
+  "promotion_rule": "At most smoke_only; no security certification, independent operators, full application migration or production promotion. The separate v2 owner-agreement work is not part of these frozen v1 proofs.",
+  "public_proof_directory": "/proofs",
+  "public_input_sha256": {
+    "receipt.json": "44db45723797a0df0877b3bd184585a659eb5cc1cc49330affa57cc83745d83a",
+    "fill/proof.json": "7dcc998836f0eed42b35e3d4bd551e6ed79fe379146535c111b86e0c95805790",
+    "fill/statement.json": "fccb5e8f93580ff30efb32be5234cf22f03d4b7a0e12b2688f981f1006c48d52",
+    "nofill/proof.json": "8f66e6cd040d4badcfbe711c14d4dd4e856ce8f751b6bb489fd3d37427eac50a",
+    "nofill/statement.json": "87d0a368824bfb50468dcc09605abeb1bb953bf1eacbfaab5718def4e26c6d31"
+  },
+  "network_image": "sha256:70592bee29073c53bfb5d199d097443c79f08c135c9da0354dfab2cf028cd8e5",
+  "runtime_uid": 10001,
+  "network_isolation": "Fresh network-none container; read-only image plus private service-home tmpfs; loopback validators; no published ports; frozen public proof mount read-only; no prior service state."
+}

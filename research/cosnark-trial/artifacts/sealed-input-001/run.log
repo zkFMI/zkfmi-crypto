@@ -1,0 +1,30 @@
+coSNARK: native seven-party private witness initialized and checked
+coSNARK: native masked constraint round 1/11
+coSNARK: native masked constraint round 2/11
+coSNARK: native masked constraint round 3/11
+coSNARK: native masked constraint round 4/11
+coSNARK: native masked constraint round 5/11
+coSNARK: native masked constraint round 6/11
+coSNARK: native masked constraint round 7/11
+coSNARK: native masked constraint round 8/11
+coSNARK: native masked constraint round 9/11
+coSNARK: native masked constraint round 10/11
+coSNARK: native masked constraint round 11/11
+coSNARK: masked sumcheck polynomial opening verified
+coSNARK: complete public proof accepted by the standalone verifier logic
+coSNARK: native seven-party private witness initialized and checked
+coSNARK: native masked constraint round 1/11
+coSNARK: native masked constraint round 2/11
+coSNARK: native masked constraint round 3/11
+coSNARK: native masked constraint round 4/11
+coSNARK: native masked constraint round 5/11
+coSNARK: native masked constraint round 6/11
+coSNARK: native masked constraint round 7/11
+coSNARK: native masked constraint round 8/11
+coSNARK: native masked constraint round 9/11
+coSNARK: native masked constraint round 10/11
+coSNARK: native masked constraint round 11/11
+coSNARK: masked sumcheck polynomial opening verified
+coSNARK: complete public proof accepted by the standalone verifier logic
+/trial/public-001/canonical-receipt.json
+integration verdict="smoke_only" seconds=635.753

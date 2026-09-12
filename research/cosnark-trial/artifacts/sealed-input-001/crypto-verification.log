@@ -1,0 +1,39 @@
+    Updating crates.io index
+warning: spurious network error (3 tries remaining): transfer too slow: failed to transfer more than 10 bytes in 30s (transferred 0 bytes)
+warning: spurious network error (3 tries remaining): transfer too slow: failed to transfer more than 10 bytes in 30s (transferred 0 bytes)
+ Downloading crates ...
+  Downloaded hybrid-array v0.4.14
+  Downloaded der v0.8.1
+   Compiling syn v3.0.5
+   Compiling num-traits v0.2.19
+   Compiling hybrid-array v0.4.14
+   Compiling getrandom v0.2.17
+   Compiling rand_core v0.6.4
+   Compiling ed25519-dalek v2.2.0
+   Compiling x25519-dalek v2.0.1
+   Compiling crypto-common v0.2.2
+   Compiling block-buffer v0.12.1
+   Compiling module-lattice v0.2.3
+   Compiling serde_derive v1.0.229
+   Compiling digest v0.11.3
+   Compiling kem v0.3.0
+   Compiling sha3 v0.11.0
+   Compiling shake v0.1.0
+   Compiling signature v3.0.0
+   Compiling ml-dsa v0.1.1
+   Compiling ml-kem v0.3.2
+   Compiling serde v1.0.229
+   Compiling toml_datetime v0.6.11
+   Compiling serde_spanned v0.6.9
+   Compiling toml_edit v0.22.27
+   Compiling toml v0.8.23
+   Compiling zkfmi-crypto v0.1.0 (/work/zkfmi-crypto)
+    Finished `release` profile [optimized] target(s) in 37.54s
+     Running unittests src/lib.rs (/work/target-native/release/deps/zkfmi_crypto-40c5b5f18f9f12a8)
+
+running 2 tests
+test sealed::tests::resident_capability_must_use_the_exact_hybrid_suite ... ok
+test sealed::tests::recipient_and_object_binding_reject_changes_to_either_kem_component_or_ciphertext ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 9 filtered out; finished in 0.00s
+

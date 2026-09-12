@@ -1,0 +1,10 @@
+--- a/src/cbmc-gc/goto_conversion_invocation.cpp
++++ b/src/cbmc-gc/goto_conversion_invocation.cpp
+@@ -10,2 +10,3 @@
+ #include <goto-programs/remove_complex.h>
++#include <goto-symex/rewrite_union.h>
+ #include <goto-programs/goto_inline.h>
+@@ -329,2 +330,3 @@
+   remove_complex(lang_ui.symbol_table, goto_functions);
++  rewrite_union(goto_functions, ns);
+ 

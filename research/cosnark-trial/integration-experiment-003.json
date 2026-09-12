@@ -1,0 +1,34 @@
+{
+  "experiment_id": "cocode-defmi-integration-003",
+  "contract_id": "zkfmi-cocode-defmi-integration-v1",
+  "contract_sha256": "44b45868cadcefa44340f42bc7199762d7d1f8a9ebb78e86496667b06804944f",
+  "closed_plan": ["RUN_ROUGH_END_TO_END_AND_OBSERVE_FINAL_METRIC"],
+  "rough_command": "internal:native_to_canonical_defmi",
+  "verification_replication": true,
+  "bottleneck": "002 passes the complete native-to-canonical path, but its small post-commit snapshot does not exercise recovery of the full in-flight chunked proof.",
+  "causal_hypothesis": "The completed public proof can be persisted inside canonical state, recovered without private shares, and committed with the same before/after book binding and replay policy.",
+  "single_intended_change": "Extend the canonical acceptance path to recover the fully uploaded proof before commit; the native arithmetic, proof dimensions and MPC protocol remain identical to accepted 002.",
+  "proportional_verification_prerequisites": [
+    "Bound total reserved proof bytes so admitted uploads cannot exceed the research recovery envelope; preserve default transaction/block/snapshot limits.",
+    "Enforce the existing four-position traded-asset/cash-asset pairing contract.",
+    "Retain the original DeFMI rand lock version without changing the native trial's locked 0.8.5 dependency.",
+    "Exercise a freshly authorized replayed operation ID and an altered output commitment with a matching external statement.",
+    "Run existing and new deterministic unit/static gates; these are not substitutes for real native/canonical acceptance."
+  ],
+  "baseline": "cocode-defmi-integration-002: smoke_only, primary1, 640.745 seconds, two real 192349020/192349021-byte proofs, 740 canonical blocks, all declared negatives rejected",
+  "evaluation_population": "Fresh distributed private four-account issuance; native 64-bit DvP and recovered no-fill transitions; complete canonical proof-upload snapshot and post-settlement recovery; actual native invalid-product rejection and all predeclared negatives.",
+  "point_prediction": 1,
+  "likely_prediction_error": "Full-proof snapshot encoding or state-sync recovery hits a transport/memory bound despite successful post-commit recovery in 002.",
+  "rejection_rule": "Any missing native execution, mismatched authoritative book, accepted negative, failed full-upload recovery, weakened cryptographic dimension or default-path regression blocks completion.",
+  "promotion_rule": "At most smoke_only. Passing this isolated integration is not production promotion or a proof of zero knowledge, quantum soundness or malicious-controller security.",
+  "negative_gates": [
+    "wrong authoritative previous book commitment",
+    "changed output book commitment",
+    "changed proof opening",
+    "mixed deployment mode or identifier",
+    "replayed operation",
+    "stale book sequence after recovery",
+    "altered or incomplete canonical proof chunks",
+    "invalid private product or negative balance"
+  ]
+}

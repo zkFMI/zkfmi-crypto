@@ -1,0 +1,32 @@
+{
+  "contract_id": "zkfmi-cocode-live-avalanche-query-agreement-v2",
+  "parent_contracts": {
+    "zkfmi-cocode-live-avalanche-v1": "f962d52dcd5d26943cebf50689a6b0fc3d29edbf7e317610b67d2fea0e6a7de0",
+    "zkfmi-cocode-defmi-query-agreement-v2": "91a8dd2f2f71feec8aed9664b73787836198ca513b961afb5fa2f44da3764a88"
+  },
+  "parent_objective": "Complete the deployment-wide PQC on/off migration without reconstructing private witnesses or weakening security acceptance. This contract covers only the isolated live research proof path.",
+  "objective": "Finalize real native fill and no-fill v2 proofs under a policy-pinned seven-owner hybrid query agreement roster on five actual AvalancheGo validators, with pending-upload and final restart recovery.",
+  "stage": "RUN_ROUGH_END_TO_END_AND_OBSERVE_FINAL_METRIC",
+  "bottleneck": "The v1 live path passed; the new v2 native owner agreement and immutable canonical roster pin still need actual five-validator execution.",
+  "whole_candidate": "Reuse completed manifest-bound v2 native proofs and their public-only standalone verification. Execute the frozen v2 canonical driver and VM on an isolated five-validator chain. Require all seven Ed25519 AND ML-DSA-65 query signatures under the policy-pinned roster. Submit real policy, book, proof chunks and both commits, verify negatives, restart with the full pending proof, and compare all five final roots after a final restart.",
+  "hard_boundaries": {
+    "validators": 5,
+    "operator_hosts": 1,
+    "all_seven_hybrid_query_agreement": true,
+    "existing_public_deployment_unchanged": true,
+    "private_witness_reconstruction_at_coordinator": false,
+    "mocked_rpc_or_consensus": false,
+    "transaction_and_block_limits_unchanged": true,
+    "proof_parameters_unchanged": true,
+    "production_promotion": false,
+    "external_audit_claim": false
+  },
+  "truth_provider": "Actual AvalancheGo-hosted VM JSON-RPC accepted receipts and five equal state roots, with full pending-upload and final validator restart; local projections are comparisons only.",
+  "primary_metric": "both_v2_proofs_finalize_under_pinned_roster_with_equal_five_validator_roots_and_both_restarts",
+  "point_prediction": 1,
+  "likely_prediction_error": "The explicit v2 protocol or roster pin is not propagated through a live VM path even though native and in-process canonical acceptance pass.",
+  "preflight": "The integration-live-v2 entry point checks this contract hash, the closed manifest, completed v2 native receipt, trusted roster pin and exact public input hashes, binds executable inputs and atomically claims a fresh output before launching the actual network.",
+  "postflight": "Require actual all-five acceptance, equal roots, both restarts and canonical v2 protocol and roster pin; bind source and binary hashes and append exactly one ledger verdict.",
+  "rejection_rule": "Missing real proof execution, missing pending or final restart, unequal roots, protocol or roster mismatch, changed proof or transport bounds, or existing-deployment mutation blocks completion.",
+  "promotion_rule": "At most smoke_only. Same-host lab keys and durable query budget files are not independent operator custody or rollback-resistant HSMs. Formal ZK/QROM/composition, concrete quantum parameters, external review, operational asset migration and QOMM/OCLOB venue adoption remain separate unresolved gates."
+}

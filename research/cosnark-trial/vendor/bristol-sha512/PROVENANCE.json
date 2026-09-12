@@ -1,0 +1,20 @@
+{
+  "repository": "https://github.com/mkskeller/bristol-fashion",
+  "commit": "1603ed6aa12348c2ef15ed8395b9b96e4c558b7f",
+  "scope": "Unmodified SHA-512 compression circuit; not a complete hash, note relation or proof system",
+  "files": {
+    "sha512.txt": {
+      "sha256": "43cadaa91b437e99173c9ffa33b20f49db80bb0c7993e5fcedb8de1388a25df2",
+      "git_blob": "0a2a61452a12cf56e45d70986da6ad73327c474c",
+      "bytes": 9696630,
+      "gates": 349617,
+      "wires": 351153,
+      "input_widths": [1024, 512],
+      "output_widths": [512]
+    },
+    "License.txt": {
+      "sha256": "8c0a0f2f497902e1c05b5f62d78f87b29b866d2f08878b3a4bdfaed160cb4909"
+    }
+  },
+  "license_notice": "Redistribution requires the accompanying original License.txt. Commercial-use reporting language is preserved there. No external communication was sent."
+}

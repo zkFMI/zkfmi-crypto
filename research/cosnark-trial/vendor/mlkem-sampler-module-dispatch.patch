@@ -1,0 +1,9 @@
+--- a/mlkem/src/sampling.c
++++ b/mlkem/src/sampling.c
+@@ -141,1 +141,5 @@
+-  return mlk_rej_uniform_c(r, target, offset, buf, buflen);
++#if defined(PQC_SAMPLER_VALUE_MODULE)
++  return pqc_sampler_adapter(r, target, offset, buf, buflen);
++#else
++  return mlk_rej_uniform_c(r, target, offset, buf, buflen);
++#endif

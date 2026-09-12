@@ -1,0 +1,30 @@
+{
+  "contract_id": "zkfmi-greenfield-pqc-live-v1",
+  "parent_contract_sha256": "0a41cfa014bd4b33aa22d91d2e0252235307b67b42637f2d3127c73b92e17c1b",
+  "parent_objective": "One explicit deployment-wide PQC on/off policy across new QOMM, OCLOB and DeFMI deployments, including private distributed proofs and commitments. The user explicitly excludes migration of existing ledgers.",
+  "objective": "Run the complete native-v2 public DvP fill/no-fill proof path on a fresh five-validator DeFMI chain whose new genesis format fixes the shared PQC On deployment policy, with mode-bound authority and full pending/final restart recovery.",
+  "stage": "RUN_ROUGH_END_TO_END_AND_OBSERVE_FINAL_METRIC",
+  "bottleneck": "The passing live007 chain used implicit legacy genesis/authority behavior. Its explicit coCode-v2 proof policy was not yet governed by the shared DeploymentCryptoPolicy at fresh genesis and restart.",
+  "whole_candidate": "Create fresh QOMMGEN3 genesis with a strict shared On policy. Reuse only frozen public native-v2 input proofs as a functional comparison fixture, never a prior ledger/snapshot. Execute all real policy, book, proof-upload and commit transactions under the genesis-bound authority, require all five nodes to return the exact policy, and restart before pending proof commit and after both final commits.",
+  "hard_boundaries": {
+    "validators": 5,
+    "operator_hosts": 1,
+    "all_seven_hybrid_query_agreement": true,
+    "greenfield_deployment_policy": true,
+    "pqc_mode": "on",
+    "existing_ledger_migration": false,
+    "existing_deployment_mutation": false,
+    "prior_ledger_or_snapshot_import": false,
+    "coordinator_private_witness_reconstruction": false,
+    "mock_rpc_or_verifier": false,
+    "production_promotion": false
+  },
+  "truth_provider": "Actual five AvalancheGo-hosted VM policy/accepted-transaction/state-root RPCs and both real validator restarts, with explicit canonical policy and proof-protocol readback.",
+  "primary_metric": "both_v2_proofs_finalize_under_genesis_bound_pqc_on_with_equal_five_validator_policy_roots_and_both_restarts",
+  "point_prediction": 1,
+  "likely_prediction_error": "A legacy genesis, authority, state-sync or RPC path omits the shared policy and therefore refuses or incorrectly accepts an otherwise valid proof transition.",
+  "preflight": "The explicit integration-live-greenfield entry point checks this contract and manifest hashes, typed strict policy, exact genesis policy, frozen native proof hashes and receipt, then atomically claims a fresh output and launches the isolated network.",
+  "postflight": "Require every original live proof and restart gate plus exact policy equality in canonical and five-node evidence. Bind source, binary and public input hashes and append exactly one verdict without rewriting earlier runs.",
+  "rejection_rule": "Policy mismatch or omission, legacy/classical proof bypass under On, missing real proof execution or either restart, unequal roots, changed proof/transport bounds or importing/mutating an existing ledger blocks completion.",
+  "promotion_rule": "At most smoke_only. This is the first greenfield whole-path slice, not Off-mode venue equivalence, QOMM/OCLOB lifecycle adoption, independent operators, protected custody, formal composition/QROM validation or production promotion. Public development governance keys remain explicit lab fixtures although their signatures are already hybrid."
+}

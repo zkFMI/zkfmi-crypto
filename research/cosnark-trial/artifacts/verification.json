@@ -1,0 +1,21 @@
+{
+  "experiment_id": "cosnark-rough-001",
+  "host": "softbank-l40s",
+  "remote_directory": "/home/ubuntu/work/pqc-proof-switch-20260908/cosnark-rough-001",
+  "build_image": "sha256:0e2bcaef56d041a486784e54104a81aebe0da44bd03019bd70bc0401e42e4a97",
+  "rough_command": "cargo run --release",
+  "rough_exit_code": 0,
+  "rough_semantic_verdict": "blocked",
+  "rough_build_duration_seconds": 73,
+  "test_command": "cargo test --release --locked",
+  "test_exit_code": 0,
+  "arithmetic_tests_passed": 3,
+  "proof_negative_cases_executed": 0,
+  "receipt_sha256_validation": "Readback checked against exact local source, manifest, lock and observation bytes",
+  "limits": [
+    "Process exit zero means the probe completed, not that the candidate succeeded",
+    "No full coPCS, financial R1CS, malicious MPC or proof artifact",
+    "No PQ security or zero-knowledge claim from this arithmetic check",
+    "No deployment or release dependency change"
+  ]
+}

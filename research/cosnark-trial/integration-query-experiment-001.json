@@ -1,0 +1,35 @@
+{
+  "experiment_id": "cocode-defmi-query-agreement-001",
+  "contract_id": "zkfmi-cocode-defmi-query-agreement-v2",
+  "contract_sha256": "91a8dd2f2f71feec8aed9664b73787836198ca513b961afb5fa2f44da3764a88",
+  "closed_plan": ["RUN_ROUGH_END_TO_END_AND_OBSERVE_FINAL_METRIC"],
+  "rough_command": "internal:native_to_canonical_defmi",
+  "bottleneck": "The frozen v1 native/canonical result lacks authenticated all-owner agreement on the complete query view. The implemented v2 protocol and pinned roster have only deterministic verification so far.",
+  "causal_hypothesis": "Seven pre-enrolled workers durably agreeing on one complete query view using hybrid AND signatures can generate fresh honest fill and recovered no-fill proofs, whose explicit v2 roster binding is accepted by the unchanged financial relation and the new immutable canonical policy.",
+  "single_intended_change": "Activate the explicit v2 query-agreement protocol and its pinned-roster canonical policy; preserve the financial relation, malicious-Shamir N7/T2 engine, proof dimensions, chunk limits, and separate legacy path.",
+  "baseline": "cocode-defmi-integration-003: smoke_only, primary1,645.230840017 seconds, two real v1 proofs,740 canonical blocks. The v2 enrollment and old public-proof regression checks are setup evidence, not a v2 whole-system result.",
+  "evaluation_population": "One fresh distributed private synthetic four-account book; real native fill and recovered no-fill; both independent public-process verifications; canonical commitment/upload/recovery/settlement/replay gates; an actual invalid-product native run. Seven laboratory owner identities share one host and are not independent operators.",
+  "point_prediction": 1,
+  "likely_prediction_error": "The first complete native proof encounters an owner-query phase, durable-state, or full transcript mismatch that the deterministic tests did not exercise.",
+  "trusted_query_roster_sha512": "fa7fc6f9f5c9b5a81ac2a1fd0e5579bfa1c97a7f507a61408f449e54d16df7287bce1f2b5ee8c7d4495eff38c65c8b2e91ffdea3b38d342bff8b75ed2ab64ac1",
+  "public_roster_sha256": "d1ce0ef042d939f7cf4f24a78ba841a3a9144afad9fc259e35611f7898428fad",
+  "launch_config_sha256": "5648ba5c450ba1ed48952f3bc2d04f7524d237e4000505a14670b449b88845c0",
+  "native_binary_sha256": "9ba88db94cd4e33ca61b06c26d64e1c11c4f8636631265a0542f8a9b1c4c67e1",
+  "canonical_binary_sha256": "7836ab5c2bbe93fd534cf2a1cd5f1227fc0daf308c4da4f9e871c2ff33f8b26d",
+  "negative_gates": [
+    "wrong authoritative previous book commitment",
+    "changed output book commitment",
+    "changed proof opening",
+    "mixed deployment mode or identifier",
+    "replayed operation",
+    "stale book sequence after recovery",
+    "altered or incomplete canonical proof chunks",
+    "invalid private product or negative balance"
+  ],
+  "additional_proof_negatives": [
+    "changed trusted query roster",
+    "v2 proof rejected by explicit legacy verifier"
+  ],
+  "rejection_rule": "Missing intended v2 execution, any accepted declared negative, mismatched authoritative book or roster, missing exact canonical v2 receipt binding, or any weakened bound blocks the whole gate.",
+  "promotion_rule": "At most smoke_only. No concrete post-quantum/security/composition certification, no independent operator custody, no public deployment, and no full QOMM/OCLOB or deployment-wide migration claim."
+}

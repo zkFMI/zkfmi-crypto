@@ -1,0 +1,8 @@
+diff --git a/CONFIG.mine b/CONFIG.mine
+--- a/CONFIG.mine
++++ b/CONFIG.mine
+@@ -1,3 +1,4 @@
+ 
++MY_CFLAGS += -DNO_MIXED_CIRCUITS
+ CFLAGS += -I/opt/pqc-openssl/include
+ LDLIBS += -L/opt/pqc-openssl/lib64 -Wl,-rpath,/opt/pqc-openssl/lib64

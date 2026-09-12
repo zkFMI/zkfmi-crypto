@@ -1,0 +1,42 @@
+--- a/src/cbmc-gc/ssa_to_circuit/common.cpp
++++ b/src/cbmc-gc/ssa_to_circuit/common.cpp
+@@ -3,6 +3,7 @@
+ #include "ssa_to_circuit.h"
+ #include "../bmc_gc.h"
+ #include "../goto_conversion_invocation.h"
++#include <util/base_type.h>
+ 
+ 
+ namespace
+@@ -136,12 +137,12 @@
+-bool type_compatible(typet const &target, typet const &source)
++bool type_compatible(typet const &target, typet const &source, namespacet const &ns)
+ {
+-  if(target == source)
++  if(base_type_eq(target, source, ns))
+     return true;
+ 
+   if(target.id() == ID_pointer)
+   {
+     pointer_typet const &target_ptr = to_pointer_type(target);
+-    if(target_ptr.subtype() == source)
++    if(base_type_eq(target_ptr.subtype(), source, ns))
+       return true;
+ 
+     if(source.id() == ID_array)
+@@ -151,6 +152,6 @@
+     {
+       array_typet source_array = to_array_type(source);
+-      if(target_ptr.subtype() == source_array.subtype())
++      if(base_type_eq(target_ptr.subtype(), source_array.subtype(), ns))
+         return true;
+     }
+   }
+@@ -170,6 +171,6 @@
+   typet const &object_type = ns.follow(object.type());
+ 
+-  if(type_compatible(target_type, object_type) && byte_offset == 0)
++  if(type_compatible(target_type, object_type, ns) && byte_offset == 0)
+     return object;
+ 
+   if(object_type.id() == ID_array)

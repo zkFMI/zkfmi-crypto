@@ -1,0 +1,42 @@
+{
+  "contract_id": "zkfmi-cocode-defmi-query-agreement-v2",
+  "objective": "Continue the authorized deployment-wide PQC proof integration by closing the recorded coordinator query-view equivocation gap, then execute the complete private native-to-canonical settlement path. This bounded research gate does not replace the unresolved full migration objective.",
+  "parent_contract_id": "zkfmi-cocode-defmi-integration-v1",
+  "parent_contract_sha256": "44b45868cadcefa44340f42bc7199762d7d1f8a9ebb78e86496667b06804944f",
+  "stage": "RUN_ROUGH_END_TO_END_AND_OBSERVE_FINAL_METRIC",
+  "bottleneck": "COCODE-SEC-001: a v1 owner checks only its own terminal row, so a malicious coordinator can request openings under inconsistent other-owner rows and derived queries. The all-party agreement premise is not implemented.",
+  "whole_candidate": "Explicit v2 proof and deployment policy with a pre-enrolled pinned seven-owner public roster; each owner durably reserves one query budget per session and oracle kind, signs the complete transcript and derived query view using the existing Ed25519 AND ML-DSA-65 implementation, and emits openings only after checking all seven distinct approvals. Generate fresh private fill and no-fill proofs with the existing pinned N7/T2 malicious-Shamir engine, verify with a separate public-only process and canonical DeFMI settlement, and retain the legacy verifier as a distinct v1 path.",
+  "hard_boundaries": {
+    "mpc_parties": 7,
+    "max_corrupt_mpc_parties": 2,
+    "private_witness_reconstruction_at_coordinator": false,
+    "all_seven_hybrid_query_agreement": true,
+    "trusted_roster_pinned_before_coordinator": true,
+    "owner_private_keys_in_request_or_response": false,
+    "outer_signature_as_mathematical_soundness": false,
+    "legacy_proof_reinterpretation": false,
+    "existing_transaction_and_block_limits_unchanged": true,
+    "existing_public_deployment_unchanged": true,
+    "unrelated_dirty_files_preserved": true,
+    "production_promotion": false
+  },
+  "primary_metric": "real_v2_private_native_fill_and_recovered_nofill_proofs_accept_under_the_pinned_roster_in_canonical_settlement_and_all_declared_negatives_reject",
+  "point_prediction": 1,
+  "likely_prediction_error": "A durable owner-query state or explicit v2 transcript/roster binding differs across the honest native and canonical paths, causing the first full proof or recovered no-fill transition to reject.",
+  "population": "One fresh distributed synthetic private four-account issuance on the approved remote research host, one fill and recovered no-fill, actual invalid-private-product native rejection, proof mutations and canonical authorization/replay/recovery negatives. Same-host generated owner keys are laboratory enrollment, not real independent operator custody.",
+  "negative_gates": [
+    "wrong authoritative previous book commitment",
+    "changed output book commitment",
+    "changed proof opening",
+    "mixed deployment mode or identifier",
+    "replayed operation",
+    "stale book sequence after recovery",
+    "altered or incomplete canonical proof chunks",
+    "invalid private product or negative balance"
+  ],
+  "additional_protocol_verification": "Deterministic focused tests must reject changed final rows or queries, wrong session or suite, missing or duplicate owners, either invalid hybrid signature component, consumed query replay and restart. These tests are not substitutes for the real native whole-path result.",
+  "rejection_rule": "Missing real native execution; any accepted declared negative; missing v2 roster binding; any opening before complete verified owner agreement; reinterpretation of frozen v1 proof bytes; relaxed bounds; or default-path regression blocks this gate.",
+  "promotion_rule": "At most smoke_only. COCODE-SEC-002, formal composition/zero-knowledge and concrete post-quantum parameters, independent operator authority/custody, full QOMM/OCLOB venue adapters, and deployment-wide adoption remain separate unresolved gates. No production or cryptographic security certification is authorized.",
+  "preflight": "Bind exact contract and manifest SHA-256, explicit expected canonical public-roster digest, source/dependency and executable identities to a fresh atomic claim, then immediately execute the whole candidate.",
+  "postflight": "Write public proof artifacts, native/canonical receipts, hashes and one append-only verdict without private keys, private inputs or shares. Preserve all prior contracts, artifacts and verdicts."
+}

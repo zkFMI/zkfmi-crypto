@@ -1,0 +1,4 @@
+five real AvalancheGo validators healthy; chain=MnRMGiQ2tRj4iPcwwZg5AU5aDcrTk81t3iJrYhceQH8SDFyrL
+canonical acceptance failed: Avalanche RPC HTTP endpoint returned status 404
+trial error: actual five-validator acceptance/restart gate failed
+live verdict="blocked" seconds=550.772

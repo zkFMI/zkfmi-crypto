@@ -1,0 +1,13 @@
+{
+  "roster_path": "/enrollment/public/roster.json",
+  "roster_sha512": "fa7fc6f9f5c9b5a81ac2a1fd0e5579bfa1c97a7f507a61408f449e54d16df7287bce1f2b5ee8c7d4495eff38c65c8b2e91ffdea3b38d342bff8b75ed2ab64ac1",
+  "owner_key_paths": [
+    "/enrollment/keys/owner-0.key",
+    "/enrollment/keys/owner-1.key",
+    "/enrollment/keys/owner-2.key",
+    "/enrollment/keys/owner-3.key",
+    "/enrollment/keys/owner-4.key",
+    "/enrollment/keys/owner-5.key",
+    "/enrollment/keys/owner-6.key"
+  ]
+}

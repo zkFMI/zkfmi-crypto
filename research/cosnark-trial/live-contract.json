@@ -1,0 +1,27 @@
+{
+  "contract_id": "zkfmi-cocode-live-avalanche-v1",
+  "parent_objective": "Complete the user-requested deployment-wide PQC on/off migration without reconstructing private witnesses, substituting signature quorums for proof soundness, or weakening security acceptance.",
+  "objective": "Execute the already generated real native coCode proofs through five actual AvalancheGo validators, with authoritative transaction receipts, equal finalized roots and node restart recovery.",
+  "stage": "RUN_ROUGH_END_TO_END_AND_OBSERVE_FINAL_METRIC",
+  "bottleneck": "The completed 003 native-to-canonical proof path was executed only against the canonical library, not a live Avalanche network.",
+  "whole_candidate": "Use a new isolated five-validator AvalancheGo network with the research-cocode VM and the frozen 003 public native proofs. Submit policy, book genesis, all proof chunks and both commits via real JSON-RPC. Compare every accepted transition with the expected state and all five nodes, preserve full uploaded-proof recovery, and restart a validator before final root readback.",
+  "hard_boundaries": {
+    "validators": 5,
+    "operator_hosts": 1,
+    "existing_public_deployment_unchanged": true,
+    "private_witness_reconstruction_at_coordinator": false,
+    "mocked_rpc_or_consensus": false,
+    "transaction_and_block_limits_unchanged": true,
+    "proof_parameters_unchanged": true,
+    "production_promotion": false,
+    "external_audit_claim": false
+  },
+  "truth_provider": "Actual AvalancheGo-hosted VM JSON-RPC accepted transaction receipts and five validator state roots, including a restarted validator; local projections are comparisons only.",
+  "primary_metric": "both_native_proofs_finalize_with_equal_five_validator_roots_and_restart_recovery",
+  "point_prediction": 1,
+  "likely_prediction_error": "Large pending proof state or canonical authorization/VM runtime details prevent live acceptance despite the passing in-process path.",
+  "preflight": "The Rust integration-live entry point verifies this contract hash, the closed manifest, exact frozen proof/statement/receipt hashes and required executable inputs, then atomically claims a fresh output and immediately starts the isolated network runner.",
+  "postflight": "Verify the actual five-node/restart receipt, bind binaries and sources, write the final result and append exactly one ledger verdict. Preserve blocked runs.",
+  "rejection_rule": "Missing or substituted proof execution, non-semantic rejection counted as a negative, differing validator roots, missing restart evidence, altered cryptographic dimensions, or changes to an existing deployment reject completion.",
+  "promotion_rule": "At most smoke_only. This live functional gate cannot satisfy independent operator, ZK/QROM/composition, concrete quantum parameter, production custody, operational asset migration or venue-specific QOMM/OCLOB adoption gates. The independent security review remains a separate unresolved promotion gate."
+}

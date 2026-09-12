@@ -1,0 +1,38 @@
+{
+  "contract_id": "zkfmi-cocode-owned-native-integration-v1",
+  "parent_contract_id": "zkfmi-cocode-defmi-query-agreement-v2",
+  "parent_contract_sha256": "91a8dd2f2f71feec8aed9664b73787836198ca513b961afb5fa2f44da3764a88",
+  "objective": "Advance the full user-authorized fresh-network PQC switch by executing owner-provided private BN254 input through actual seven-party native proof and canonical settlement. This is a laboratory execution dependency, not a replacement for real QOMM/OCLOB integration.",
+  "stage": "RUN_ROUGH_END_TO_END_AND_OBSERVE_FINAL_METRIC",
+  "bottleneck": "OwnerInput and owned native initializer exist and pass source gates, but no whole native-to-canonical run has executed the new input path.",
+  "whole_candidate": "A separate same-host laboratory owner process consumes private six-value files and generates degree-two BN254 evaluations. Each of seven worker processes loads only its own private file, verifies expected public operation binding, runs the owned malicious-Shamir initializer, and completes v2 coCode proving. Execute fill, persisted-book recovered no-fill, separate public verifiers, unchanged canonical settlement/recovery/replay gates, and an owner-supplied insufficient-balance native rejection. No synthetic fallback in the coordinator or owned workers.",
+  "hard_boundaries": {
+    "mpc_parties": 7,
+    "max_corrupt_mpc_parties": 2,
+    "private_witness_reconstruction_at_coordinator": false,
+    "all_seven_hybrid_query_agreement": true,
+    "owner_input_fixture_fallback": false,
+    "existing_ledger_migration": false,
+    "existing_public_deployment_unchanged": true,
+    "production_promotion": false,
+    "outer_signature_as_mathematical_soundness": false
+  },
+  "primary_metric": "owned_native_fill_and_recovered_nofill_verify_and_settle_canonically_with_all_declared_negatives_rejected",
+  "point_prediction": 1,
+  "likely_prediction_error": "The newly executed owned initializer may disagree with the existing witness layout or recovered persistence and fail before the first proof.",
+  "population": "One laboratory-specified six-field book, one fill, one recovered no-fill, one insufficient-balance native run, plus existing public-proof/canonical negative cases. All processes are same-host; no real participant registration, independent operator custody or encrypted transport claim.",
+  "negative_gates": [
+    "wrong authoritative previous book commitment",
+    "changed output book commitment",
+    "changed proof opening",
+    "mixed deployment mode or identifier",
+    "replayed operation",
+    "stale book sequence after recovery",
+    "altered or incomplete canonical proof chunks",
+    "invalid private product or negative balance"
+  ],
+  "rejection_rule": "Any missing actual owned-worker path, accepted required negative, mismatched authoritative commitment, fallback fixture execution, missing proof/canonical evidence or weakened verification rejects this run.",
+  "promotion_rule": "At most smoke_only. Full owner enrollment, role/account ownership, encrypted transport, actual venue matching constraints, canonical operational lifecycle, meaningful Off, independent composition and concrete PQ parameters remain unresolved.",
+  "preflight": "Pin exact contract, manifest, launch config, public bindings, roster and executable hashes; atomically claim a fresh output and immediately run the whole candidate.",
+  "postflight": "Write public receipts/proofs and input identities excluding private fields/keys/shares; append one verdict preserving prior records."
+}

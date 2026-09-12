@@ -1,0 +1,45 @@
+   Compiling zkfmi-crypto v0.1.0 (/work/zkfmi-crypto)
+   Compiling zkfmi-cosnark-trial v0.1.0 (/work/zkfmi-crypto/research/cosnark-trial)
+error[E0616]: field `signature` of struct `owner_input::SealedOwnerInput` is private
+   --> src/integration/input_delivery.rs:545:16
+    |
+545 |         packet.signature[0] ^= 1;
+    |                ^^^^^^^^^ private field
+
+error[E0616]: field `signature` of struct `owner_input::SealedOwnerInput` is private
+   --> src/integration/input_delivery.rs:554:16
+    |
+554 |         packet.signature[0] ^= 1;
+    |                ^^^^^^^^^ private field
+
+error[E0616]: field `envelope` of struct `owner_input::SealedOwnerInput` is private
+   --> src/integration/input_delivery.rs:555:16
+    |
+555 |         packet.envelope.ciphertext[0] ^= 1;
+    |                ^^^^^^^^ private field
+
+error[E0507]: cannot move out of `self.input` which is behind a shared reference
+   --> src/integration/input_delivery.rs:440:18
+    |
+440 |                   &self
+    |  __________________^
+441 | |                     .input
+    | |__________________________^ move occurs because `self.input` has type `owner_input::PrivateOwnerInput`, which does not implement the `Copy` trait
+    |
+note: if `owner_input::PrivateOwnerInput` implemented `Clone`, you could clone the value
+   --> src/integration/owner_input.rs:76:1
+    |
+ 76 |   pub struct PrivateOwnerInput {
+    |   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ consider implementing `Clone` for this type
+    |
+   ::: src/integration/input_delivery.rs:440:18
+    |
+440 |                   &self
+    |  __________________-
+441 | |                     .input
+    | |__________________________- you could clone this value
+
+Some errors have detailed explanations: E0507, E0616.
+For more information about an error, try `rustc --explain E0507`.
+error: could not compile `zkfmi-cosnark-trial` (lib test) due to 4 previous errors
+warning: build failed, waiting for other jobs to finish...

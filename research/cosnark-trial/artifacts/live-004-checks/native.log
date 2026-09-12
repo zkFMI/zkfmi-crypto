@@ -1,0 +1,217 @@
+Diff in /src/zkpi/rust/qomm-mpc/src/engine_policy.rs:78:
+         let metadata = std::fs::metadata(path).map_err(|_| {
+             format!(
+                 "missing hybrid engine artifact: {}",
+-                path.file_name().and_then(|name| name.to_str()).unwrap_or("?")
++                path.file_name()
++                    .and_then(|name| name.to_str())
++                    .unwrap_or("?")
+             )
+         })?;
+         #[cfg(unix)]
+Diff in /src/zkpi/rust/qomm-mpc/src/bin/rounds.rs:37:
+ //! and the protocol; a delay changes when they happen, not how many there are,
+ //! and the wall-clock figures that do depend on it are measured elsewhere.
+ 
+-use zkfmi_measure::{hosts, Summary};
+ use qomm_mpc::Protocol;
+ use std::collections::BTreeMap;
+ use std::io::Write;
+Diff in /src/zkpi/rust/qomm-mpc/src/bin/rounds.rs:44:
+ use std::net::TcpListener;
+ use std::path::{Path, PathBuf};
+ use std::process::{Command, Stdio};
++use zkfmi_measure::{hosts, Summary};
+ 
+ /// What one party reported.
+ #[derive(Default, Clone)]
+Diff in /src/zkpi/rust/qomm-mpc/src/engine_policy.rs:78:
+         let metadata = std::fs::metadata(path).map_err(|_| {
+             format!(
+                 "missing hybrid engine artifact: {}",
+-                path.file_name().and_then(|name| name.to_str()).unwrap_or("?")
++                path.file_name()
++                    .and_then(|name| name.to_str())
++                    .unwrap_or("?")
+             )
+         })?;
+         #[cfg(unix)]
+Diff in /src/zkpi/rust/zkfmi-zk/examples/range_compare.rs:5:
+ //! language is confounded with the scheme. Both are in Rust now.
+ use curve25519_dalek::scalar::Scalar;
+ use merlin::Transcript;
++use rand::rngs::OsRng;
++use std::time::Instant;
+ use zkfmi_zk::bitrange;
+ use zkfmi_zk::pedersen::Pedersen;
+ use zkfmi_zk::range::RangeCtx;
+Diff in /src/zkpi/rust/zkfmi-zk/examples/range_compare.rs:11:
+-use rand::rngs::OsRng;
+-use std::time::Instant;
+ 
+ fn ms(t: Instant, n: u32) -> f64 {
+     t.elapsed().as_secs_f64() * 1000.0 / f64::from(n)
+Diff in /src/zkpi/rust/zkfmi-zk/tests/bitrange.rs:2:
+ //! range proof.
+ 
+ use curve25519_dalek::scalar::Scalar;
++use rand::rngs::StdRng;
++use rand::SeedableRng;
+ use zkfmi_zk::bitrange::{prove_bounded, prove_range, verify_bounded, verify_range};
+ use zkfmi_zk::pedersen::Pedersen;
+ use zkfmi_zk::range::RangeCtx;
+Diff in /src/zkpi/rust/zkfmi-zk/tests/bitrange.rs:8:
+-use rand::rngs::StdRng;
+-use rand::SeedableRng;
+ 
+ const VECTOR_VALUE: u64 = 0x12_3456_789a;
+ const VECTOR_WIDTH: usize = 40;
+Diff in /src/zkpi/rust/zkfmi-zk/tests/bitrange_forgery.rs:4:
+ //! proof of the residual, and an 8-bit range proof accepted 300.
+ 
+ use curve25519_dalek::scalar::Scalar;
++use rand::rngs::OsRng;
+ use zkfmi_zk::bitrange::*;
+ use zkfmi_zk::pedersen::Pedersen;
+ use zkfmi_zk::sigma::prove_opening;
+Diff in /src/zkpi/rust/zkfmi-zk/tests/bitrange_forgery.rs:10:
+-use rand::rngs::OsRng;
+ 
+ #[test]
+ fn bits_of_another_value_do_not_link() {
+Diff in /src/zkpi/rust/zkfmi-zk/tests/oneofmany.rs:3:
+ use curve25519_dalek::ristretto::RistrettoPoint;
+ use curve25519_dalek::scalar::Scalar;
+ use merlin::Transcript;
++use rand::rngs::OsRng;
+ use zkfmi_zk::oneofmany::{challenge_for, prove, verify};
+ use zkfmi_zk::pedersen::Pedersen;
+-use rand::rngs::OsRng;
+ 
+ fn set(
+     key: &Pedersen,
+Diff in /src/zkpi/rust/zkfmi-zk/tests/shamir.rs:9:
+ //! named an innocent party when three lied would be worse than one that gave up.
+ 
+ use curve25519_dalek::scalar::Scalar;
+-use zkfmi_zk::shamir::*;
+ use rand::rngs::OsRng;
+ use rand::seq::SliceRandom;
+ use rand::Rng;
+Diff in /src/zkpi/rust/zkfmi-zk/tests/shamir.rs:16:
++use zkfmi_zk::shamir::*;
+ 
+ const DEGREE: usize = 2; // T = 2
+ const PRODUCT_DEGREE: usize = 4; // 2T, a product before degree reduction
+Diff in /src/zkpi/rust/zkfmi-zk/tests/sigma.rs:8:
+ use curve25519_dalek::ristretto::RistrettoPoint;
+ use curve25519_dalek::scalar::Scalar;
+ use merlin::Transcript;
++use rand::rngs::OsRng;
+ use zkfmi_zk::pedersen::{asset_tag, Pedersen};
+ use zkfmi_zk::range::RangeCtx;
+ use zkfmi_zk::sigma::*;
+Diff in /src/zkpi/rust/zkfmi-zk/tests/sigma.rs:14:
+-use rand::rngs::OsRng;
+ 
+ fn key() -> Pedersen {
+     Pedersen::new(b"qomm:defmi:v1")
+Diff in /src/zkpi/rust/zkpi/tests/instruction.rs:2:
+ 
+ use curve25519_dalek::ristretto::RistrettoPoint;
+ use curve25519_dalek::scalar::Scalar;
+-use zkfmi_zk::pedersen::Pedersen;
+-use zkpi::{deal_quorum, frost, Bounds, Issuer, Venue};
+ use rand::rngs::OsRng;
+ use std::collections::BTreeMap;
++use zkfmi_zk::pedersen::Pedersen;
++use zkpi::{deal_quorum, frost, Bounds, Issuer, Venue};
+ 
+ const NODES: u16 = 7;
+ const THRESHOLD: u16 = 3;
+Diff in /src/zkpi/rust/zkpi/tests/typed.rs:6:
+ 
+ use curve25519_dalek::ristretto::RistrettoPoint;
+ use curve25519_dalek::scalar::Scalar;
++use rand::rngs::OsRng;
+ use zkfmi_zk::pedersen::Pedersen;
+ use zkpi::typed::{
+     digest_for, AuthorizationScope, ExecutionContext, OperationKind, TradeDirection,
+Diff in /src/zkpi/rust/zkpi/tests/typed.rs:12:
+     TypedInstruction,
+ };
+-use zkpi::{
+-    deal_quorum, frost, typed_wire, Bounds, Issuer, QuoteBinding, Venue, DEFAULT_DOMAIN,
+-};
+-use rand::rngs::OsRng;
++use zkpi::{deal_quorum, frost, typed_wire, Bounds, Issuer, QuoteBinding, Venue, DEFAULT_DOMAIN};
+ 
+ const THRESHOLD: usize = 3;
+ 
+Diff in /src/zkpi/rust/zkpi/tests/typed.rs:199:
+         Some(approve(&instruction.payment.digest_for(DEFAULT_DOMAIN)));
+     instruction.pq_authorization = Some(approve(&instruction.digest_for(DEFAULT_DOMAIN).unwrap()));
+     let encoded = zkpi::wire::encode(&instruction.payment);
+-    assert_eq!(
+-        &encoded[8..10],
+-        &zkpi::wire::HYBRID_VERSION.to_be_bytes()
+-    );
++    assert_eq!(&encoded[8..10], &zkpi::wire::HYBRID_VERSION.to_be_bytes());
+     let decoded = zkpi::wire::decode(&encoded).unwrap();
+     assert_eq!(zkpi::wire::encode(&decoded), encoded);
+     assert_eq!(
+Diff in /src/zkpi/rust/zkpi-harness/src/bin/run_voleith.rs:1:
+ use curve25519_dalek::ristretto::RistrettoPoint;
+ use curve25519_dalek::scalar::Scalar;
+-use zkpi_harness::voleith::{self, Packing, COMMIT_BYTES, SEED_BYTES};
+-use zkpi_harness::{parse_value, timing_summary, write_pretty_json, HarnessResult};
+-use zkfmi_zk::pedersen::Pedersen;
+ use rand_core::{OsRng, RngCore};
+ use serde_json::{json, Map, Value};
+ use sha2::{Digest, Sha512};
+Diff in /src/zkpi/rust/zkpi-harness/src/bin/run_voleith.rs:10:
+ use std::fs;
+ use std::path::PathBuf;
+ use std::time::Instant;
++use zkfmi_zk::pedersen::Pedersen;
++use zkpi_harness::voleith::{self, Packing, COMMIT_BYTES, SEED_BYTES};
++use zkpi_harness::{parse_value, timing_summary, write_pretty_json, HarnessResult};
+ 
+ const VALUE_BITS: usize = 31;
+ const MASK_BITS: usize = 119;
+Diff in /src/zkpi/rust/zkpi-harness/src/bin/zk_bench.rs:1:
+-use zkpi_harness::zk_bench_support::{application_rows, ladder_row, primitive_costs, BACKENDS};
+-use zkpi_harness::{parse_value, rustc_version, write_pretty_json, HarnessResult};
+ use serde_json::{json, Value};
+ use std::ffi::OsString;
+ use std::path::PathBuf;
+Diff in /src/zkpi/rust/zkpi-harness/src/bin/zk_bench.rs:6:
++use zkpi_harness::zk_bench_support::{application_rows, ladder_row, primitive_costs, BACKENDS};
++use zkpi_harness::{parse_value, rustc_version, write_pretty_json, HarnessResult};
+ 
+ struct Options {
+     sizes: Vec<usize>,
+Diff in /src/zkpi/rust/zkpi-harness/src/bin/zk_compare.rs:2:
+ use curve25519_dalek::ristretto::RistrettoPoint;
+ use curve25519_dalek::scalar::Scalar;
+ use merlin::Transcript;
+-use zkpi_harness::{parse_value, timing_summary, write_pretty_json, HarnessResult};
+-use zkfmi_zk::bitrange::{prove_bounded, verify_bounded, BoundedProof};
+-use zkfmi_zk::oneofmany;
+-use zkfmi_zk::or_dleq::{self, Statement};
+-use zkfmi_zk::Pedersen;
+ use rand::rngs::StdRng;
+ use rand::SeedableRng;
+ use rand_core::OsRng;
+Diff in /src/zkpi/rust/zkpi-harness/src/bin/zk_compare.rs:16:
+ use std::hint::black_box;
+ use std::path::PathBuf;
+ use std::time::Instant;
++use zkfmi_zk::bitrange::{prove_bounded, verify_bounded, BoundedProof};
++use zkfmi_zk::oneofmany;
++use zkfmi_zk::or_dleq::{self, Statement};
++use zkfmi_zk::Pedersen;
++use zkpi_harness::{parse_value, timing_summary, write_pretty_json, HarnessResult};
+ 
+ const GK_TRANSCRIPT: &[u8] = b"qomm:gk:compare";
+ 

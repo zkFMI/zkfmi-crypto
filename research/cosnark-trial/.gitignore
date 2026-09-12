@@ -1,0 +1,4 @@
+# Large generated public proofs and snapshots remain local/remote evidence.
+artifacts/**/proof.json
+artifacts/**/canonical/*-state.json
+artifacts/**/canonical/*-snapshot.bin

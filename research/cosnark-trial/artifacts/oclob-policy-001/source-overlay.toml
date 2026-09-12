@@ -1,0 +1,4 @@
+# Explicit isolated integration overlay for uncommitted shared-policy source.
+# The canonical OCLOB Cargo.toml/Cargo.lock release pins are not modified.
+[patch."https://github.com/zkFMI/zkfmi-crypto.git"]
+zkfmi-crypto = { path = "/workspace/.integration/zkfmi-crypto" }

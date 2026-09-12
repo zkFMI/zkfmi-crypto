@@ -1,0 +1,6 @@
+   Compiling qomm-mpc v0.1.0 (/work/zkpi/rust/qomm-mpc)
+    Checking zkfmi-cosnark-trial v0.1.0 (/work/zkfmi-crypto/research/cosnark-trial)
+    Finished `release` profile [optimized] target(s) in 2m 51s
+   Compiling qomm-mpc v0.1.0 (/work/zkpi/rust/qomm-mpc)
+   Compiling zkfmi-cosnark-trial v0.1.0 (/work/zkfmi-crypto/research/cosnark-trial)
+    Finished `release` profile [optimized] target(s) in 6.23s

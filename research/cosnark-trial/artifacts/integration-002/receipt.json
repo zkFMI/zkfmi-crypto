@@ -1,0 +1,146 @@
+{
+  "binary_sha256": "ff01992771ba45b106a20307333c9c34d29cb3d8add5e28693d6ec98ec0f86d1",
+  "canonical_binary_sha256": "587de45afa1c4e500bc260373c0f8c60e84856018817cc9363ee402162eff03d",
+  "canonical_receipt": {
+    "accepted": true,
+    "applied_blocks": 740,
+    "block_limit_bytes": 1572864,
+    "deployment_mode": "pq-only-research",
+    "feature": "research-cocode",
+    "fill_proof_bytes": 192349020,
+    "fill_proof_sha512": "96411d7740b60719b8e5219812a694630b3189bd310847924ffcd7720e1a3cf6ac2d2e3876300075af7eefad604524413407eae336fa90fd77efbcfbc5ac2093",
+    "fill_receipt": {
+      "afterCommitment": "29462aab0b58a3f95e2293b537d4a668ed9b3db76ff0dbbef67f2e370ef61745fd1f8120a16cbeb688afcaeab960737f75515932afe4be21efebef30aee86135",
+      "beforeCommitment": "1ceb7ade0b1651f0b3253e2caafbc20b67de0e4376fe6741eec3a288b93800c07bcfc67ba45893bca208ae9ad79e30f4ee2d8aa9973c90655955d6fd52bffb6f",
+      "bookId": "private-four-account-book",
+      "deploymentId": "cocode-defmi-integration-002",
+      "noFill": false,
+      "operationId": "fill",
+      "proofSha512": "96411d7740b60719b8e5219812a694630b3189bd310847924ffcd7720e1a3cf6ac2d2e3876300075af7eefad604524413407eae336fa90fd77efbcfbc5ac2093",
+      "sequence": 1
+    },
+    "fill_transition_after_root": "1c93e26695be74bb59e69d8b4e648bc8cd63f63e36df0d889a62e17db2933af0",
+    "final_state_root": "add862e0bb70e6346ca31c68b12e8228968f3543b5089816a75a8455293be638",
+    "max_proof_bytes": 268435456,
+    "negative_gates": {
+      "altered_proof_chunk": true,
+      "changed_output_book_commitment": true,
+      "incomplete_proof_chunks": true,
+      "mixed_deployment_or_mode": true,
+      "replayed_operation": true,
+      "stale_book_sequence_after_recovery": true,
+      "wrong_authoritative_previous_book_commitment": true
+    },
+    "nofill_proof_bytes": 192349021,
+    "nofill_proof_sha512": "9de4366b710c3549b76595379decc6b5bf6a194cc6b5f705212a7704d9bb41375ed8afa7c62a1289cb4f4419f3086a58310b390bf31b3ac8e73e91db16f434ee",
+    "nofill_receipt": {
+      "afterCommitment": "e5590966a9f2a10e17a7a04eac1a5bff1efa614cfa1259700546787946ced94b55fad0c70bd0c51185fd955beebf47a1225335648df67ff542cfc0d513ecf60c",
+      "beforeCommitment": "29462aab0b58a3f95e2293b537d4a668ed9b3db76ff0dbbef67f2e370ef61745fd1f8120a16cbeb688afcaeab960737f75515932afe4be21efebef30aee86135",
+      "bookId": "private-four-account-book",
+      "deploymentId": "cocode-defmi-integration-002",
+      "noFill": true,
+      "operationId": "nofill",
+      "proofSha512": "9de4366b710c3549b76595379decc6b5bf6a194cc6b5f705212a7704d9bb41375ed8afa7c62a1289cb4f4419f3086a58310b390bf31b3ac8e73e91db16f434ee",
+      "sequence": 2
+    },
+    "persisted_snapshot_sha256": "a48d5dfce80949a9729e1fc239a592f39d54756196928987cfa6ee9ba9e2bce0",
+    "persisted_summary_sha256": "ce9170cd1fa47b3a698818510861ee44763b437a35aa05f67aae67091d5742db",
+    "proof_chunk_bytes": 524288,
+    "proof_protocol": "cocode-defmi-private-dvp-research-v1",
+    "recovered_state_root": "1c93e26695be74bb59e69d8b4e648bc8cd63f63e36df0d889a62e17db2933af0",
+    "transaction_limit_bytes": 1048576,
+    "verifier": "zkfmi-cosnark-trial::integration::verify_serialized"
+  },
+  "contract_id": "zkfmi-cocode-defmi-integration-v1",
+  "contract_sha256": "44b45868cadcefa44340f42bc7199762d7d1f8a9ebb78e86496667b06804944f",
+  "earliest_unresolved_gate": "Independent composition, quantum parameters, operator isolation and venue-specific adoption; no production promotion.",
+  "error": null,
+  "experiment_id": "cocode-defmi-integration-002",
+  "manifest_sha256": "6bbbe87c40e092176ac85c6aa45f24a11aeda1fcc078923393028b10e43cae72",
+  "point_prediction": 1,
+  "primary_metric_value": 1,
+  "proof_negative_gates": {
+    "changed codeword opening": true,
+    "changed proof deployment mode": true,
+    "invalid private product": true
+  },
+  "proofs": [
+    {
+      "operation": "fill",
+      "owner_query_replay_rejected": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "proof_bytes": 192349020,
+      "proof_sha256": "bf331541e779d5af6d27ecadde248358434938ece2b9a9c371c92799beeda6d2",
+      "statement": {
+        "after_commitment": "29462aab0b58a3f95e2293b537d4a668ed9b3db76ff0dbbef67f2e370ef61745fd1f8120a16cbeb688afcaeab960737f75515932afe4be21efebef30aee86135",
+        "before_commitment": "1ceb7ade0b1651f0b3253e2caafbc20b67de0e4376fe6741eec3a288b93800c07bcfc67ba45893bca208ae9ad79e30f4ee2d8aa9973c90655955d6fd52bffb6f",
+        "book_id": "private-four-account-book",
+        "deployment_id": "cocode-defmi-integration-002",
+        "no_fill": false,
+        "operation_id": "fill",
+        "sequence": 1
+      }
+    },
+    {
+      "operation": "nofill",
+      "owner_query_replay_rejected": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "proof_bytes": 192349021,
+      "proof_sha256": "657e127a63aa5d6f91966692d697343f3a031780226951c599c8a3f957492faf",
+      "statement": {
+        "after_commitment": "e5590966a9f2a10e17a7a04eac1a5bff1efa614cfa1259700546787946ced94b55fad0c70bd0c51185fd955beebf47a1225335648df67ff542cfc0d513ecf60c",
+        "before_commitment": "29462aab0b58a3f95e2293b537d4a668ed9b3db76ff0dbbef67f2e370ef61745fd1f8120a16cbeb688afcaeab960737f75515932afe4be21efebef30aee86135",
+        "book_id": "private-four-account-book",
+        "deployment_id": "cocode-defmi-integration-002",
+        "no_fill": true,
+        "operation_id": "nofill",
+        "sequence": 2
+      }
+    }
+  ],
+  "seconds": 640.745036699,
+  "source_sha256": {
+    "Cargo.lock": "3a7d69b416dd1a564f7912be95b6f8acf2d567874554624014be3be0b855c905",
+    "Cargo.toml": "1701297d3b5b24a75cc4860698773529a5d0b66452899a0e216069068c129667",
+    "integration-contract.json": "44b45868cadcefa44340f42bc7199762d7d1f8a9ebb78e86496667b06804944f",
+    "src/algebra.rs": "d7f3dfe255f66f955d3318de23a1b9dc5bf9288cc7a103a1969d8be3c5a75541",
+    "src/circuit.rs": "f924c9eb6bec2c42b8b7e83429ad35e92082a98df3b0bfe231303dc9d620b708",
+    "src/field.rs": "64f7a7e28b84fb6fbdb723758eebe70ed34d69f2993c485dc359d479ba0110d4",
+    "src/fold_binding_probe.rs": "5aa4dc39e460ab88b03fc21c019e4cafcd86c5fcd81427ff1b70611ba2af7660",
+    "src/full_trial.rs": "db32e75270b609e946ef69a18a1b4e59bcf27d98b67c80775c4cc111fde06fd1",
+    "src/integration/circuit.rs": "4dc7827804df44a00bc46a8affe870845d7b699596d01fe7bd3f463706873501",
+    "src/integration/mod.rs": "2dea69f3e6f98543bb7b6bddc58c3da296b763f5ff0d496a6b2b0e5eb6598f92",
+    "src/integration/mpc_program.rs": "f4ed23a670e7bfdfcd0f153eba29c99a5327b48f27a711ab1efd2c2e46b3b308",
+    "src/integration/native.rs": "c2431e4cbe90613906e97c1f2a2e4fc1f8bf5c12ec6a5e6e6395711e6d6c1157",
+    "src/integration/party.rs": "1638cccb33bb9014508c2c366f238fc923e1730670ec65f9bb577d965d68572c",
+    "src/integration/prover.rs": "a16a8117a0043e0bc0fea883eb1225ede9293e75fe46511f142f4431b9a6b8ec",
+    "src/integration/run.rs": "08c395efaeed12fd3243e172187f9e6b387e81bcc8ae7377882e0d7d4a468f50",
+    "src/integration/verifier.rs": "f9b4f17663e7d055be01acf660d9f228085130afb45b198eaf91282975e32fff",
+    "src/lib.rs": "c0a75002acc49670f6c11d7087acdadd8dbe30f9f3eb981b30cd0e198046b077",
+    "src/main.rs": "88488538cab1d09decb02b2aa6b2915cff9b7d58e3478ac792eaa5e8c5728e43",
+    "src/mpc_program.rs": "6aca4ae311449c6b1810db21a68fa605d4b7b6ee0431dad74f771d667f51a281",
+    "src/native.rs": "55a7f54e53c948b774a6e281226fd11c60caca09f968b54bc94e573f7cf333f4",
+    "src/party.rs": "9a760f2c42c85c33301a66ff9cb0cef575e024d74487d231cd80063ef90af374",
+    "src/pcs.rs": "f93b0794f5308700e1148e0ccf8fd4d7e2a0429cab5403a43754b0bd16002fe6",
+    "src/prover.rs": "1cb69735a762624381d7389e0bf27dc7719dac90c8e3eac764acd71a468f5200",
+    "src/transcript.rs": "769c0227b0a074186cb42e3fc27c0bca0920055113144186221fdd52cf9ec9d2",
+    "src/verifier.rs": "7fa21e3d3cd15f5057ed27681200d18ad3fefa3d94e274351326a5465474905c"
+  },
+  "stage": "RUN_ROUGH_END_TO_END_AND_OBSERVE_FINAL_METRIC",
+  "started_unix_seconds": 1788903933,
+  "verdict": "smoke_only"
+}

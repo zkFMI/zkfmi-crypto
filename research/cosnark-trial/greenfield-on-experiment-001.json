@@ -1,0 +1,33 @@
+{
+  "experiment_id": "zkfmi-greenfield-pqc-on-live-001",
+  "contract_id": "zkfmi-greenfield-pqc-live-v1",
+  "contract_sha256": "c2dcd5c1c2b2f4cc53b91f61bcfae54dd2efedaf38cb2717616b5ce3b81408ce",
+  "closed_plan": ["RUN_ROUGH_END_TO_END_AND_OBSERVE_FINAL_METRIC"],
+  "rough_command": "internal:live_avalanche",
+  "bottleneck": "The completed live007 proof path has no shared deployment-wide policy in genesis/authority/state. Greenfield policy integration must execute through actual proof acceptance and restart before downstream venue adapters can rely on it.",
+  "causal_hypothesis": "A strict versioned shared On policy committed in new genesis and used by authority, VM state and proof dispatch preserves native-v2 end-to-end acceptance while making mismatched or omitted policy fail closed.",
+  "single_intended_change": "Bind the already passing v2 live proof path to explicit fresh QOMMGEN3 DeploymentCryptoPolicy On. Keep proof bytes, seven-owner query roster, cryptographic dimensions and RPC/block/transaction limits unchanged.",
+  "baseline": "live-query-007 primary1 smoke_only,1087.020500307 seconds,740 accepted transitions,five equal roots and actual pending/final node3 restart. Native query-v2-002 public proofs are frozen functional fixtures, not a prior ledger import.",
+  "evaluation_population": "Two frozen native-v2 fill/no-fill proofs on a fresh five-validator policy-bound chain with all original negative gates and both restarts; one laboratory host. Off-mode full venue equivalence is not established by this On slice.",
+  "point_prediction": 1,
+  "likely_prediction_error": "A legacy authority or state-sync path drops the optional policy and cannot recover or accept the otherwise unchanged v2 proof transition.",
+  "require_pending_upload_restart": true,
+  "deployment_crypto_policy": {"version":1,"deployment_id":"cocode-defmi-query-agreement-002","mode":"on"},
+  "deployment_policy_file": "greenfield-on-policy.json",
+  "deployment_policy_sha256": "779a44f3a8d51e7a46cb9e6794a9d98f78185142db81672443059dca3403be45",
+  "genesis_config_sha256": "674bd0b0192fba97c6c64c44c7bdc0ca7fab0424a8a407c2e0722f7ba75071f3",
+  "trusted_query_roster_sha512": "fa7fc6f9f5c9b5a81ac2a1fd0e5579bfa1c97a7f507a61408f449e54d16df7287bce1f2b5ee8c7d4495eff38c65c8b2e91ffdea3b38d342bff8b75ed2ab64ac1",
+  "public_proof_directory": "/proofs",
+  "public_input_sha256": {
+    "receipt.json": "551a0937c7b0fc73570807433198dc7e6d7f5a2d57ba66c5681361ddfb1133c7",
+    "fill/proof.json": "40a216c43a79da42f33ace3d23f6dc7ce17b0b4200518dbcc42f4cd45aebffc8",
+    "fill/statement.json": "8694f9d2c0e196cce47333ce22fb6b0b63791218332bafef15c46e1cbc708ebc",
+    "nofill/proof.json": "528dfe5a88581604730e8b287d0cd6126cd804cc57cee9ec94e7dc31883abe5e",
+    "nofill/statement.json": "2b73726a451434071a332c3748647b5700a0b8dce610dc1f2eb431c2ad113f2d"
+  },
+  "rejection_rule": "Any missing or changed policy, legacy proof bypass under On, missing actual proof commit/restart, unequal roots, altered bounds or prior-ledger import blocks completion.",
+  "promotion_rule": "At most smoke_only; no Off-mode venue equivalence, operational lifecycle, independent-operator, HSM, formal ZK/QROM or production claim.",
+  "network_image": "sha256:70592bee29073c53bfb5d199d097443c79f08c135c9da0354dfab2cf028cd8e5",
+  "runtime_uid": 10001,
+  "network_isolation": "Fresh network-none read-only container; loopback validators; frozen public proof and executable mounts; no private witness or owner-key mounts; no prior service state or published ports."
+}

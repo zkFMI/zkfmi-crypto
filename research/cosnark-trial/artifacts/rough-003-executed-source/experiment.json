@@ -1,0 +1,20 @@
+{
+  "experiment_id": "cosnark-rough-001",
+  "contract_id": "zkfmi-private-pq-cosnark-trial-v1",
+  "contract_sha256": "45dc526721b4f174c794557d15f1bc171a8bf4ef41fe210e5901bdd5402e26fb",
+  "stage": "RUN_ROUGH_END_TO_END_AND_OBSERVE_FINAL_METRIC",
+  "bottleneck": "No runnable independent coCode-plus-malicious-MPC backend exists in this trial; the literal coefficient-MLE/folding connection must be executable to reach a verifier result.",
+  "causal_hypothesis": "The published Construction 4 and Appendix B equations agree on the polynomial represented by the final folded oracle.",
+  "falsifiable_prediction": "The honest sumcheck claim equals the claim decoded from the honest folded Reed-Solomon oracle.",
+  "single_intended_change": "An isolated independent transcription of one required evaluation round; no release-backend change.",
+  "baseline": "Existing release is unchanged. Within the public arithmetic fixture, direct MLE restriction supplies the exact equality target, not an alternative cryptographic protocol.",
+  "evaluation_population": "Seven public polynomial rows, eight coefficients each, one complete encode-aggregate-sumcheck-fold-decode equality with fixed public challenges. This is not the financial R1CS or a malicious-MPC execution.",
+  "primary_metric": "valid_proof_accepted_and_all_declared_invalid_cases_rejected",
+  "point_prediction": 1,
+  "closest_faithful_slice": "One necessary honest-verifier completeness equality; if it fails the full metric remains unobserved and the run is blocked, never successful.",
+  "rejection_rule": "No promotion if the equality fails, evidence is missing, the full candidate did not execute, or the required negative cases were not run.",
+  "promotion_rule": "No promotion is allowed from this slice, including if the normalized arithmetic control succeeds.",
+  "closed_plan": ["RUN_ROUGH_END_TO_END_AND_OBSERVE_FINAL_METRIC"],
+  "rough_command": "internal:fold_binding_probe",
+  "forbidden_substitutions": ["centralized witness proving", "signature quorum as ZK proof", "public fixtures presented as private MPC", "arithmetic control presented as a proven protocol"]
+}

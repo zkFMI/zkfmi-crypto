@@ -1,0 +1,29 @@
+[
+  {
+    "program": "cocodeint_001",
+    "source_sha256": "98dbfc941099eb4b22faa06e5147ee2536155b9107ce90ebbe81ae2d4e0cd92c",
+    "compiled_artifacts": [
+      [
+        "Programs/Bytecode/cocodeint_001-0.bc",
+        "b3ccef74ab1d31f0b579a0e1bdca7e7fc80e87e66f6c88d5aa1dfc44676fef99"
+      ],
+      [
+        "Programs/Schedules/cocodeint_001.sch",
+        "4a4334d38cfd6461fc8bde9a9514d26df992852751e1b9b2a535cfd3b0cdbba4"
+      ]
+    ],
+    "party_exit_codes": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "seconds": 14.165360765,
+    "released_field_count": 0,
+    "seven_context_views_equal": true,
+    "rejection_reason": "invalid financial witness"
+  }
+]

@@ -1,0 +1,43 @@
+{
+  "experiment_id": "cosnark-rough-002",
+  "contract_id": "zkfmi-private-pq-cosnark-trial-v1",
+  "contract_sha256": "45dc526721b4f174c794557d15f1bc171a8bf4ef41fe210e5901bdd5402e26fb",
+  "stage": "RUN_ROUGH_END_TO_END_AND_OBSERVE_FINAL_METRIC",
+  "bottleneck": "The first necessary equality probe failed at the same-challenge coefficient-MLE/RS fold connection; the full private financial proof has not yet executed.",
+  "new_causal_evidence": "cosnark-rough-001 observation SHA-256 80228d00ad3e6f2b8ca580aa7dab700c133a10e69d7caa778d569e6cae82715e: explicit (1-r) even-part normalization matches the exact-field MLE restriction, including r=0 and r=1.",
+  "user_authorization": "2026-09-08 user requested completion through the full seven-party malicious-MPC and proof/tamper execution, after the preliminary blocked result.",
+  "causal_hypothesis": "The explicit normalized fold consistently binds the complete masked financial sumcheck and linear-relation opening when all private scalar computations use the pinned malicious-shamir engine.",
+  "falsifiable_prediction": "One fresh privately generated bounded financial witness produces a public proof accepted without private state; every declared negative case rejects.",
+  "single_intended_change": "Replace the arithmetic-only fixture with a complete independent normalized coCode/Spartan smoke candidate over native seven-party malicious MPC, leaving the release unchanged.",
+  "whole_candidate": {
+    "private_relation": "64-row R1CS: private amount times price equals notional, notional plus private remainder equals reserve 65535, 8-bit amount and price and 16-bit remainder, and externally bound constant witness column",
+    "native_mpc": "Official pinned MP-SPDZ malicious-shamir, N=7, T=2, checked reveals; per-owner random input files and per-owner persistence loading",
+    "proof": "Joint witness/mask commitment; padded first Spartan sumcheck; degree-three separable mask committed by coefficients; one general linear-functional opening for the second relation",
+    "explicit_adaptations": [
+      "Normalized row fold (1-r)E+rO, without exceptional division at r=1",
+      "k=1 and native degree-two Shamir row dimension at points 1..7",
+      "One coPCS fold followed by a complete masked terminal oracle, with message width 16384 and RS evaluation width 65536",
+      "Degree-three separable Libra-style masking to match the full constraint sumcheck degree",
+      "One joint commitment and O(nnz) verifier linear-functional check instead of the optimized second sumcheck/sparse matrix oracle"
+    ],
+    "hash_and_queries": "SHA-512 salted Merkle leaves and Fiat-Shamir; 512 per-opening queries; exact security parameter/composition proof is not claimed by this smoke"
+  },
+  "baseline": "Existing classical/hybrid release is unchanged; this is not a performance comparison or a production promotion.",
+  "evaluation_population": "One fresh distributed synthetic financial witness; proof mutations using the same accepted proof; actual native rejection runs for an invalid witness and two inconsistent party views.",
+  "primary_metric": "valid_proof_accepted_and_all_declared_invalid_cases_rejected",
+  "point_prediction": 1,
+  "likely_prediction_error": "A native field/persistence convention or masking-to-linear-functional relation mismatch still prevents the honest end-to-end verifier acceptance.",
+  "closed_plan": ["RUN_ROUGH_END_TO_END_AND_OBSERVE_FINAL_METRIC"],
+  "rough_command": "internal:full_native_prover",
+  "negative_cases": [
+    "changed public statement",
+    "changed proof commitment root",
+    "changed codeword opening",
+    "changed final evaluation claim",
+    "inconsistent per-party challenge view",
+    "invalid witness",
+    "changed deployment mode or identifier"
+  ],
+  "rejection_rule": "Any invalid case accepted, missing expected native rejection marker, private coordinator witness reconstruction, wrong threshold, substituted classical proof, missing proof artifact or failed standalone verification prevents smoke success.",
+  "promotion_rule": "At most smoke_only; production, security/composition review, operational financial commitment adapters, full lifecycle and independent operators remain outside this experiment's acceptance authority."
+}

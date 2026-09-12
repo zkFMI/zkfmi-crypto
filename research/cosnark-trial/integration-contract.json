@@ -1,0 +1,36 @@
+{
+  "contract_id": "zkfmi-cocode-defmi-integration-v1",
+  "objective": "Integrate the authorized private code-based proof into DeFMI canonical confidential settlement while preserving the existing deployment and classical path.",
+  "stage": "RUN_ROUGH_END_TO_END_AND_OBSERVE_FINAL_METRIC",
+  "bottleneck": "The successful financial smoke is not bound to authoritative DeFMI balances, and its public proof exceeds the existing one-MiB transaction limit.",
+  "whole_candidate": "A research-gated DeFMI confidential four-account DvP book with code-based before/after state commitments; one native seven-party threshold-two MPC proof of 64-bit balances, quantity, price, product and atomic conservation; canonical chunk transport under unchanged transaction/block limits; immutable deployment policy, authorization, replay rejection and persisted-state recovery.",
+  "hard_boundaries": {
+    "mpc_parties": 7,
+    "max_corrupt_mpc_parties": 2,
+    "private_witness_reconstruction_at_coordinator": false,
+    "classical_proof_or_commitment_in_pqc_financial_path": false,
+    "outer_signature_as_mathematical_soundness": false,
+    "existing_transaction_and_block_limits_unchanged": true,
+    "existing_public_deployment_unchanged": true,
+    "unrelated_dirty_files_preserved": true,
+    "production_promotion": false
+  },
+  "primary_metric": "real_private_native_proof_accepts_in_canonical_defmi_settlement_and_rejects_stale_or_replayed_state_after_recovery",
+  "point_prediction": 1,
+  "likely_prediction_error": "The partitioned masked linear relation or canonical large-proof transport fails before a valid persisted settlement.",
+  "population": "Fresh isolated DeFMI state and distributed private book issuance, one private delivery-versus-payment transition and no-fill conservation transition, with the actual native engine and public proof artifacts. Existing legacy tests remain regression gates, not substitutes.",
+  "negative_gates": [
+    "wrong authoritative previous book commitment",
+    "changed output book commitment",
+    "changed proof opening",
+    "mixed deployment mode or identifier",
+    "replayed operation",
+    "stale book sequence after recovery",
+    "altered or incomplete canonical proof chunks",
+    "invalid private product or negative balance"
+  ],
+  "rejection_rule": "A financial transition without a verified relation to the authoritative previous commitment, a missing real native run, a substituted classical proof, a weakened bound, or any accepted negative prevents completion.",
+  "promotion_rule": "At most smoke_only for the isolated integration. Security/composition and concrete PQ parameter review, independent operators and full venue-specific QOMM/OCLOB adapters remain separate gates; no production claim or public deployment is authorized.",
+  "preflight": "An integration runner must bind these exact contract bytes to a closed manifest and atomically claim a fresh output before executing the whole native-to-DeFMI path.",
+  "postflight": "Write public proof, native and canonical transition receipts, source and dependency identities, and append one verdict without private inputs or shares."
+}

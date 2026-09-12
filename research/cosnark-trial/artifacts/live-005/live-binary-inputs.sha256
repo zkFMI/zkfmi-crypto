@@ -1,0 +1,6 @@
+bd9f300db29f8f454bd0af45bba44f687137649ec45d364bce10d7f96baa7cc9  /live/bin/qomm-avalanche-vm
+840716cf97186cc64070114d1ebb0a337a2e3584b0202bfb3a01e9b834f586e7  /live/bin/cocode-canonical-acceptance
+023da7976ba7ab9a1ded2280ba26575649066078dd89805f826592e06c035c8b  /usr/local/bin/avalanchego
+c67d0d59b63c8486c5995da6bcaa93ff5821327b12c82bc80dc7dabbc726b93f  /usr/local/bin/avalanche-network-runner
+e8fa5929e0588e103fb1216cad3b06df5b73cee02da176b9d17aa1ab6c8933ef  /live/src/defmi/avalanche/defmivm/config/test-genesis.json
+5ec95ee36baae69f44bc098e365170ff03f2ede77630fb876ea7708573e9a624  /live/runtime/genesis.bin

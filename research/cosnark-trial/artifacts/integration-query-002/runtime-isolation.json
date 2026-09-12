@@ -1,0 +1,44 @@
+{
+  "id": "d779db560e58579107e1225feaf0160b72ee6c5deea86b826421895b4816e729",
+  "image": "sha256:91d284e9e0f0ba3fed0a005997edff224182eb949a465f54a6c287c249e5c3a4",
+  "user": "1000:1000",
+  "network": "none",
+  "readonlyRootfs": true,
+  "mounts": [
+    {
+      "destination": "/enrollment",
+      "source": "/home/ubuntu/work/pqc-proof-switch-20260909/query-v2-enrollment-001",
+      "writable": false
+    },
+    {
+      "destination": "/enrollment/keys/query-agreement-v2",
+      "source": "/home/ubuntu/work/pqc-proof-switch-20260909/query-v2-enrollment-001/keys/query-agreement-v2",
+      "writable": true
+    },
+    {
+      "destination": "/trial/clean-engine",
+      "source": "/home/ubuntu/work/pqc-proof-switch-20260909/clean-engine",
+      "writable": false
+    },
+    {
+      "destination": "/trial/native-template",
+      "source": "/home/ubuntu/work/pqc-proof-switch-20260908/cosnark-rough-002/engine-arithmetic128",
+      "writable": false
+    },
+    {
+      "destination": "/compiler-python",
+      "source": "/home/ubuntu/work/pqc-proof-switch-20260908/cosnark-rough-002/compiler-python",
+      "writable": false
+    },
+    {
+      "destination": "/trial",
+      "source": "/home/ubuntu/work/pqc-proof-switch-20260909/integration-query-001",
+      "writable": true
+    },
+    {
+      "destination": "/trial/bin",
+      "source": "/home/ubuntu/work/pqc-proof-switch-20260909/integration-query-001/bin",
+      "writable": false
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+--- a/src/cbmc-gc/cbmc_gc_parse_options.h
++++ b/src/cbmc-gc/cbmc_gc_parse_options.h
+@@ -34,2 +34,3 @@
+   "(depth):(partial-loops)(no-unwinding-assertions)(unwinding-assertions)" \
++  "(object-bits):" \
+   OPT_GOTO_CHECK \

@@ -1,0 +1,67 @@
+--- a/src/cbmc-gc/cbmc_gc_parse_options.h
++++ b/src/cbmc-gc/cbmc_gc_parse_options.h
+@@ -36,1 +36,1 @@
+-  "(object-bits):" \
++  "(object-bits):(emit-validity)" \
+--- a/src/cbmc-gc/goto_conversion_invocation.cpp
++++ b/src/cbmc-gc/goto_conversion_invocation.cpp
+@@ -222,1 +222,9 @@
+-  if(cmdline.isset("no-minimization"))
++  options.set_option("emit-validity", cmdline.isset("emit-validity"));
++  if(cmdline.isset("emit-validity"))
++  {
++    if(cmdline.isset("partial-loops") || cmdline.isset("no-unwinding-assertions"))
++      throw std::runtime_error{"emit-validity forbids partial loops or disabled unwinding assertions"};
++    options.set_option("unwinding-assertions", true);
++  }
++
++  if(cmdline.isset("no-minimization"))
+--- a/src/cbmc-gc/ssa_to_circuit/boolean.cpp
++++ b/src/cbmc-gc/ssa_to_circuit/boolean.cpp
+@@ -189,1 +189,4 @@
+-  std::vector<bool_function_callt> func_calls;
++  std::vector<bool_function_callt> func_calls;
++  bool const emit_validity = module.options().get_bool_option("emit-validity");
++  literalt execution_valid = const_literal(true);
++  size_t assertion_count = 0, assumption_count = 0;
+@@ -203,1 +206,11 @@
+-    else if(step_it->is_function_call())
++    else if(emit_validity && !step_it->ignore &&
++            (step_it->is_assert() || step_it->is_assume()))
++    {
++      // cond_expr is the existing guarded CBMC property. Assumptions are also
++      // mandatory proof preconditions, never a way to hide truncated execution.
++      execution_valid = prop->land(execution_valid, bv_cbmc.convert(step_it->cond_expr));
++      if(step_it->is_assert()) ++assertion_count;
++      else ++assumption_count;
++      stepper.next_instruction();
++    }
++    else if(step_it->is_function_call())
+@@ -231,1 +244,26 @@
+-  auto io_variables = get_input_output_variables(bv_cbmc.get_map().mapping, func_name, true);
++  auto io_variables = get_input_output_variables(bv_cbmc.get_map().mapping, func_name, true);
++  if(emit_validity)
++  {
++    // A skipped module needs an explicit validity return in its ABI. Refuse
++    // modular circuits until that propagation exists rather than omit checks.
++    if(!func_calls.empty() || func_name != "mpc_main")
++      throw std::runtime_error{"emit-validity requires a monolithic mpc_main"};
++    for(auto const &var: io_variables)
++      if(str(var.var.unqualified_name) == "OUTPUT_assertions")
++        throw std::runtime_error{"OUTPUT_assertions is reserved for compiler validity"};
++    mpc_variable_infot validity;
++    validity.var = extract_variable_info(irep_idt{func_name + "::OUTPUT_assertions"});
++    validity.io_type = io_variable_typet::output;
++    validity.type = unsignedbv_typet{8};
++    for(size_t bit = 0; bit < 8; ++bit)
++    {
++      boolbv_mapt::map_bitt literal;
++      literal.is_set = true;
++      literal.l = bit == 0 ? execution_valid : const_literal(false);
++      validity.literals.push_back(literal);
++    }
++    io_variables.push_back(validity);
++    std::cout << "Circuit validity tracks " << assertion_count << " assertions and "
++              << assumption_count << " assumptions; require OUTPUT_assertions == 1."
++              << std::endl;
++  }

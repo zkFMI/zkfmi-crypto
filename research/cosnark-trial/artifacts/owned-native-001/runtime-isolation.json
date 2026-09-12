@@ -1,0 +1,57 @@
+{
+  "Id": "8de3d951c634f41128d3fa947cd9f5889229a16796d18ba0f0f3e14264a006ef",
+  "Image": "sha256:91d284e9e0f0ba3fed0a005997edff224182eb949a465f54a6c287c249e5c3a4",
+  "State": {
+    "Status": "exited",
+    "ExitCode": 0,
+    "StartedAt": "2026-09-09T09:33:55.390426235Z",
+    "FinishedAt": "2026-09-09T09:44:35.248074714Z",
+    "OOMKilled": false
+  },
+  "HostConfig": {
+    "NetworkMode": "none",
+    "ReadonlyRootfs": true
+  },
+  "Mounts": [
+    {
+      "Source": "/home/ubuntu/work/pqc-proof-switch-20260909/query-v2-enrollment-001",
+      "Destination": "/enrollment",
+      "RW": false
+    },
+    {
+      "Source": "/home/ubuntu/work/pqc-greenfield-20260909/owner-input-003/query-budget",
+      "Destination": "/enrollment/keys/query-agreement-v2",
+      "RW": true
+    },
+    {
+      "Source": "/home/ubuntu/work/pqc-proof-switch-20260909/integration-query-001/bin",
+      "Destination": "/canonical",
+      "RW": false
+    },
+    {
+      "Source": "/home/ubuntu/work/pqc-proof-switch-20260909/clean-engine",
+      "Destination": "/trial/clean-engine",
+      "RW": false
+    },
+    {
+      "Source": "/home/ubuntu/work/pqc-proof-switch-20260908/cosnark-rough-002/engine-arithmetic128",
+      "Destination": "/trial/native-template",
+      "RW": false
+    },
+    {
+      "Source": "/home/ubuntu/work/pqc-proof-switch-20260908/cosnark-rough-002/compiler-python",
+      "Destination": "/compiler-python",
+      "RW": false
+    },
+    {
+      "Source": "/home/ubuntu/work/pqc-greenfield-20260909/owner-input-003",
+      "Destination": "/trial",
+      "RW": true
+    },
+    {
+      "Source": "/home/ubuntu/work/pqc-greenfield-20260909/owner-input-003/owner-inputs",
+      "Destination": "/owner-inputs",
+      "RW": true
+    }
+  ]
+}

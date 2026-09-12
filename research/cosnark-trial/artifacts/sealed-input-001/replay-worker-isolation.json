@@ -1,0 +1,75 @@
+{
+  "Id": "a017fb3fefc1b60d607e3bc9f90dcfd004450812d8eb372eb291982806a1efce",
+  "Image": "sha256:91d284e9e0f0ba3fed0a005997edff224182eb949a465f54a6c287c249e5c3a4",
+  "State": {
+    "Status": "exited",
+    "Running": false,
+    "Paused": false,
+    "Restarting": false,
+    "OOMKilled": false,
+    "Dead": false,
+    "Pid": 0,
+    "ExitCode": 1,
+    "Error": "",
+    "StartedAt": "2026-09-09T14:42:42.860536097Z",
+    "FinishedAt": "2026-09-09T14:42:42.955809642Z"
+  },
+  "Mounts": [
+    {
+      "Type": "bind",
+      "Source": "/home/ubuntu/work/pqc-greenfield-20260909/sealed-input-001/ciphertext",
+      "Destination": "/ciphertext",
+      "Mode": "ro",
+      "RW": false,
+      "Propagation": "rprivate"
+    },
+    {
+      "Type": "bind",
+      "Source": "/home/ubuntu/work/pqc-greenfield-20260909/sealed-input-001/recipient-keys",
+      "Destination": "/recipient-keys",
+      "Mode": "ro",
+      "RW": false,
+      "Propagation": "rprivate"
+    },
+    {
+      "Type": "bind",
+      "Source": "/home/ubuntu/work/pqc-greenfield-20260909/sealed-input-001/receiver-state",
+      "Destination": "/receiver-state",
+      "Mode": "",
+      "RW": true,
+      "Propagation": "rprivate"
+    },
+    {
+      "Type": "bind",
+      "Source": "/home/ubuntu/work/pqc-greenfield-20260909/sealed-input-001/sealed-runner-001",
+      "Destination": "/runner",
+      "Mode": "ro",
+      "RW": false,
+      "Propagation": "rprivate"
+    },
+    {
+      "Type": "bind",
+      "Source": "/home/ubuntu/work/pqc-greenfield-20260909/sealed-input-001/runtime/launch",
+      "Destination": "/launch",
+      "Mode": "ro",
+      "RW": false,
+      "Propagation": "rprivate"
+    }
+  ],
+  "NetworkMode": "none",
+  "ReadonlyRootfs": true,
+  "User": "1000:1000",
+  "Args": [
+    "integration-worker-v2-sealed",
+    "/no-native-engine",
+    "0",
+    "/no-query-roster",
+    "fa7fc6f9f5c9b5a81ac2a1fd0e5579bfa1c97a7f507a61408f449e54d16df7287bce1f2b5ee8c7d4495eff38c65c8b2e91ffdea3b38d342bff8b75ed2ab64ac1",
+    "/no-query-key",
+    "/launch/fill-binding.json",
+    "/ciphertext/replayed-fill/party-0.json",
+    "/launch/receiver-0.json",
+    "cadafdf3e7daa7d908f73d946e85a833b89143964f4704902b0bd1556ffa1483",
+    "/recipient-keys/party-0.key"
+  ]
+}

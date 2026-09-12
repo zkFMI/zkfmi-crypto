@@ -1,0 +1,42 @@
+    Finished `release` profile [optimized] target(s) in 0.05s
+    Finished `release` profile [optimized] target(s) in 0.05s
+     Running unittests src/lib.rs (/trial/target/release/deps/zkfmi_cosnark_trial-cb7cc0465199b003)
+     Running unittests src/main.rs (/trial/target/release/deps/zkfmi_cosnark_trial-6572b28b58e1d709)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/arithmetic.rs (/trial/target/release/deps/arithmetic-058549f7e4c06ece)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 3 tests
+test field_encoding_is_canonical ... ok
+test actual_fft_recovers_coefficients_and_rejects_bad_size ... ok
+test literal_equations_fail_necessary_binding_not_the_fft_check ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/composition_arithmetic.rs (/trial/target/release/deps/composition_arithmetic-5405ba159ce2de66)
+
+running 8 tests
+test financial_relation_detects_inconsistent_notional ... ok
+test collapsed_matrix_relation_binds_constant_and_padding_masks ... ok
+test equality_table_and_low_bit_restriction_are_dual ... ok
+test merkle_opening_binds_index_domain_value_and_salt ... ok
+test transcript_binds_statement_and_message_boundaries ... ok
+test separable_mask_boolean_sum_has_declared_scaling ... ok
+test coset_fold_matches_coefficient_restriction_including_endpoints ... ok
+test message_and_coefficient_linear_functionals_match ... ok
+
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.03s
+
+   Doc-tests zkfmi_cosnark_trial
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s

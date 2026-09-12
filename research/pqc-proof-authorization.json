@@ -1,0 +1,13 @@
+{
+  "task_id": "20260908-full-pqc-proof-switch",
+  "authorization": "research_only_independent_implementation",
+  "source": "User explicitly selected 研究用の独自実装を進める on 2026-09-08",
+  "proof_core_code_reuse": "Do not incorporate the author repository without a suitable license",
+  "hard_boundaries": [
+    "Preserve private distributed witnesses; no coordinator reconstruction",
+    "Do not replace mathematical proof soundness with quorum signatures",
+    "Keep the current public deployment unchanged",
+    "Do not claim external audit or production cryptographic assurance",
+    "Keep the full on/off switch and DeFMI verification as the acceptance target"
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "experiment_id": "cocode-live-avalanche-002",
+  "contract_id": "zkfmi-cocode-live-avalanche-v1",
+  "contract_sha256": "f962d52dcd5d26943cebf50689a6b0fc3d29edbf7e317610b67d2fea0e6a7de0",
+  "closed_plan": ["RUN_ROUGH_END_TO_END_AND_OBSERVE_FINAL_METRIC"],
+  "rough_command": "internal:live_avalanche",
+  "bottleneck": "Run001 stopped before network startup because ANR os/user.Current rejected unregistered UID1000.",
+  "causal_hypothesis": "Using the pinned image's registered oclob UID10001 eliminates the observed OS identity panic and permits the unchanged complete five-validator path to execute.",
+  "single_intended_change": "Use the image's registered UID10001 with a fresh scoped writable runtime/source copy owned by that UID; preserve all001 artifacts and all proof/VM/driver bytes.",
+  "baseline": "cocode-live-avalanche-001: blocked, primary0, 0.449 seconds; ANR panic user: unknown userid1000 before validators started.",
+  "evaluation_population": "One fresh isolated five-validator chain, frozen native003 fill/no-fill proofs, all chunks and canonical negatives, one validator restart; same host is not independent operators.",
+  "point_prediction": 1,
+  "likely_prediction_error": "An actual VM authorization, consensus or large-state boundary not reached in001 blocks the end-to-end path.",
+  "rejection_rule": "Any missing real validator acceptance, differing roots, absent restart readback, changed proof parameters, non-semantic error counted as rejection or existing deployment mutation blocks acceptance.",
+  "promotion_rule": "At most smoke_only; no security certification, independent operators, full application migration or production promotion.",
+  "public_proof_directory": "/proofs",
+  "public_input_sha256": {
+    "receipt.json": "44db45723797a0df0877b3bd184585a659eb5cc1cc49330affa57cc83745d83a",
+    "fill/proof.json": "7dcc998836f0eed42b35e3d4bd551e6ed79fe379146535c111b86e0c95805790",
+    "fill/statement.json": "fccb5e8f93580ff30efb32be5234cf22f03d4b7a0e12b2688f981f1006c48d52",
+    "nofill/proof.json": "8f66e6cd040d4badcfbe711c14d4dd4e856ce8f751b6bb489fd3d37427eac50a",
+    "nofill/statement.json": "87d0a368824bfb50468dcc09605abeb1bb953bf1eacbfaab5718def4e26c6d31"
+  },
+  "network_image": "sha256:a73477f22efc696d6690a6e65c217b84a46ae50af5243d760ffc612d81b4a6e3",
+  "runtime_uid": 10001,
+  "avalanchego_version_observed": "1.14.2",
+  "avalanche_network_runner_version_observed": "1.8.3",
+  "network_isolation": "Fresh network-none container; loopback validators; no published ports; frozen public proof mount read-only; no prior service state."
+}

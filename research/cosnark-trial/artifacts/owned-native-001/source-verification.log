@@ -1,0 +1,119 @@
+   Compiling zkfmi-cosnark-trial v0.1.0 (/work/zkfmi-crypto/research/cosnark-trial)
+    Finished `release` profile [optimized] target(s) in 2.94s
+     Running unittests src/lib.rs (/work/target-native/release/deps/zkfmi_cosnark_trial-dad7cc96fe988afc)
+
+running 3 tests
+test integration::owner_input::tests::owner_edge_uses_fresh_degree_two_evaluations_in_the_bn254_field ... ok
+test integration::owner_input::tests::owner_binding_rejects_another_operation_or_policy_without_reading_secrets ... ok
+     Running tests/arithmetic.rs (/work/target-native/release/deps/arithmetic-a1fc2db2129a02ef)
+test integration::owner_input::tests::signed_delivery_binds_owner_worker_and_operation_before_decryption ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 3 tests
+test actual_fft_recovers_coefficients_and_rejects_bad_size ... ok
+test field_encoding_is_canonical ... ok
+     Running tests/composition_arithmetic.rs (/work/target-native/release/deps/composition_arithmetic-51d4af0f08a37f57)
+test literal_equations_fail_necessary_binding_not_the_fft_check ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 8 tests
+test equality_table_and_low_bit_restriction_are_dual ... ok
+test financial_relation_detects_inconsistent_notional ... ok
+test collapsed_matrix_relation_binds_constant_and_padding_masks ... ok
+test merkle_opening_binds_index_domain_value_and_salt ... ok
+test transcript_binds_statement_and_message_boundaries ... ok
+test separable_mask_boolean_sum_has_declared_scaling ... ok
+test coset_fold_matches_coefficient_restriction_including_endpoints ... ok
+test message_and_coefficient_linear_functionals_match ... ok
+
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.03s
+
+     Running tests/integration_arithmetic.rs (/work/target-native/release/deps/integration_arithmetic-60c2a2a7996b4595)
+
+running 9 tests
+test book_linear_claims_bind_the_same_balance_and_blind_coordinates ... ok
+test full_u64_boundaries_and_atomic_conservation ... ok
+test product_overflow_is_not_accepted_as_modular_integer_arithmetic ... ok
+test negative_balance_cannot_masquerade_as_u64_max ... ok
+test non_boolean_bits_and_wrong_product_are_rejected ... ok
+test no_fill_preserves_balances_even_with_high_bit_quantities ... ok
+test public_fill_flag_is_part_of_the_bound_circuit ... ok
+test unsupported_modes_sequences_and_noncanonical_commitments_fail_closed ... ok
+test legacy_and_query_agreement_protocols_are_explicit_and_not_interchangeable ... ok
+
+test result: ok. 9 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests zkfmi_cosnark_trial
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Compiling zkfmi-cosnark-trial v0.1.0 (/work/zkfmi-crypto/research/cosnark-trial)
+    Finished `release` profile [optimized] target(s) in 2.45s
+     Running unittests src/lib.rs (/work/target-native/release/deps/zkfmi_cosnark_trial-66ec153ad6bdb5c2)
+
+running 10 tests
+test integration::live_run::tests::requires_five_equal_hex_roots_on_both_sides_of_restart ... ok
+test integration::owner_input::tests::owner_edge_uses_fresh_degree_two_evaluations_in_the_bn254_field ... ok
+test integration::owner_input::tests::owner_binding_rejects_another_operation_or_policy_without_reading_secrets ... ok
+test integration::live_run::tests::pending_restart_requires_large_complete_upload_and_expected_root ... ok
+test integration::owner_input::tests::signed_delivery_binds_owner_worker_and_operation_before_decryption ... ok
+test integration::query_agreement::tests::any_non_own_row_or_query_equivocation_changes_the_signed_digest ... ok
+test integration::query_agreement::tests::every_security_relevant_query_context_component_is_digest_bound ... ok
+test integration::query_agreement::tests::seven_distinct_hybrid_approvals_are_mandatory ... ok
+test integration::query_agreement::tests::roster_pin_and_owner_keys_fail_closed ... ok
+test integration::query_agreement::tests::prepared_and_consumed_markers_reject_replay_and_restart ... ok
+
+test result: ok. 10 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s
+
+     Running unittests src/main.rs (/work/target-native/release/deps/zkfmi_cosnark_trial-746ae20c87263643)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/arithmetic.rs (/work/target-native/release/deps/arithmetic-4069b122b5c86809)
+
+running 3 tests
+test field_encoding_is_canonical ... ok
+test actual_fft_recovers_coefficients_and_rejects_bad_size ... ok
+test literal_equations_fail_necessary_binding_not_the_fft_check ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/composition_arithmetic.rs (/work/target-native/release/deps/composition_arithmetic-07e312bca4814310)
+
+running 8 tests
+test financial_relation_detects_inconsistent_notional ... ok
+test equality_table_and_low_bit_restriction_are_dual ... ok
+test collapsed_matrix_relation_binds_constant_and_padding_masks ... ok
+test transcript_binds_statement_and_message_boundaries ... ok
+test merkle_opening_binds_index_domain_value_and_salt ... ok
+test separable_mask_boolean_sum_has_declared_scaling ... ok
+test coset_fold_matches_coefficient_restriction_including_endpoints ... ok
+test message_and_coefficient_linear_functionals_match ... ok
+
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.03s
+
+     Running tests/integration_arithmetic.rs (/work/target-native/release/deps/integration_arithmetic-9cc44993e3266231)
+
+running 9 tests
+test book_linear_claims_bind_the_same_balance_and_blind_coordinates ... ok
+test full_u64_boundaries_and_atomic_conservation ... ok
+test product_overflow_is_not_accepted_as_modular_integer_arithmetic ... ok
+test negative_balance_cannot_masquerade_as_u64_max ... ok
+test non_boolean_bits_and_wrong_product_are_rejected ... ok
+test no_fill_preserves_balances_even_with_high_bit_quantities ... ok
+test public_fill_flag_is_part_of_the_bound_circuit ... ok
+test unsupported_modes_sequences_and_noncanonical_commitments_fail_closed ... ok
+test legacy_and_query_agreement_protocols_are_explicit_and_not_interchangeable ... ok
+
+test result: ok. 9 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+    Checking zkfmi-cosnark-trial v0.1.0 (/work/zkfmi-crypto/research/cosnark-trial)
+    Finished `release` profile [optimized] target(s) in 1.39s

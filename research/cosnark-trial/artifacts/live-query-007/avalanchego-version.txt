@@ -1,0 +1,1 @@
+avalanchego/1.14.2 [database=v1.4.5, rpcchainvm=45, commit=6e5acf909c7a16b991142d6b3979bac5699bdb68, go=1.25.8]

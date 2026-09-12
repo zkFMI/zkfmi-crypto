@@ -1,0 +1,62 @@
+{
+  "experiment_id": "cosnark-rough-010",
+  "contract_id": "zkfmi-private-pq-cosnark-trial-v1",
+  "contract_sha256": "45dc526721b4f174c794557d15f1bc171a8bf4ef41fe210e5901bdd5402e26fb",
+  "stage": "RUN_ROUGH_END_TO_END_AND_OBSERVE_FINAL_METRIC",
+  "bottleneck": "Rough-009 passed both entropy guards, all seven masked constraint rounds, endpoints and the PCS mask claim. The compiler for the 16384-wide PCS reply was killed after about 209 seconds; Docker recorded an oom event for its 32 GiB container.",
+  "new_causal_evidence": "The same run established that official -M fixes the native state/initial-identity failure. The next program expands 3 large dot-product sums into scalar Array loads. Pinned sint.sum at Compiler/types.py:3233 implements a native vector prefix sum and final-element selection.",
+  "user_authorization": "2026-09-08 user requested completion through the full seven-party malicious-MPC and proof/tamper execution, after the preliminary blocked result.",
+  "causal_hypothesis": "The explicit normalized fold consistently binds the complete masked financial sumcheck and linear-relation opening when all private scalar computations use the pinned malicious-shamir engine.",
+  "falsifiable_prediction": "One fresh privately generated bounded financial witness produces a public proof accepted without private state; every declared negative case rejects.",
+  "single_intended_change": "Replace scalar unrolled summation in native_dot with the pinned official secret-register vector sum intrinsic, retaining identical dot products, dimensions, -M, security settings and all gates.",
+  "whole_candidate": {
+    "private_relation": "64-row R1CS: private amount times price equals notional, notional plus private remainder equals reserve 65535, 8-bit amount and price and 16-bit remainder, and externally bound constant witness column",
+    "native_mpc": "Official pinned MP-SPDZ malicious-shamir, N=7, T=2, checked reveals; per-owner random input files and per-owner persistence loading; supported NO_MIXED_CIRCUITS build; compiler and runtime security remain 128; unavailable mixed-circuit instructions fail closed",
+    "proof": "Joint witness/mask commitment; padded first Spartan sumcheck; degree-three separable mask committed by coefficients; one general linear-functional opening for the second relation",
+    "explicit_adaptations": [
+      "Normalized row fold (1-r)E+rO, without exceptional division at r=1",
+      "k=1 and native degree-two Shamir row dimension at points 1..7",
+      "One coPCS fold followed by a complete masked terminal oracle, with message width 16384 and RS evaluation width 65536",
+      "Degree-three separable Libra-style masking to match the full constraint sumcheck degree",
+      "One joint commitment and O(nnz) verifier linear-functional check instead of the optimized second sumcheck/sparse matrix oracle",
+      "Codeword domain is GENERATOR times the 65536-point subgroup; the fully revealed folded domain uses GENERATOR squared. Both are disjoint from the original secret-message interpolation subgroup.",
+      "Each private worker binds its statement and roots, recomputes Fiat-Shamir from the public constraint prefix and prior opening, releases each folded mask once, and checks/consumes one transcript-derived 512-query set."
+    ],
+    "hash_and_queries": "SHA-512 salted Merkle leaves and Fiat-Shamir; 512 per-opening queries; exact security parameter/composition proof is not claimed by this smoke"
+  },
+  "baseline": "Existing classical/hybrid release is unchanged; this is not a performance comparison or a production promotion.",
+  "evaluation_population": "One fresh distributed synthetic financial witness; proof mutations using the same accepted proof; actual native rejection runs for an invalid witness and two inconsistent party views.",
+  "primary_metric": "valid_proof_accepted_and_all_declared_invalid_cases_rejected",
+  "point_prediction": 1,
+  "likely_prediction_error": "Predicted: PCS-reply compilation fits the retained 32 GiB cap and completes; any subsequent failure should expose a genuine remaining PCS convention or process-boundary error.",
+  "closed_plan": [
+    "RUN_ROUGH_END_TO_END_AND_OBSERVE_FINAL_METRIC"
+  ],
+  "rough_command": "internal:full_native_prover",
+  "negative_cases": [
+    "changed public statement",
+    "changed proof commitment root",
+    "changed codeword opening",
+    "changed final evaluation claim",
+    "inconsistent per-party challenge view",
+    "invalid witness",
+    "changed deployment mode or identifier"
+  ],
+  "rejection_rule": "Any invalid case accepted, missing expected native rejection marker, private coordinator witness reconstruction, wrong threshold, substituted classical proof, missing proof artifact or failed standalone verification prevents smoke success.",
+  "promotion_rule": "At most smoke_only; production, security/composition review, operational financial commitment adapters, full lifecycle and independent operators remain outside this experiment's acceptance authority.",
+  "compiler_dependency": {
+    "name": "gmpy2",
+    "version": "2.2.1",
+    "source": "https://pypi.org/project/gmpy2/2.2.1/",
+    "license": "LGPL-3.0-or-later",
+    "use": "Pinned official compiler only; isolated target directory; no custom proof-core code",
+    "wheel_sha256": "b7131231fc96f57272066295c81cbf11b3233a9471659bca29ddc90a7bde9bfa"
+  },
+  "additional_security_gate": "After all seven declared negatives, each of seven owner workers must reject a repeated query request with the exact consumed-budget error, not a crash or unrelated native failure.",
+  "compiler_memory_reference": "https://mp-spdz.readthedocs.io/en/latest/troubleshooting.html#order-of-memory-instructions-not-preserved",
+  "resource_evidence": {
+    "docker_oom_unix_seconds": 1788864746,
+    "container_id": "59b90ced7d6b8e4a300657b9440806a5abe3206e926b29ad333673439712f5cb",
+    "memory_limit_gib": 32
+  }
+}

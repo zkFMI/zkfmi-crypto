@@ -1,0 +1,58 @@
+{
+  "Id": "fe5e1868ac9103d7e1d9c212eb292cbd98a8bd46fbae3c027ae13a26d28ca8ac",
+  "Image": "sha256:91d284e9e0f0ba3fed0a005997edff224182eb949a465f54a6c287c249e5c3a4",
+  "State": {
+    "Status": "exited",
+    "Running": false,
+    "Paused": false,
+    "Restarting": false,
+    "OOMKilled": false,
+    "Dead": false,
+    "Pid": 0,
+    "ExitCode": 0,
+    "Error": "",
+    "StartedAt": "2026-09-09T14:26:35.172487327Z",
+    "FinishedAt": "2026-09-09T14:26:35.507061098Z"
+  },
+  "Mounts": [
+    {
+      "Type": "bind",
+      "Source": "/home/ubuntu/work/pqc-greenfield-20260909/sealed-input-001/sealed-runner-001",
+      "Destination": "/runner",
+      "Mode": "ro",
+      "RW": false,
+      "Propagation": "rprivate"
+    },
+    {
+      "Type": "bind",
+      "Source": "/home/ubuntu/work/pqc-greenfield-20260909/sealed-input-001/sender",
+      "Destination": "/sender",
+      "Mode": "ro",
+      "RW": false,
+      "Propagation": "rprivate"
+    },
+    {
+      "Type": "bind",
+      "Source": "/home/ubuntu/work/pqc-greenfield-20260909/sealed-input-001/runtime/launch",
+      "Destination": "/launch",
+      "Mode": "ro",
+      "RW": false,
+      "Propagation": "rprivate"
+    },
+    {
+      "Type": "bind",
+      "Source": "/home/ubuntu/work/pqc-greenfield-20260909/sealed-input-001/ciphertext",
+      "Destination": "/ciphertext",
+      "Mode": "",
+      "RW": true,
+      "Propagation": "rprivate"
+    }
+  ],
+  "NetworkMode": "none",
+  "ReadonlyRootfs": true,
+  "User": "1000:1000",
+  "Args": [
+    "-c",
+    "set -eu; for n in fill nofill invalid; do /runner integration-lab-seal-inputs /sender/$n-values.json /launch/$n-binding.json /launch/sender-config.json 0d24880dcdf5a3438c2e1e019f1666e2be1cf4cde55281fd88ae8bee5871ab73 /sender/key /ciphertext/$n; done"
+  ]
+}

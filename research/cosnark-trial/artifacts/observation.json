@@ -1,0 +1,21 @@
+{
+  "fixture": "PUBLIC exact-field one-round Construction 4 necessary equality; not complete coPCS",
+  "full_candidate_executed": false,
+  "malicious_mpc_executed": false,
+  "zero_knowledge_demonstrated": false,
+  "security_parameters_validated": false,
+  "public_rows": 7,
+  "public_coefficients_per_row": 8,
+  "rs_encoding_points_per_row": 32,
+  "sumcheck_initial_identity": true,
+  "literal_fold_rows_in_degree_bound": 7,
+  "literal_fold_matches_even_plus_r_odd": 7,
+  "literal_final_evaluation_matches_sumcheck": false,
+  "sumcheck_claim_hex_le": "78f4080000000000000000000000000000000000000000000000000000000000",
+  "literal_decoded_claim_hex_le": "a080300000000000000000000000000000000000000000000000000000000000",
+  "normalized_control_matches_sumcheck": true,
+  "normalized_control_rows_in_degree_bound": 7,
+  "normalized_endpoint_controls_pass": true,
+  "verdict": "blocked",
+  "blocker": "The literal Appendix B fold does not restrict the coefficient multilinear extension at the same challenge used in Construction 4. The normalized control is a local equation adjustment, not an established malicious-secure coSNARK implementation."
+}

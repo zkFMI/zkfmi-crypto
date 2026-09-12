@@ -1,0 +1,30 @@
+{
+  "experiment_id": "cocode-live-avalanche-001",
+  "contract_id": "zkfmi-cocode-live-avalanche-v1",
+  "contract_sha256": "f962d52dcd5d26943cebf50689a6b0fc3d29edbf7e317610b67d2fea0e6a7de0",
+  "closed_plan": [
+    "RUN_ROUGH_END_TO_END_AND_OBSERVE_FINAL_METRIC"
+  ],
+  "rough_command": "internal:live_avalanche",
+  "bottleneck": "The native proofs have not yet been accepted by actual AvalancheGo-hosted validators.",
+  "causal_hypothesis": "The unchanged proof verifier and canonical transaction methods execute inside each real VM; identical public proof chunks yield five equal accepted roots and survive node restart.",
+  "single_intended_change": "Replace the local-only canonical acceptance boundary with actual five-validator JSON-RPC submission, finalized receipt/root readback and restart recovery.",
+  "baseline": "cocode-defmi-integration-003: smoke_only, primary1, two real native proofs, 740 in-process canonical blocks and completed upload recovery.",
+  "evaluation_population": "One fresh isolated five-validator chain, the exact frozen native003 fill/no-fill proofs, all chunk uploads and declared canonical negatives, one validator restart. Same host is not independent operators.",
+  "point_prediction": 1,
+  "likely_prediction_error": "Actual VM authorization, large-state transport or consensus timings differ from the in-process driver and prevent finalization.",
+  "rejection_rule": "Any missing real validator acceptance, differing roots, no restart readback, altered proof parameters, non-semantic error counted as rejection or existing deployment mutation blocks acceptance.",
+  "promotion_rule": "At most smoke_only; no cryptographic security certification, independent operators, full application PQ migration or production promotion.",
+  "public_proof_directory": "/proofs",
+  "public_input_sha256": {
+    "receipt.json": "44db45723797a0df0877b3bd184585a659eb5cc1cc49330affa57cc83745d83a",
+    "fill/proof.json": "7dcc998836f0eed42b35e3d4bd551e6ed79fe379146535c111b86e0c95805790",
+    "fill/statement.json": "fccb5e8f93580ff30efb32be5234cf22f03d4b7a0e12b2688f981f1006c48d52",
+    "nofill/proof.json": "8f66e6cd040d4badcfbe711c14d4dd4e856ce8f751b6bb489fd3d37427eac50a",
+    "nofill/statement.json": "87d0a368824bfb50468dcc09605abeb1bb953bf1eacbfaab5718def4e26c6d31"
+  },
+  "network_image": "sha256:a73477f22efc696d6690a6e65c217b84a46ae50af5243d760ffc612d81b4a6e3",
+  "avalanchego_version_observed": "1.14.2",
+  "avalanche_network_runner_version_observed": "1.8.3",
+  "network_isolation": "One new network-none container with loopback-only five-process validators, no published ports and no existing service state mounts."
+}

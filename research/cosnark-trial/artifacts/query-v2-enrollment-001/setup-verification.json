@@ -1,0 +1,28 @@
+{
+  "kind": "deterministic_laboratory_enrollment_and_legacy_regression",
+  "native_binary_sha256": "8e99b8e895381bcdaf2b3f0d59cc4776a7c9c0c303b96abea496e54231cef950",
+  "public_roster_sha256": "d1ce0ef042d939f7cf4f24a78ba841a3a9144afad9fc259e35611f7898428fad",
+  "canonical_roster_sha512": "fa7fc6f9f5c9b5a81ac2a1fd0e5579bfa1c97a7f507a61408f449e54d16df7287bce1f2b5ee8c7d4495eff38c65c8b2e91ffdea3b38d342bff8b75ed2ab64ac1",
+  "launch_config_sha256": "5648ba5c450ba1ed48952f3bc2d04f7524d237e4000505a14670b449b88845c0",
+  "owner_count": 7,
+  "distinct_hybrid_public_keys": 7,
+  "public_key_bytes_each": 1984,
+  "owner_private_key_file_mode_each": "0600",
+  "private_key_values_read_or_exported_by_coordinator": false,
+  "roster_digest_cli_exit_code": 0,
+  "legacy_v1_public_only_verification": {
+    "fill": {
+      "proof_sha256": "7dcc998836f0eed42b35e3d4bd551e6ed79fe379146535c111b86e0c95805790",
+      "exit_code": 0
+    },
+    "nofill": {
+      "proof_sha256": "8f66e6cd040d4badcfbe711c14d4dd4e856ce8f751b6bb489fd3d37427eac50a",
+      "exit_code": 0
+    },
+    "command": "integration-verify /public/proof.json /public/statement.json",
+    "read_only_image": true,
+    "network": "none",
+    "private_run_state_or_owner_keys_mounted": false
+  },
+  "boundary": "Same-host laboratory enrollment, not independent operator authority or isolated custody. No v2 proof-generation or canonical acceptance experiment has run yet."
+}

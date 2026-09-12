@@ -135,6 +135,48 @@ impl KemDecapsulator for HybridKemKey {
 
 pub struct HybridKemEncapsulator;
 
+#[cfg(feature = "private-proof-witness")]
+impl HybridKemEncapsulator {
+    /// Sender-private proof adapter; both independently sampled seeds must stay
+    /// private. It uses the same upstream X25519/ML-KEM/HKDF implementations as
+    /// the ordinary encapsulator, not a host assertion of encryption validity.
+    pub(crate) fn encapsulate_with_coins(
+        &self,
+        public_key: &[u8],
+        coins: &[u8; 64],
+    ) -> Result<Encapsulation> {
+        if public_key.len() != 32 + ML_KEM_768_EK_BYTES {
+            return Err(CryptoError::InvalidKey);
+        }
+        let seed = Zeroizing::new(<[u8; 32]>::try_from(&coins[..32]).expect("fixed seed"));
+        let pq_coins = Zeroizing::new(<[u8; 32]>::try_from(&coins[32..]).expect("fixed coins"));
+        let ephemeral = StaticSecret::from(*seed);
+        let public = PublicKey::from(<[u8; 32]>::try_from(&public_key[..32]).expect("checked key"));
+        let shared_x = ephemeral.diffie_hellman(&public);
+        if !shared_x.was_contributory() {
+            return Err(CryptoError::InvalidKey);
+        }
+        let pq = MlKem768Encapsulator.encapsulate_with_coins(&public_key[32..], &pq_coins)?;
+        let ct = HybridCiphertext {
+            classical: PublicKey::from(&ephemeral).to_bytes().to_vec(),
+            pq: pq.ciphertext,
+        };
+        let shared_secret = combine(
+            shared_x.as_bytes(),
+            pq.shared_secret
+                .as_slice()
+                .try_into()
+                .map_err(|_| CryptoError::InvalidKey)?,
+            &ct,
+            self.suite(),
+        )?;
+        Ok(Encapsulation {
+            ciphertext: ct.encode()?,
+            shared_secret,
+        })
+    }
+}
+
 impl KemEncapsulator for HybridKemEncapsulator {
     fn suite(&self) -> Suite {
         Suite::new(SuiteId::X25519MlKem768)

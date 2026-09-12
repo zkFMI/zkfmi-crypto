@@ -1,0 +1,39 @@
+{
+  "experiment_id": "cocode-defmi-query-agreement-002",
+  "contract_id": "zkfmi-cocode-defmi-query-agreement-v2",
+  "contract_sha256": "91a8dd2f2f71feec8aed9664b73787836198ca513b961afb5fa2f44da3764a88",
+  "closed_plan": [
+    "RUN_ROUGH_END_TO_END_AND_OBSERVE_FINAL_METRIC"
+  ],
+  "rough_command": "internal:native_to_canonical_defmi",
+  "bottleneck": "Run001 completed all11 native masked-constraint rounds but every worker failed to create its durable query agreement directory because the owner enrollment mount was read-only.",
+  "causal_hypothesis": "A dedicated private writable query-budget submount, while keeping owner key files and public roster read-only, permits the already-built v2 workers to reserve and consume their one-shot query budgets and finish the same whole proof/canonical path.",
+  "single_intended_change": "Runtime mount correction only: precreate owner-key-parent/query-agreement-v2 with0700 and mount only that durable budget directory writable. Keep all proof/native/canonical binaries, keys, roster pin, dimensions, timeouts and verification code unchanged.",
+  "baseline": "cocode-defmi-query-agreement-001: blocked, primary0,113.251845184 seconds; no public proof produced; all seven owner-local logs report 'owner query agreement directory must be private' at directory creation on the read-only mount.",
+  "evaluation_population": "One fresh distributed private synthetic four-account book; real native fill and recovered no-fill; both independent public-process verifications; canonical commitment/upload/recovery/settlement/replay gates; an actual invalid-product native run. Seven laboratory owner identities share one host and are not independent operators.",
+  "point_prediction": 1,
+  "likely_prediction_error": "After durable query storage becomes writable, an actual agreement/PCS or later recovery phase may expose a separate implementation mismatch not reached by run001.",
+  "trusted_query_roster_sha512": "fa7fc6f9f5c9b5a81ac2a1fd0e5579bfa1c97a7f507a61408f449e54d16df7287bce1f2b5ee8c7d4495eff38c65c8b2e91ffdea3b38d342bff8b75ed2ab64ac1",
+  "public_roster_sha256": "d1ce0ef042d939f7cf4f24a78ba841a3a9144afad9fc259e35611f7898428fad",
+  "launch_config_sha256": "5648ba5c450ba1ed48952f3bc2d04f7524d237e4000505a14670b449b88845c0",
+  "native_binary_sha256": "9ba88db94cd4e33ca61b06c26d64e1c11c4f8636631265a0542f8a9b1c4c67e1",
+  "canonical_binary_sha256": "7836ab5c2bbe93fd534cf2a1cd5f1227fc0daf308c4da4f9e871c2ff33f8b26d",
+  "negative_gates": [
+    "wrong authoritative previous book commitment",
+    "changed output book commitment",
+    "changed proof opening",
+    "mixed deployment mode or identifier",
+    "replayed operation",
+    "stale book sequence after recovery",
+    "altered or incomplete canonical proof chunks",
+    "invalid private product or negative balance"
+  ],
+  "additional_proof_negatives": [
+    "changed trusted query roster",
+    "v2 proof rejected by explicit legacy verifier"
+  ],
+  "rejection_rule": "Missing intended v2 execution, any accepted declared negative, mismatched authoritative book or roster, missing exact canonical v2 receipt binding, or any weakened bound blocks the whole gate.",
+  "promotion_rule": "At most smoke_only. No concrete post-quantum/security/composition certification, no independent operator custody, no public deployment, and no full QOMM/OCLOB or deployment-wide migration claim.",
+  "runtime_writable_owner_state": "/enrollment/keys/query-agreement-v2",
+  "owner_key_and_roster_mount_remains_read_only": true
+}

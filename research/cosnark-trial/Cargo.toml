@@ -1,0 +1,37 @@
+[workspace]
+members = ["."]
+resolver = "2"
+
+[package]
+name = "zkfmi-cosnark-trial"
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+publish = false
+description = "Independent research implementation; not a production proof backend"
+
+[features]
+default = ["native-prover"]
+native-prover = ["dep:qomm-mpc", "owner-input"]
+owner-input = ["dep:zkfmi-crypto"]
+pqc-note-circuit = []
+
+[[bin]]
+name = "zkfmi-cosnark-trial"
+path = "src/main.rs"
+required-features = ["native-prover"]
+
+[dependencies]
+ark-ff = "=0.5.0"
+ark-poly = "=0.5.0"
+ark-bn254 = { version = "=0.5.0", default-features = false, features = ["scalar_field"] }
+# The native experiment is pinned by this crate's Cargo.lock (0.8.5). Permit
+# the verifier-only consumer to retain its existing compatible 0.8 lock entry.
+rand = ">=0.8.5, <0.9"
+sha2 = "=0.10.9"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+hex = "0.4"
+zeroize = "1.8"
+qomm-mpc = { path = "../../../zkpi/rust/qomm-mpc", optional = true }
+zkfmi-crypto = { path = "../..", optional = true }

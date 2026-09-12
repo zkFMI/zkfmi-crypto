@@ -1,0 +1,88 @@
+--- a/src/mac/hmac.c
++++ b/src/mac/hmac.c
+@@ -50,1 +50,1 @@
+-	(*hc)->init(hc);
++	br_sha256_init((br_sha256_context *)hc);
+@@ -51,1 +51,1 @@
+-	(*hc)->update(hc, tmp, blen);
++	br_sha256_update((br_sha256_context *)hc, tmp, blen);
+@@ -52,1 +52,1 @@
+-	(*hc)->state(hc, ks);
++	br_sha256_state((const br_sha256_context *)hc, ks);
+@@ -66,1 +66,1 @@
+-		dig->init(&hc.vtable);
++		br_sha256_init((br_sha256_context *)&hc.vtable);
+@@ -67,1 +67,1 @@
+-		dig->update(&hc.vtable, key, key_len);
++		br_sha256_update((br_sha256_context *)&hc.vtable, key, key_len);
+@@ -68,1 +68,1 @@
+-		dig->out(&hc.vtable, kbuf);
++		br_sha256_out((const br_sha256_context *)&hc.vtable, kbuf);
+@@ -86,1 +86,1 @@
+-	dig->init(&ctx->dig.vtable);
++	br_sha256_init((br_sha256_context *)&ctx->dig.vtable);
+@@ -87,1 +87,1 @@
+-	dig->set_state(&ctx->dig.vtable, kc->ksi, (uint64_t)blen);
++	br_sha256_set_state((br_sha256_context *)&ctx->dig.vtable, kc->ksi, (uint64_t)blen);
+@@ -100,1 +100,1 @@
+-	ctx->dig.vtable->update(&ctx->dig.vtable, data, len);
++	br_sha256_update((br_sha256_context *)&ctx->dig.vtable, data, len);
+@@ -113,1 +113,1 @@
+-	dig->out(&ctx->dig.vtable, tmp);
++	br_sha256_out((const br_sha256_context *)&ctx->dig.vtable, tmp);
+@@ -115,1 +115,1 @@
+-	dig->init(&hc.vtable);
++	br_sha256_init((br_sha256_context *)&hc.vtable);
+@@ -116,1 +116,1 @@
+-	dig->set_state(&hc.vtable, ctx->kso, (uint64_t)blen);
++	br_sha256_set_state((br_sha256_context *)&hc.vtable, ctx->kso, (uint64_t)blen);
+@@ -118,1 +118,1 @@
+-	dig->update(&hc.vtable, tmp, hlen);
++	br_sha256_update((br_sha256_context *)&hc.vtable, tmp, hlen);
+@@ -119,1 +119,1 @@
+-	dig->out(&hc.vtable, tmp);
++	br_sha256_out((const br_sha256_context *)&hc.vtable, tmp);
+--- a/src/aead/gcm.c
++++ b/src/aead/gcm.c
+@@ -71,1 +71,1 @@
+-	(*bctx)->run(bctx, iv, 0, ctx->h, sizeof ctx->h);
++	br_aes_ct_ctr_run((const br_aes_ct_ctr_keys *)bctx, iv, 0, ctx->h, sizeof ctx->h);
+@@ -94,1 +94,1 @@
+-		ctx->gh(ty, ctx->h, iv, len);
++		br_ghash_ctmul32(ty, ctx->h, iv, len);
+@@ -97,1 +97,1 @@
+-		ctx->gh(ty, ctx->h, tmp, 16);
++		br_ghash_ctmul32(ty, ctx->h, tmp, 16);
+@@ -128,1 +128,1 @@
+-		ctx->gh(ctx->y, ctx->h, ctx->buf, 16);
++		br_ghash_ctmul32(ctx->y, ctx->h, ctx->buf, 16);
+@@ -140,1 +140,1 @@
+-	ctx->gh(ctx->y, ctx->h, data, dlen);
++	br_ghash_ctmul32(ctx->y, ctx->h, data, dlen);
+@@ -158,1 +158,1 @@
+-		ctx->gh(ctx->y, ctx->h, ctx->buf, ptr);
++		br_ghash_ctmul32(ctx->y, ctx->h, ctx->buf, ptr);
+@@ -195,1 +195,1 @@
+-		ctx->gh(ctx->y, ctx->h, ctx->buf, 16);
++		br_ghash_ctmul32(ctx->y, ctx->h, ctx->buf, 16);
+@@ -203,1 +203,1 @@
+-		ctx->gh(ctx->y, ctx->h, buf, dlen);
++		br_ghash_ctmul32(ctx->y, ctx->h, buf, dlen);
+@@ -205,1 +205,1 @@
+-	ctx->jc = (*ctx->bctx)->run(ctx->bctx, ctx->j0_1, ctx->jc, buf, dlen);
++	ctx->jc = br_aes_ct_ctr_run((const br_aes_ct_ctr_keys *)ctx->bctx, ctx->j0_1, ctx->jc, buf, dlen);
+@@ -207,1 +207,1 @@
+-		ctx->gh(ctx->y, ctx->h, buf, dlen);
++		br_ghash_ctmul32(ctx->y, ctx->h, buf, dlen);
+@@ -220,1 +220,1 @@
+-		ctx->jc = (*ctx->bctx)->run(ctx->bctx, ctx->j0_1,
++		ctx->jc = br_aes_ct_ctr_run((const br_aes_ct_ctr_keys *)ctx->bctx, ctx->j0_1,
+@@ -248,1 +248,1 @@
+-		ctx->gh(ctx->y, ctx->h, ctx->buf, ptr);
++		br_ghash_ctmul32(ctx->y, ctx->h, ctx->buf, ptr);
+@@ -256,1 +256,1 @@
+-	ctx->gh(ctx->y, ctx->h, tmp, 16);
++	br_ghash_ctmul32(ctx->y, ctx->h, tmp, 16);
+@@ -263,1 +263,1 @@
+-	(*ctx->bctx)->run(ctx->bctx, ctx->j0_1, ctx->j0_2, tag, 16);
++	br_aes_ct_ctr_run((const br_aes_ct_ctr_keys *)ctx->bctx, ctx->j0_1, ctx->j0_2, tag, 16);

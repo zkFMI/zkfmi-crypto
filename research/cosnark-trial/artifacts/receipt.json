@@ -1,0 +1,28 @@
+{
+  "contract_id": "zkfmi-private-pq-cosnark-trial-v1",
+  "contract_sha256": "45dc526721b4f174c794557d15f1bc171a8bf4ef41fe210e5901bdd5402e26fb",
+  "declared_negative_cases_executed": 0,
+  "earliest_unresolved_gate": "Resolve the coPCS fold-to-MLE binding; then execute the full private financial R1CS with seven-party malicious MPC and required negative cases.",
+  "experiment_id": "cosnark-rough-001",
+  "finished_unix_seconds": 1788858381,
+  "inputs": {
+    "Cargo.lock": "bdd8a1a0e88fae1824366cf7fc239acbbe31ea318052fa32459d24e8d9b2d31c",
+    "Cargo.toml": "1e7319889265045a0213fbbabb23e98def8ebb71c6d5dd5dd64df259e6d4a708",
+    "contract.json": "45dc526721b4f174c794557d15f1bc171a8bf4ef41fe210e5901bdd5402e26fb",
+    "experiment.json": "025428b569d937eadd7e29378b973b6234fdff40d1181fd78ca47ee98c2f8fb4",
+    "src/field.rs": "4a3b2d2d799234fabe184c5f36bf1b880a18fe52164818b10a07630af9024367",
+    "src/fold_binding_probe.rs": "8a097ab8d224109e7ff741d11ccaedea8d4dcf8fdab9ca20dded420d8b5e889a",
+    "src/lib.rs": "6de415fe3ca2576558b7daf75399dfc9e0692dd282ddaeab14420dcdb2e6cf92",
+    "src/main.rs": "c51a6c046e61b7f4d2b9c9610e348accf42f676fe0de453a5621cbe751cd3d0d"
+  },
+  "manifest_sha256": "025428b569d937eadd7e29378b973b6234fdff40d1181fd78ca47ee98c2f8fb4",
+  "mpc_artifact": null,
+  "observation_sha256": "80228d00ad3e6f2b8ca580aa7dab700c133a10e69d7caa778d569e6cae82715e",
+  "primary_metric_observed": false,
+  "primary_metric_value": null,
+  "public_proof_artifact": null,
+  "reason": "The literal Appendix B fold does not restrict the coefficient multilinear extension at the same challenge used in Construction 4. The normalized control is a local equation adjustment, not an established malicious-secure coSNARK implementation.",
+  "stage": "RUN_ROUGH_END_TO_END_AND_OBSERVE_FINAL_METRIC",
+  "started_unix_seconds": 1788858381,
+  "verdict": "blocked"
+}

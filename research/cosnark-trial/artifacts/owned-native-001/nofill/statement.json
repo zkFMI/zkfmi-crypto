@@ -1,0 +1,9 @@
+{
+  "deployment_id": "cocode-owned-native-001",
+  "book_id": "private-four-account-book",
+  "operation_id": "nofill",
+  "sequence": 2,
+  "before_commitment": "17cd90098db88f203cb3fca5c3cc313052fb8a8102be796eac335bce468e0a41dce483dbb8ca5fcc76fdf8d96024f9ecb0c3e37ad6d8d4860bda70dc762915f5",
+  "after_commitment": "901615152c03e7015051d2f51583595c39a03a2e9b987c08471b4048fd1b8ce4b039053264f8e6fd651f5310fdd57b44e7895672ccbccf7832aa8697c328316f",
+  "no_fill": true
+}

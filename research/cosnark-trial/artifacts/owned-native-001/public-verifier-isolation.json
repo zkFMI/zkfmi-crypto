@@ -1,0 +1,27 @@
+{
+  "Id": "753cd118d5ac3425d9228bc03073bf543a105fb3f315f103412aa9c340dc798d",
+  "Image": "sha256:91d284e9e0f0ba3fed0a005997edff224182eb949a465f54a6c287c249e5c3a4",
+  "State": {
+    "Status": "exited",
+    "ExitCode": 0,
+    "StartedAt": "2026-09-09T13:50:01.578869018Z",
+    "FinishedAt": "2026-09-09T13:50:06.686501707Z",
+    "OOMKilled": false
+  },
+  "HostConfig": {
+    "NetworkMode": "none",
+    "ReadonlyRootfs": true
+  },
+  "Mounts": [
+    {
+      "Source": "/home/ubuntu/work/pqc-greenfield-20260909/owner-input-003/owned-runner-003",
+      "Destination": "/runner",
+      "RW": false
+    },
+    {
+      "Source": "/home/ubuntu/work/pqc-greenfield-20260909/owner-input-003/public-001",
+      "Destination": "/public",
+      "RW": false
+    }
+  ]
+}

@@ -275,18 +275,17 @@ impl KemDecapsulator for MlKem768Key {
 
 pub struct MlKem768Encapsulator;
 
-impl KemEncapsulator for MlKem768Encapsulator {
-    fn suite(&self) -> Suite {
-        Suite::new(SuiteId::MlKem768)
-    }
-    fn encapsulate(&self, public_key: &[u8]) -> Result<Encapsulation> {
+impl MlKem768Encapsulator {
+    pub(crate) fn encapsulate_with_coins(
+        &self,
+        public_key: &[u8],
+        coins: &[u8; 32],
+    ) -> Result<Encapsulation> {
         let encoded = ml_kem::Key::<ml_kem::EncapsulationKey<MlKem768>>::try_from(public_key)
             .map_err(|_| CryptoError::InvalidKey)?;
         let key = ml_kem::EncapsulationKey::<MlKem768>::new(&encoded)
             .map_err(|_| CryptoError::InvalidKey)?;
-        // FIPS 203's m is generated independently from the OS at this backend boundary.
-        let mut randomness = Zeroizing::new(ml_kem::B32::default());
-        getrandom_04::fill(randomness.as_mut()).map_err(|_| CryptoError::Randomness)?;
+        let randomness = Zeroizing::new(ml_kem::B32::from(*coins));
         let (ct, mut shared) = key.encapsulate_deterministic(&randomness);
         let shared_secret = Zeroizing::new(shared.to_vec());
         shared.zeroize();
@@ -294,6 +293,18 @@ impl KemEncapsulator for MlKem768Encapsulator {
             ciphertext: ct.to_vec(),
             shared_secret,
         })
+    }
+}
+
+impl KemEncapsulator for MlKem768Encapsulator {
+    fn suite(&self) -> Suite {
+        Suite::new(SuiteId::MlKem768)
+    }
+    fn encapsulate(&self, public_key: &[u8]) -> Result<Encapsulation> {
+        // FIPS 203's m is generated independently from the OS at this backend boundary.
+        let mut randomness = Zeroizing::new([0u8; 32]);
+        getrandom_04::fill(randomness.as_mut()).map_err(|_| CryptoError::Randomness)?;
+        self.encapsulate_with_coins(public_key, &randomness)
     }
 }
 

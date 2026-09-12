@@ -1,0 +1,4 @@
+five real AvalancheGo validators healthy; chain=onj21tq6932QALJ8S9JmdXjASxFWBsq2csF83wN4jqrSpRJPX
+canonical acceptance failed: Avalanche RPC HTTP endpoint returned status 500
+live verdict="blocked" seconds=159.069
+trial error: five live roots missing

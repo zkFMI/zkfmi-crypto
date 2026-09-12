@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "kind": "sealed_input_whole_path_verification",
+  "verified_at": "2026-09-09T14:49:44Z",
+  "verdict": "smoke_only",
+  "contract_id": "zkfmi-cocode-sealed-input-integration-v1",
+  "contract_sha256": "5b2446b4da86b91531de18ec783eb6090b19febb6c3230b116480a59fa44c839",
+  "manifest_sha256": "1257aaea12198b02a0605c4af18fa05e99a33c44a8bf87d8ade3cbd1355638ac",
+  "receipt_sha256": "93759de8749c8c079c3813d61b7520d005665cef7ead09cbb3d62db41d0e7a60",
+  "whole_result": {
+    "point_prediction": 1,
+    "observed": 1,
+    "seconds": 635.727122121,
+    "positive_native_programs": 46,
+    "positive_party_exits": 322,
+    "invalid_financial_witness_party_rejections": 7,
+    "canonical_applied_blocks": 740,
+    "canonical_negative_gates": 8,
+    "proof_native_negative_gates": 6,
+    "signed_encrypted_inputs": 21,
+    "durable_consumption_markers": 21,
+    "fill_initializer_source_sha256": "dd4a76c4ef67aa608e7c101851bc3a0a6521c45ad4c92fe65355f5964be55970",
+    "nofill_initializer_source_sha256": "d1083ee5c3a786c0bb2988170d8e176c9dd13c840c129cb4fc7b6f1f652c68af"
+  },
+  "source_verification": {
+    "client_feature_tests": 26,
+    "native_all_target_tests": 33,
+    "clippy": "passed release/all-targets/-D warnings",
+    "shared_sealed_tests": 2,
+    "trial_source_identities": 29,
+    "unchanged_complete_files": 28,
+    "only_difference": "input_delivery.rs gained cfg(test) module after whole observation; production prefix SHA256 matches exact whole-run source 32b121e27fd7827b2427f76d11e0d874a3d517af14f46998d765270e0dfdde38",
+    "input_delivery_postflight_sha256": "5df9ef84b782be0bceb5857b34a1244b6dd8df06fcc0fbb81b5ee249e8a8cf37",
+    "shared_sealed_source_sha256": "13820b5a5dc43f42ece3a84801db09939ab9ba072ecc7a2190c005c03f6c0bf2",
+    "source_gate_container": "01ab76d7053827292d0ed7f1d89189f22d7870a7b6b01c02ced579f73e3ffcfa",
+    "source_gate_overall_exit": 101,
+    "source_gate_exit_reason": "Trial tests and Clippy passed; final root library invocation failed because offline optional openssl index entry was absent.",
+    "shared_library_success_container": "7ab75329d6a8c5949084dd50614cf575c3394205f0714d374a89b7f1919dc0d2",
+    "shared_library_success_exit": 0,
+    "shared_library_command": "cargo test --locked --release --lib sealed::tests --target-dir /work/target-native",
+    "failed_attempts": [
+      "First added test version failed compilation (private field access and move from shared reference); corrected only test code.",
+      "Testing dependency package inside trial workspace failed because dev-dependencies require workspace membership; root library then tested successfully with its own locked dependencies and network enabled."
+    ]
+  },
+  "runtime": {
+    "container": "b43645e2d9db81003e1a553a12fbbde806e951176a8fb44079536228c4f72f71",
+    "exit_code": 0,
+    "network": "none",
+    "read_only_root": true,
+    "no_owner_clear_values_or_signing_seed_mounted": true,
+    "frozen_binary_sha256": "bbe7a7023c0605dd37201a0735d99cbbd39a612f787517fd5a175d30b1c21948",
+    "canonical_binary_sha256": "7836ab5c2bbe93fd534cf2a1cd5f1227fc0daf308c4da4f9e871c2ff33f8b26d"
+  },
+  "public_verification": {
+    "container": "006777a91b8e6306f6d7721e331f7800fc7e7c3fe3cdcc55ba79f180d7cf4b7b",
+    "exit_code": 0,
+    "network": "none",
+    "mount_destinations": [
+      "/public",
+      "/runner"
+    ],
+    "both_proofs_accepted": true
+  },
+  "replay_verification": {
+    "container": "a017fb3fefc1b60d607e3bc9f90dcfd004450812d8eb372eb291982806a1efce",
+    "exit_code": 1,
+    "new_process": true,
+    "fresh_ciphertext_sha256": "c3a838bc1b998cd578a5c2a2cb615549c4eb285e0ed7e5804825add7453cf8d1",
+    "original_ciphertext_sha256": "f4ba7f80a2b5431ded26d5aa3a684eca9b37c064d1974e741937af15a935e3ad",
+    "observed_error": "input operation already consumed or journal unavailable",
+    "same_semantic_binding": true,
+    "no_query_keys_or_native_engine_mounted": true,
+    "persisted_consumption_count_unchanged": 21,
+    "unit_tests_cover": [
+      "wrong party",
+      "wrong recipient key",
+      "wrong operation",
+      "Off mismatch",
+      "revoked recipient",
+      "wrong owner purpose",
+      "expiry",
+      "signature tampering",
+      "ciphertext tampering",
+      "malformed packet",
+      "invalid packet does not consume",
+      "re-encrypted semantic replay",
+      "registration reload",
+      "sender and recipient key rotation",
+      "public registration pin",
+      "private journal permissions"
+    ]
+  },
+  "logs_sha256": {
+    "crypto-verification.log": "a69498bbe667b643079696e7e239eb089e5bb970e2b06a61d19d22ff1024846f",
+    "public-verification.log": "c036ab0a4635709b9043200066d635ec448087184d50c2de59abe76efc2149ad",
+    "replay-worker.log": "f5d5e828e43e8fcdd4696977fb8c7f3174537058254a7242b06908ddcd0e6c4e",
+    "run.log": "2128c7d5a3422a6dd792aac781126abe377691d910c9fb99efae7c8d0df05679",
+    "source-verification-first.log": "1ed4223b1f09c5518890081900e4fb4c7e0de5831019066dffa30439073f6cc1",
+    "source-verification.log": "7feac9e79dd2a76afaf15c92d7bedeacceff29dd9404139ee9c8ef99c4d2404a"
+  },
+  "ledger": {
+    "prior_local_sha256": "040e5f96471340000f5958f1291cd3a9d41543e276e27f847cee6b891ee19848",
+    "prior_rows": 3,
+    "rows_after": 4,
+    "prior_bytes_preserved": true,
+    "exact_new_receipt_appended": true
+  },
+  "remote_root": "/home/ubuntu/work/pqc-greenfield-20260909/sealed-input-001",
+  "limits": [
+    "Laboratory registration pins and raw seed files do not establish operational enrollment, authorized account/role/order ownership or independent operator custody.",
+    "Runtime host can access all laboratory recipient key files; this is not a multi-operator security deployment.",
+    "Generic six-field single owner is not the OCLOB buyer/seller plus agreed matching-result model; canonical escrow-note state is not the four-account laboratory book.",
+    "Replay fail-closed consumption is implemented; recovery of an operation interrupted after consumption is not.",
+    "Full application On/Off integration, independent composition/zero-knowledge/concrete PQ parameter analysis and security promotion remain unresolved.",
+    "No existing ledger migration, commit, push or public deployment."
+  ]
+}

@@ -1,0 +1,518 @@
+9c45e12273f3f2e365dc62f43756d55289da7e27cdc7e75f5bfaf12f72173328  source-files-003.sha256
+9a01e572e381096f1aebb9b6e0a7686ac6ed3f04d10ce5c02da4726a0926b358  Makefile
+9a455147360f9cb8cf7647f87a59a2f195a382a756ccf11f55b2b447cf9b9f69  Cargo.toml
+0804bf44d3cdba5b49257c20403a5a892466e56512ba4f8ab0c9d74a241c5d2d  Cargo.lock
+5d8e9bd16d1dbf49a9a68acbb924d466d2d393309a42ca5604b5b0b549b309f4  .integration/zkfmi-crypto/Cargo.toml
+4519d6b12a3949c387132be05084a53d0a67637c0c0d7470554571b3cd6fdc69  .integration/source-overlay.toml
+     Locking 1 package to latest compatible version
+      Adding zkfmi-crypto v0.1.0 (/workspace/.integration/zkfmi-crypto)
+   Compiling oclob-core v0.1.0 (/workspace/rust/oclob-core)
+   Compiling oclob-mpc v0.1.0 (/workspace/rust/oclob-mpc)
+   Compiling oclob-ordering v0.1.0 (/workspace/rust/oclob-ordering)
+   Compiling oclob-edge v0.1.0 (/workspace/rust/oclob-edge)
+   Compiling oclob-dekyx v0.1.0 (/workspace/rust/oclob-dekyx)
+   Compiling oclob-proofs v0.1.0 (/workspace/rust/oclob-proofs)
+   Compiling oclob-settlement v0.1.0 (/workspace/rust/oclob-settlement)
+   Compiling oclob-node v0.1.0 (/workspace/rust/oclob-node)
+   Compiling oclob-service v0.1.0 (/workspace/rust/oclob-service)
+   Compiling oclob-demo v0.1.0 (/workspace/rust/oclob-demo)
+    Finished `release` profile [optimized] target(s) in 1m 20s
+     Running unittests src/lib.rs (/var/cache/oclob/target/release/deps/oclob_core-a437e09a2f7fd146)
+
+running 12 tests
+test tests::private_wire_round_trips_but_rejects_trailing_or_changed_bytes ... ok
+test tests::tick_lot_fee_and_reservation_rules_fail_closed ... ok
+test tests::cancellation_competes_in_sequence_and_needs_the_committed_secret ... ok
+test application_crypto::tests::wrong_common_key_purpose_fails_even_with_correct_envelope ... ok
+test application_crypto::tests::mandatory_components_closed_envelope_and_domain ... ok
+test tests::same_price_keeps_certificate_order ... ok
+test tests::expiry_is_a_canonical_ordered_state_transition ... ok
+test tests::changed_mpc_result_cannot_mutate_the_book ... ok
+test tests::canonical_transition_keeps_the_resting_price_and_remainder ... ok
+test tests::batch_uses_better_price_before_earlier_worse_price ... ok
+test application_crypto::tests::raw_classical_identity_and_changed_pq_registration_are_rejected ... ok
+test tests::gtc_non_cross_rests_while_ioc_non_cross_does_not ... ok
+
+test result: ok. 12 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/lib.rs (/var/cache/oclob/target/release/deps/oclob_dekyx-e66492481ecb4217)
+
+running 1 test
+test tests::proof_is_bound_to_one_order_and_one_use ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+     Running unittests src/lib.rs (/var/cache/oclob/target/release/deps/oclob_demo-2d3f41caa5c5b11c)
+
+running 2 tests
+test server::tests::operator_projection_has_no_private_order_fields ... ok
+test server::tests::http_parser_rejects_oversized_lengths_without_allocating_them ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/bin/oclob_avalanche_acceptance.rs (/var/cache/oclob/target/release/deps/oclob_avalanche_acceptance-b0fd20dd9b4e440e)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/main.rs (/var/cache/oclob/target/release/deps/oclob_demo-2e74bc5035dcfcc3)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/bin/oclob_server.rs (/var/cache/oclob/target/release/deps/oclob_server-dbcb633b1a1c1965)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/lib.rs (/var/cache/oclob/target/release/deps/oclob_edge-3c62539474e106fd)
+
+running 8 tests
+test tests::node_decimal_rendering_is_canonical ... ok
+test tests::pretrade_permit_rejects_a_different_reserve_opening ... ok
+test tests::tampering_or_expired_manifest_fails_closed ... ok
+test tests::stored_shares_require_both_kem_components_and_restore_the_same_hybrid_key ... ok
+test tests::any_three_verified_shamir_evaluations_reconstruct_the_order_fields ... ok
+test tests::settlement_capability_requires_three_node_shares_and_is_bound_to_vss_values ... ok
+test tests::edge_bundle_discloses_no_plain_order_and_each_node_opens_only_its_share ... ok
+test tests::pretrade_permit_binds_hidden_side_handle_and_reserve_without_later_capability ... ok
+
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.06s
+
+     Running unittests src/lib.rs (/var/cache/oclob/target/release/deps/oclob_mpc-4694914baad8d563)
+
+running 3 tests
+test tests::compatibility_input_matches_eight_wire_order_schema ... ok
+test tests::generated_program_has_no_public_order_input ... ok
+test tests::real_mpc_prioritizes_secret_prices_then_original_time_in_both_directions ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 6.98s
+
+     Running unittests src/bin/oclob-compile-program.rs (/var/cache/oclob/target/release/deps/oclob_compile_program-4a5bb0569e1d5afb)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/hybrid_native.rs (/var/cache/oclob/target/release/deps/hybrid_native-917e993197dd0954)
+
+running 1 test
+test seven_native_parties_match_after_fresh_hybrid_connections ... ignored, requires the authorized remote hybrid MP-SPDZ engine
+
+test result: ok. 0 passed; 0 failed; 1 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/public_depth.rs (/var/cache/oclob/target/release/deps/public_depth-28b708a39be4444a)
+
+running 2 tests
+test output_digest_binds_depth_and_distinguishes_missing_from_empty ... ok
+test depth_parser_requires_complete_unique_canonical_fixed_shape ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/lib.rs (/var/cache/oclob/target/release/deps/oclob_node-dcc70bb9ad2e1b51)
+
+running 78 tests
+test corporate_api::tests::market_claim_certificate_has_no_owner_queue_or_wallet_authority ... ok
+test corporate_api::tests::owner_and_claim_authorization_certificate_pins_must_be_disjoint ... ok
+test deployment_policy::tests::post_quantum_mode_refuses_current_classical_proof_backend ... ok
+test native_finality::tests::accepted_receipt_requires_exact_statement_transaction_parent_and_nonempty_block ... ok
+test native_finality::tests::finalization_schema_cannot_default_missing_native_requirement_to_legacy ... ok
+test native_finality::batch_tests::one_atomic_transaction_still_requires_every_executed_slot ... ok
+test native_finality::tests::every_matched_slot_is_required_and_coordinator_digest_cannot_replace_it ... ok
+test native_wallet::tests::closure_and_release_return_only_unused_capacity ... ok
+test native_wallet::tests::malformed_recovery_does_not_partially_mutate_private_witness ... ok
+test native_wallet::tests::partial_fill_recovery_preserves_capacity_and_all_commitments ... ok
+test native_wallet::tests::subsequent_reserve_uses_recovered_free_capacity ... ok
+test deployment_policy::tests::policy_cannot_be_added_to_existing_state ... ok
+test native_admission::tests::ingress_allows_exact_pinned_read_method_but_not_governance_or_participant_writes ... ok
+test network::tests::application_seed_restore_requires_both_independent_halves_without_regeneration ... ok
+test market_network::tests::fixed_market_records_reject_bad_size_padding_and_truncation ... ok
+test public_depth_http::tests::browser_projection_encodes_integers_without_javascript_rounding ... ok
+test executor::tests::coordinator_cannot_make_a_four_vote_certificate_executable ... ok
+test public_depth_http::tests::minimum_sequence_is_strict_and_lossless ... ok
+test public_depth_http::tests::http_rejects_financial_methods_and_get_bodies ... ok
+test executor::tests::round_plan_is_commitment_only_and_tamper_evident ... ok
+test corporate_journal::tests::original_authorization_checks_terms_identity_signature_scope_and_openings ... ok
+test proof_network::tests::proof_load_is_bound_to_signed_round_slot_output_and_bytes ... ok
+test public_depth_http::tests::native_shell_is_same_origin_allowlisted_and_not_legacy_state ... ok
+test public_depth_http::tests::http_failures_are_json_uncached_and_do_not_expose_upstream_errors ... ok
+test deployment_policy::tests::exact_policy_survives_restart_and_rejects_changes ... ok
+test network::tests::fixed_records_reject_corruption_and_do_not_expose_length ... ok
+test native_finality::tests::v7_finalized_private_state_is_not_silently_promoted_to_observed_finality ... ok
+test network::tests::public_depth_transport_requires_server_trust_but_no_corporate_key ... ok
+test corporate_journal::tests::saved_delivery_preserves_exact_ciphertexts_and_rejects_wrong_node_binding ... ok
+test native_finality::tests::observation_persists_exactly_and_conflicting_retry_does_not_modify_store ... ok
+test native_finality::batch_tests::atomic_membership_survives_reopen_without_promoting_a_partial_observation ... ok
+test native_lifecycle_tests::owner_authorization_and_real_expiry_are_distinct ... ok
+test tests::corrupted_store_and_expired_records_fail_closed ... ok
+test native_lifecycle_tests::a_completed_unsettled_match_blocks_cancel_before_any_state_change ... ok
+test tests::each_store_accepts_only_its_ciphertext_and_survives_restart ... ok
+test network::tests::private_admission_lost_reply_requires_explicit_recovery_without_replay ... ok
+test native_lifecycle_tests::current_store_requires_lifecycle_history_and_preserves_legacy_v8 ... ok
+test native_lifecycle_tests::ordered_lifecycle_blocks_matching_and_survives_reopen ... ok
+test tests::node_builds_only_its_fixed_party_input_from_commitments ... ok
+test network::tests::private_admission_clones_open_fresh_connections_after_success ... ok
+test tests::capability_key_share_is_released_only_after_an_authorized_completed_round ... ok
+test corporate_dispatch::tests::dispatch_restart_never_reinitializes_missing_or_wrong_key_history ... ok
+test tests::node_requires_pinned_defmi_permit_and_rejects_reservation_reuse ... ok
+test tests::ordering_vote_and_certificate_chain_survive_restart ... ok
+test tests::randomized_private_state_receipt_is_first_write_exact_after_restart_and_tamper_evident ... ok
+test corporate_dispatch::tests::dispatch_and_journal_encryption_roles_cannot_be_swapped ... ok
+test corporate_journal::tests::cancellation_has_a_typed_namespace_not_a_generic_completion_shortcut ... ok
+test network::tests::settlement_role_releases_only_the_completed_rounds_bound_key_share ... ok
+test network::tests::participant_delivers_only_one_nodes_ciphertext_over_mutual_tls ... ok
+test corporate_journal::tests::intake_lock_excludes_independent_journal_writer_and_releases_on_drop ... ok
+test corporate_journal::tests::a_missing_initialized_journal_never_becomes_an_empty_wallet ... ok
+test corporate_journal::tests::corporate_api_rejects_invalid_or_expired_intake_before_writing ... ok
+test corporate_journal::tests::corrupted_journal_is_not_reinitialized ... ok
+test market_tests::market_intake_rejects_tampering_missing_node_and_fresh_expired_receipt ... ok
+test corporate_journal::tests::journal_reopens_exact_intent_without_plaintext_or_new_randomness ... ok
+test corporate_journal::tests::funding_witness_survives_restart_and_invalid_scalars_fail_closed ... ok
+test market_tests::market_worker_lock_and_first_saved_signed_request_survive_reopen ... ok
+test market_tests::valid_order_key_cannot_replace_acknowledged_market_payload ... ok
+test corporate_journal::tests::journal_rejects_wrong_key_context_and_changed_instruction_without_resetting ... ok
+test corporate_journal::tests::claim_request_recovery_preserves_first_destination_and_signature_bytes ... ok
+test corporate_journal::tests::recovered_funding_is_immutable_and_invalid_input_cannot_poison_its_generation ... ok
+test corporate_journal::tests::ambiguous_earlier_request_blocks_overtaking_and_cannot_be_marked_complete_by_generic_stage ... ok
+test corporate_journal::tests::enrolled_holder_survives_encrypted_journal_restart_and_cannot_be_silently_reissued ... ok
+test corporate_dispatch::tests::retry_exhaustion_is_reported_as_manual_review_not_idle ... ok
+test corporate_journal::tests::signed_authorization_survives_encrypted_reopen_without_issuer_or_witness ... ok
+test corporate_journal::tests::concurrent_preparers_adopt_one_immutable_intent ... ok
+test market_tests::exact_market_intake_survives_restart_and_late_ack_without_new_order ... ok
+test network::tests::market_transport_pins_peer_enforces_participant_and_saves_before_ack ... ok
+test market_network::tests::randomized_market_signature_is_persisted_before_send_and_reused_after_restart ... ok
+test corporate_journal::tests::legacy_or_ambiguous_send_cannot_be_reclassified_as_never_reserved ... ok
+test corporate_journal::tests::concurrent_send_and_unsent_expiry_have_only_one_durable_winner ... ok
+test corporate_journal::tests::claim_keys_and_randomized_signed_response_are_first_write_and_exact_after_restart ... ok
+test corporate_journal::tests::unsent_expiry_fence_prevents_future_send_and_survives_restart ... ok
+test corporate_journal::tests::corporate_api_exact_retry_survives_reopen_and_does_not_reserve ... ok
+test corporate_journal::tests::corporate_api_accepts_separate_client_outbox_and_replays_original_authorization ... ok
+test corporate_journal::tests::rejected_unprepared_authorization_is_fenced_and_advances_fifo_after_restart ... ok
+test corporate_journal::tests::local_authorization_end_refuses_live_deadline_legacy_and_prepared_or_sent_work ... ok
+test corporate_journal::tests::authorized_expiry_and_interrupted_local_end_finish_without_network_or_tls ... ok
+
+test result: ok. 78 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 10.92s
+
+     Running unittests src/bin/oclob-cluster-e2e.rs (/var/cache/oclob/target/release/deps/oclob_cluster_e2e-7ff8c02de5567b77)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/bin/oclob-corporate-api.rs (/var/cache/oclob/target/release/deps/oclob_corporate_api-1c26fd620c28c9b0)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/bin/oclob-corporate-worker.rs (/var/cache/oclob/target/release/deps/oclob_corporate_worker-24aa08b3317ba177)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/bin/oclob-edge-submit.rs (/var/cache/oclob/target/release/deps/oclob_edge_submit-8426657066eba74b)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/bin/oclob-lab-provision.rs (/var/cache/oclob/target/release/deps/oclob_lab_provision-cfb662e9da4c592e)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/bin/oclob-market-worker.rs (/var/cache/oclob/target/release/deps/oclob_market_worker-ded46dc6826b5050)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/bin/oclob-native-bootstrap.rs (/var/cache/oclob/target/release/deps/oclob_native_bootstrap-54db883346f49d3d)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/bin/oclob-native-e2e.rs (/var/cache/oclob/target/release/deps/oclob_native_e2e-6be5c10fad2c4b3a)
+
+running 1 test
+test lifecycle_acceptance::tests::restart_gate_preserves_closed_resting_head_but_rejects_changed_state ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/bin/oclob-node.rs (/var/cache/oclob/target/release/deps/oclob_node-85d601304801295c)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/bin/oclob-public-book.rs (/var/cache/oclob/target/release/deps/oclob_public_book-9fc7ff2456160101)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/deployment_policy_cli.rs (/var/cache/oclob/target/release/deps/deployment_policy_cli-41799dd5e86146c2)
+
+running 2 tests
+test on_and_missing_policy_fail_without_creating_a_cluster ... ok
+test off_provisioning_binds_every_generated_configuration_to_one_policy ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 3.71s
+
+     Running tests/public_depth.rs (/var/cache/oclob/target/release/deps/public_depth-56410489ee531ffe)
+
+running 8 tests
+test captured_ed25519_fixture_is_legacy_and_rejected ... ok
+test matched_book_requires_complete_bound_canonical_finality ... ok
+test captured_mpc_fields_authenticate_with_current_hybrid_signatures ... ok
+test public_book_rejects_tamper_missing_duplicate_or_mismatched_signers ... ok
+test public_book_publish_and_read_reject_oversized_wires ... ok
+test stale_future_and_rolled_back_public_books_are_not_current_data ... ok
+test current_hybrid_unmatched_and_matched_books_fit_the_shared_cap ... ok
+test atomic_export_round_trip_is_idempotent_and_missing_is_not_empty_book ... ok
+
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+
+     Running unittests src/lib.rs (/var/cache/oclob/target/release/deps/oclob_ordering-d0658bcc66f42e30)
+
+running 4 tests
+test tests::one_node_refuses_two_statements_for_one_sequence ... ok
+test tests::certificate_needs_five_distinct_valid_votes ... ok
+test tests::five_votes_extend_one_chain ... ok
+test tests::replay_is_rejected_before_it_can_poison_the_next_sequence ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+     Running unittests src/lib.rs (/var/cache/oclob/target/release/deps/oclob_proofs-b982088d1051fe29)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/lib.rs (/var/cache/oclob/target/release/deps/oclob_service-d52d75ccadd90ac0)
+
+running 2 tests
+test tests::queue_is_encrypted_idempotent_and_waits_for_mpc ... ok
+test tests::canonical_preparation_does_not_commit_book_or_balances ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 3.50s
+
+     Running unittests src/lib.rs (/var/cache/oclob/target/release/deps/oclob_settlement-3f7a5f223130a8ec)
+
+running 21 tests
+test avalanche::tests::operation_identifiers_are_application_bound ... ok
+test tests::one_order_cannot_reserve_twice ... ok
+test tests::legal_entity_capacity_spans_multiple_anonymous_orders ... ok
+test tests::reservation_root_binds_exact_edge_commitment ... ok
+test tests::invalid_second_fill_cannot_partially_change_state ... ok
+test tests::settlement_rejects_a_valid_quorum_from_an_untrusted_committee ... ok
+test tests::collaborative_committee_key_is_fixed_before_canonical_state ... ok
+test tests::settlement_rejects_non_conserving_or_limit_violating_fills ... ok
+test tests::partially_filled_buy_maker_keeps_only_worst_case_remainder ... ok
+test tests::fully_filled_buy_maker_releases_price_improvement ... ok
+test avalanche::tests::prepared_batch_is_opaque_and_binds_net_account_changes ... ok
+test avalanche::tests::prepared_candidate_rejects_wrong_application_binding ... ok
+test avalanche::tests::canonical_order_uses_current_account_sequences_and_exact_digests ... ok
+test native::tests::claim_authorization_evidence_rejects_cross_fill_key_reuse ... ok
+test native::tests::local_full_execution_refuses_an_extracted_or_reordered_signing_request ... ok
+test native::tests::native_claim_authorizations_are_pinned_to_participants_openings_and_local_execution ... ok
+test native::tests::arriving_sell_closes_only_its_securities_reserve ... ok
+test tests::two_fills_commit_as_one_canonical_batch ... ok
+test native::tests::native_signing_rejects_changed_execution_authority_heads_openings_and_proofs ... ok
+test tests::either_participant_can_buy_or_sell_across_successive_batches ... ok
+test native::tests::completed_proof_can_certify_exact_native_fill_without_participant_signature ... ok
+
+test result: ok. 21 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.10s
+
+     Running tests/native_batch_membership.rs (/var/cache/oclob/target/release/deps/native_batch_membership-9f898e1515aaecf6)
+
+running 2 tests
+test sparse_matched_slots_bind_the_full_ordered_execution_and_parent ... ok
+test membership_refuses_unmatched_duplicate_reordered_or_out_of_range_slots ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/pretrade.rs (/var/cache/oclob/target/release/deps/pretrade-96ee72d8bc43a36c)
+
+running 7 tests
+test funding_ring_public_order_does_not_mark_the_real_source ... ok
+test funding_ring_samples_alternatives_instead_of_a_fixed_first_decoy ... ok
+test funding_ring_bounds_and_filters_candidates ... ok
+test corporate_pretrade_canonicalizes_public_ring_before_proving ... ok
+test corporate_pretrade_proof_uses_real_note_owner_and_never_serializes_openings ... ok
+test corporate_pretrade_rejects_foreign_note_and_both_kinds_of_overdraw ... ok
+test corporate_pretrade_proves_and_verifies_larger_candidate_rings ... ok
+
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.16s
+
+   Doc-tests oclob_core
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests oclob_dekyx
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests oclob_demo
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests oclob_edge
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests oclob_mpc
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests oclob_node
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests oclob_ordering
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests oclob_proofs
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests oclob_service
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests oclob_settlement
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Locking 1 package to latest compatible version
+      Adding zkfmi-crypto v0.1.0 (https://github.com/zkFMI/zkfmi-crypto.git?rev=8675b6d7d65f2437963de7184149af3c56d92d45#8675b6d7)
+    Checking typenum v1.20.1
+    Checking cmov v0.5.4
+    Checking rand_core v0.10.1
+    Checking opaque-debug v0.3.1
+    Checking sponge-cursor v0.1.0
+    Checking shlex v2.0.1
+    Checking find-msvc-tools v0.1.12
+    Checking toml_write v0.1.2
+    Checking regex-syntax v0.8.11
+    Checking winnow v0.7.15
+   Compiling cpufeatures v0.2.17
+    Checking zkfmi-measure v0.1.0 (https://github.com/zkFMI/zkpi.git?rev=fc9579070484859aff9110a927be79c1ffe22b70#fc957907)
+    Checking keccak v0.2.2
+    Checking indexmap v2.14.2
+    Checking aho-corasick v1.1.5
+   Compiling openssl-src v300.5.5+3.5.5
+    Checking thiserror v2.0.20
+    Checking serde v1.0.229
+    Checking num-traits v0.2.19
+   Compiling generic-array v0.14.7
+    Checking cobs v0.3.0
+    Checking cc v1.4.5
+    Checking getrandom v0.4.3
+    Checking ctutils v0.4.2
+   Compiling openssl-sys v0.9.117
+    Checking serde_spanned v0.6.9
+    Checking toml_datetime v0.6.11
+    Checking ed25519 v2.2.3
+    Checking heapless v0.7.17
+    Checking serdect v0.2.0
+   Compiling crypto-common v0.1.7
+   Compiling block-buffer v0.10.4
+   Compiling digest v0.10.7
+    Checking hybrid-array v0.4.14
+   Compiling openssl v0.10.81
+   Compiling sha2 v0.10.9
+    Checking postcard v1.1.3
+   Compiling qomm-mpc v0.1.0 (https://github.com/zkFMI/zkpi.git?rev=fc9579070484859aff9110a927be79c1ffe22b70#fc957907)
+    Checking inout v0.1.4
+    Checking universal-hash v0.5.1
+    Checking aead v0.5.2
+    Checking frost-core v3.0.0
+    Checking cipher v0.4.4
+    Checking polyval v0.6.2
+    Checking curve25519-dalek v4.1.3
+    Checking hmac v0.12.1
+    Checking sha3 v0.10.9
+    Checking ctr v0.9.2
+    Checking aes v0.8.4
+    Checking regex-automata v0.4.18
+    Checking ghash v0.5.1
+    Checking toml_edit v0.22.27
+    Checking hkdf v0.12.4
+    Checking crypto-common v0.2.2
+    Checking block-buffer v0.12.1
+    Checking module-lattice v0.2.3
+    Checking qomm-dsl v0.1.0 (https://github.com/zkFMI/zkpi.git?rev=fc9579070484859aff9110a927be79c1ffe22b70#fc957907)
+    Checking aes-gcm v0.10.3
+    Checking frost-rerandomized v3.0.0
+    Checking digest v0.11.3
+    Checking kem v0.3.0
+    Checking ed25519-dalek v2.2.0
+    Checking x25519-dalek v2.0.1
+    Checking bulletproofs v5.0.0
+    Checking triptych v0.1.1 (https://github.com/tari-project/triptych.git?rev=bf0cb42fff55636a8bb037020411fb3a050af23f#bf0cb42f)
+    Checking frost-ristretto255 v3.0.0
+    Checking shake v0.1.0
+    Checking sha3 v0.11.0
+    Checking signature v3.0.0
+    Checking ml-dsa v0.1.1
+    Checking ml-kem v0.3.2
+    Checking zkfmi-zk v0.1.0 (https://github.com/zkFMI/zkpi.git?rev=fc9579070484859aff9110a927be79c1ffe22b70#fc957907)
+    Checking toml v0.8.23
+    Checking regex v1.13.1
+    Checking zkfmi-crypto v0.1.0 (https://github.com/zkFMI/zkfmi-crypto.git?rev=8675b6d7d65f2437963de7184149af3c56d92d45#8675b6d7)
+    Checking oclob-core v0.1.0 (/workspace/rust/oclob-core)
+    Checking zkpi-proofs v0.1.0 (https://github.com/zkFMI/zkpi.git?rev=fc9579070484859aff9110a927be79c1ffe22b70#fc957907)
+    Checking dekyx-core v0.1.0 (https://github.com/zkFMI/dekyx.git?rev=9518393a58be731fe25147e77d22926062fca33a#9518393a)
+    Checking oclob-ordering v0.1.0 (/workspace/rust/oclob-ordering)
+    Checking oclob-dekyx v0.1.0 (/workspace/rust/oclob-dekyx)
+    Checking zkpi v0.1.0 (https://github.com/zkFMI/zkpi.git?rev=fc9579070484859aff9110a927be79c1ffe22b70#fc957907)
+    Checking qomm-audit v0.1.0 (https://github.com/zkFMI/zkpi.git?rev=fc9579070484859aff9110a927be79c1ffe22b70#fc957907)
+    Checking oclob-mpc v0.1.0 (/workspace/rust/oclob-mpc)
+    Checking zkpi-committee v0.1.0 (https://github.com/zkFMI/zkpi.git?rev=fc9579070484859aff9110a927be79c1ffe22b70#fc957907)
+error: the loop variable `party` is used to index `outputs`
+   --> rust/oclob-mpc/src/lib.rs:375:26
+    |
+375 |             for party in 0..MPC_PARTIES {
+    |                          ^^^^^^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.97.0/index.html#needless_range_loop
+    = note: `-D clippy::needless-range-loop` implied by `-D warnings`
+    = help: to override `-D warnings` add `#[allow(clippy::needless_range_loop)]`
+help: consider using an iterator and enumerate()
+    |
+375 -             for party in 0..MPC_PARTIES {
+375 +             for (party, <item>) in outputs.iter_mut().enumerate().take(MPC_PARTIES) {
+    |
+
+error: could not compile `oclob-mpc` (lib) due to 1 previous error
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `oclob-mpc` (lib test) due to 1 previous error
+make: *** [Makefile:51: remote-test] Error 101

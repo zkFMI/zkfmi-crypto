@@ -1,0 +1,164 @@
+{
+  "query": {
+    "roster_path": "/enrollment/public/roster.json",
+    "roster_sha512": "fa7fc6f9f5c9b5a81ac2a1fd0e5579bfa1c97a7f507a61408f449e54d16df7287bce1f2b5ee8c7d4495eff38c65c8b2e91ffdea3b38d342bff8b75ed2ab64ac1",
+    "owner_key_paths": [
+      "/enrollment/keys/owner-0.key",
+      "/enrollment/keys/owner-1.key",
+      "/enrollment/keys/owner-2.key",
+      "/enrollment/keys/owner-3.key",
+      "/enrollment/keys/owner-4.key",
+      "/enrollment/keys/owner-5.key",
+      "/enrollment/keys/owner-6.key"
+    ]
+  },
+  "inputs": {
+    "fill": {
+      "binding_path": "/trial/launch/fill-binding.json",
+      "input_paths": [
+        "/ciphertext/fill/party-0.json",
+        "/ciphertext/fill/party-1.json",
+        "/ciphertext/fill/party-2.json",
+        "/ciphertext/fill/party-3.json",
+        "/ciphertext/fill/party-4.json",
+        "/ciphertext/fill/party-5.json",
+        "/ciphertext/fill/party-6.json"
+      ],
+      "receivers": [
+        {
+          "config_path": "/trial/launch/receiver-0.json",
+          "config_sha256": "cadafdf3e7daa7d908f73d946e85a833b89143964f4704902b0bd1556ffa1483",
+          "recipient_key_path": "/recipient-keys/party-0.key"
+        },
+        {
+          "config_path": "/trial/launch/receiver-1.json",
+          "config_sha256": "c35a6dbad3e8da6eaaf320730529b61f50fbd1a2000a3a724541aa4dfbdcf600",
+          "recipient_key_path": "/recipient-keys/party-1.key"
+        },
+        {
+          "config_path": "/trial/launch/receiver-2.json",
+          "config_sha256": "a249f1f3e580f84dc911c90e4d9af06a7acca195dceff4f167f1ec71b61709bb",
+          "recipient_key_path": "/recipient-keys/party-2.key"
+        },
+        {
+          "config_path": "/trial/launch/receiver-3.json",
+          "config_sha256": "ae98cffbefc80b0582948b000b2c31b97263277fd4fff86f48fc94327aa1c4fe",
+          "recipient_key_path": "/recipient-keys/party-3.key"
+        },
+        {
+          "config_path": "/trial/launch/receiver-4.json",
+          "config_sha256": "f10b7aa63ba21c623f391aabdae7e18dd12fd19b7b4cd64233d4de8234772c07",
+          "recipient_key_path": "/recipient-keys/party-4.key"
+        },
+        {
+          "config_path": "/trial/launch/receiver-5.json",
+          "config_sha256": "738fe61b6b8f9367b57f9959fc49234303df3ecbf46e03faf3e7c414296b5fe7",
+          "recipient_key_path": "/recipient-keys/party-5.key"
+        },
+        {
+          "config_path": "/trial/launch/receiver-6.json",
+          "config_sha256": "a73271d652b855c73f707ec63fe6dad032f977c76cc47108c21135d7bae676a3",
+          "recipient_key_path": "/recipient-keys/party-6.key"
+        }
+      ]
+    },
+    "nofill": {
+      "binding_path": "/trial/launch/nofill-binding.json",
+      "input_paths": [
+        "/ciphertext/nofill/party-0.json",
+        "/ciphertext/nofill/party-1.json",
+        "/ciphertext/nofill/party-2.json",
+        "/ciphertext/nofill/party-3.json",
+        "/ciphertext/nofill/party-4.json",
+        "/ciphertext/nofill/party-5.json",
+        "/ciphertext/nofill/party-6.json"
+      ],
+      "receivers": [
+        {
+          "config_path": "/trial/launch/receiver-0.json",
+          "config_sha256": "cadafdf3e7daa7d908f73d946e85a833b89143964f4704902b0bd1556ffa1483",
+          "recipient_key_path": "/recipient-keys/party-0.key"
+        },
+        {
+          "config_path": "/trial/launch/receiver-1.json",
+          "config_sha256": "c35a6dbad3e8da6eaaf320730529b61f50fbd1a2000a3a724541aa4dfbdcf600",
+          "recipient_key_path": "/recipient-keys/party-1.key"
+        },
+        {
+          "config_path": "/trial/launch/receiver-2.json",
+          "config_sha256": "a249f1f3e580f84dc911c90e4d9af06a7acca195dceff4f167f1ec71b61709bb",
+          "recipient_key_path": "/recipient-keys/party-2.key"
+        },
+        {
+          "config_path": "/trial/launch/receiver-3.json",
+          "config_sha256": "ae98cffbefc80b0582948b000b2c31b97263277fd4fff86f48fc94327aa1c4fe",
+          "recipient_key_path": "/recipient-keys/party-3.key"
+        },
+        {
+          "config_path": "/trial/launch/receiver-4.json",
+          "config_sha256": "f10b7aa63ba21c623f391aabdae7e18dd12fd19b7b4cd64233d4de8234772c07",
+          "recipient_key_path": "/recipient-keys/party-4.key"
+        },
+        {
+          "config_path": "/trial/launch/receiver-5.json",
+          "config_sha256": "738fe61b6b8f9367b57f9959fc49234303df3ecbf46e03faf3e7c414296b5fe7",
+          "recipient_key_path": "/recipient-keys/party-5.key"
+        },
+        {
+          "config_path": "/trial/launch/receiver-6.json",
+          "config_sha256": "a73271d652b855c73f707ec63fe6dad032f977c76cc47108c21135d7bae676a3",
+          "recipient_key_path": "/recipient-keys/party-6.key"
+        }
+      ]
+    },
+    "invalid": {
+      "binding_path": "/trial/launch/invalid-binding.json",
+      "input_paths": [
+        "/ciphertext/invalid/party-0.json",
+        "/ciphertext/invalid/party-1.json",
+        "/ciphertext/invalid/party-2.json",
+        "/ciphertext/invalid/party-3.json",
+        "/ciphertext/invalid/party-4.json",
+        "/ciphertext/invalid/party-5.json",
+        "/ciphertext/invalid/party-6.json"
+      ],
+      "receivers": [
+        {
+          "config_path": "/trial/launch/receiver-0.json",
+          "config_sha256": "cadafdf3e7daa7d908f73d946e85a833b89143964f4704902b0bd1556ffa1483",
+          "recipient_key_path": "/recipient-keys/party-0.key"
+        },
+        {
+          "config_path": "/trial/launch/receiver-1.json",
+          "config_sha256": "c35a6dbad3e8da6eaaf320730529b61f50fbd1a2000a3a724541aa4dfbdcf600",
+          "recipient_key_path": "/recipient-keys/party-1.key"
+        },
+        {
+          "config_path": "/trial/launch/receiver-2.json",
+          "config_sha256": "a249f1f3e580f84dc911c90e4d9af06a7acca195dceff4f167f1ec71b61709bb",
+          "recipient_key_path": "/recipient-keys/party-2.key"
+        },
+        {
+          "config_path": "/trial/launch/receiver-3.json",
+          "config_sha256": "ae98cffbefc80b0582948b000b2c31b97263277fd4fff86f48fc94327aa1c4fe",
+          "recipient_key_path": "/recipient-keys/party-3.key"
+        },
+        {
+          "config_path": "/trial/launch/receiver-4.json",
+          "config_sha256": "f10b7aa63ba21c623f391aabdae7e18dd12fd19b7b4cd64233d4de8234772c07",
+          "recipient_key_path": "/recipient-keys/party-4.key"
+        },
+        {
+          "config_path": "/trial/launch/receiver-5.json",
+          "config_sha256": "738fe61b6b8f9367b57f9959fc49234303df3ecbf46e03faf3e7c414296b5fe7",
+          "recipient_key_path": "/recipient-keys/party-5.key"
+        },
+        {
+          "config_path": "/trial/launch/receiver-6.json",
+          "config_sha256": "a73271d652b855c73f707ec63fe6dad032f977c76cc47108c21135d7bae676a3",
+          "recipient_key_path": "/recipient-keys/party-6.key"
+        }
+      ]
+    }
+  }
+}

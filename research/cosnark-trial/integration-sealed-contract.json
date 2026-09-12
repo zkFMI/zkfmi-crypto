@@ -1,0 +1,40 @@
+{
+  "contract_id": "zkfmi-cocode-sealed-input-integration-v1",
+  "parent_contract_id": "zkfmi-cocode-owned-native-integration-v1",
+  "parent_contract_sha256": "5352072bd2e087f2f8f3483bcb1f71612ce9c88a97002a8a94cbda2a7003ac9c",
+  "objective": "Advance the full user-authorized fresh-network PQC switch by executing owner-provided private BN254 input through actual seven-party native proof and canonical settlement. This is a laboratory execution dependency, not a replacement for real QOMM/OCLOB integration.",
+  "stage": "RUN_ROUGH_END_TO_END_AND_OBSERVE_FINAL_METRIC",
+  "bottleneck": "Owned native whole-path001 succeeded, but the worker read a private plaintext share file rather than the existing authenticated encrypted input packet.",
+  "whole_candidate": "Generate distinct laboratory sender and seven recipient keys in separate key-owner processes. A separate owner process reads six clear values, Shamir-shares and signs/hybrid-encrypts each recipient packet. The native coordinator launches workers using only ciphertext file paths, manifest-pinned registration snapshots and operator-local key paths. Each worker checks owner/recipient registration, actual clock and policy before authentication/decryption, durably consumes the semantic input operation, then executes the already verified owned native proof and canonical fill/recovered no-fill/negative path. No raw share fallback.",
+  "hard_boundaries": {
+    "mpc_parties": 7,
+    "max_corrupt_mpc_parties": 2,
+    "private_witness_reconstruction_at_coordinator": false,
+    "all_seven_hybrid_query_agreement": true,
+    "owner_input_fixture_fallback": false,
+    "existing_ledger_migration": false,
+    "existing_public_deployment_unchanged": true,
+    "production_promotion": false,
+    "outer_signature_as_mathematical_soundness": false,
+    "authenticated_encrypted_worker_input": true
+  },
+  "primary_metric": "signed_encrypted_input_is_accepted_only_at_each_intended_worker_and_full_native_fill_recovered_nofill_canonical_path_and_declared_negatives_pass",
+  "point_prediction": 1,
+  "likely_prediction_error": "A worker-local registration, private key path, clock or durable consumption mismatch may reject the packet before its owned initializer can execute.",
+  "population": "Same laboratory six-field book/cohort as owned-native001, with fresh registered sender/recipient keys and signed encrypted packets instead of plaintext shares. The main run does not mount the owner's original values or signing seed. Seven laboratory operators still share one host; receiver key files are a lab adapter, not independent custody or production encrypted keystores.",
+  "negative_gates": [
+    "wrong authoritative previous book commitment",
+    "changed output book commitment",
+    "changed proof opening",
+    "mixed deployment mode or identifier",
+    "replayed operation",
+    "stale book sequence after recovery",
+    "altered or incomplete canonical proof chunks",
+    "invalid private product or negative balance"
+  ],
+  "rejection_rule": "Any missing actual owned-worker path, accepted required negative, mismatched authoritative commitment, fallback fixture execution, missing proof/canonical evidence or weakened verification rejects this run.",
+  "promotion_rule": "At most smoke_only. Operational account/role/order authorization, QOMM/OCLOB matching constraints and canonical operational integration, meaningful Off, independent operator custody, crash recovery of consumed inputs, and formal composition/concrete PQ parameters remain unresolved.",
+  "preflight": "Pin exact contract, manifest, launch config, public bindings, roster and executable hashes; atomically claim a fresh output and immediately run the whole candidate.",
+  "postflight": "Write public receipts/proofs and input identities excluding private fields/keys/shares; append one verdict preserving prior records.",
+  "additional_delivery_verification": "After the whole observation, deterministic tests must reject wrong recipient, tampering, wrong policy/operation and re-encrypted semantic replay, including restart. Invalid packets must not consume the input authorization. Public-only proof verification uses a no-private-mount container."
+}

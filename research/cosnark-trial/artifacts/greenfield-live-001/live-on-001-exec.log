@@ -1,0 +1,4 @@
+five real AvalancheGo validators healthy; chain=PuwqjE48ikpsCJsf5P6fz6hHGjsKePwNbntdJVnpBwC5FWADL
+canonical acceptance failed: live genesis is not the expected epoch-1 3-of-7 public development committee
+live verdict="blocked" seconds=31.229
+trial error: actual five-validator acceptance/restart gate failed

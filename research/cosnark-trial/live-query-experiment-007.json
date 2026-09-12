@@ -1,0 +1,29 @@
+{
+  "experiment_id": "cocode-live-avalanche-query-v2-007",
+  "contract_id": "zkfmi-cocode-live-avalanche-query-agreement-v2",
+  "contract_sha256": "0a41cfa014bd4b33aa22d91d2e0252235307b67b42637f2d3127c73b92e17c1b",
+  "closed_plan": ["RUN_ROUGH_END_TO_END_AND_OBSERVE_FINAL_METRIC"],
+  "rough_command": "internal:live_avalanche",
+  "bottleneck": "Native query-v2-002 completed both real proofs and canonical acceptance in 658.098792165 seconds, but the v2 protocol and policy-pinned roster have not run through actual validator consensus.",
+  "causal_hypothesis": "Explicitly propagate the native v2 trusted roster pin through the immutable canonical policy and public verifier to preserve the completed native proof path under real five-validator consensus and restart.",
+  "single_intended_change": "Run the completed v2 proof/policy path through the same actual five-validator and pending/final restart acceptance used by passing live006; no proof math or transport-limit change.",
+  "baseline": "live006: v1 primary1 smoke_only,1087.156683091 seconds,740 accepted blocks,367 pending chunks recovered and five identical final roots. Native query-v2-002: primary1 smoke_only,658.098792165 seconds,all proof and canonical negatives pass.",
+  "evaluation_population": "Frozen native query-v2-002 fill and no-fill proofs on a fresh isolated five-validator chain, all proof chunks, canonical negatives, full pending-upload restart and final restart; one host, not independent operators.",
+  "point_prediction": 1,
+  "likely_prediction_error": "A live VM protocol or policy decoding branch does not carry the v2 pin even though native and canonical library verification succeeded.",
+  "require_pending_upload_restart": true,
+  "trusted_query_roster_sha512": "fa7fc6f9f5c9b5a81ac2a1fd0e5579bfa1c97a7f507a61408f449e54d16df7287bce1f2b5ee8c7d4495eff38c65c8b2e91ffdea3b38d342bff8b75ed2ab64ac1",
+  "rejection_rule": "Any missing real acceptance or restart, unequal roots, unexpected protocol or roster, changed bounds or existing-deployment mutation blocks completion.",
+  "promotion_rule": "At most smoke_only. Formal cryptographic security, concrete quantum parameters, independent operators/custody, operational asset migration and venue adoption remain unresolved.",
+  "public_proof_directory": "/proofs",
+  "public_input_sha256": {
+    "receipt.json": "551a0937c7b0fc73570807433198dc7e6d7f5a2d57ba66c5681361ddfb1133c7",
+    "fill/proof.json": "40a216c43a79da42f33ace3d23f6dc7ce17b0b4200518dbcc42f4cd45aebffc8",
+    "fill/statement.json": "8694f9d2c0e196cce47333ce22fb6b0b63791218332bafef15c46e1cbc708ebc",
+    "nofill/proof.json": "528dfe5a88581604730e8b287d0cd6126cd804cc57cee9ec94e7dc31883abe5e",
+    "nofill/statement.json": "2b73726a451434071a332c3748647b5700a0b8dce610dc1f2eb431c2ad113f2d"
+  },
+  "network_image": "sha256:70592bee29073c53bfb5d199d097443c79f08c135c9da0354dfab2cf028cd8e5",
+  "runtime_uid": 10001,
+  "network_isolation": "Network-none read-only image, loopback validators, private service-home tmpfs, frozen v2 public proof mount read-only, no owner keys or witnesses and no published ports."
+}

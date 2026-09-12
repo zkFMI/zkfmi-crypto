@@ -2,6 +2,35 @@
 use super::*;
 use serde_json::Value;
 
+#[test]
+fn portable_c_reference_encapsulation_matches_rustcrypto() {
+    // Pinned upstream public known answer, executed through the same portable
+    // C source/configuration as the circuit adapter. No operational secret.
+    let vector = include_bytes!("../tests/vectors/mlkem-native-768-known-answer.bin");
+    assert_eq!(vector.len(), 32 + 1184 + 32 + 1088);
+    let coins: &[u8; 32] = vector[..32].try_into().unwrap();
+    let output = MlKem768Encapsulator
+        .encapsulate_with_coins(&vector[32..1216], coins)
+        .unwrap();
+    assert_eq!(&*output.shared_secret, &vector[1216..1248]);
+    assert_eq!(&output.ciphertext, &vector[1248..]);
+}
+
+#[test]
+fn portable_bearssl_x25519_matches_dalek_with_nonuniform_scalar() {
+    use x25519_dalek::{PublicKey, StaticSecret};
+    let vector = include_bytes!("../tests/vectors/bearssl-x25519-known-answer.bin");
+    assert_eq!(vector.len(), 128);
+    let seed: [u8; 32] = vector[..32].try_into().unwrap();
+    assert_ne!(seed[0], seed[31]);
+    let key = StaticSecret::from(seed);
+    let recipient = PublicKey::from(<[u8; 32]>::try_from(&vector[32..64]).unwrap());
+    assert_eq!(PublicKey::from(&key).as_bytes(), &vector[64..96]);
+    let shared = key.diffie_hellman(&recipient);
+    assert!(shared.was_contributory());
+    assert_eq!(shared.as_bytes(), &vector[96..]);
+}
+
 fn bytes(test: &Value, field: &str) -> Vec<u8> {
     hex::decode(test[field].as_str().unwrap()).unwrap()
 }

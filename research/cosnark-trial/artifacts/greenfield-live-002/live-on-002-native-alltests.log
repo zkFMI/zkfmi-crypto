@@ -1,0 +1,60 @@
+    Blocking waiting for file lock on build directory
+   Compiling zkfmi-cosnark-trial v0.1.0 (/work/zkfmi-crypto/research/cosnark-trial)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 47.81s
+     Running unittests src/lib.rs (/work/target-native/debug/deps/zkfmi_cosnark_trial-d3a4f238b54ad013)
+
+running 7 tests
+test integration::live_run::tests::requires_five_equal_hex_roots_on_both_sides_of_restart ... ok
+test integration::live_run::tests::pending_restart_requires_large_complete_upload_and_expected_root ... ok
+test integration::query_agreement::tests::any_non_own_row_or_query_equivocation_changes_the_signed_digest ... ok
+test integration::query_agreement::tests::roster_pin_and_owner_keys_fail_closed ... ok
+test integration::query_agreement::tests::every_security_relevant_query_context_component_is_digest_bound ... ok
+test integration::query_agreement::tests::prepared_and_consumed_markers_reject_replay_and_restart ... ok
+test integration::query_agreement::tests::seven_distinct_hybrid_approvals_are_mandatory ... ok
+
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.63s
+
+     Running unittests src/main.rs (/work/target-native/debug/deps/zkfmi_cosnark_trial-0efaaa6135bb0aee)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/arithmetic.rs (/work/target-native/debug/deps/arithmetic-4fda796e85305d0c)
+
+running 3 tests
+test field_encoding_is_canonical ... ok
+test actual_fft_recovers_coefficients_and_rejects_bad_size ... ok
+test literal_equations_fail_necessary_binding_not_the_fft_check ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s
+
+     Running tests/composition_arithmetic.rs (/work/target-native/debug/deps/composition_arithmetic-80cec4aa12b6ee46)
+
+running 8 tests
+test financial_relation_detects_inconsistent_notional ... ok
+test collapsed_matrix_relation_binds_constant_and_padding_masks ... ok
+test equality_table_and_low_bit_restriction_are_dual ... ok
+test transcript_binds_statement_and_message_boundaries ... ok
+test merkle_opening_binds_index_domain_value_and_salt ... ok
+test separable_mask_boolean_sum_has_declared_scaling ... ok
+test coset_fold_matches_coefficient_restriction_including_endpoints ... ok
+test message_and_coefficient_linear_functionals_match ... ok
+
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.19s
+
+     Running tests/integration_arithmetic.rs (/work/target-native/debug/deps/integration_arithmetic-a8a815bac0d8ee2e)
+
+running 9 tests
+test book_linear_claims_bind_the_same_balance_and_blind_coordinates ... ok
+test negative_balance_cannot_masquerade_as_u64_max ... ok
+test product_overflow_is_not_accepted_as_modular_integer_arithmetic ... ok
+test full_u64_boundaries_and_atomic_conservation ... ok
+test no_fill_preserves_balances_even_with_high_bit_quantities ... ok
+test non_boolean_bits_and_wrong_product_are_rejected ... ok
+test public_fill_flag_is_part_of_the_bound_circuit ... ok
+test unsupported_modes_sequences_and_noncanonical_commitments_fail_closed ... ok
+test legacy_and_query_agreement_protocols_are_explicit_and_not_interchangeable ... ok
+
+test result: ok. 9 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.06s
+

@@ -1,0 +1,24 @@
+--- a/src/cbmc/src/xmllang/Makefile
++++ b/src/cbmc/src/xmllang/Makefile
+@@ -25,2 +25,2 @@
+ xml_y.tab.h: xml_y.tab.cpp
+-	if [ -e xml_y.tab.hpp ] ; then mv xml_y.tab.hpp $@ ; elif [ -e xml_y.tab.cpp.h ] ; then \
++	if [ -e xml_y.tab.hpp ] ; then cp xml_y.tab.hpp $@ ; elif [ -e xml_y.tab.cpp.h ] ; then \
+--- a/src/cbmc/src/ansi-c/Makefile
++++ b/src/cbmc/src/ansi-c/Makefile
+@@ -69,2 +69,2 @@
+ ansi_c_y.tab.h: ansi_c_y.tab.cpp
+-	if [ -e ansi_c_y.tab.hpp ] ; then mv ansi_c_y.tab.hpp ansi_c_y.tab.h ; elif [ -e ansi_c_y.tab.cpp.h ] ; then \
++	if [ -e ansi_c_y.tab.hpp ] ; then cp ansi_c_y.tab.hpp ansi_c_y.tab.h ; elif [ -e ansi_c_y.tab.cpp.h ] ; then \
+--- a/src/cbmc/src/jsil/Makefile
++++ b/src/cbmc/src/jsil/Makefile
+@@ -33,2 +33,2 @@
+ jsil_y.tab.h: jsil_y.tab.cpp
+-	if [ -e jsil_y.tab.hpp ] ; then mv jsil_y.tab.hpp jsil_y.tab.h ; elif [ -e jsil_y.tab.cpp.h ] ; then \
++	if [ -e jsil_y.tab.hpp ] ; then cp jsil_y.tab.hpp jsil_y.tab.h ; elif [ -e jsil_y.tab.cpp.h ] ; then \
+--- a/src/cbmc/src/json/Makefile
++++ b/src/cbmc/src/json/Makefile
+@@ -23,2 +23,2 @@
+ json_y.tab.h: json_y.tab.cpp
+-	if [ -e json_y.tab.hpp ] ; then mv json_y.tab.hpp $@ ; elif [ -e json_y.tab.cpp.h ] ; then \
++	if [ -e json_y.tab.hpp ] ; then cp json_y.tab.hpp $@ ; elif [ -e json_y.tab.cpp.h ] ; then \

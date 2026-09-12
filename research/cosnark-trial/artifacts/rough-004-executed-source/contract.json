@@ -1,0 +1,54 @@
+{
+  "contract_id": "zkfmi-private-pq-cosnark-trial-v1",
+  "objective": "Try the authorized independent code-based collaborative proof plus malicious-secure MPC composition without weakening the full PQC-switch requirements.",
+  "reference": "https://eprint.iacr.org/2026/729",
+  "reference_code_reuse": "No unlicensed author proof-core code. Licensed arithmetic and existing official MP-SPDZ are reusable dependencies.",
+  "stage": "RUN_ROUGH_END_TO_END_AND_OBSERVE_FINAL_METRIC",
+  "first_run": {
+    "kind": "smoke",
+    "relation": "A small private financial R1CS containing amount-times-price, reservation remainder and bounded integer constraints",
+    "population": "One freshly secret-shared valid witness and the same public statement with predeclared tamper mutations",
+    "primary_metric": "valid_proof_accepted_and_all_declared_invalid_cases_rejected",
+    "point_prediction": 1,
+    "likely_prediction_error": "MPC share-field, tensor-code padding or masking-to-evaluation binding is inconsistent, causing the genuine proof to fail verification",
+    "baseline": "The existing classical/hybrid release is retained unchanged; no performance comparison is claimed in this smoke run"
+  },
+  "hard_boundaries": {
+    "mpc_parties": 7,
+    "max_corrupt_mpc_parties": 2,
+    "private_witness_reconstruction_at_coordinator": false,
+    "outer_signature_as_proof_soundness": false,
+    "public_deployment_mutation": false,
+    "malicious_mpc": "Official MP-SPDZ malicious-shamir, with its field, preprocessing and release/check semantics recorded",
+    "build_host": "softbank-l40s",
+    "production_or_external_audit_claim": false
+  },
+  "negative_cases": [
+    "changed public statement",
+    "changed proof commitment root",
+    "changed codeword opening",
+    "changed final evaluation claim",
+    "inconsistent per-party challenge view",
+    "invalid witness",
+    "changed deployment mode or identifier"
+  ],
+  "required_evidence": [
+    "contract SHA-256 bound in an experiment manifest before launch",
+    "closed result-first plan atomically accepted and launched by the trial runner",
+    "exact source, dependency lock, MP-SPDZ artifact and program identities",
+    "observed verifier result; no success from compilation, metadata or a signature alone",
+    "public proof and a receipt without private inputs, shares or masking randomness",
+    "separate report of operational negative tests versus unproved cryptographic composition claims"
+  ],
+  "reject_if": [
+    "witness reconstruction or centralized reproving replaces collaborative proving",
+    "the proof uses elliptic-curve or pairing hardness in PQ mode",
+    "the corruption threshold is weakened",
+    "the actual selected protocol does not execute",
+    "a tamper case is accepted",
+    "missing or non-finite evidence is treated as success"
+  ],
+  "promotion": "This first run can only be smoke_only, rejected or blocked. Production acceptance additionally requires the full financial adapters, authoritative commitments, global on/off state policy, DeFMI verification and real transaction/restart gates; mathematical malicious/PQ composition and parameters must be justified separately.",
+  "preflight": "The trial runner must validate this contract and its SHA-bound manifest before executing its closed rough command.",
+  "postflight": "Record public evidence hashes and exactly one verdict in the append-only experiment ledger."
+}

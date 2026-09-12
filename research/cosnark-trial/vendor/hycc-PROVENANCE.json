@@ -1,0 +1,43 @@
+{
+  "purpose": "Build-time C-to-Bristol reference compiler for the private output-encryption relation. Not a replacement MPC engine, proof system or TLS library.",
+  "repository": "https://gitlab.com/securityengineering/HyCC.git",
+  "commit": "839763c1a9ec286d0cf7341886ff15f3b281d266",
+  "licenses": ["License.hycc.txt", "License.hycc-cbmc.txt"],
+  "advertising_acknowledgement": "This product includes software developed by Daniel Kroening, Edmund Clarke, Computer Science Department, University of Oxford, Computer Science Department, Carnegie Mellon University",
+  "local_patch": "hycc-bison-compat.patch",
+  "patch_scope": "Preserve four Bison-generated .hpp headers when also supplying the legacy .h names. No parser grammar or circuit algorithm change.",
+  "minisat": {
+    "url": "https://deb.debian.org/debian/pool/main/m/minisat2/minisat2_2.2.1.orig.tar.gz",
+    "sha256": "e54afa3c192c1753bc8075c0c7e126d5c495d9066e3f90a2588091149ac9ca40",
+    "license": "MIT; copyright Niklas Een and Niklas Sorensson; retained in the extracted source LICENSE",
+    "patch": "Unmodified HyCC src/cbmc/scripts/minisat-2.2.1-patch"
+  },
+  "build_dependencies": "bison flex libboost-dev libreadline-dev default-jdk-headless",
+  "build_flags": "CXX='g++ -include limits -include memory -DCATCH_CONFIG_NO_POSIX_SIGNALS' CPP='g++ -include limits -include memory'",
+  "build_flag_scope": "Supply missing standard-library declarations on the modern C++ toolchain; disable only Catch's alternate-signal-stack test crash handler for current glibc compatibility. No algorithm or compiler assertion is disabled.",
+  "compiler_sha256": "da818cd6a165f3cd7f063387aeb8f2524be4f02615e5995ef860e935ed19a1ea",
+  "circuit_utils_sha256": "2c4af8c71270aa3ce22be8b8be5daf7d8750628be15b6fe3d7efe6e7b0f65f03",
+  "additional_patches": [
+    {
+      "file": "hycc-object-bits-option.patch",
+      "scope": "Expose the existing CBMC object-bits setting in the HyCC CLI, copying the option registration from the same pinned CBMC src/cbmc/cbmc_parse_options.h. No pointer-model implementation change.",
+      "binary": "cbmc-gc-objectbits",
+      "sha256": "ab1d8ec29afdba2a5ca987bf6eaab9f8fb06b8f31c079e9c344e7ae20e808c2d"
+    },
+    {
+      "file": "hycc-union-lowering.patch",
+      "scope": "Invoke the existing upstream CBMC rewrite_union pass immediately after remove_complex, matching the same pinned CBMC src/cbmc/cbmc_parse_options.cpp. The pass implementation and the cryptographic C libraries are unchanged.",
+      "binary": "cbmc-gc-unions",
+      "sha256": "0cc4661e04a43602ec1322d4912e9f959501261febdf54c8b2fe6594bc31faf6"
+    },
+    {
+      "file": "hycc-global-initialization.patch",
+      "scope": "Execute CBMC's generated C initializer and the compiled function in the same symbolic state. The upstream separate initialization state left static constants at unbound global#0 in the new stepper. No global becomes a public input and no cryptographic expression is replaced.",
+      "binary": "cbmc-gc-initialized",
+      "sha256": "36fa119ec248c28b31d583fb2f1500094d1c3e91b29699369f9d88e155b36787",
+      "regression": "hycc-global-initialization-regression.c",
+      "verification": "The preceding cbmc-gc-unions compiler fails this exact constant-table/module regression with Unknown literal: 1. The patched compiler generates and merges the circuit; upstream circuit-utils --create-verifier plus CBMC proves equivalence to the C reference for all two uint32 inputs: VERIFICATION SUCCESSFUL, 0 of 1 failed. Initial verifier attempt lacked the upstream required InputA/InputB/Output aliases and failed parsing before verification; corrected source supplied these aliases."
+    }
+  ],
+  "status": "Full build and constant-initialization regression completed. Actual encryption compilation is ongoing; no generated ML-KEM or recipient-encryption circuit is yet accepted or claimed."
+}

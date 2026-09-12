@@ -1,0 +1,102 @@
+{
+  "contract_id": "zkfmi-private-pq-cosnark-trial-v1",
+  "contract_sha256": "45dc526721b4f174c794557d15f1bc171a8bf4ef41fe210e5901bdd5402e26fb",
+  "coordinator_private_witness_api": false,
+  "duration_seconds": 3.713941828,
+  "earliest_unresolved_gate": "Complete the failed whole-candidate execution; do not replace it with arithmetic-only evidence.",
+  "experiment_id": "cosnark-rough-006",
+  "failure": "official compiler failed for cocode002_003; public-source compiler log: /trial/engine-006/cosnark-private-logs/cocode002_003-compiler.log",
+  "independent_operator_deployment": false,
+  "manifest_sha256": "67bd2baa2a40d574e45f7d3047aef06e92affd4e848a1ec506250f2f49a6693a",
+  "native_corrupt_threshold": 2,
+  "native_parties": 7,
+  "native_runs": [
+    {
+      "compiled_artifacts": [
+        [
+          "Programs/Bytecode/cocode002_001-0.bc",
+          "d7caf432dc58e106579e07710fd1624f838e06ea1734efd815deb6953b668d94"
+        ],
+        [
+          "Programs/Schedules/cocode002_001.sch",
+          "3d39ec8eb381510fb2662b4678e6a321f0cd9748a8f3b4cdf3c1a1165fa5da30"
+        ]
+      ],
+      "party_exit_codes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "program": "cocode002_001",
+      "rejection_reason": null,
+      "released_field_count": 0,
+      "seconds": 2.829687987,
+      "seven_context_views_equal": true,
+      "source_sha256": "a7f0054f1e0a09ff4c104106c5e43151dd17be1bc6f7a0f12c7392fdeca70583"
+    },
+    {
+      "compiled_artifacts": [
+        [
+          "Programs/Bytecode/cocode002_002-0.bc",
+          "0bb1804de93b0b9726bfab174c1583c64bf69544c3692e2fc11de5fbe143d530"
+        ],
+        [
+          "Programs/Schedules/cocode002_002.sch",
+          "9ded220564545c1656fa53b887a42e34d0c07307319e741eca5dd01f5d6fe9b1"
+        ]
+      ],
+      "party_exit_codes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "program": "cocode002_002",
+      "rejection_reason": null,
+      "released_field_count": 2,
+      "seconds": 0.243008082,
+      "seven_context_views_equal": true,
+      "source_sha256": "635892b934678487a48aa47be64b7acff226e0171b72fc79e4ea3bd64a1731d3"
+    }
+  ],
+  "negative_cases": {},
+  "owner_local_repeated_query_rejections": null,
+  "point_prediction": 1,
+  "primary_metric_observed": false,
+  "primary_metric_value": null,
+  "private_inputs_generated_in_per_party_children": true,
+  "production_security_or_post_quantum_parameter_promotion": false,
+  "proof_sha256": null,
+  "single_host": true,
+  "source_inputs": {
+    "Cargo.lock": "3a7d69b416dd1a564f7912be95b6f8acf2d567874554624014be3be0b855c905",
+    "Cargo.toml": "0c9ee9026d1d5132b7667e9cb1cf9c1795598b4a0e712abbb9a624f94d29e66b",
+    "contract.json": "45dc526721b4f174c794557d15f1bc171a8bf4ef41fe210e5901bdd5402e26fb",
+    "experiment-002.json": "5daad3a7f840a22d395dadaa34b06b41eda352cfb99b21a33aaff307862e3a76",
+    "experiment-006.json": "67bd2baa2a40d574e45f7d3047aef06e92affd4e848a1ec506250f2f49a6693a",
+    "src/algebra.rs": "cc184888edca06a137aafef59718d8a7f1a18409fcaa3d6a8f4912e8b887546e",
+    "src/circuit.rs": "16e864d7ed20550b33a235552f3dfba8248ac35799048aab5cec0e61f346c755",
+    "src/field.rs": "4a3b2d2d799234fabe184c5f36bf1b880a18fe52164818b10a07630af9024367",
+    "src/full_trial.rs": "fadb98cf5f1d81c33f9730b6e16ec881f81a43e61abd5ea489875ecafed5d281",
+    "src/lib.rs": "7e7b73452cd6c01f4e6830c7723f319f142a6d187df454be41361abe6d2b9759",
+    "src/main.rs": "cbd23abea074e4db4d4eb76ed72b074adf1d2a48dd7a06658199701c76fc14ec",
+    "src/mpc_program.rs": "1e820237e3485b951ce4ad3dcfd09791c5c590cb81a8d7f5d4f76327c275a9b5",
+    "src/native.rs": "b8d6808678b5cb27bab8d1a1cc6a1a4d4cc85990eaa72106ba93ca5befbb091b",
+    "src/party.rs": "1e4a9bf706fea05fa84db66c56ff6b59a84adbb22d7f2f7565b22dd5d4b98f8b",
+    "src/pcs.rs": "d07020e6f8e9caa5bcd08625400243844379e7e4b641c3ea5423bff7b3a4df91",
+    "src/prover.rs": "f9442e79c068014e07d62f4ea76f7931192c16dd87253abb35a47aeb9942de22",
+    "src/transcript.rs": "50e2c3577d4fa9760bef32177fab908241fde7947e64a825e82dd85c371d26eb",
+    "src/verifier.rs": "7138b30825b9f9ac152aed2c37ecc393a43ad2357d2719a26e6500b716ec386f"
+  },
+  "stage": "RUN_ROUGH_END_TO_END_AND_OBSERVE_FINAL_METRIC",
+  "standalone_public_verifier_accepted": false,
+  "started_unix_seconds": 1788863719,
+  "verdict": "blocked"
+}

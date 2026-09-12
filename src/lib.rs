@@ -3,9 +3,11 @@
 
 pub mod backend;
 pub mod canonical;
+pub mod commitment;
 pub mod error;
 pub mod hybrid;
 pub mod key;
+pub mod mode;
 pub mod quorum;
 pub mod sealed;
 pub mod suite;

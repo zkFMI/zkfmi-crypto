@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "kind": "deterministic_source_gate",
+  "status": "partial",
+  "recorded_at": "2026-09-09T09:19:00Z",
+  "scope": "OCLOB common deployment policy startup/persistence and real provisioning CLI; not PQ financial venue acceptance",
+  "route": "Mac -> OmenX nested SSH -> softbank-l40s; make remote-test",
+  "remote_staging": "/tmp/oclob-policy-source.Z7XS1W",
+  "image": "sha256:91d284e9e0f0ba3fed0a005997edff224182eb949a465f54a6c287c249e5c3a4",
+  "dependency_mode": "isolated local-source patch of zkfmi-crypto; canonical manifest/revision unchanged; release pin pending",
+  "source_manifest": {
+    "file": "source-files-003.sha256",
+    "sha256": "9c45e12273f3f2e365dc62f43756d55289da7e27cdc7e75f5bfaf12f72173328",
+    "rust_files": 82,
+    "local_remote_mismatches": 0
+  },
+  "gates": {
+    "workspace_tests": {
+      "status": "passed",
+      "passed": 153,
+      "failed": 0,
+      "ignored": 1,
+      "oclob_node_unit_tests": 78,
+      "real_provisioning_cli_tests": 2,
+      "cli_duration_seconds": 3.71,
+      "ignored_test": "oclob-mpc/tests/hybrid_native.rs; not executed"
+    },
+    "clippy": {
+      "status": "failed",
+      "command": "cargo --config /workspace/.integration/source-overlay.toml clippy --offline --workspace --all-targets -- -D warnings",
+      "reason": "unchanged rust/oclob-mpc/src/lib.rs:375 clippy::needless_range_loop",
+      "make_exit": 2
+    },
+    "format": {
+      "status": "failed",
+      "command": "cargo fmt --all -- --check",
+      "reason": "format differences in unchanged workspace files; task-edited files absent from reported differences",
+      "make_exit": 2
+    }
+  },
+  "logs": [
+    {
+      "file": "remote-gate-003.log",
+      "sha256": "7ed5f8a1f13bce9baaae2ae8b0975b8714c3c7758680c084545ba3d48eed7c41"
+    },
+    {
+      "file": "remote-fmt-004.log",
+      "sha256": "6a4d750cb8352ea84db1602bb3d65a70b3b9da064d6ff91faaa2aab771434468"
+    }
+  ],
+  "earlier_attempts": [
+    {
+      "run": "001",
+      "status": "failed",
+      "reason": "wrong image lacked mandatory hybrid TLS receipt; guard preserved"
+    },
+    {
+      "run": "002",
+      "status": "failed",
+      "reason": "missing Path import in touched corporate_journal.rs, corrected before 003"
+    }
+  ],
+  "limits": [
+    "Current OCLOB proof routes remain classical; On fails before provisioning secrets or stores.",
+    "No actual encrypted participant enrollment or worker transport wiring is established by these tests.",
+    "No seven-party owned-input coCode proof or OCLOB/QOMM canonical financial end-to-end run is covered.",
+    "Single-host tests do not prove seven-operator custody or security promotion.",
+    "No canonical lockfile or dependency pin was changed; no commit, push or public deployment."
+  ]
+}

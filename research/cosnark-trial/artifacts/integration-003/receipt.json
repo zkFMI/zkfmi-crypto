@@ -1,0 +1,162 @@
+{
+  "binary_sha256": "886a9bc84de28ca90ebc539501da7fc51b26490fa68c8f9a1c768b4b25c19dc3",
+  "canonical_binary_sha256": "93fe1575c5d5b09c0e4d0bdf9ca99371b32dd2b37e0fd339b1a560e1650de669",
+  "canonical_receipt": {
+    "accepted": true,
+    "applied_blocks": 740,
+    "block_limit_bytes": 1572864,
+    "deployment_mode": "pq-only-research",
+    "feature": "research-cocode",
+    "fill_proof_bytes": 192349020,
+    "fill_proof_sha512": "8db405277a4cd0a53577dba777ab8341b44dea96a39a0b8e6ba756512e521e6036b2d789890a705fefa4663e84c1a68af0f332b9abb3c3c6d0de89c7c01e9871",
+    "fill_receipt": {
+      "afterCommitment": "88366505b32945e33cc1b52291c4acfa7c2eb7f7227a750ee386e51a8cedd2c116be7c343cc5835437f5f6fdb64b17e215b0175e39b1e64e15ecdc8d77aba4c7",
+      "beforeCommitment": "f9dabaef4e4771f7668eb5a14a75b69790484370d0a25c6eaacf13324069076831ce065ba2b56252795caac3734b21f4af402af3f6684e373adaf47d87c2a835",
+      "bookId": "private-four-account-book",
+      "deploymentId": "cocode-defmi-integration-003",
+      "noFill": false,
+      "operationId": "fill",
+      "proofSha512": "8db405277a4cd0a53577dba777ab8341b44dea96a39a0b8e6ba756512e521e6036b2d789890a705fefa4663e84c1a68af0f332b9abb3c3c6d0de89c7c01e9871",
+      "sequence": 1
+    },
+    "fill_transition_after_root": "cde59b26959e8bd5d9da14dcf79d14a88ebd91bdd3737a27709ea968133a9e58",
+    "final_state_root": "93b232c805b0af810ead6ce3000770b14b22d8b0432a1f53a90350124198e7ed",
+    "max_proof_bytes": 268435456,
+    "negative_gates": {
+      "altered_proof_chunk": true,
+      "changed_output_book_commitment": true,
+      "incomplete_proof_chunks": true,
+      "mixed_deployment_or_mode": true,
+      "replayed_operation": true,
+      "reused_operation_with_fresh_authorization_after_recovery": true,
+      "stale_book_sequence_after_recovery": true,
+      "wrong_authoritative_previous_book_commitment": true
+    },
+    "nofill_proof_bytes": 192349021,
+    "nofill_proof_sha512": "1e43b880784977d63464756db41a785481659f4c1552921892cbae55132b6205c09c02f067a7ec9c34318403650e59cce50c6c33b22f668d0bf4adb48098c434",
+    "nofill_receipt": {
+      "afterCommitment": "77668b421e569bcfdc2cb843888c36b0b4a5b1ea3a0a294810ebcd0f0d6b611bc6afc74683d46e0ae3aa3246118022d61cb88d260a7681e0eddd16698a507598",
+      "beforeCommitment": "88366505b32945e33cc1b52291c4acfa7c2eb7f7227a750ee386e51a8cedd2c116be7c343cc5835437f5f6fdb64b17e215b0175e39b1e64e15ecdc8d77aba4c7",
+      "bookId": "private-four-account-book",
+      "deploymentId": "cocode-defmi-integration-003",
+      "noFill": true,
+      "operationId": "nofill",
+      "proofSha512": "1e43b880784977d63464756db41a785481659f4c1552921892cbae55132b6205c09c02f067a7ec9c34318403650e59cce50c6c33b22f668d0bf4adb48098c434",
+      "sequence": 2
+    },
+    "pending_upload_recovery": {
+      "proof_expected_chunks": 367,
+      "proof_uploaded_chunks": 367,
+      "state_bytes": 256566935,
+      "state_readback_matches": true,
+      "state_root": "c560a4067b13d072bed975f8c1b8fe28f06af12f5745b0b2b24963a2f503b767",
+      "state_sha256": "c2f002b76045953cf3cdadd24c957601b6485252dddc755796e887ce86ef92dd",
+      "state_sync_readback_matches": true,
+      "state_sync_snapshot_bytes": 257194340,
+      "state_sync_snapshot_chunks": 491,
+      "state_sync_snapshot_hash": "0e7fee50e4446201ae14e7a987faa850f1f43a35e5cb0ca600b8045887d51fab",
+      "state_sync_snapshot_sha256": "5c9b2fa089e79deed98b6110c55c0017e9bb6dbff3d3930084fc1221dae1c2ef",
+      "state_sync_summary_sha256": "1a63a4a95df14235b885ad89577aa04bccbeebeaa19688bdd2fa686b974f99c7"
+    },
+    "persisted_snapshot_sha256": "9cb14bbcca46ba6a7a84e4817d0f241de283f8bc2af3c961fb4ca3033d3f2f5f",
+    "persisted_summary_sha256": "2ea7233f80c64ad2618656732e22ffea9b81d4007a28e7b9b047bf731d0fb38d",
+    "proof_chunk_bytes": 524288,
+    "proof_protocol": "cocode-defmi-private-dvp-research-v1",
+    "recovered_state_root": "cde59b26959e8bd5d9da14dcf79d14a88ebd91bdd3737a27709ea968133a9e58",
+    "transaction_limit_bytes": 1048576,
+    "verifier": "zkfmi-cosnark-trial::integration::verify_serialized"
+  },
+  "contract_id": "zkfmi-cocode-defmi-integration-v1",
+  "contract_sha256": "44b45868cadcefa44340f42bc7199762d7d1f8a9ebb78e86496667b06804944f",
+  "earliest_unresolved_gate": "Independent composition, quantum parameters, operator isolation and venue-specific adoption; no production promotion.",
+  "error": null,
+  "experiment_id": "cocode-defmi-integration-003",
+  "manifest_sha256": "da99f346670c53e1616345a270914c96726674b4e30d3ffa288f83200a0e9ea9",
+  "point_prediction": 1,
+  "primary_metric_value": 1,
+  "proof_negative_gates": {
+    "changed codeword opening": true,
+    "changed output commitment with matching external statement": true,
+    "changed proof deployment mode": true,
+    "invalid private product": true
+  },
+  "proofs": [
+    {
+      "operation": "fill",
+      "owner_query_replay_rejected": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "proof_bytes": 192349020,
+      "proof_sha256": "7dcc998836f0eed42b35e3d4bd551e6ed79fe379146535c111b86e0c95805790",
+      "statement": {
+        "after_commitment": "88366505b32945e33cc1b52291c4acfa7c2eb7f7227a750ee386e51a8cedd2c116be7c343cc5835437f5f6fdb64b17e215b0175e39b1e64e15ecdc8d77aba4c7",
+        "before_commitment": "f9dabaef4e4771f7668eb5a14a75b69790484370d0a25c6eaacf13324069076831ce065ba2b56252795caac3734b21f4af402af3f6684e373adaf47d87c2a835",
+        "book_id": "private-four-account-book",
+        "deployment_id": "cocode-defmi-integration-003",
+        "no_fill": false,
+        "operation_id": "fill",
+        "sequence": 1
+      }
+    },
+    {
+      "operation": "nofill",
+      "owner_query_replay_rejected": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "proof_bytes": 192349021,
+      "proof_sha256": "8f66e6cd040d4badcfbe711c14d4dd4e856ce8f751b6bb489fd3d37427eac50a",
+      "statement": {
+        "after_commitment": "77668b421e569bcfdc2cb843888c36b0b4a5b1ea3a0a294810ebcd0f0d6b611bc6afc74683d46e0ae3aa3246118022d61cb88d260a7681e0eddd16698a507598",
+        "before_commitment": "88366505b32945e33cc1b52291c4acfa7c2eb7f7227a750ee386e51a8cedd2c116be7c343cc5835437f5f6fdb64b17e215b0175e39b1e64e15ecdc8d77aba4c7",
+        "book_id": "private-four-account-book",
+        "deployment_id": "cocode-defmi-integration-003",
+        "no_fill": true,
+        "operation_id": "nofill",
+        "sequence": 2
+      }
+    }
+  ],
+  "seconds": 645.230840017,
+  "source_sha256": {
+    "Cargo.lock": "3a7d69b416dd1a564f7912be95b6f8acf2d567874554624014be3be0b855c905",
+    "Cargo.toml": "f6f38918534e899a211793ecfecbc77c807ed895222d504c036fc89e20c5db05",
+    "integration-contract.json": "44b45868cadcefa44340f42bc7199762d7d1f8a9ebb78e86496667b06804944f",
+    "src/algebra.rs": "d7f3dfe255f66f955d3318de23a1b9dc5bf9288cc7a103a1969d8be3c5a75541",
+    "src/circuit.rs": "f924c9eb6bec2c42b8b7e83429ad35e92082a98df3b0bfe231303dc9d620b708",
+    "src/field.rs": "64f7a7e28b84fb6fbdb723758eebe70ed34d69f2993c485dc359d479ba0110d4",
+    "src/fold_binding_probe.rs": "5aa4dc39e460ab88b03fc21c019e4cafcd86c5fcd81427ff1b70611ba2af7660",
+    "src/full_trial.rs": "db32e75270b609e946ef69a18a1b4e59bcf27d98b67c80775c4cc111fde06fd1",
+    "src/integration/circuit.rs": "c08d009e254eb765aeab1dc28f2140dfae306dcf49456e2669c72739693cfe2c",
+    "src/integration/mod.rs": "b2cf8dc03e51b71790e2208d8eba17b72d8a0a6493de86f484584ff61ca2f788",
+    "src/integration/mpc_program.rs": "b54d68658d76d53e2f88ec09ad09cd0add45d525c7efefe8e3beadecf130cccb",
+    "src/integration/native.rs": "c2fe2e757f5af74d62d5d41470cb9e0805c0b6eecaa6bc53cb29ae56a74bb4f8",
+    "src/integration/party.rs": "09d8e0ac3b4a95ad6711366cf614369919223539ef2ee0379ba21a104889f18d",
+    "src/integration/prover.rs": "77741340d94f35bf07e7df88f6e6552c6197ca0615dbd4f224e683d54953b5cf",
+    "src/integration/run.rs": "6680c154342c504aa943ea573943fb59650269e0d325829307c7f20126e0c481",
+    "src/integration/verifier.rs": "50f4b594034884727c7bcaca441a48a1b9c71f1ff99412c6de1760ea33471410",
+    "src/lib.rs": "9246cb7b523bda1175d586d8898d3db1be3530b57bd0c1e3c81193ba94bd7432",
+    "src/main.rs": "59affc0d39ed34594a75120f06172c58eb030cfdd876a6180fc446bffe471150",
+    "src/mpc_program.rs": "6aca4ae311449c6b1810db21a68fa605d4b7b6ee0431dad74f771d667f51a281",
+    "src/native.rs": "55a7f54e53c948b774a6e281226fd11c60caca09f968b54bc94e573f7cf333f4",
+    "src/party.rs": "9a760f2c42c85c33301a66ff9cb0cef575e024d74487d231cd80063ef90af374",
+    "src/pcs.rs": "be9b78c93225b5540f9798a00db56159a0170b1951220856abf709436dbcf7fa",
+    "src/prover.rs": "1cb69735a762624381d7389e0bf27dc7719dac90c8e3eac764acd71a468f5200",
+    "src/transcript.rs": "bff883ff45a9367324a5815db994a06ed03a66a253c749eaef7ccac17465902f",
+    "src/verifier.rs": "7fa21e3d3cd15f5057ed27681200d18ad3fefa3d94e274351326a5465474905c"
+  },
+  "stage": "RUN_ROUGH_END_TO_END_AND_OBSERVE_FINAL_METRIC",
+  "started_unix_seconds": 1788906523,
+  "verdict": "smoke_only"
+}

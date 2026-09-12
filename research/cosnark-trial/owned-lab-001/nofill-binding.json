@@ -1,0 +1,11 @@
+{
+  "policy": {
+    "version": 1,
+    "deployment_id": "cocode-owned-native-001",
+    "mode": "on"
+  },
+  "book_id": "private-four-account-book",
+  "operation_id": "nofill",
+  "sequence": 2,
+  "no_fill": true
+}

@@ -1,0 +1,67 @@
+{
+  "experiment_id": "cocode-sealed-native-001",
+  "contract_id": "zkfmi-cocode-sealed-input-integration-v1",
+  "contract_sha256": "5b2446b4da86b91531de18ec783eb6090b19febb6c3230b116480a59fa44c839",
+  "closed_plan": [
+    "RUN_ROUGH_END_TO_END_AND_OBSERVE_FINAL_METRIC"
+  ],
+  "rough_command": "internal:native_to_canonical_defmi",
+  "bottleneck": "Owned native whole-path001 succeeded, but the worker read a private plaintext share file rather than the existing authenticated encrypted input packet.",
+  "causal_hypothesis": "Pinned recipient registration and resident hybrid KEM admission preserve the owned native proof and canonical path without coordinator plaintext input.",
+  "single_intended_change": "Replace worker plaintext input files with authenticated encrypted packets and durable semantic one-shot admission; preserve proof core, relation and canonical binary.",
+  "baseline": "owned-native-001 smoke_only primary 1 in 639.5 seconds",
+  "evaluation_population": "Same laboratory six-field book/cohort as owned-native001, with fresh registered sender/recipient keys and signed encrypted packets instead of plaintext shares. The main run does not mount the owner's original values or signing seed. Seven laboratory operators still share one host; receiver key files are a lab adapter, not independent custody or production encrypted keystores.",
+  "point_prediction": 1,
+  "likely_prediction_error": "A worker-local registration, private key path, clock or durable consumption mismatch may reject the packet before its owned initializer can execute.",
+  "trusted_query_roster_sha512": "fa7fc6f9f5c9b5a81ac2a1fd0e5579bfa1c97a7f507a61408f449e54d16df7287bce1f2b5ee8c7d4495eff38c65c8b2e91ffdea3b38d342bff8b75ed2ab64ac1",
+  "launch_config_sha256": "c0228437fd0a11dc0b53116fd1a121db4cf1c782a98357ddc2fcde679d01a38a",
+  "binding_sha256": {
+    "fill": "6c5360f43f8fc1ae87d50a68b57fa0b4254d90d38271efd71b6f5d6be73c7b4e",
+    "nofill": "a2c3d24fcb11733795b6ddf6f085f6a4f0650e63b14d5c5e0ac10a37013f5f18",
+    "invalid": "e1f97dd59cb64c595578003ce9d88a20a227263a292cd6d1a51ef076b1c02735"
+  },
+  "native_binary_sha256": "bbe7a7023c0605dd37201a0735d99cbbd39a612f787517fd5a175d30b1c21948",
+  "canonical_binary_sha256": "7836ab5c2bbe93fd534cf2a1cd5f1227fc0daf308c4da4f9e871c2ff33f8b26d",
+  "negative_gates": [
+    "wrong authoritative previous book commitment",
+    "changed output book commitment",
+    "changed proof opening",
+    "mixed deployment mode or identifier",
+    "replayed operation",
+    "stale book sequence after recovery",
+    "altered or incomplete canonical proof chunks",
+    "invalid private product or negative balance"
+  ],
+  "rejection_rule": "Any missing actual owned-worker path, accepted required negative, mismatched authoritative commitment, fallback fixture execution, missing proof/canonical evidence or weakened verification rejects this run.",
+  "promotion_rule": "At most smoke_only. Operational account/role/order authorization, QOMM/OCLOB matching constraints and canonical operational integration, meaningful Off, independent operator custody, crash recovery of consumed inputs, and formal composition/concrete PQ parameters remain unresolved.",
+  "runtime_owner_input_boundary": "Owner producer has clear laboratory values and signing seed but no recipient keys. Main runtime has ciphertext, pinned public registration and laboratory recipient keys but no owner clear values or signing seed. Same-host custody is not independent operator isolation.",
+  "receiver_config_sha256": {
+    "fill": [
+      "cadafdf3e7daa7d908f73d946e85a833b89143964f4704902b0bd1556ffa1483",
+      "c35a6dbad3e8da6eaaf320730529b61f50fbd1a2000a3a724541aa4dfbdcf600",
+      "a249f1f3e580f84dc911c90e4d9af06a7acca195dceff4f167f1ec71b61709bb",
+      "ae98cffbefc80b0582948b000b2c31b97263277fd4fff86f48fc94327aa1c4fe",
+      "f10b7aa63ba21c623f391aabdae7e18dd12fd19b7b4cd64233d4de8234772c07",
+      "738fe61b6b8f9367b57f9959fc49234303df3ecbf46e03faf3e7c414296b5fe7",
+      "a73271d652b855c73f707ec63fe6dad032f977c76cc47108c21135d7bae676a3"
+    ],
+    "nofill": [
+      "cadafdf3e7daa7d908f73d946e85a833b89143964f4704902b0bd1556ffa1483",
+      "c35a6dbad3e8da6eaaf320730529b61f50fbd1a2000a3a724541aa4dfbdcf600",
+      "a249f1f3e580f84dc911c90e4d9af06a7acca195dceff4f167f1ec71b61709bb",
+      "ae98cffbefc80b0582948b000b2c31b97263277fd4fff86f48fc94327aa1c4fe",
+      "f10b7aa63ba21c623f391aabdae7e18dd12fd19b7b4cd64233d4de8234772c07",
+      "738fe61b6b8f9367b57f9959fc49234303df3ecbf46e03faf3e7c414296b5fe7",
+      "a73271d652b855c73f707ec63fe6dad032f977c76cc47108c21135d7bae676a3"
+    ],
+    "invalid": [
+      "cadafdf3e7daa7d908f73d946e85a833b89143964f4704902b0bd1556ffa1483",
+      "c35a6dbad3e8da6eaaf320730529b61f50fbd1a2000a3a724541aa4dfbdcf600",
+      "a249f1f3e580f84dc911c90e4d9af06a7acca195dceff4f167f1ec71b61709bb",
+      "ae98cffbefc80b0582948b000b2c31b97263277fd4fff86f48fc94327aa1c4fe",
+      "f10b7aa63ba21c623f391aabdae7e18dd12fd19b7b4cd64233d4de8234772c07",
+      "738fe61b6b8f9367b57f9959fc49234303df3ecbf46e03faf3e7c414296b5fe7",
+      "a73271d652b855c73f707ec63fe6dad032f977c76cc47108c21135d7bae676a3"
+    ]
+  }
+}

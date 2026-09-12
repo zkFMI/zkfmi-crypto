@@ -1,0 +1,38 @@
+{
+  "experiment_id": "cocode-owned-native-001",
+  "contract_id": "zkfmi-cocode-owned-native-integration-v1",
+  "contract_sha256": "5352072bd2e087f2f8f3483bcb1f71612ce9c88a97002a8a94cbda2a7003ac9c",
+  "closed_plan": [
+    "RUN_ROUGH_END_TO_END_AND_OBSERVE_FINAL_METRIC"
+  ],
+  "rough_command": "internal:native_to_canonical_defmi",
+  "bottleneck": "Owner-local BN254 input initializer has not executed inside a complete native proof and canonical settlement run.",
+  "causal_hypothesis": "The owned worker adapter and degree-two consistency/interpolation correctly initialize the unchanged financial relation and preserve commitment continuity on recovery.",
+  "single_intended_change": "Switch the existing v2 native-to-canonical full runner to per-party owner-provided inputs; preserve proof core, N7/T2 engine, pinned roster, canonical binary, circuit and bounds.",
+  "baseline": "integration-query-002 smoke_only primary1 using the old distributed synthetic initializer. Owner-input-002 passed deterministic source tests but did not execute this path.",
+  "evaluation_population": "One same-host laboratory book with nonlegacy supplied values; fill then recovered no-fill; same canonical/public negative gates; actual owner-supplied insufficient balance. Not real venue/order/account provenance or independent custody.",
+  "point_prediction": 1,
+  "likely_prediction_error": "Owned initialization uses full-size BN254 evaluations and may expose an MP-SPDZ input parsing or witness layout mismatch before the first proof.",
+  "trusted_query_roster_sha512": "fa7fc6f9f5c9b5a81ac2a1fd0e5579bfa1c97a7f507a61408f449e54d16df7287bce1f2b5ee8c7d4495eff38c65c8b2e91ffdea3b38d342bff8b75ed2ab64ac1",
+  "launch_config_sha256": "371a6d2bf0db8386a5f861130097ab1503faffe2c7c2565597b0745b2b762084",
+  "binding_sha256": {
+    "fill": "c4cd9b9358dccad4b1894e7869d7193df6dbdbd6fc9aaf47cd8de407ae6c28ee",
+    "nofill": "ab10c478882eaec557d182d7d2838407a160fddd74e34a6676fc27ed68dd7d83",
+    "invalid": "5d152199c92feda5ecebd9943007497e7f0fc55eeb6e634907f557b8e8fc84d9"
+  },
+  "native_binary_sha256": "183354409417d1f13f52ab26fbc9e55febd1a74b407f98ebbb0f131046bf28fc",
+  "canonical_binary_sha256": "7836ab5c2bbe93fd534cf2a1cd5f1227fc0daf308c4da4f9e871c2ff33f8b26d",
+  "negative_gates": [
+    "wrong authoritative previous book commitment",
+    "changed output book commitment",
+    "changed proof opening",
+    "mixed deployment mode or identifier",
+    "replayed operation",
+    "stale book sequence after recovery",
+    "altered or incomplete canonical proof chunks",
+    "invalid private product or negative balance"
+  ],
+  "rejection_rule": "Any missing owned native execution, accepted required negative, wrong book continuity or weakened verification blocks this gate.",
+  "promotion_rule": "At most smoke_only; actual venue role/enrollment/encrypted transport, operational canonical linkage, meaningful Off and security/operator gates remain.",
+  "runtime_owner_input_boundary": "Private files under one laboratory host; participant encryption adapter not wired into this run."
+}

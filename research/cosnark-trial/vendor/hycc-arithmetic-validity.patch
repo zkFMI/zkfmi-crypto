@@ -1,0 +1,43 @@
+--- a/src/cbmc-gc/ssa_to_circuit/arithmetic.cpp
++++ b/src/cbmc-gc/ssa_to_circuit/arithmetic.cpp
+@@ -801,2 +801,3 @@
+-  std::vector<generic_function_callt> func_calls;
+-  while(!stepper)
++  std::vector<generic_function_callt> func_calls;
++  bool const emit_validity = module.options().get_bool_option("emit-validity");
++  while(!stepper)
+@@ -804,3 +805,13 @@
+-    auto step_it = stepper.cur_instruction();
+-
+-    if(step_it->is_assignment() && !step_it->ignore)
++    auto step_it = stepper.cur_instruction();
++
++    if(emit_validity && !step_it->ignore)
++    {
++      // Arithmetic validity is supported only for straight-line leaf modules.
++      // Nontrivial properties/guards or child calls must use Boolean compilation.
++      if(!step_it->guard.is_true() ||
++         ((step_it->is_assert() || step_it->is_assume()) && !step_it->cond_expr.is_true()) ||
++         step_it->is_function_call())
++        throw std::runtime_error{"arithmetic validity requires an unconditional property-free leaf"};
++    }
++
++    if(step_it->is_assignment() && !step_it->ignore)
+@@ -818,3 +829,14 @@
+-  arith_create_outputs(&circuit, state.sym_table, potential_outputs);
+-
+-  for(auto const &call: circuit.function_calls())
++  arith_create_outputs(&circuit, state.sym_table, potential_outputs);
++  if(emit_validity)
++  {
++    for(auto const &var: circuit.variables())
++      if(var.name == "OUTPUT_assertions")
++        throw std::runtime_error{"OUTPUT_assertions is reserved for compiler validity"};
++    auto valid = circuit.get_or_create_gate(simple_circuitt::CONST, 8, 1);
++    auto output = circuit.create_output_gate("OUTPUT_assertions", 8);
++    output->add_fanin(primary_output(valid), 0);
++    circuit.add_variable("OUTPUT_assertions", variable_ownert::output,
++      from_cbmc(unsignedbv_typet{8}), {output});
++  }
++
++  for(auto const &call: circuit.function_calls())

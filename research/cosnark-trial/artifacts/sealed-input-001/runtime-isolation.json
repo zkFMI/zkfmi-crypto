@@ -1,0 +1,118 @@
+{
+  "Id": "b43645e2d9db81003e1a553a12fbbde806e951176a8fb44079536228c4f72f71",
+  "Image": "sha256:91d284e9e0f0ba3fed0a005997edff224182eb949a465f54a6c287c249e5c3a4",
+  "State": {
+    "Status": "exited",
+    "Running": false,
+    "Paused": false,
+    "Restarting": false,
+    "OOMKilled": false,
+    "Dead": false,
+    "Pid": 0,
+    "ExitCode": 0,
+    "Error": "",
+    "StartedAt": "2026-09-09T14:27:14.573529486Z",
+    "FinishedAt": "2026-09-09T14:37:50.508353878Z"
+  },
+  "Mounts": [
+    {
+      "Type": "bind",
+      "Source": "/home/ubuntu/work/pqc-proof-switch-20260909/clean-engine",
+      "Destination": "/trial/clean-engine",
+      "Mode": "ro",
+      "RW": false,
+      "Propagation": "rprivate"
+    },
+    {
+      "Type": "bind",
+      "Source": "/home/ubuntu/work/pqc-proof-switch-20260908/cosnark-rough-002/engine-arithmetic128",
+      "Destination": "/trial/native-template",
+      "Mode": "ro",
+      "RW": false,
+      "Propagation": "rprivate"
+    },
+    {
+      "Type": "bind",
+      "Source": "/home/ubuntu/work/pqc-greenfield-20260909/sealed-input-001/sealed-runner-001",
+      "Destination": "/runner",
+      "Mode": "ro",
+      "RW": false,
+      "Propagation": "rprivate"
+    },
+    {
+      "Type": "bind",
+      "Source": "/home/ubuntu/work/pqc-proof-switch-20260909/query-v2-enrollment-001",
+      "Destination": "/enrollment",
+      "Mode": "ro",
+      "RW": false,
+      "Propagation": "rprivate"
+    },
+    {
+      "Type": "bind",
+      "Source": "/home/ubuntu/work/pqc-greenfield-20260909/sealed-input-001/query-budget",
+      "Destination": "/enrollment/keys/query-agreement-v2",
+      "Mode": "",
+      "RW": true,
+      "Propagation": "rprivate"
+    },
+    {
+      "Type": "bind",
+      "Source": "/home/ubuntu/work/pqc-proof-switch-20260909/integration-query-001/bin",
+      "Destination": "/canonical",
+      "Mode": "ro",
+      "RW": false,
+      "Propagation": "rprivate"
+    },
+    {
+      "Type": "bind",
+      "Source": "/home/ubuntu/work/pqc-greenfield-20260909/sealed-input-001/runtime",
+      "Destination": "/trial",
+      "Mode": "",
+      "RW": true,
+      "Propagation": "rprivate"
+    },
+    {
+      "Type": "bind",
+      "Source": "/home/ubuntu/work/pqc-greenfield-20260909/sealed-input-001/recipient-keys",
+      "Destination": "/recipient-keys",
+      "Mode": "ro",
+      "RW": false,
+      "Propagation": "rprivate"
+    },
+    {
+      "Type": "bind",
+      "Source": "/home/ubuntu/work/pqc-greenfield-20260909/sealed-input-001/receiver-state",
+      "Destination": "/receiver-state",
+      "Mode": "",
+      "RW": true,
+      "Propagation": "rprivate"
+    },
+    {
+      "Type": "bind",
+      "Source": "/home/ubuntu/work/pqc-proof-switch-20260908/cosnark-rough-002/compiler-python",
+      "Destination": "/compiler-python",
+      "Mode": "ro",
+      "RW": false,
+      "Propagation": "rprivate"
+    },
+    {
+      "Type": "bind",
+      "Source": "/home/ubuntu/work/pqc-greenfield-20260909/sealed-input-001/ciphertext",
+      "Destination": "/ciphertext",
+      "Mode": "ro",
+      "RW": false,
+      "Propagation": "rprivate"
+    }
+  ],
+  "NetworkMode": "none",
+  "ReadonlyRootfs": true,
+  "User": "1000:1000",
+  "Args": [
+    "integration-full-owned",
+    "/trial/private-001",
+    "/trial/public-001",
+    "integration-sealed-experiment-001.json",
+    "/canonical/cocode-canonical-acceptance",
+    "sealed-lab-launch-001.json"
+  ]
+}

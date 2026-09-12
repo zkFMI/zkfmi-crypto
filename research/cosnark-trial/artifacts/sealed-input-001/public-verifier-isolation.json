@@ -1,0 +1,42 @@
+{
+  "Id": "006777a91b8e6306f6d7721e331f7800fc7e7c3fe3cdcc55ba79f180d7cf4b7b",
+  "Image": "sha256:91d284e9e0f0ba3fed0a005997edff224182eb949a465f54a6c287c249e5c3a4",
+  "State": {
+    "Status": "exited",
+    "Running": false,
+    "Paused": false,
+    "Restarting": false,
+    "OOMKilled": false,
+    "Dead": false,
+    "Pid": 0,
+    "ExitCode": 0,
+    "Error": "",
+    "StartedAt": "2026-09-09T14:41:19.944015434Z",
+    "FinishedAt": "2026-09-09T14:41:24.857415133Z"
+  },
+  "Mounts": [
+    {
+      "Type": "bind",
+      "Source": "/home/ubuntu/work/pqc-greenfield-20260909/sealed-input-001/runtime/public-001",
+      "Destination": "/public",
+      "Mode": "ro",
+      "RW": false,
+      "Propagation": "rprivate"
+    },
+    {
+      "Type": "bind",
+      "Source": "/home/ubuntu/work/pqc-greenfield-20260909/sealed-input-001/sealed-runner-001",
+      "Destination": "/runner",
+      "Mode": "ro",
+      "RW": false,
+      "Propagation": "rprivate"
+    }
+  ],
+  "NetworkMode": "none",
+  "ReadonlyRootfs": true,
+  "User": "1000:1000",
+  "Args": [
+    "-c",
+    "set -eu; for n in fill nofill; do /runner integration-verify-v2 /public/$n/proof.json /public/$n/statement.json fa7fc6f9f5c9b5a81ac2a1fd0e5579bfa1c97a7f507a61408f449e54d16df7287bce1f2b5ee8c7d4495eff38c65c8b2e91ffdea3b38d342bff8b75ed2ab64ac1; echo verified-$n; done"
+  ]
+}

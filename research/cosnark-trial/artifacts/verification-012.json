@@ -1,0 +1,136 @@
+{
+  "experiment_id": "cosnark-rough-012",
+  "recorded_at": "2026-09-08T11:10:32Z",
+  "contract_id": "zkfmi-private-pq-cosnark-trial-v1",
+  "contract_sha256": "45dc526721b4f174c794557d15f1bc171a8bf4ef41fe210e5901bdd5402e26fb",
+  "stage": "RUN_ROUGH_END_TO_END_AND_OBSERVE_FINAL_METRIC",
+  "verdict": "smoke_only",
+  "primary_metric_value": 1,
+  "point_prediction": 1,
+  "prediction_error": 0,
+  "source_hash_count": 18,
+  "receipt_sha256": "54cf0735bd25cb529e065d0851e31514e811680dc0167617b5a402cd8b9522bf",
+  "manifest_sha256": "a76065a4d26c8e9bdb564df4b3609b14a630f3ef0146e5536908bcaa2475c5ad",
+  "proof_sha256": "de929e3aae9a213b5246fbe090a6220c7e6245abfa9352c52be71d67d3e8f5d0",
+  "proof_bytes": 96175154,
+  "dependency_identities_sha256": "659d24700e7b2f431f3397d43a84e7392616f59c93a955a8cacee3df46ac0e10",
+  "verification_log_sha256": "28ecf2eb61ed717a53fd352a2c85d93ece85d4019e79491f32b8121f949776d0",
+  "unit_test_source_sha256": {
+    "arithmetic": "6c74cd55aeef49e56e7dc1f8545aabf58d6817c94edde05472ed4208ea1e47fc",
+    "composition_arithmetic": "830a5f14f47b219ba48ff307dddfa170432902b46dea72a23dc4411a3144b985"
+  },
+  "ledger_count": 12,
+  "ledger_verdicts": [
+    {
+      "experiment_id": "cosnark-rough-001",
+      "verdict": "blocked"
+    },
+    {
+      "experiment_id": "cosnark-rough-002",
+      "verdict": "blocked"
+    },
+    {
+      "experiment_id": "cosnark-rough-003",
+      "verdict": "blocked"
+    },
+    {
+      "experiment_id": "cosnark-rough-004",
+      "verdict": "blocked"
+    },
+    {
+      "experiment_id": "cosnark-rough-005",
+      "verdict": "blocked"
+    },
+    {
+      "experiment_id": "cosnark-rough-006",
+      "verdict": "blocked"
+    },
+    {
+      "experiment_id": "cosnark-rough-007",
+      "verdict": "blocked"
+    },
+    {
+      "experiment_id": "cosnark-rough-008",
+      "verdict": "blocked"
+    },
+    {
+      "experiment_id": "cosnark-rough-009",
+      "verdict": "blocked"
+    },
+    {
+      "experiment_id": "cosnark-rough-010",
+      "verdict": "blocked"
+    },
+    {
+      "experiment_id": "cosnark-rough-011",
+      "verdict": "smoke_only"
+    },
+    {
+      "experiment_id": "cosnark-rough-012",
+      "verdict": "smoke_only"
+    }
+  ],
+  "whole_native_run": {
+    "duration_seconds": 25.933184133,
+    "native_rounds": 16,
+    "positive_rounds": 14,
+    "positive_party_exits": 98,
+    "negative_rounds": 2,
+    "negative_party_exits": 14,
+    "all_negative_exit_codes": 1,
+    "native_source_and_bytecode_hashes_verified": 48,
+    "schedules_security_128_verified": 16
+  },
+  "negative_cases": {
+    "changed codeword opening": true,
+    "changed deployment mode or identifier": true,
+    "changed final evaluation claim": true,
+    "changed proof commitment root": true,
+    "changed public statement": true,
+    "inconsistent per-party challenge view": true,
+    "invalid witness": true
+  },
+  "owner_local_repeated_query_rejections": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+  ],
+  "static_and_unit_checks": {
+    "exit_code": 0,
+    "format": true,
+    "clippy_all_targets_warnings_denied": true,
+    "unit_tests": 11,
+    "ignored_tests": 0,
+    "log": "artifacts/verification-012.log"
+  },
+  "isolated_verifier": {
+    "exit_code": 0,
+    "network": "none",
+    "filesystem": "read-only",
+    "mounted_inputs": [
+      "public verifier executable",
+      "rough-012 public proof directory"
+    ],
+    "run_specific_private_inputs_mounted": false,
+    "run_specific_persistence_mounted": false,
+    "host_private_state_access": false,
+    "executable_sha256": "0b23874c51282ec87272cfddfaa3fc7e8af263bf6eeab739b9928caa705dd76c",
+    "image": "sha256:91d284e9e0f0ba3fed0a005997edff224182eb949a465f54a6c287c249e5c3a4"
+  },
+  "source_inputs_match_current_tree": true,
+  "dependency_artifacts_hashed": 74,
+  "exclusions": {
+    "production_promotion": false,
+    "formal_zero_knowledge_or_quantum_soundness_proof": false,
+    "independent_operator_deployment": false,
+    "operational_commitment_adapter": false,
+    "defmi_transaction_lifecycle": false,
+    "external_service_mutation": false,
+    "git_commit_push_deploy": false
+  },
+  "earliest_unresolved_gate": "Independent validation of the normalized/masking composition and security parameters; operational financial commitment adapters, DeFMI transaction/restart lifecycle and independent-operator acceptance remain unverified."
+}

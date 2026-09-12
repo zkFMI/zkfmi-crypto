@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "kind": "deterministic_source_gate",
+  "status": "passed",
+  "recorded_at": "2026-09-09T08:31:10.843928060Z",
+  "scope": "Private owner input adapter and its explicit worker/native entry points; not operational venue or native proof acceptance",
+  "route": "Mac -> omenx_ubuntu_zerotier -> softbank-l40s, nested SSH; no direct laptop connection",
+  "host": "ngi-external022-vm1",
+  "remote_root": "/home/ubuntu/work/pqc-greenfield-20260909/owner-input-002",
+  "container": {
+    "name": "pqc-owner-input-002-gate",
+    "id": "9caf254dffcbac8efb405330c6cc2ba9ff19d8480d03d66a2826f56e472d6281",
+    "image": "sha256:48216bd22f2d3f1370fbdfd12c66771c797c295f5dc7e82fb23d618eb98904f2",
+    "exit_code": 0,
+    "started_at": "2026-09-09T08:30:53.169282982Z",
+    "finished_at": "2026-09-09T08:31:10.843928060Z"
+  },
+  "checks": {
+    "release_build": "passed",
+    "client_only_owner_input_tests": {
+      "passed": 23,
+      "failed": 0
+    },
+    "native_prover_all_targets_tests": {
+      "passed": 30,
+      "failed": 0
+    },
+    "all_targets_clippy_warnings_denied": "passed"
+  },
+  "source_sha256": {
+    "src/integration/owner_input.rs": "530c0a9cdc56171006306db0ec52c6a6ca2c2fd7cb6acc65d5ebdeb80b75b49e",
+    "../../src/sealed.rs": "ea1284f699a5f0c2ff2aebc0dcde842701870e72185af7da71398f206d1a4cc6",
+    "Cargo.toml": "10a922956534e817e90e13e59767c36592612a2bb6b39eed052bed10ac96f5e6",
+    "sorted_rust_source_file_hashes": "8c74bd8cb9edf41d87ceca0cf42ab593b4f34f21ac8ef813475fec3c9c4c2b55"
+  },
+  "source_hash_definition": "SHA-256 of sorted `sha256sum` lines for src/**/*.rs, excluding noncompiled AppleDouble ._* metadata. Compared against local shasum output; equal.",
+  "binary_sha256": "0a62bda13fa4153690c3890dd243cbc85e63f53b8d05d8760f684702127bcbfa",
+  "log": {
+    "local_path": "gate.log",
+    "remote_path": "/home/ubuntu/work/pqc-greenfield-20260909/owner-input-002/gate.log",
+    "sha256": "ffd47d6f37380a7bbca78a6698215559205066c2ea3d14c64601cfe3c59ce8f8"
+  },
+  "not_verified": [
+    "Seven-party native MP-SPDZ execution of the owned-input initializer",
+    "Operational participant enrollment, role/account ownership and actual sealed-input transport wiring",
+    "QOMM/OCLOB order matching and canonical new-book linkage",
+    "Full operational On/Off equivalence",
+    "Concrete quantum security/composition parameters and independent operator custody"
+  ],
+  "prior_unknown_build_resolution": "owner-input-001 log absent and no running container used its source mount; no build was restarted from an observation timeout."
+}

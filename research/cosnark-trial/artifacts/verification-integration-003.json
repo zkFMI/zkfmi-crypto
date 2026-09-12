@@ -1,0 +1,226 @@
+{
+  "experiment_id": "cocode-defmi-integration-003",
+  "recorded_at": "2026-09-08T22:41:27Z",
+  "contract_id": "zkfmi-cocode-defmi-integration-v1",
+  "contract_sha256": "44b45868cadcefa44340f42bc7199762d7d1f8a9ebb78e86496667b06804944f",
+  "stage": "RUN_ROUGH_END_TO_END_AND_OBSERVE_FINAL_METRIC",
+  "verdict": "smoke_only",
+  "primary_metric_value": 1,
+  "point_prediction": 1,
+  "prediction_error": 0,
+  "duration_seconds": 645.230840017,
+  "manifest": "integration-experiment-003.json",
+  "manifest_sha256": "da99f346670c53e1616345a270914c96726674b4e30d3ffa288f83200a0e9ea9",
+  "receipt": "artifacts/integration-003/receipt.json",
+  "receipt_sha256": "44db45723797a0df0877b3bd184585a659eb5cc1cc49330affa57cc83745d83a",
+  "execution": {
+    "host": "softbank-l40s",
+    "image": "sha256:91d284e9e0f0ba3fed0a005997edff224182eb949a465f54a6c287c249e5c3a4",
+    "whole_process_exit_code": 0,
+    "native_binary_sha256": "886a9bc84de28ca90ebc539501da7fc51b26490fa68c8f9a1c768b4b25c19dc3",
+    "canonical_binary_sha256": "93fe1575c5d5b09c0e4d0bdf9ca99371b32dd2b37e0fd339b1a560e1650de669",
+    "remote_root": "/home/ubuntu/work/pqc-proof-switch-20260909",
+    "frozen_source_and_binaries": "source-snapshots/003",
+    "prelaunch_errors": "PATH and canonical build-lock permission errors occurred before the atomic run claim; logs retained. Canonical prebuilt binary had already passed its final locked build; its exact bytes were used. No failed experiment was relabeled or run claim removed."
+  },
+  "canonical_acceptance": {
+    "accepted": true,
+    "applied_blocks": 740,
+    "block_limit_bytes": 1572864,
+    "deployment_mode": "pq-only-research",
+    "feature": "research-cocode",
+    "fill_proof_bytes": 192349020,
+    "fill_proof_sha512": "8db405277a4cd0a53577dba777ab8341b44dea96a39a0b8e6ba756512e521e6036b2d789890a705fefa4663e84c1a68af0f332b9abb3c3c6d0de89c7c01e9871",
+    "fill_receipt": {
+      "afterCommitment": "88366505b32945e33cc1b52291c4acfa7c2eb7f7227a750ee386e51a8cedd2c116be7c343cc5835437f5f6fdb64b17e215b0175e39b1e64e15ecdc8d77aba4c7",
+      "beforeCommitment": "f9dabaef4e4771f7668eb5a14a75b69790484370d0a25c6eaacf13324069076831ce065ba2b56252795caac3734b21f4af402af3f6684e373adaf47d87c2a835",
+      "bookId": "private-four-account-book",
+      "deploymentId": "cocode-defmi-integration-003",
+      "noFill": false,
+      "operationId": "fill",
+      "proofSha512": "8db405277a4cd0a53577dba777ab8341b44dea96a39a0b8e6ba756512e521e6036b2d789890a705fefa4663e84c1a68af0f332b9abb3c3c6d0de89c7c01e9871",
+      "sequence": 1
+    },
+    "fill_transition_after_root": "cde59b26959e8bd5d9da14dcf79d14a88ebd91bdd3737a27709ea968133a9e58",
+    "final_state_root": "93b232c805b0af810ead6ce3000770b14b22d8b0432a1f53a90350124198e7ed",
+    "max_proof_bytes": 268435456,
+    "negative_gates": {
+      "altered_proof_chunk": true,
+      "changed_output_book_commitment": true,
+      "incomplete_proof_chunks": true,
+      "mixed_deployment_or_mode": true,
+      "replayed_operation": true,
+      "reused_operation_with_fresh_authorization_after_recovery": true,
+      "stale_book_sequence_after_recovery": true,
+      "wrong_authoritative_previous_book_commitment": true
+    },
+    "nofill_proof_bytes": 192349021,
+    "nofill_proof_sha512": "1e43b880784977d63464756db41a785481659f4c1552921892cbae55132b6205c09c02f067a7ec9c34318403650e59cce50c6c33b22f668d0bf4adb48098c434",
+    "nofill_receipt": {
+      "afterCommitment": "77668b421e569bcfdc2cb843888c36b0b4a5b1ea3a0a294810ebcd0f0d6b611bc6afc74683d46e0ae3aa3246118022d61cb88d260a7681e0eddd16698a507598",
+      "beforeCommitment": "88366505b32945e33cc1b52291c4acfa7c2eb7f7227a750ee386e51a8cedd2c116be7c343cc5835437f5f6fdb64b17e215b0175e39b1e64e15ecdc8d77aba4c7",
+      "bookId": "private-four-account-book",
+      "deploymentId": "cocode-defmi-integration-003",
+      "noFill": true,
+      "operationId": "nofill",
+      "proofSha512": "1e43b880784977d63464756db41a785481659f4c1552921892cbae55132b6205c09c02f067a7ec9c34318403650e59cce50c6c33b22f668d0bf4adb48098c434",
+      "sequence": 2
+    },
+    "pending_upload_recovery": {
+      "proof_expected_chunks": 367,
+      "proof_uploaded_chunks": 367,
+      "state_bytes": 256566935,
+      "state_readback_matches": true,
+      "state_root": "c560a4067b13d072bed975f8c1b8fe28f06af12f5745b0b2b24963a2f503b767",
+      "state_sha256": "c2f002b76045953cf3cdadd24c957601b6485252dddc755796e887ce86ef92dd",
+      "state_sync_readback_matches": true,
+      "state_sync_snapshot_bytes": 257194340,
+      "state_sync_snapshot_chunks": 491,
+      "state_sync_snapshot_hash": "0e7fee50e4446201ae14e7a987faa850f1f43a35e5cb0ca600b8045887d51fab",
+      "state_sync_snapshot_sha256": "5c9b2fa089e79deed98b6110c55c0017e9bb6dbff3d3930084fc1221dae1c2ef",
+      "state_sync_summary_sha256": "1a63a4a95df14235b885ad89577aa04bccbeebeaa19688bdd2fa686b974f99c7"
+    },
+    "persisted_snapshot_sha256": "9cb14bbcca46ba6a7a84e4817d0f241de283f8bc2af3c961fb4ca3033d3f2f5f",
+    "persisted_summary_sha256": "2ea7233f80c64ad2618656732e22ffea9b81d4007a28e7b9b047bf731d0fb38d",
+    "proof_chunk_bytes": 524288,
+    "proof_protocol": "cocode-defmi-private-dvp-research-v1",
+    "recovered_state_root": "cde59b26959e8bd5d9da14dcf79d14a88ebd91bdd3737a27709ea968133a9e58",
+    "transaction_limit_bytes": 1048576,
+    "verifier": "zkfmi-cosnark-trial::integration::verify_serialized"
+  },
+  "proofs": [
+    {
+      "operation": "fill",
+      "bytes": 192349020,
+      "sha256": "7dcc998836f0eed42b35e3d4bd551e6ed79fe379146535c111b86e0c95805790",
+      "owner_query_replay_rejected": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "operation": "nofill",
+      "bytes": 192349021,
+      "sha256": "8f66e6cd040d4badcfbe711c14d4dd4e856ce8f751b6bb489fd3d37427eac50a",
+      "owner_query_replay_rejected": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    }
+  ],
+  "proof_negative_gates": {
+    "changed codeword opening": true,
+    "changed output commitment with matching external statement": true,
+    "changed proof deployment mode": true,
+    "invalid private product": true
+  },
+  "evidence_readback": {
+    "source_files_match": 147,
+    "remote_identities": 371,
+    "native_counts": {
+      "fill": {
+        "rounds": 23,
+        "party_exits": 161
+      },
+      "nofill": {
+        "rounds": 23,
+        "party_exits": 161
+      },
+      "invalid": {
+        "rounds": 1,
+        "party_exits": 7
+      }
+    },
+    "dependency_matches": 74,
+    "downloaded_public_hashes_match": true,
+    "identities": "artifacts/integration-003-identities.json",
+    "identities_sha256": "965bec3feb13638241a7f1894d5ed408aae34fb5b5bda02436202fb726483cd3",
+    "script": "verify_integration_evidence.py",
+    "script_sha256": "4d203fd218db7680b14f2b1323c441201037a8ce2d5a0781f853e102a591e675",
+    "native_schedules_with_security_128": 47,
+    "positive_native_party_exits_zero": 322,
+    "negative_native_party_exits_one": 7
+  },
+  "static_and_unit_checks": {
+    "native_public_fixture_tests": 19,
+    "canonical_default_off_tests": 66,
+    "canonical_feature_on_tests": 67,
+    "failed": 0,
+    "ignored": 0,
+    "native_format": true,
+    "native_clippy_all_targets_warnings_denied": true,
+    "native_verifier_only_check": true,
+    "canonical_clippy_all_targets_both_modes": true,
+    "canonical_locked_release_build": true,
+    "local_diff_check": true,
+    "local_builds_performed": false
+  },
+  "public_only_verifiers": {
+    "fill": {
+      "exit_code": 0
+    },
+    "nofill": {
+      "exit_code": 0
+    },
+    "legacy_rough_012": {
+      "exit_code": 0
+    },
+    "network": "none",
+    "filesystem": "read-only",
+    "mounted_inputs": [
+      "frozen native executable",
+      "selected public proof and statement directory"
+    ],
+    "run_specific_private_inputs_or_persistence_mounted": false
+  },
+  "logs_sha256": {
+    "artifacts/integration-003-checks/canonical/default-all-target-clippy.log": "c9ef3b68d69664e1d157e575848e4f6146e26ad39b9aa75897123cb92d2ce4bd",
+    "artifacts/integration-003-checks/canonical/default-all-target-tests.log": "b8a973e461f79689beac62b31db30a150d1d3563ecc00ae9a885e4ba6408f730",
+    "artifacts/integration-003-checks/canonical/feature-all-target-clippy.log": "1d4a459075bb084f679636df54054e09c302d0ad0d545b52395925946c48d277",
+    "artifacts/integration-003-checks/canonical/feature-all-target-tests.log": "eb58fcb4623632d0cac2625cb136f9074880a714ab200cdad241d0793874f219",
+    "artifacts/integration-003-checks/canonical/release-build.log": "343c13e7f6f2d320993b573f830525e33b59b3c32656ef426e015b1e30f3fdc2",
+    "artifacts/integration-003-checks/fill-verifier-003.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "artifacts/integration-003-checks/integration-003-prelaunch-build-permission.log": "d3096e18c69c5c3af52f0f5fc6b090b502094af3891a9107217cdac5c350a8f7",
+    "artifacts/integration-003-checks/integration-003-prelaunch-path.log": "e977a1713ace7b115cb28b5fb2eb4e5a74d624e400b2b8838fc1bfaf2fbb0c90",
+    "artifacts/integration-003-checks/integration-003.log": "827f82957ea5696ebc80797f8372b70de9da7e94cdd08454a68487cdb30d5c5c",
+    "artifacts/integration-003-checks/legacy-verifier-003.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "artifacts/integration-003-checks/native-verification-003b.log": "94aeefff102852eb7301713bbedeb666939dd202e100edc1b37430c950974cae",
+    "artifacts/integration-003-checks/nofill-verifier-003.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "ledger_verdicts": [
+    {
+      "experiment_id": "cocode-defmi-integration-001",
+      "verdict": "blocked"
+    },
+    {
+      "experiment_id": "cocode-defmi-integration-002",
+      "verdict": "smoke_only"
+    },
+    {
+      "experiment_id": "cocode-defmi-integration-003",
+      "verdict": "smoke_only"
+    }
+  ],
+  "earliest_unresolved_gate": "Independent composition, quantum parameters, operator isolation and venue-specific adoption; no production promotion.",
+  "exclusions": {
+    "production_promotion": false,
+    "formal_zero_knowledge_or_quantum_soundness_proof": false,
+    "independent_operator_isolation": false,
+    "live_avalanche_deployment_or_network_recovery": false,
+    "operational_asset_issuance_or_migration": false,
+    "venue_specific_qomm_oclob_lifecycle_adapters": false,
+    "application_wide_pq_authorization_or_startup_migration": false,
+    "arbitrary_private_proof_crash_regeneration": false,
+    "commit_push_or_deployment": false
+  }
+}
